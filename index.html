@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وكيل EhabGM للتسويق الذكي</title>
+    <title data-key="appTitle">وكيل EhabGM للتسويق الذكي</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,196 +14,282 @@
     <!-- html2pdf.js CDN for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
+        :root {
+            --bg-color-light: #f3f4f6;
+            --text-color-light: #374151;
+            --header-footer-bg-light: #000000;
+            --header-footer-text-light: #ffffff;
+            --container-bg-light: #ffffff;
+            --container-shadow-light: rgba(0, 0, 0, 0.15);
+            --input-border-light: #d1d5db;
+            --input-focus-border-light: #dc2626;
+            --input-focus-shadow-light: rgba(220, 38, 38, 0.25);
+            --primary-btn-bg-light: #dc2626;
+            --primary-btn-hover-light: #b91c1c;
+            --secondary-btn-bg-light: #4b5563;
+            --secondary-btn-hover-light: #1f2937;
+            --report-section-bg-light: #f9fafb;
+            --report-section-border-light: #e5e7eb;
+            --report-section-shadow-light: rgba(0, 0, 0, 0.05);
+            --report-title-border-light: #dc2626;
+            --logo-upload-border-light: #dc2626;
+            --logo-upload-hover-bg-light: #fef2f2;
+            --loading-overlay-bg-light: rgba(0, 0, 0, 0.95);
+            --loading-message-color-light: #dc2626;
+            --loading-task-bg-light: rgba(255, 255, 255, 0.1);
+            --loading-task-border-light: rgba(255, 255, 255, 0.2);
+            --loading-task-active-bg-light: rgba(220, 38, 38, 0.2);
+            --loading-task-active-border-light: #dc2626;
+            --loading-task-active-shadow-light: rgba(220, 38, 38, 0.4);
+            --loading-task-completed-bg-light: rgba(255, 255, 255, 0.05);
+            --loading-task-completed-text-light: #cccccc;
+            --loading-task-icon-pending-light: #dc2626;
+            --loading-task-icon-active-light: #ffffff;
+            --loading-task-icon-completed-light: #10b981;
+            --progress-dot-inactive-light: #d1d5db;
+            --progress-dot-active-light: #dc2626;
+            --progress-dot-completed-light: #10b981;
+            --footer-link-color-light: #dc2626;
+            --footer-link-hover-light: #b91c1c;
+
+            /* Dark Mode Colors */
+            --bg-color-dark: #1a1a1a;
+            --text-color-dark: #e0e0e0;
+            --header-footer-bg-dark: #000000;
+            --header-footer-text-dark: #ffffff;
+            --container-bg-dark: #2a2a2a;
+            --container-shadow-dark: rgba(0, 0, 0, 0.4);
+            --input-border-dark: #444444;
+            --input-focus-border-dark: #dc2626;
+            --input-focus-shadow-dark: rgba(220, 38, 38, 0.4);
+            --primary-btn-bg-dark: #dc2626;
+            --primary-btn-hover-dark: #b91c1c;
+            --secondary-btn-bg-dark: #6b7280;
+            --secondary-btn-hover-dark: #4b5563;
+            --report-section-bg-dark: #333333;
+            --report-section-border-dark: #444444;
+            --report-section-shadow-dark: rgba(0, 0, 0, 0.2);
+            --report-title-border-dark: #dc2626;
+            --logo-upload-border-dark: #dc2626;
+            --logo-upload-hover-bg-dark: #3a3a3a;
+            --loading-overlay-bg-dark: rgba(0, 0, 0, 0.95); /* Stays dark */
+            --loading-message-color-dark: #dc2626; /* Stays red */
+            --loading-task-bg-dark: rgba(255, 255, 255, 0.1); /* Stays semi-transparent */
+            --loading-task-border-dark: rgba(255, 255, 255, 0.2);
+            --loading-task-active-bg-dark: rgba(220, 38, 38, 0.2);
+            --loading-task-active-border-dark: #dc2626;
+            --loading-task-active-shadow-dark: rgba(220, 38, 38, 0.4);
+            --loading-task-completed-bg-dark: rgba(255, 255, 255, 0.05);
+            --loading-task-completed-text-dark: #999999;
+            --loading-task-icon-pending-dark: #dc2626;
+            --loading-task-icon-active-dark: #ffffff;
+            --loading-task-icon-completed-dark: #10b981;
+            --progress-dot-inactive-dark: #666666;
+            --progress-dot-active-dark: #dc2626;
+            --progress-dot-completed-dark: #10b981;
+            --footer-link-color-dark: #dc2626;
+            --footer-link-hover-dark: #b91c1c;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #374151;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full viewport height */
+            min-height: 100vh;
+        }
+        body.dark-mode {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
         }
         header {
-            background-color: #1a202c; /* Darker header */
-            color: #ffffff;
-            padding: 1.5rem 2rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: var(--header-footer-bg-light);
+            color: var(--header-footer-text-light);
+            box-shadow: 0 2px 4px var(--container-shadow-light);
+            padding: 1rem;
         }
-        header h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin: 0;
+        body.dark-mode header {
+            background-color: var(--header-footer-bg-dark);
+            color: var(--header-footer-text-dark);
+            box-shadow: 0 2px 4px var(--container-shadow-dark);
         }
         main {
-            flex-grow: 1; /* Allow main content to grow */
+            flex-grow: 1;
+            padding: 2rem 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Align to top for longer content */
         }
         .container {
-            max-width: 90%;
-            width: 100%; /* Ensure it takes full width on small screens */
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
+            background-color: var(--container-bg-light);
             border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            box-shadow: 0 8px 16px var(--container-shadow-light);
+            max-width: 800px;
+            width: 95%;
+            margin: 0 auto; /* Center the container */
+        }
+        body.dark-mode .container {
+            background-color: var(--container-bg-dark);
+            box-shadow: 0 8px 16px var(--container-shadow-dark);
         }
         input[type="text"], textarea, select {
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--input-border-light);
             border-radius: 0.5rem;
-            padding: 0.75rem;
-            width: 100%;
+            padding: 0.75rem 1rem;
             font-size: 1rem;
-            transition: border-color 0.2s ease-in-out;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        body.dark-mode input[type="text"], body.dark-mode textarea, body.dark-mode select {
+            background-color: #3a3a3a;
+            color: var(--text-color-dark);
+            border-color: var(--input-border-dark);
         }
         input[type="text"]:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            border-color: var(--input-focus-border-light);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-light);
         }
-        button {
+        body.dark-mode input[type="text"]:focus, body.dark-mode textarea:focus, body.dark-mode select:focus {
+            border-color: var(--input-focus-border-dark);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-dark);
+        }
+        .btn-primary {
+            background-color: var(--primary-btn-bg-light);
+            color: #ffffff;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
-        }
-        button:hover {
-            transform: translateY(-1px);
-        }
-        .btn-primary {
-            background-color: #3b82f6;
-            color: #ffffff;
         }
         .btn-primary:hover {
-            background-color: #2563eb;
+            background-color: var(--primary-btn-hover-light);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-primary:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
         }
         .btn-secondary {
-            background-color: #6b7280;
+            background-color: var(--secondary-btn-bg-light);
             color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
         }
         .btn-secondary:hover {
-            background-color: #4b5563;
+            background-color: var(--secondary-btn-hover-light);
+            transform: translateY(-1px);
+        }
+        .btn-secondary:active {
+            transform: translateY(0);
         }
         .report-section {
-            background-color: #f9fafb;
-            padding: 1.5rem;
+            background-color: var(--report-section-bg-light);
+            border: 1px solid var(--report-section-border-light);
             border-radius: 0.75rem;
+            padding: 1.5rem;
             margin-bottom: 1.5rem;
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px var(--report-section-shadow-light);
+        }
+        body.dark-mode .report-section {
+            background-color: var(--report-section-bg-dark);
+            border-color: var(--report-section-border-dark);
+            box-shadow: 0 2px 8px var(--report-section-shadow-dark);
         }
         .report-section h3 {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #1f2937;
+            color: var(--text-color-light);
             margin-bottom: 1rem;
-            border-bottom: 2px solid #3b82f6;
             padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--report-title-border-light);
         }
-        .report-section ul {
-            list-style-type: disc;
-            margin-right: 1.25rem;
-            padding-right: 0;
-        }
-        .report-section ol {
-            list-style-type: decimal;
-            margin-right: 1.25rem;
-            padding-right: 0;
-        }
-        .report-section li {
-            margin-bottom: 0.5rem;
-        }
-        .report-section p {
-            margin-bottom: 0.75rem;
-            line-height: 1.6;
-        }
-        .report-section strong {
-            color: #1f2937;
+        body.dark-mode .report-section h3 {
+            color: var(--text-color-dark);
+            border-bottom-color: var(--report-title-border-dark);
         }
         .logo-upload-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #d1d5db;
-            border-radius: 0.5rem; /* Adjusted for consistency */
-            padding: 1.5rem; /* Adjusted padding */
+            border: 2px dashed var(--logo-upload-border-light);
+            border-radius: 0.75rem;
+            padding: 2rem;
             text-align: center;
             cursor: pointer;
-            transition: border-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            background-color: #fff;
         }
         .logo-upload-section:hover {
-            border-color: #3b82f6;
+            border-color: var(--primary-btn-hover-light);
+            background-color: var(--logo-upload-hover-bg-light);
+        }
+        body.dark-mode .logo-upload-section {
+            background-color: #333333;
+            border-color: var(--logo-upload-border-dark);
+        }
+        body.dark-mode .logo-upload-section:hover {
+            border-color: var(--primary-btn-hover-dark);
+            background-color: var(--logo-upload-hover-bg-dark);
         }
         .logo-preview {
-            max-width: 120px; /* Slightly smaller for better fit */
-            max-height: 120px;
-            border-radius: 0.5rem;
+            max-width: 150px;
+            max-height: 150px;
             margin-top: 1rem;
-            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .chart-container {
-            position: relative;
-            height: 300px; /* Fixed height for charts */
-            width: 100%;
-            margin-bottom: 1.5rem;
-        }
-        /* Enhanced loading overlay */
+
+        /* Loading Overlay */
         #loadingOverlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
+            background-color: var(--loading-overlay-bg-light);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            transition: opacity 0.3s ease-in-out;
-            padding: 1rem;
-            box-sizing: border-box;
+            transition: opacity 0.3s ease;
+            opacity: 1;
         }
         #loadingOverlay.hidden {
             opacity: 0;
             pointer-events: none;
         }
         .loading-animation {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            border-top: 8px solid #dc2626; /* Red spinner */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
             margin-bottom: 2rem;
-            background: radial-gradient(circle, #3b82f6 10%, transparent 10%),
-                        radial-gradient(circle, #2563eb 10%, transparent 10%),
-                        radial-gradient(circle, #1d4ed8 10%, transparent 10%);
-            background-size: 30% 30%;
-            background-position: 0 50%, 50% 50%, 100% 50%;
-            background-repeat: no-repeat;
-            animation: pulse-dots 1.5s infinite alternate;
         }
-        @keyframes pulse-dots {
-            0% {
-                background-position: 0 50%, 50% 50%, 100% 50%;
-                opacity: 0.8;
-            }
-            33% {
-                background-position: 0 30%, 50% 50%, 100% 70%;
-                opacity: 1;
-            }
-            66% {
-                background-position: 0 70%, 50% 50%, 100% 30%;
-                opacity: 0.8;
-            }
-            100% {
-                background-position: 0 50%, 50% 50%, 100% 50%;
-                opacity: 0.8;
-            }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         .loading-message-container {
-            height: 3rem;
-            overflow: hidden;
+            height: 3rem; /* Fixed height to prevent layout shift */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -212,62 +298,258 @@
         .loading-message {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #3b82f6;
             text-align: center;
-            animation: fadeInOut 4s infinite;
-            padding: 0 1rem;
+            color: var(--loading-message-color-light);
+            transition: color 0.3s ease;
         }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(20px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-
-        /* Loading Tasks List */
         #loadingTasks {
             list-style: none;
             padding: 0;
-            margin-top: 1rem;
             width: 90%;
-            max-width: 500px;
+            max-width: 400px;
         }
         #loadingTasks li {
-            background-color: #e0f2fe;
+            background-color: var(--loading-task-bg-light);
+            border: 1px solid var(--loading-task-border-light);
+            border-radius: 0.5rem;
             padding: 0.75rem 1rem;
             margin-bottom: 0.5rem;
-            border-radius: 0.5rem;
             display: flex;
             align-items: center;
-            font-size: 1.1rem;
-            color: #1e40af;
-            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        #loadingTasks li.active {
-            background-color: #bfdbfe;
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
-            transform: scale(1.02);
-        }
-        #loadingTasks li.completed {
-            background-color: #d1fae5;
-            color: #065f46;
-            box-shadow: none;
-            transform: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         #loadingTasks li .task-icon {
-            width: 24px;
+            margin-right: 0.75rem;
+            width: 20px;
             text-align: center;
-            margin-left: 0.75rem;
         }
         #loadingTasks li .task-icon i {
-            color: #3b82f6;
+            color: var(--loading-task-icon-pending-light);
+            transition: color 0.3s ease;
         }
-        #loadingTasks li.active .task-icon i {
-            color: #1e40af;
+        #loadingTasks li.active {
+            background-color: var(--loading-task-active-bg-light);
+            border-color: var(--loading-task-active-border-light);
+            box-shadow: 0 0 10px var(--loading-task-active-shadow-light);
+        }
+        #loadingTasks li.completed {
+            background-color: var(--loading-task-completed-bg-light);
+            color: var(--loading-task-completed-text-light);
         }
         #loadingTasks li.completed .task-icon i {
-            color: #10b981;
+            color: var(--loading-task-icon-completed-light);
+        }
+
+        /* Progress Dots for Form */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .progress-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--progress-dot-inactive-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .progress-dot.active {
+            background-color: var(--progress-dot-active-light);
+            transform: scale(1.2);
+        }
+        .progress-dot.completed {
+            background-color: var(--progress-dot-completed-light);
+        }
+
+        footer {
+            background-color: var(--header-footer-bg-light);
+            color: var(--header-footer-text-light);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 4px var(--container-shadow-light);
+            margin-top: 2rem;
+        }
+        body.dark-mode footer {
+            background-color: var(--header-footer-bg-dark);
+            color: var(--header-footer-text-dark);
+            box-shadow: 0 -2px 4px var(--container-shadow-dark);
+        }
+        footer a {
+            color: var(--footer-link-color-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        footer a:hover {
+            color: var(--footer-link-hover-light);
+            text-decoration: underline;
+        }
+        body.dark-mode footer a {
+            color: var(--footer-link-color-dark);
+        }
+        body.dark-mode footer a:hover {
+            color: var(--footer-link-hover-dark);
+        }
+
+        /* Print to PDF button style */
+        .btn-pdf {
+            background-color: #dc2626; /* Red color for PDF */
+            color: #ffffff;
+        }
+        .btn-pdf:hover {
+            background-color: #b91c1c;
+        }
+
+        /* Dynamic Background - Stars */
+        .star-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+            background: #000000; /* Base black for stars */
+        }
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--star-speed) infinite ease-in-out alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        /* Collapsible Sections */
+        .collapsible-content {
+            max-height: 150px; /* Initial height for summary */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            position: relative;
+        }
+        .collapsible-content.expanded {
+            max-height: 2000px; /* Large enough to show all content */
+            transition: max-height 0.7s ease-in;
+        }
+        .collapsible-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Fade out effect */
+            background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.dark-mode .collapsible-content::after {
+             background: linear-gradient(to top, var(--container-bg-dark) 10%, rgba(0,0,0,0));
+        }
+        .collapsible-content.expanded::after {
+            opacity: 0;
+        }
+        .read-more-btn {
+            display: block;
+            margin-top: 1rem;
+            background-color: #f0f0f0; /* Light grey for read more button */
+            color: #dc2626; /* Red text */
+            border: 1px solid #dc2626;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .read-more-btn:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+        body.dark-mode .read-more-btn {
+            background-color: #444444;
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+        body.dark-mode .read-more-btn:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+
+        /* Project Map Loading */
+        .project-map {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 2rem;
+            position: relative;
+            height: 40px; /* Height for the line */
+        }
+        .map-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2); /* Light grey line */
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        .map-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: #dc2626; /* Red progress fill */
+            border-radius: 2px;
+            transition: width 0.7s ease-in-out;
+        }
+        .map-node {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.3); /* Inactive node */
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .map-node.active {
+            background-color: #dc2626; /* Active node red */
+            border-color: #ffffff; /* White border for active */
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.7); /* Red glow */
+            transform: scale(1.2);
+        }
+        .map-node.completed {
+            background-color: #10b981; /* Completed node green */
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); /* Green glow */
+            transform: scale(1);
+        }
+
+        /* Ensure report content is hidden when form is active */
+        #reportOutput.hidden {
+            display: none;
         }
 
         /* Social Share Buttons */
@@ -279,128 +561,77 @@
             border-radius: 0.5rem;
             font-weight: 600;
             color: white;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            transition: opacity 0.2s ease, transform 0.1s ease;
             margin: 0.5rem;
+            border: none;
+            cursor: pointer;
         }
-        .social-share-buttons button i {
-            margin-left: 0.5rem;
+        .social-share-buttons button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .social-share-buttons button:active {
+            transform: translateY(0);
         }
         .btn-whatsapp { background-color: #25D366; }
-        .btn-whatsapp:hover { background-color: #1DA851; }
         .btn-facebook { background-color: #1877F2; }
-        .btn-facebook:hover { background-color: #145CB3; }
         .btn-twitter { background-color: #1DA1F2; }
-        .btn-twitter:hover { background-color: #168CC9; }
         .btn-linkedin { background-color: #0A66C2; }
-        .btn-linkedin:hover { background-color: #074B92; }
 
-        /* Print to PDF button style */
-        .btn-pdf {
-            background-color: #dc2626;
-            color: #ffffff;
-            margin-right: 1rem;
-        }
-        .btn-pdf:hover {
-            background-color: #b91c1c;
-        }
-
-        /* Form Steps Styling */
-        .form-step {
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.5s ease-out;
-        }
-        .form-step.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Progress Dots */
-        .progress-dots {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-            gap: 0.75rem;
-        }
-        .progress-dot {
-            width: 12px;
-            height: 12px;
-            background-color: #d1d5db;
+        /* Loading Spinner for Post Generator */
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
             border-radius: 50%;
-            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-        .progress-dot.active {
-            background-color: #3b82f6;
-            transform: scale(1.2);
-        }
-        .progress-dot.completed {
-            background-color: #10b981;
-        }
-
-        /* Footer Styling */
-        footer {
-            background-color: #1a202c; /* Darker footer */
-            color: #cbd5e1; /* Lighter text color */
-            padding: 1.5rem 2rem;
-            text-align: center;
-            margin-top: auto; /* Push footer to the bottom */
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
-        }
-        footer p {
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-        }
-        footer a {
-            color: #60a5fa; /* Light blue for links */
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-        }
-        footer a:hover {
-            color: #3b82f6;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.75rem;
-            }
-            .container {
-                padding: 1rem;
-                margin: 1rem auto;
-            }
-            .grid-cols-1-md-2 {
-                grid-template-columns: 1fr;
-            }
-            #loadingTasks {
-                width: 95%;
-            }
-            .social-share-buttons button {
-                width: calc(50% - 1rem);
-                margin: 0.5rem 0.5rem;
-            }
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
         }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-700">
+    <!-- Dynamic Background Stars -->
+    <div class="star-bg" id="starBg"></div>
+
     <header>
-        <h1>وكيل EhabGM للتسويق الذكي (EMIA)</h1>
+        <div class="flex items-center justify-between max-w-6xl mx-auto p-4">
+            <div class="flex items-center">
+                <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo" class="h-10 ml-3">
+                <h1 class="text-xl font-bold" data-key="appTitleHeader">وكيل EhabGM للتسويق الذكي (EMIA)</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-sun" data-key="themeIcon"></i>
+                </button>
+                <select id="languageSelect" class="bg-gray-700 text-white p-2 rounded-md transition-colors">
+                    <option value="ar" data-key="langArabic">العربية</option>
+                    <option value="en" data-key="langEnglish">English</option>
+                </select>
+            </div>
+        </div>
     </header>
 
     <div id="loadingOverlay" class="hidden">
         <div class="loading-animation"></div>
-        <h2 class="text-3xl font-bold text-blue-700 mb-4">أهلاً بك في وكيل EhabGM للتسويق الذكي!</h2>
+        <h2 class="text-3xl font-bold text-white mb-4" data-key="welcomeMessage">أهلاً بك في وكيل EhabGM للتسويق الذكي!</h2>
         <div class="loading-message-container">
             <div id="dynamicLoadingMessage" class="loading-message"></div>
         </div>
-        <ul id="loadingTasks">
+        <!-- Project Map Visualization -->
+        <div class="project-map" id="projectMap">
+            <div class="map-line">
+                <div class="map-progress-fill" id="mapProgressFill"></div>
+            </div>
+            <!-- Nodes will be added dynamically by JS -->
+        </div>
+        <ul id="loadingTasks" class="mt-8">
             <!-- Tasks will be dynamically added here -->
         </ul>
     </div>
 
     <main>
         <div class="container">
-            <!-- Progress Dots -->
+            <!-- Progress Dots / Project Map for Form -->
             <div class="progress-dots" id="progressDots">
                 <span class="progress-dot active" id="dot-0"></span>
                 <span class="progress-dot" id="dot-1"></span>
@@ -412,122 +643,122 @@
             <form id="marketingForm" class="space-y-6">
                 <!-- Step 1: Brand Info -->
                 <div class="form-step active" id="step-0">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">الخطوة 1: معلومات البراند الأساسية</h3>
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step1Title">الخطوة 1: معلومات البراند الأساسية</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="brandName" class="block text-sm font-medium text-gray-700 mb-1">اسم العميل أو البراند:</label>
-                            <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full" required>
+                            <label for="brandName" class="block text-sm font-medium text-gray-700 mb-1" data-key="brandNameLabel">اسم العميل أو البراند:</label>
+                            <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full rounded-md shadow-sm">
                         </div>
                         <div>
-                            <label for="businessType" class="block text-sm font-medium text-gray-700 mb-1">نوع النشاط التجاري:</label>
-                            <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس النسائية" class="block w-full" required>
+                            <label for="businessType" class="block text-sm font-medium text-gray-700 mb-1" data-key="businessTypeLabel">نوع النشاط التجاري:</label>
+                            <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس النسائية" class="block w-full rounded-md shadow-sm">
                         </div>
                     </div>
                     <div class="flex justify-end mt-6">
-                        <button type="button" class="btn-primary" id="nextStepBtn-0">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-0" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
                     </div>
                 </div>
 
                 <!-- Step 2: Service/Product & Budget -->
-                <div class="form-step" id="step-1">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">الخطوة 2: وصف الخدمة والميزانية</h3>
+                <div class="form-step hidden" id="step-1">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step2Title">الخطوة 2: وصف الخدمة والميزانية</h3>
                     <div>
-                        <label for="serviceDescription" class="block text-sm font-medium text-gray-700 mb-1">وصف الخدمة أو المنتج/الهدف:</label>
-                        <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30% في الربع القادم." class="block w-full" required></textarea>
+                        <label for="serviceDescription" class="block text-sm font-medium text-gray-700 mb-1" data-key="serviceDescriptionLabel">وصف الخدمة أو المنتج/الهدف:</label>
+                        <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30% في الربع القادم." class="block w-full rounded-md shadow-sm"></textarea>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         <div>
-                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-1">الميزانية المتاحة (رقم فقط، اختياري):</label>
-                            <input type="text" id="budget" name="budget" placeholder="مثال: 1000" class="block w-full">
+                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-1" data-key="budgetLabel">الميزانية المتاحة (رقم فقط، اختياري):</label>
+                            <input type="text" id="budget" name="budget" placeholder="مثال: 1000" class="block w-full rounded-md shadow-sm">
                         </div>
                         <div>
-                            <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">العملة:</label>
-                            <select id="currency" name="currency" class="block w-full">
-                                <option value="USD">دولار أمريكي (USD)</option>
-                                <option value="EGP">جنيه مصري (EGP)</option>
-                                <option value="SAR">ريال سعودي (SAR)</option>
-                                <option value="AED">درهم إماراتي (AED)</option>
+                            <label for="currency" class="block text-sm font-medium text-gray-700 mb-1" data-key="currencyLabel">العملة:</label>
+                            <select id="currency" name="currency" class="block w-full rounded-md shadow-sm">
+                                <option value="USD" data-key="currencyUSD">دولار أمريكي (USD)</option>
+                                <option value="EGP" data-key="currencyEGP">جنيه مصري (EGP)</option>
+                                <option value="SAR" data-key="currencySAR">ريال سعودي (SAR)</option>
+                                <option value="AED" data-key="currencyAED">درهم إماراتي (AED)</option>
                             </select>
                         </div>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button type="button" class="btn-secondary" id="prevStepBtn-1"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
-                        <button type="button" class="btn-primary" id="nextStepBtn-1">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                        <button type="button" class="btn-secondary" id="prevStepBtn-1" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-1" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
                     </div>
                 </div>
 
                 <!-- Step 3: Location & Contact -->
-                <div class="form-step" id="step-2">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">الخطوة 3: الموقع ووسيلة التواصل</h3>
+                <div class="form-step hidden" id="step-2">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step3Title">الخطوة 3: الموقع ووسيلة التواصل</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">الدولة/المحافظة (لتحديد الجمهور المستهدف):</label>
-                            <input type="text" id="location" name="location" placeholder="مثال: مصر، القاهرة / السعودية، الرياض / أونلاين" class="block w-full" required>
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1" data-key="locationLabel">الدولة/المحافظة (لتحديد الجمهور المستهدف):</label>
+                            <input type="text" id="location" name="location" placeholder="مثال: مصر، القاهرة / السعودية، الرياض / أونلاين" class="block w-full rounded-md shadow-sm">
                         </div>
                         <div>
-                            <label for="contactMethod" class="block text-sm font-medium text-gray-700 mb-1">وسيلة التواصل المفضلة:</label>
-                            <input type="text" id="contactMethod" name="contactMethod" placeholder="مثال: 01012345678 أو info@brand.com" class="block w-full">
+                            <label for="contactMethod" class="block text-sm font-medium text-gray-700 mb-1" data-key="contactMethodLabel">وسيلة التواصل المفضلة:</label>
+                            <input type="text" id="contactMethod" name="contactMethod" placeholder="مثال: 01012345678 أو info@brand.com" class="block w-full rounded-md shadow-sm">
                         </div>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button type="button" class="btn-secondary" id="prevStepBtn-2"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
-                        <button type="button" class="btn-primary" id="nextStepBtn-2">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                        <button type="button" class="btn-secondary" id="prevStepBtn-2" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-2" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
                     </div>
                 </div>
 
                 <!-- Step 4: Target Audience & Logo -->
-                <div class="form-step" id="step-3">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">الخطوة 4: الجمهور المستهدف والشعار</h3>
+                <div class="form-step hidden" id="step-3">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step4Title">الخطوة 4: الجمهور المستهدف والشعار</h3>
                     <div>
-                        <label for="targetAudienceInput" class="block text-sm font-medium text-gray-700 mb-1">الجمهور المستهدف (اختياري، لو لديك معلومات محددة):</label>
-                        <textarea id="targetAudienceInput" name="targetAudienceInput" rows="2" placeholder="مثال: نساء من 25-45 سنة، مهتمات بالموضة والأزياء، يعشن في المدن الكبرى." class="block w-full"></textarea>
+                        <label for="targetAudienceInput" class="block text-sm font-medium text-gray-700 mb-1" data-key="targetAudienceLabel">الجمهور المستهدف (اختياري، لو لديك معلومات محددة):</label>
+                        <textarea id="targetAudienceInput" name="targetAudienceInput" rows="2" placeholder="مثال: نساء من 25-45 سنة، مهتمات بالموضة والأزياء، يعشن في المدن الكبرى." class="block w-full rounded-md shadow-sm"></textarea>
                     </div>
                     <div class="mt-6">
-                        <label for="logoUpload" class="block text-sm font-medium text-gray-700 mb-2">شعار البراند (اختياري، سيظهر في التقرير):</label>
+                        <label for="logoUpload" class="block text-sm font-medium text-gray-700 mb-2" data-key="logoUploadLabel">شعار البراند (اختياري، سيظهر في التقرير):</label>
                         <div class="logo-upload-section" id="logoUploadArea">
                             <input type="file" id="logoUpload" name="logoUpload" accept="image/*" class="hidden">
-                            <p class="text-gray-500">اسحب الشعار هنا أو انقر للتحميل</p>
+                            <p class="text-gray-500" data-key="logoUploadPlaceholder">اسحب الشعار هنا أو انقر للتحميل</p>
                             <img id="logoPreview" class="logo-preview hidden" src="#" alt="معاينة الشعار">
                         </div>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button type="button" class="btn-secondary" id="prevStepBtn-3"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
-                        <button type="button" class="btn-primary" id="nextStepBtn-3">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                        <button type="button" class="btn-secondary" id="prevStepBtn-3" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-3" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
                     </div>
                 </div>
 
                 <!-- Step 5: Review and Generate -->
-                <div class="form-step" id="step-4">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">الخطوة 5: مراجعة وتوليد التقرير</h3>
+                <div class="form-step hidden" id="step-4">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step5Title">الخطوة 5: مراجعة وتوليد التقرير</h3>
                     <div class="report-section mb-6">
-                        <h4 class="text-xl font-semibold text-gray-800 mb-2">ملخص بياناتك:</h4>
-                        <p><strong>اسم البراند:</strong> <span id="reviewBrandName"></span></p>
-                        <p><strong>نوع النشاط:</strong> <span id="reviewBusinessType"></span></p>
-                        <p><strong>وصف الخدمة/الهدف:</strong> <span id="reviewServiceDescription"></span></p>
-                        <p><strong>الميزانية:</strong> <span id="reviewBudget"></span> <span id="reviewCurrency"></span></p>
-                        <p><strong>الموقع:</strong> <span id="reviewLocation"></span></p>
-                        <p><strong>التواصل:</strong> <span id="reviewContactMethod"></span></p>
-                        <p><strong>الجمهور المستهدف:</strong> <span id="reviewTargetAudience"></span></p>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="summaryTitle">ملخص بياناتك:</h4>
+                        <p><strong data-key="summaryBrandName">اسم البراند:</strong> <span id="reviewBrandName"></span></p>
+                        <p><strong data-key="summaryBusinessType">نوع النشاط:</strong> <span id="reviewBusinessType"></span></p>
+                        <p><strong data-key="summaryServiceDescription">وصف الخدمة/الهدف:</strong> <span id="reviewServiceDescription"></span></p>
+                        <p><strong data-key="summaryBudget">الميزانية:</strong> <span id="reviewBudget"></span> <span id="reviewCurrency"></span></p>
+                        <p><strong data-key="summaryLocation">الموقع:</strong> <span id="reviewLocation"></span></p>
+                        <p><strong data-key="summaryContactMethod">التواصل:</strong> <span id="reviewContactMethod"></span></p>
+                        <p><strong data-key="summaryTargetAudience">الجمهور المستهدف:</strong> <span id="reviewTargetAudience"></span></p>
                         <div class="text-center mt-4" id="reviewLogoContainer">
-                            <img id="reviewLogoPreview" class="logo-preview mx-auto hidden" src="#" alt="شعار البراند">
+                            <img id="reviewLogoPreview" class="logo-preview hidden" src="#" alt="شعار البراند">
                         </div>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button type="button" class="btn-secondary" id="prevStepBtn-4"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
-                        <button type="submit" class="btn-primary" id="generateReportFinalBtn">توليد التقرير الشامل <i class="fas fa-magic mr-2"></i></button>
+                        <button type="button" class="btn-secondary" id="prevStepBtn-4" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="submit" class="btn-primary" id="generateReportFinalBtn" data-key="generateReportButton">توليد التقرير الشامل <i class="fas fa-magic mr-2"></i></button>
                     </div>
                 </div>
             </form>
 
             <div id="reportOutput" class="mt-10 p-6 bg-white rounded-xl shadow-lg hidden">
-                <div class="flex flex-wrap items-center justify-between mb-6 border-b-2 border-blue-600 pb-4">
-                    <h2 class="text-2xl font-bold text-blue-700 mb-2 md:mb-0">التقرير التسويقي الشامل</h2>
+                <div class="flex flex-wrap items-center justify-between mb-6 border-b-2 border-red-600 pb-4">
+                    <h2 class="text-2xl font-bold text-red-700 mb-2 md:mb-0" data-key="reportTitle">التقرير التسويقي الشامل</h2>
                     <div class="flex flex-wrap justify-center md:justify-end gap-2">
-                        <button id="copyReportBtn" class="btn-secondary flex items-center">
+                        <button id="copyReportBtn" class="btn-secondary flex items-center" data-key="copyReportButton">
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
                             نسخ التقرير
                         </button>
-                        <button id="printPdfBtn" class="btn-pdf flex items-center">
+                        <button id="printPdfBtn" class="btn-pdf flex items-center" data-key="printPdfButton">
                             <i class="fas fa-file-pdf ml-2"></i> طباعة كـ PDF
                         </button>
                     </div>
@@ -538,33 +769,59 @@
                 </div>
 
                 <div class="mt-8 social-share-buttons text-center">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">شارك هذا التقرير أو التطبيق!</h3>
-                    <button class="btn-whatsapp" id="shareWhatsappBtn">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-key="shareReportTitle">شارك هذا التقرير أو التطبيق!</h3>
+                    <button class="btn-whatsapp" id="shareWhatsappBtn" data-key="shareWhatsapp">
                         <i class="fab fa-whatsapp"></i> مشاركة عبر واتساب
                     </button>
-                    <button class="btn-facebook" id="shareFacebookBtn">
+                    <button class="btn-facebook" id="shareFacebookBtn" data-key="shareFacebook">
                         <i class="fab fa-facebook"></i> مشاركة عبر فيسبوك
                     </button>
-                    <button class="btn-twitter" id="shareTwitterBtn">
+                    <button class="btn-twitter" id="shareTwitterBtn" data-key="shareTwitter">
                         <i class="fab fa-twitter"></i> مشاركة عبر X
                     </button>
-                    <button class="btn-linkedin" id="shareLinkedInBtn">
+                    <button class="btn-linkedin" id="shareLinkedInBtn" data-key="shareLinkedIn">
                         <i class="fab fa-linkedin-in"></i> مشاركة عبر لينكدإن
                     </button>
                 </div>
 
-                <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden">
+                <div class="mt-8 post-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="postGeneratorTitle">منشئ منشورات السوشيال ميديا</h3>
+                    <div class="mb-4">
+                        <label for="postTopic" class="block text-sm font-medium text-gray-700 mb-1" data-key="postTopicLabel">موضوع المنشور أو وصف المنتج/الخدمة:</label>
+                        <textarea id="postTopic" rows="3" placeholder="مثال: إطلاق منتج جديد لفساتين السهرة، أو حملة تخفيضات صيفية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generatePostBtn" class="btn-primary w-full flex items-center justify-center" data-key="generatePostButton">
+                        <span data-key="generatePostButtonText">توليد المنشور</span>
+                        <div id="postLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedPostOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedPostHeader">المنشور المقترح:</h4>
+                        <div id="postContent" class="text-gray-900 leading-relaxed whitespace-pre-wrap"></div>
+                        <button id="copyPostBtn" class="btn-secondary mt-4 flex items-center" data-key="copyPostButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ المنشور
+                        </button>
+                        <button id="sharePostBtn" class="btn-primary mt-4 mr-2 flex items-center" data-key="sharePostButton">
+                            <i class="fas fa-share-alt ml-2"></i> مشاركة المنشور
+                        </button>
+                    </div>
+                </div>
+
+                <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="copySuccessMessage">
                     تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
+                </div>
+                 <div id="postCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="postCopySuccessMessage">
+                    تم نسخ المنشور بنجاح!
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.</p>
-        <p class="mb-2 font-semibold text-red-400">هذه الخدمة متاحة مجانًا لفترة محدودة!</p>
-        <p>للتواصل مع المطور أو للاستفسارات:</p>
-        <a href="https://wa.me/201022679250" target="_blank" class="text-blue-400 hover:text-blue-200 inline-flex items-center justify-center">
+        <p data-key="footerCopyright">&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.</p>
+        <p class="mb-2 font-semibold text-red-400" data-key="footerFreeService">هذه الخدمة متاحة مجانًا لفترة محدودة!</p>
+        <p data-key="footerContactPrompt">للتواصل مع المطور أو للاستفسارات:</p>
+        <a href="https://wa.me/201022679250" target="_blank" class="text-red-400 hover:text-red-200 inline-flex items-center justify-center" data-key="footerContactButton">
             <i class="fab fa-whatsapp ml-2"></i> تواصل عبر واتساب (01022679250)
         </a>
     </footer>
@@ -576,7 +833,7 @@
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         const marketingForm = document.getElementById('marketingForm');
-        const generateBtn = document.getElementById('generateReportFinalBtn'); // Renamed for clarity
+        const generateBtn = document.getElementById('generateReportFinalBtn');
         const reportOutput = document.getElementById('reportOutput');
         const reportContent = document.getElementById('reportContent');
         const copyReportBtn = document.getElementById('copyReportBtn');
@@ -589,66 +846,323 @@
         const dynamicLoadingMessage = document.getElementById('dynamicLoadingMessage');
         const loadingTasksList = document.getElementById('loadingTasks');
         const progressDotsContainer = document.getElementById('progressDots');
+        const themeToggle = document.getElementById('themeToggle');
+        const languageSelect = document.getElementById('languageSelect');
+        const projectMap = document.getElementById('projectMap');
+        const mapProgressFill = document.getElementById('mapProgressFill');
+
+        const postTopicInput = document.getElementById('postTopic');
+        const generatePostBtn = document.getElementById('generatePostBtn');
+        const postLoadingSpinner = document.getElementById('postLoadingSpinner');
+        const generatedPostOutput = document.getElementById('generatedPostOutput');
+        const postContentDiv = document.getElementById('postContent');
+        const copyPostBtn = document.getElementById('copyPostBtn');
+        const sharePostBtn = document.getElementById('sharePostBtn');
+        const postCopySuccessMessage = document.getElementById('postCopySuccessMessage');
+
 
         let uploadedLogoBase64 = null;
         let myBudgetChart, myGrowthChart, myAudienceChart, myContentChart, myCustomerJourneyChart; // To store Chart.js instances
         let messageInterval; // To control the dynamic loading messages
         let activeTaskIndex = -1; // To track the currently active task
         let currentStep = 0; // Current step of the form
+        let currentLanguage = 'ar'; // Default language
+        let currentTheme = 'light'; // Default theme
 
-        // Array of engaging loading messages
-        const loadingMessages = [
-            "جاري تحليل بيانات السوق بدقة فائقة...",
-            "نعمل على صياغة هوية براندك الفريدة...",
-            "نقوم بإنشاء منشورات تسويقية جذابة خصيصًا لك...",
-            "جاري تقدير أفضل ميزانية إعلانية لتحقيق أهدافك...",
-            "نبتكر أفكار تصميمية مبدعة لعلامتك التجارية...",
-            "نضع اللمسات الأخيرة على خطتك التسويقية المتكاملة...",
-            "نستكشف أفضل استراتيجيات SEO والبريد الإلكتروني لنموك...",
-            "نحسب العوائد المتوقعة لضمان نجاح استثماراتك...",
-            "الذكاء الاصطناعي يعمل بجد لتقديم أفضل النتائج!",
-            "قريبًا سيكون تقريرك الشامل جاهزًا..."
-        ];
-        let currentMessageIndex = 0;
+        // --- Translations Object ---
+        const translations = {
+            ar: {
+                appTitle: "وكيل EhabGM للتسويق الذكي",
+                appTitleHeader: "وكيل EhabGM للتسويق الذكي (EMIA)",
+                langArabic: "العربية",
+                langEnglish: "English",
+                themeIcon: "fas fa-sun", // Sun icon for light mode
+                welcomeMessage: "أهلاً بك في وكيل EhabGM للتسويق الذكي!",
+                step1Title: "الخطوة 1: معلومات البراند الأساسية",
+                brandNameLabel: "اسم العميل أو البراند:",
+                businessTypeLabel: "نوع النشاط التجاري:",
+                nextButton: "التالي",
+                previousButton: "السابق",
+                step2Title: "الخطوة 2: وصف الخدمة والميزانية",
+                serviceDescriptionLabel: "وصف الخدمة أو المنتج/الهدف:",
+                budgetLabel: "الميزانية المتاحة (رقم فقط، اختياري):",
+                currencyLabel: "العملة:",
+                currencyUSD: "دولار أمريكي (USD)",
+                currencyEGP: "جنيه مصري (EGP)",
+                currencySAR: "ريال سعودي (SAR)",
+                currencyAED: "درهم إماراتي (AED)",
+                step3Title: "الخطوة 3: الموقع ووسيلة التواصل",
+                locationLabel: "الدولة/المحافظة (لتحديد الجمهور المستهدف):",
+                contactMethodLabel: "وسيلة التواصل المفضلة:",
+                step4Title: "الخطوة 4: الجمهور المستهدف والشعار",
+                targetAudienceLabel: "الجمهور المستهدف (اختياري، لو لديك معلومات محددة):",
+                logoUploadLabel: "شعار البراند (اختياري، سيظهر في التقرير):",
+                logoUploadPlaceholder: "اسحب الشعار هنا أو انقر للتحميل",
+                step5Title: "الخطوة 5: مراجعة وتوليد التقرير",
+                summaryTitle: "ملخص بياناتك:",
+                summaryBrandName: "اسم البراند:",
+                summaryBusinessType: "نوع النشاط:",
+                summaryServiceDescription: "وصف الخدمة/الهدف:",
+                summaryBudget: "الميزانية:",
+                summaryLocation: "الموقع:",
+                summaryContactMethod: "التواصل:",
+                summaryTargetAudience: "الجمهور المستهدف:",
+                generateReportButton: "توليد التقرير الشامل",
+                reportTitle: "التقرير التسويقي الشامل",
+                copyReportButton: "نسخ التقرير",
+                printPdfButton: "طباعة كـ PDF",
+                shareReportTitle: "شارك هذا التقرير أو التطبيق!",
+                shareWhatsapp: "مشاركة عبر واتساب",
+                shareFacebook: "مشاركة عبر فيسبوك",
+                shareTwitter: "مشاركة عبر X",
+                shareLinkedIn: "مشاركة عبر لينكدإن",
+                copySuccessMessage: "تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.",
+                postCopySuccessMessage: "تم نسخ المنشور بنجاح!",
+                footerCopyright: "&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.",
+                footerFreeService: "هذه الخدمة متاحة مجانًا لفترة محدودة!",
+                footerContactPrompt: "للتواصل مع المطور أو للاستفسارات:",
+                footerContactButton: "تواصل عبر واتساب (01022679250)",
+                alertRequiredFields: "الرجاء ملء جميع الحقول المطلوبة في هذه الخطوة.",
+                postGeneratorTitle: "منشئ منشورات السوشيال ميديا",
+                postTopicLabel: "موضوع المنشور أو وصف المنتج/الخدمة:",
+                generatePostButton: "توليد المنشور",
+                generatePostButtonText: "توليد المنشور",
+                generatedPostHeader: "المنشور المقترح:",
+                copyPostButton: "نسخ المنشور",
+                sharePostButton: "مشاركة المنشور"
+            },
+            en: {
+                appTitle: "EhabGM Smart Marketing Agent",
+                appTitleHeader: "EhabGM Smart Marketing Agent (EMIA)",
+                langArabic: "العربية",
+                langEnglish: "English",
+                themeIcon: "fas fa-moon", // Moon icon for dark mode
+                welcomeMessage: "Welcome to EhabGM Smart Marketing Agent!",
+                step1Title: "Step 1: Basic Brand Information",
+                brandNameLabel: "Client/Brand Name:",
+                businessTypeLabel: "Business Type:",
+                nextButton: "Next",
+                previousButton: "Previous",
+                step2Title: "Step 2: Service/Product Description & Budget",
+                serviceDescriptionLabel: "Service/Product Description or Goal:",
+                budgetLabel: "Available Budget (Number only, optional):",
+                currencyLabel: "Currency:",
+                currencyUSD: "US Dollar (USD)",
+                currencyEGP: "Egyptian Pound (EGP)",
+                currencySAR: "Saudi Riyal (SAR)",
+                currencyAED: "UAE Dirham (AED)",
+                step3Title: "Step 3: Location & Contact Method",
+                locationLabel: "Country/City (for target audience):",
+                contactMethodLabel: "Preferred Contact Method:",
+                step4Title: "Step 4: Target Audience & Logo",
+                targetAudienceLabel: "Target Audience (optional, if you have specific info):",
+                logoUploadLabel: "Brand Logo (optional, will appear in report):",
+                logoUploadPlaceholder: "Drag logo here or click to upload",
+                step5Title: "Step 5: Review and Generate Report",
+                summaryTitle: "Your Data Summary:",
+                summaryBrandName: "Brand Name:",
+                summaryBusinessType: "Business Type:",
+                summaryServiceDescription: "Service/Goal:",
+                summaryBudget: "Budget:",
+                summaryLocation: "Location:",
+                summaryContactMethod: "Contact:",
+                summaryTargetAudience: "Target Audience:",
+                generateReportButton: "Generate Comprehensive Report",
+                reportTitle: "Comprehensive Marketing Report",
+                copyReportButton: "Copy Report",
+                printPdfButton: "Print as PDF",
+                shareReportTitle: "Share this Report or App!",
+                shareWhatsapp: "Share via WhatsApp",
+                shareFacebook: "Share via Facebook",
+                shareTwitter: "Share via X",
+                shareLinkedIn: "Share via LinkedIn",
+                copySuccessMessage: "Report copied successfully! You can now paste it into a Google Docs or Word document.",
+                postCopySuccessMessage: "Post copied successfully!",
+                footerCopyright: "&copy; 2023 EhabGM Smart Marketing Agent (EMIA). All rights reserved.",
+                footerFreeService: "This service is available for a limited time for free!",
+                footerContactPrompt: "To contact the developer or for inquiries:",
+                footerContactButton: "Contact via WhatsApp (01022679250)",
+                alertRequiredFields: "Please fill in all required fields in this step.",
+                postGeneratorTitle: "Social Media Post Generator",
+                postTopicLabel: "Post topic or product/service description:",
+                generatePostButton: "Generate Post",
+                generatePostButtonText: "Generate Post",
+                generatedPostHeader: "Suggested Post:",
+                copyPostButton: "Copy Post",
+                sharePostButton: "Share Post"
+            }
+        };
 
-        // Tasks for the loading screen (aligned with AI generation steps)
-        const tasks = [
-            "تهيئة النظام وجمع البيانات الأولية", // 0
-            "صياغة الهوية التعريفية للبراند",      // 1
-            "تحليل الجمهور المستهدف بدقة",         // 2
-            "كتابة 5 منشورات تسويقية مبتكرة",       // 3
-            "اقتراح ميزانية ومدد الإعلانات الممولة",// 4
-            "تقديم أفكار تصميم وابتكار",           // 5
-            "بناء خطة تسويقية مختصرة وكاملة",       // 6
-            "توليد استراتيجيات SEO والبريد الإلكتروني",// 7
-            "تحليل عائد الاستثمار والعوائد المتوقعة",// 8
-            "إنشاء الرسوم البيانية التحليلية",      // 9
-            "تجميع التقرير النهائي وعرضه"          // 10
-        ];
+        const loadingMessages = {
+            ar: [
+                "جاري تحليل بيانات السوق بدقة فائقة...",
+                "نعمل على صياغة هوية براندك الفريدة...",
+                "نقوم بإنشاء منشورات تسويقية جذابة خصيصًا لك...",
+                "جاري تقدير أفضل ميزانية إعلانية لتحقيق أهدافك...",
+                "نبتكر أفكار تصميمية مبدعة لعلامتك التجارية...",
+                "نضع اللمسات الأخيرة على خطتك التسويقية المتكاملة...",
+                "نستكشف أفضل استراتيجيات SEO والبريد الإلكتروني لنموك...",
+                "نحسب العوائد المتوقعة لضمان نجاح استثماراتك...",
+                "الذكاء الاصطناعي يعمل بجد لتقديم أفضل النتائج!",
+                "قريبًا سيكون تقريرك الشامل جاهزًا..."
+            ],
+            en: [
+                "Analyzing market data with high precision...",
+                "Crafting your unique brand identity...",
+                "Creating engaging marketing posts just for you...",
+                "Estimating the optimal advertising budget for your goals...",
+                "Innovating creative design ideas for your brand...",
+                "Finalizing your comprehensive marketing plan...",
+                "Exploring the best SEO and email strategies for your growth...",
+                "Calculating projected returns to ensure your investment success...",
+                "AI is working hard to deliver the best results!",
+                "Your comprehensive report will be ready soon..."
+            ]
+        };
 
+        const tasks = {
+            ar: [
+                "تهيئة النظام وجمع البيانات الأولية",
+                "صياغة الهوية التعريفية للبراند",
+                "تحليل الجمهور المستهدف بدقة",
+                "كتابة 5 منشورات تسويقية مبتكرة",
+                "اقتراح ميزانية ومدد الإعلانات الممولة",
+                "تقديم أفكار تصميم وابتكار",
+                "بناء خطة تسويقية مختصرة وكاملة",
+                "توليد استراتيجيات SEO والبريد الإلكتروني",
+                "تحليل عائد الاستثمار والعوائد المتوقعة",
+                "إنشاء الرسوم البيانية التحليلية",
+                "تجميع التقرير النهائي وعرضه"
+            ],
+            en: [
+                "System initialization and preliminary data collection",
+                "Brand identity formulation",
+                "Precise target audience analysis",
+                "Writing 5 innovative marketing posts",
+                "Proposing budget and duration for paid ads",
+                "Providing design and innovation ideas",
+                "Building a concise and complete marketing plan",
+                "Generating SEO and Email Marketing strategies",
+                "Analyzing ROI and projected returns",
+                "Creating analytical charts and graphs",
+                "Assembling and displaying the final report"
+            ]
+        };
+
+        // --- Language Switching Function ---
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    } else if (element.tagName === 'OPTION') {
+                        element.textContent = translations[lang][key];
+                    } else if (element.tagName === 'I' && (key === 'themeIcon')) {
+                        element.className = translations[lang][key];
+                    }
+                    else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            // Update specific elements that are not data-key
+            document.title = translations[lang].appTitle;
+            themeToggle.querySelector('i').className = translations[lang].themeIcon;
+            updateLoadingMessage(); // Update loading message immediately
+            initializeLoadingTasks(); // Re-initialize tasks for new language
+            updateProgressDots(currentStep); // Re-render progress dots text
+        }
+
+        languageSelect.addEventListener('change', (event) => {
+            setLanguage(event.target.value);
+        });
+
+        // Set initial language based on browser or default
+        const browserLang = navigator.language.split('-')[0];
+        if (browserLang === 'ar' || browserLang === 'en') {
+            currentLanguage = browserLang;
+        }
+        languageSelect.value = currentLanguage;
+        // Explicitly re-initialize currentMessageIndex before the first call to setLanguage
+        let currentMessageIndex = 0; // Moved declaration here to ensure it's defined
+        
         // --- Form Navigation Logic ---
         const formSteps = document.querySelectorAll('.form-step');
-        const totalSteps = formSteps.length;
+        const totalSteps = formSteps.length; // Declared here, after formSteps is defined
+
+        setLanguage(currentLanguage); // Call setLanguage after totalSteps is defined
+
+
+        // --- Theme Switching Function ---
+        function setTheme(theme) {
+            currentTheme = theme;
+            document.body.classList.toggle('dark-mode', theme === 'dark');
+            themeToggle.querySelector('i').className = (theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun');
+            themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            // Update chart colors on theme change
+            if (reportOutput.classList.contains('hidden') === false) {
+                // Only redraw if report is visible
+                drawCharts();
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+
+        // Set initial theme based on user preference or default
+        const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDarkMode ? 'dark' : 'light');
+
+        // --- Dynamic Background Stars ---
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = star.style.height = `${Math.random() * 3 + 1}px`; // 1-4px
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`; // Randomize start time
+            star.style.setProperty('--star-speed', `${Math.random() * 3 + 2}s`); // 2-5s animation speed
+            starBg.appendChild(star);
+        }
+
+        const starBg = document.getElementById('starBg');
+        for (let i = 0; i < 100; i++) { // Create 100 stars
+            createStar();
+        }
+
 
         function showStep(stepNum) {
             formSteps.forEach((step, index) => {
-                step.classList.remove('active');
+                step.classList.add('hidden'); // Hide all steps first
                 if (index === stepNum) {
-                    step.classList.add('active');
+                    step.classList.remove('hidden'); // Show current step
                 }
             });
             updateProgressDots(stepNum);
+            if (stepNum === totalSteps - 1) { // If it's the last step (review step)
+                populateReviewStep();
+            }
         }
 
         function updateProgressDots(stepNum) {
-            const dots = progressDotsContainer.children;
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove('active', 'completed');
+            progressDotsContainer.innerHTML = ''; // Clear existing dots
+            for (let i = 0; i < totalSteps; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'progress-dot';
+                dot.id = `dot-${i}`;
                 if (i < stepNum) {
-                    dots[i].classList.add('completed');
+                    dot.classList.add('completed');
                 } else if (i === stepNum) {
-                    dots[i].classList.add('active');
+                    dot.classList.add('active');
                 }
+                dot.textContent = i + 1; // Add step number inside dot
+                progressDotsContainer.appendChild(dot);
             }
         }
 
@@ -660,13 +1174,13 @@
             requiredInputs.forEach(input => {
                 if (!input.value.trim()) {
                     isValid = false;
-                    input.style.borderColor = 'red'; // Simple visual feedback
+                    input.style.borderColor = '#dc2626'; /* Red border for invalid */
                 } else {
                     input.style.borderColor = '#d1d5db';
                 }
             });
             if (!isValid) {
-                alert('الرجاء ملء جميع الحقول المطلوبة في هذه الخطوة.');
+                alert(translations[currentLanguage].alertRequiredFields);
             }
             return isValid;
         }
@@ -675,7 +1189,13 @@
         document.querySelectorAll('[id^="nextStepBtn-"]').forEach(button => {
             button.addEventListener('click', () => {
                 const stepIndex = parseInt(button.id.split('-')[1]);
-                if (validateStep(stepIndex)) {
+                // Only validate if it's not the last step
+                if (stepIndex < totalSteps - 1) {
+                    if (validateStep(stepIndex)) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                } else { // For the last step, just move to the next (which is submitting the form)
                     currentStep++;
                     showStep(currentStep);
                 }
@@ -694,36 +1214,73 @@
 
         // --- Loading Overlay & Task Logic ---
         function updateLoadingMessage() {
-            dynamicLoadingMessage.textContent = loadingMessages[currentMessageIndex];
-            currentMessageIndex = (currentMessageIndex + 1) % loadingMessages.length;
+            dynamicLoadingMessage.textContent = loadingMessages[currentLanguage][currentMessageIndex];
+            currentMessageIndex = (currentMessageIndex + 1) % loadingMessages[currentLanguage].length;
+        }
+
+        // Project Map Nodes for Loading Screen
+        const mapNodes = [];
+        function initializeProjectMap() {
+            projectMap.querySelectorAll('.map-node').forEach(node => node.remove()); // Clear old nodes
+            mapNodes.length = 0; // Clear array
+
+            // Create nodes for each task
+            tasks[currentLanguage].forEach((task, index) => {
+                const node = document.createElement('div');
+                node.className = 'map-node';
+                node.id = `map-node-${index}`;
+                node.textContent = index + 1; // Display task number
+                // Calculate position based on index
+                node.style.position = 'absolute';
+                node.style.left = `${(index / (tasks[currentLanguage].length - 1)) * 100}%`;
+                node.style.transform = 'translateX(-50%)'; // Center the node
+                projectMap.appendChild(node);
+                mapNodes.push(node);
+            });
+            mapProgressFill.style.width = '0%'; // Reset progress fill
+            if (mapNodes.length > 0) {
+                mapNodes[0].classList.add('active'); // Set first node as active
+            }
+        }
+
+        function updateLoadingProgress(taskIndex) {
+            if (activeTaskIndex !== -1 && mapNodes[activeTaskIndex]) {
+                mapNodes[activeTaskIndex].classList.remove('active');
+                mapNodes[activeTaskIndex].classList.add('completed');
+            }
+
+            activeTaskIndex = taskIndex;
+            if (mapNodes[activeTaskIndex]) {
+                mapNodes[activeTaskIndex].classList.add('active');
+                const progressPercentage = (taskIndex / (tasks[currentLanguage].length - 1)) * 100;
+                mapProgressFill.style.width = `${progressPercentage}%`;
+            }
+
+            // Update traditional task list as well
+            const taskItem = document.getElementById(`task-${taskIndex}`);
+            if (taskItem) {
+                if (taskIndex > 0) { // Mark previous task as completed
+                    const prevTaskItem = document.getElementById(`task-${taskIndex - 1}`);
+                    if (prevTaskItem) {
+                        prevTaskItem.classList.remove('active');
+                        prevTaskItem.classList.add('completed');
+                        prevTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
+                    }
+                }
+                taskItem.classList.add('active');
+                taskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            }
         }
 
         function initializeLoadingTasks() {
             loadingTasksList.innerHTML = '';
-            tasks.forEach((task, index) => {
+            tasks[currentLanguage].forEach((task, index) => {
                 const listItem = document.createElement('li');
                 listItem.id = `task-${index}`;
                 listItem.innerHTML = `<span class="task-icon"><i class="fas fa-spinner fa-spin"></i></span> ${task}`;
                 loadingTasksList.appendChild(listItem);
             });
             activeTaskIndex = -1; // Reset active task
-        }
-
-        function completeTask(index) {
-            if (activeTaskIndex !== -1) {
-                const prevTaskItem = document.getElementById(`task-${activeTaskIndex}`);
-                if (prevTaskItem) {
-                    prevTaskItem.classList.remove('active');
-                    prevTaskItem.classList.add('completed');
-                    prevTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
-                }
-            }
-            activeTaskIndex = index;
-            const currentTaskItem = document.getElementById(`task-${activeTaskIndex}`);
-            if (currentTaskItem) {
-                currentTaskItem.classList.add('active');
-                currentTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; // Ensure it's spinning for active
-            }
         }
 
         // --- Logo Upload Logic ---
@@ -737,7 +1294,7 @@
                     logoPreview.src = e.target.result;
                     logoPreview.classList.remove('hidden');
                     uploadedLogoBase64 = e.target.result; // Store base64 for report
-                    document.getElementById('reviewLogoPreview').src = e.target.result;
+                    document.getElementById('reviewLogoPreview').src = e.target.result; // Update review step logo
                     document.getElementById('reviewLogoPreview').classList.remove('hidden');
                 };
                 reader.readAsDataURL(file);
@@ -755,27 +1312,52 @@
             document.getElementById('reviewBrandName').textContent = document.getElementById('brandName').value;
             document.getElementById('reviewBusinessType').textContent = document.getElementById('businessType').value;
             document.getElementById('reviewServiceDescription').textContent = document.getElementById('serviceDescription').value;
-            document.getElementById('reviewBudget').textContent = document.getElementById('budget').value || 'غير محددة';
+            document.getElementById('reviewBudget').textContent = document.getElementById('budget').value || (currentLanguage === 'ar' ? 'غير محددة' : 'Not specified');
             document.getElementById('reviewCurrency').textContent = document.getElementById('currency').value;
             document.getElementById('reviewLocation').textContent = document.getElementById('location').value;
-            document.getElementById('reviewContactMethod').textContent = document.getElementById('contactMethod').value || 'غير محددة';
-            document.getElementById('reviewTargetAudience').textContent = document.getElementById('targetAudienceInput').value || 'غير محددة بشكل دقيق';
+            document.getElementById('reviewContactMethod').textContent = document.getElementById('contactMethod').value || (currentLanguage === 'ar' ? 'غير محددة' : 'Not specified');
+            document.getElementById('reviewTargetAudience').textContent = document.getElementById('targetAudienceInput').value || (currentLanguage === 'ar' ? 'غير محددة بشكل دقيق' : 'Not precisely defined');
 
             if (uploadedLogoBase64) {
                 document.getElementById('reviewLogoPreview').src = uploadedLogoBase64;
                 document.getElementById('reviewLogoPreview').classList.remove('hidden');
             } else {
                 document.getElementById('reviewLogoPreview').classList.add('hidden');
+                document.getElementById('reviewLogoPreview').src = '#'; // Clear src if no logo
             }
         }
 
-        // Attach event listener for the final generate button
-        marketingForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // --- AI Call Function ---
+        const callGemini = async (prompt) => {
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // Canvas will provide this at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-            // Populate review step before starting generation (in case user jumps back)
-            populateReviewStep();
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`API error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                return result.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Invalid API response structure or no content.");
+            }
+        };
+
+        // --- Chart Drawing Function (to be called on theme change) ---
+        function drawCharts() {
             // Destroy existing charts if they exist
             if (myBudgetChart) myBudgetChart.destroy();
             if (myGrowthChart) myGrowthChart.destroy();
@@ -783,15 +1365,281 @@
             if (myContentChart) myContentChart.destroy();
             if (myCustomerJourneyChart) myCustomerJourneyChart.destroy();
 
+            const brandName = document.getElementById('brandName').value;
+            const budget = parseFloat(document.getElementById('budget').value) || 0;
+            const currency = document.getElementById('currency').value;
+            const promptData = { rawBudget: budget, currency: currency }; // Simplified for chart data
+
+            const chartFontColor = currentTheme === 'dark' ? '#e0e0e0' : '#374151';
+            const chartGridColor = currentTheme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
+            // Budget Distribution Chart
+            const budgetCtx = document.getElementById('budgetDistributionChart').getContext('2d');
+            myBudgetChart = new Chart(budgetCtx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'فيسبوك/انستجرام' : 'Facebook/Instagram',
+                        currentLanguage === 'ar' ? 'تيك توك' : 'TikTok',
+                        currentLanguage === 'ar' ? 'أخرى/متنوعة' : 'Other/Miscellaneous'
+                    ],
+                    datasets: [{
+                        data: [budget * 0.5, budget * 0.3, budget * 0.2],
+                        backgroundColor: [
+                            currentTheme === 'dark' ? 'rgba(220, 38, 38, 0.8)' : 'rgba(220, 38, 38, 0.9)', /* Red */
+                            currentTheme === 'dark' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.9)', /* White/Black */
+                            currentTheme === 'dark' ? 'rgba(100, 100, 100, 0.8)' : 'rgba(150, 150, 150, 0.9)' /* Grey */
+                        ],
+                        borderColor: currentTheme === 'dark' ? '#1a1a1a' : '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Growth Projection Chart (Illustrative)
+            const growthCtx = document.getElementById('growthProjectionChart').getContext('2d');
+            const initialValue = budget > 0 ? budget * 2 : 1000;
+            myGrowthChart = new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'الشهر 1' : 'Month 1',
+                        currentLanguage === 'ar' ? 'الشهر 2' : 'Month 2',
+                        currentLanguage === 'ar' ? 'الشهر 3' : 'Month 3',
+                        currentLanguage === 'ar' ? 'الشهر 4' : 'Month 4',
+                        currentLanguage === 'ar' ? 'الشهر 5' : 'Month 5',
+                        currentLanguage === 'ar' ? 'الشهر 6' : 'Month 6'
+                    ],
+                    datasets: [{
+                        label: currentLanguage === 'ar' ? `نمو العوائد المتوقعة (${currency})` : `Projected Revenue Growth (${currency})`,
+                        data: [
+                            initialValue, initialValue * 1.1, initialValue * 1.25,
+                            initialValue * 1.4, initialValue * 1.55, initialValue * 1.7
+                        ],
+                        borderColor: '#dc2626', /* Red */
+                        backgroundColor: 'rgba(220, 38, 38, 0.2)', /* Light red fill */
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? `القيمة (${currency})` : `Value (${currency})`,
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        },
+                        x: {
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        }
+                    }
+                }
+            });
+
+            // Audience Demographics Chart (Illustrative)
+            const audienceCtx = document.getElementById('audienceDemographicsChart').getContext('2d');
+            myAudienceChart = new Chart(audienceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
+                    datasets: [{
+                        label: currentLanguage === 'ar' ? 'النسبة المئوية للجمهور' : 'Audience Percentage',
+                        data: [15, 35, 25, 15, 10],
+                        backgroundColor: [
+                            '#dc2626', /* Red */
+                            '#000000', /* Black */
+                            '#f0f0f0', /* Light grey/white */
+                            '#b91c1c', /* Darker red */
+                            '#333333' /* Darker black */
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color), // Adjust white for dark mode
+                        borderColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c', '#333333'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? 'النسبة المئوية' : 'Percentage',
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: {
+                                callback: function(value) { return value + '%'; },
+                                color: chartFontColor, font: { family: 'Inter' }
+                            },
+                            grid: { color: chartGridColor }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? 'الفئة العمرية' : 'Age Group',
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        }
+                    }
+                }
+            });
+
+            // Content Performance Chart (Illustrative)
+            const contentCtx = document.getElementById('contentPerformanceChart').getContext('2d');
+            myContentChart = new Chart(contentCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'منشورات ترويجية' : 'Promotional Posts',
+                        currentLanguage === 'ar' ? 'منشورات تثقيفية' : 'Educational Posts',
+                        currentLanguage === 'ar' ? 'منشورات تفاعلية' : 'Interactive Posts',
+                        currentLanguage === 'ar' ? 'إعلانات عروض' : 'Offer Ads'
+                    ],
+                    datasets: [{
+                        label: currentLanguage === 'ar' ? 'متوسط التفاعل' : 'Average Engagement',
+                        data: [70, 85, 90, 75],
+                        backgroundColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? 'مستوى التفاعل' : 'Engagement Level',
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        },
+                        x: {
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        }
+                    }
+                }
+            });
+
+            // Customer Journey Chart (Illustrative)
+            const customerJourneyCtx = document.getElementById('customerJourneyChart').getContext('2d');
+            myCustomerJourneyChart = new Chart(customerJourneyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'الوعي (Awareness)' : 'Awareness',
+                        currentLanguage === 'ar' ? 'الاهتمام (Consideration)' : 'Consideration',
+                        currentLanguage === 'ar' ? 'التحويل (Conversion)' : 'Conversion',
+                        currentLanguage === 'ar' ? 'الولاء (Loyalty)' : 'Loyalty'
+                    ],
+                    datasets: [{
+                        data: [30, 25, 20, 25],
+                        backgroundColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- Main Report Generation Logic ---
+        marketingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Populate review step before starting generation (in case user jumps back)
+            // populateReviewStep(); // Already called by showStep(totalSteps - 1)
+
             // Show loading overlay and start message cycling
             loadingOverlay.classList.remove('hidden');
-            initializeLoadingTasks(); // Initialize tasks list
+            initializeProjectMap(); // Initialize project map nodes
+            initializeLoadingTasks(); // Initialize traditional tasks list
             updateLoadingMessage(); // Display first message immediately
             messageInterval = setInterval(updateLoadingMessage, 4000); // Change message every 4 seconds (matches CSS animation)
 
-            // Disable button and show loading spinner (redundant if overlay is full screen, but good for consistency)
+            // Disable button
             generateBtn.disabled = true;
-            generateBtn.innerHTML = 'جاري التوليد... <i class="fas fa-spinner fa-spin mr-2"></i>';
+            generateBtn.innerHTML = `${translations[currentLanguage].generateReportButton} <i class="fas fa-spinner fa-spin mr-2"></i>`;
 
             // Hide report output and clear content
             reportOutput.classList.add('hidden');
@@ -811,12 +1659,12 @@
                 brandName,
                 businessType,
                 serviceDescription,
-                budget: budget > 0 ? `${budget} ${currency}` : 'غير محددة',
+                budget: budget > 0 ? `${budget} ${currency}` : (currentLanguage === 'ar' ? 'غير محددة' : 'Not specified'),
                 rawBudget: budget,
                 currency,
                 contactMethod,
                 location,
-                targetAudienceInput: targetAudienceInput || 'غير محددة بشكل دقيق، يرجى تحليلها بناءً على نوع النشاط.',
+                targetAudienceInput: targetAudienceInput || (currentLanguage === 'ar' ? 'غير محددة بشكل دقيق، يرجى تحليلها بناءً على نوع النشاط.' : 'Not precisely defined, please analyze based on business type.'),
             };
 
             let generatedReportHTML = '';
@@ -824,84 +1672,55 @@
             // Add logo to the report if uploaded
             if (uploadedLogoBase64) {
                 generatedReportHTML += `<div class="text-center mb-8">
-                                            <img src="${uploadedLogoBase64}" alt="شعار البراند" class="logo-preview mx-auto" style="max-width: 200px; max-height: 200px;">
+                                            <img src="${uploadedLogoBase64}" alt="${currentLanguage === 'ar' ? 'شعار البراند' : 'Brand Logo'}" class="logo-preview mx-auto" style="max-width: 200px; max-height: 200px;">
                                         </div>`;
             }
 
             generatedReportHTML += `
-                <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">التقرير التسويقي الشامل لـ ${brandName}</h1>
+                <h1 class="text-3xl font-bold text-center text-red-800 mb-8">${currentLanguage === 'ar' ? 'التقرير التسويقي الشامل لـ ' : 'Comprehensive Marketing Report for '}${brandName}</h1>
                 <div class="report-section">
-                    <h3>معلومات البراند الأساسية</h3>
-                    <p><strong>اسم البراند:</strong> ${brandName}</p>
-                    <p><strong>نوع النشاط التجاري:</strong> ${businessType}</p>
-                    <p><strong>وصف الخدمة/الهدف:</strong> ${serviceDescription}</p>
-                    <p><strong>الميزانية المتاحة:</strong> ${promptData.budget}</p>
-                    <p><strong>وسيلة التواصل:</strong> ${contactMethod}</p>
-                    <p><strong>مكان النشاط:</strong> ${location}</p>
+                    <h3 data-key="summaryTitle">${currentLanguage === 'ar' ? 'معلومات البراند الأساسية' : 'Basic Brand Information'}</h3>
+                    <p><strong data-key="summaryBrandName">${currentLanguage === 'ar' ? 'اسم البراند:' : 'Brand Name:'}</strong> ${brandName}</p>
+                    <p><strong data-key="summaryBusinessType">${currentLanguage === 'ar' ? 'نوع النشاط التجاري:' : 'Business Type:'}</strong> ${businessType}</p>
+                    <p><strong data-key="summaryServiceDescription">${currentLanguage === 'ar' ? 'وصف الخدمة/الهدف:' : 'Service/Goal Description:'}</strong> ${serviceDescription}</p>
+                    <p><strong data-key="summaryBudget">${currentLanguage === 'ar' ? 'الميزانية المتاحة:' : 'Available Budget:'}</strong> ${promptData.budget}</p>
+                    <p><strong data-key="summaryContactMethod">${currentLanguage === 'ar' ? 'وسيلة التواصل:' : 'Contact Method:'}</strong> ${contactMethod}</p>
+                    <p><strong data-key="summaryLocation">${currentLanguage === 'ar' ? 'مكان النشاط:' : 'Location:'}</strong> ${location}</p>
                 </div>
             `;
 
             try {
-                // Function to call Gemini API
-                const callGemini = async (prompt) => {
-                    let chatHistory = [];
-                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                    const payload = { contents: chatHistory };
-                    const apiKey = "AIzaSyB6jnqtwtZ-p2G_8D9KMhvhlNywwLhw3HQ"; // Canvas will provide this at runtime
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(`API error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
-                    }
-
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        return result.candidates[0].content.parts[0].text;
-                    } else {
-                        throw new Error("Invalid API response structure or no content.");
-                    }
-                };
-
-                // --- Generate Charts First (Illustrative Data) ---
+                // --- Generate Charts Section HTML ---
                 const chartsHTML = `
                     <div class="report-section" id="chartsSection">
-                        <h3>1. التحليلات والرسوم البيانية</h3>
+                        <h3 data-key="chartsTitle">${currentLanguage === 'ar' ? '1. التحليلات والرسوم البيانية' : '1. Analytics and Charts'}</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                             <div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">توزيع الميزانية المقترحة</h4>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'توزيع الميزانية المقترحة' : 'Proposed Budget Distribution'}</h4>
                                 <div class="chart-container">
                                     <canvas id="budgetDistributionChart"></canvas>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">توقعات النمو/العوائد الشهرية (توضيحي)</h4>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'توقعات النمو/العوائد الشهرية (توضيحي)' : 'Monthly Growth/Revenue Projections (Illustrative)'}</h4>
                                 <div class="chart-container">
                                     <canvas id="growthProjectionChart"></canvas>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">تركيبة الجمهور المستهدف (توضيحي)</h4>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'تركيبة الجمهور المستهدف (توضيحي)' : 'Target Audience Demographics (Illustrative)'}</h4>
                                 <div class="chart-container">
                                     <canvas id="audienceDemographicsChart"></canvas>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">أداء المحتوى حسب النوع (توضيحي)</h4>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'أداء المحتوى حسب النوع (توضيحي)' : 'Content Performance by Type (Illustrative)'}</h4>
                                 <div class="chart-container">
                                     <canvas id="contentPerformanceChart"></canvas>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">مراحل رحلة العميل (توضيحي)</h4>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'مراحل رحلة العميل (توضيحي)' : 'Customer Journey Stages (Illustrative)'}</h4>
                                 <div class="chart-container">
                                     <canvas id="customerJourneyChart"></canvas>
                                 </div>
@@ -910,576 +1729,283 @@
                     </div>
                 `;
                 generatedReportHTML += chartsHTML;
-                completeTask(0); // Task 0: Initialize and collect data
+                updateLoadingProgress(0); // Task 0: Initialize and collect data
 
                 // --- 2. بناء الهوية التعريفية للبراند ---
-                let brandIdentityPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - مكان النشاط: ${location}
+                let brandIdentityPrompt = `Based on the following brand information, please formulate the brand identity in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Location: ${location}
 
-                يرجى صياغة:
-                1.  **الرؤية (Vision):** جملة ملهمة تعبر عن الطموح المستقبلي للبراند.
-                2.  **الرسالة (Mission):** ما يقدمه البراند حاليًا وكيف يحقق رؤيته.
-                3.  **القيم الأساسية (Core Values):** 3-5 قيم تمثل جوهر البراند.
-                4.  **نقاط البيع الفريدة (Unique Selling Proposition - USP):** ما يميز البراند عن منافسيه.
-                5.  **قصة البراند (Brand Story):** فقرة قصيرة وجذابة عن نشأة البراند أو فلسفته.
+                Please provide:
+                1.  **Vision:** An inspiring statement expressing the brand's future ambition.
+                2.  **Mission:** What the brand currently offers and how it achieves its vision.
+                3.  **Core Values:** 3-5 values representing the brand's essence.
+                4.  **Unique Selling Proposition (USP):** What differentiates the brand from its competitors.
+                5.  **Brand Story:** A short, engaging paragraph about the brand's origin or philosophy.
 
-                صيغة الإجابة تكون كالتالي:
-                **الرؤية:** [الرؤية هنا]
-                **الرسالة:** [الرسالة هنا]
-                **القيم الأساسية:**
-                - [قيمة 1]
-                - [قيمة 2]
-                - [قيمة 3]
-                **نقاط البيع الفريدة:** [USP هنا]
-                **قصة البراند:** [القصة هنا]
+                The response format should be as follows:
+                **Vision:** [Vision here]
+                **Mission:** [Mission here]
+                **Core Values:**
+                - [Value 1]
+                - [Value 2]
+                - [Value 3]
+                **Unique Selling Proposition:** [USP here]
+                **Brand Story:** [Story here]
                 `;
                 const brandIdentity = await callGemini(brandIdentityPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>2. الهوية التعريفية للبراند</h3>${brandIdentity.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(1); // Task 1: Brand Identity
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '2. الهوية التعريفية للبراند' : '2. Brand Identity'}</h3><div class="collapsible-content">${brandIdentity.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(1); // Task 1: Brand Identity
 
                 // --- 3. تحليل الجمهور المستهدف ---
-                let audienceAnalysisPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - مكان النشاط: ${location}
-                - الجمهور المستهدف المدخل: ${promptData.targetAudienceInput}
+                let audienceAnalysisPrompt = `Based on the following brand information, please analyze the target audience in detail in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Location: ${location}
+                - Provided Target Audience: ${promptData.targetAudienceInput}
 
-                يرجى تحليل الجمهور المستهدف بالتفصيل، مع التركيز على:
-                1.  **الخصائص الديموغرافية:** (السن، الجنس، المستوى التعليمي، الدخل، الحالة الاجتماعية، الموقع الجغرافي).
-                2.  **الخصائص النفسية/السلوكية:** (الاهتمامات، الهوايات، القيم، نمط الحياة، التحديات/نقاط الألم، الدوافع للشراء، السلوك الشرائي، المنصات المفضلة).
-                3.  **الاحتياجات والرغبات:** ما الذي يبحث عنه هذا الجمهور وكيف يمكن للبراند أن يلبي هذه الاحتياجات.
+                Please focus on:
+                1.  **Demographic Characteristics:** (Age, Gender, Education Level, Income, Marital Status, Geographical Location).
+                2.  **Psychographic/Behavioral Characteristics:** (Interests, Hobbies, Values, Lifestyle, Challenges/Pain Points, Purchase Motivations, Buying Behavior, Preferred Platforms).
+                3.  **Needs and Desires:** What this audience is looking for and how the brand can meet these needs.
 
-                صيغة الإجابة تكون كالتالي:
-                **الخصائص الديموغرافية:**
-                - السن:
-                - الجنس:
+                The response format should be as follows:
+                **Demographic Characteristics:**
+                - Age:
+                - Gender:
                 - ...
-                **الخصائص النفسية/السلوكية:**
-                - الاهتمامات:
-                - الهوايات:
+                **Psychographic/Behavioral Characteristics:**
+                - Interests:
+                - Hobbies:
                 - ...
-                **الاحتياجات والرغبات:**
+                **Needs and Desires:**
                 - ...
                 `;
                 const audienceAnalysis = await callGemini(audienceAnalysisPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>3. تحليل الجمهور المستهدف</h3>${audienceAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(2); // Task 2: Audience Analysis
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '3. تحليل الجمهور المستهدف' : '3. Target Audience Analysis'}</h3><div class="collapsible-content">${audienceAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(2); // Task 2: Audience Analysis
 
                 // --- 4. كتابة 5 منشورات تسويقية ---
-                let postsPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - الجمهور المستهدف: ${audienceAnalysis} (ملخص من التحليل السابق)
+                let postsPrompt = `Based on the following brand information, please write 5 diverse marketing posts (e.g., promotional, interactive, educational, offer announcement, motivational) for social media platforms (Facebook/Instagram) in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}. For each post:
+                - It must contain engaging text.
+                - Suggest a suitable image/video.
+                - Clear Call to Action (CTA).
+                - 3-5 relevant hashtags.
 
-                يرجى كتابة 5 منشورات تسويقية متنوعة (مثل: ترويجية، تفاعلية، تثقيفية، إعلان عرض، تحفيزية) لمنصات التواصل الاجتماعي (فيسبوك/انستجرام). لكل منشور:
-                - يجب أن يحتوي على نص جذاب.
-                - اقتراح صورة/فيديو مناسب.
-                - Call to Action (CTA) واضحة.
-                - 3-5 هاشتاجات ذات صلة.
+                The response format should be as follows:
+                **Post 1 (Post Type):**
+                Text: [Post text]
+                Visual Suggestion: [Image/Video description]
+                CTA: [Call to Action]
+                Hashtags: [hashtag1] [hashtag2] ...
 
-                صيغة الإجابة تكون كالتالي:
-                **المنشور 1 (نوع المنشور):**
-                النص: [نص المنشور]
-                اقتراح مرئي: [وصف الصورة/الفيديو]
-                CTA: [دعوة للعمل]
-                الهاشتاجات: [هاشتاج1] [هاشتاج2] ...
-
-                **المنشور 2 (نوع المنشور):**
+                **Post 2 (Post Type):**
                 ...
                 `;
                 const marketingPosts = await callGemini(postsPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>4. 5 منشورات تسويقية مقترحة</h3>${marketingPosts.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(3); // Task 3: Marketing Posts
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '4. 5 منشورات تسويقية مقترحة' : '4. 5 Suggested Marketing Posts'}</h3><div class="collapsible-content">${marketingPosts.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(3); // Task 3: Marketing Posts
 
                 // --- 5. اقتراح ميزانية ومدد للإعلانات الممولة ---
-                let budgetProposalPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - الميزانية المتاحة: ${promptData.rawBudget > 0 ? promptData.rawBudget + ' ' + promptData.currency : 'غير محددة'}
-                - الجمهور المستهدف: ${audienceAnalysis} (ملخص من التحليل السابق)
-                - مكان النشاط: ${location}
+                let budgetProposalPrompt = `Based on the following brand information, please provide a proposal for budget and durations for paid advertisements on (Facebook, Instagram, TikTok) in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Available Budget: ${promptData.rawBudget > 0 ? promptData.rawBudget + ' ' + promptData.currency : 'Not specified'}
+                - Target Audience: ${audienceAnalysis} (summary from previous analysis)
+                - Location: ${location}
 
-                يرجى تقديم اقتراح لميزانية ومدد للإعلانات الممولة على (فيسبوك، إنستجرام، تيك توك). يجب أن يتضمن الاقتراح:
-                1.  **أهداف الحملة:** (مثال: زيادة الوعي، زيادة المبيعات، جمع العملاء المحتملين).
-                2.  **توزيع الميزانية المقترح:** على المنصات المختلفة (فيسبوك، انستجرام، تيك توك) مع نسبة لكل منصة.
-                3.  **المدة المقترحة للحملة:** (مثال: شهر، 3 أشهر).
-                4.  **توقعات الأداء (KPIs):** (مثال: عدد مرات الوصول، عدد النقرات، عدد العملاء المحتملين، تكلفة النقرة).
-                5.  **ملاحظات إضافية:** أي نصائح لتحسين أداء الحملة.
+                The proposal should include:
+                1.  **Campaign Goals:** (e.g., increase awareness, increase sales, lead generation).
+                2.  **Proposed Budget Distribution:** across different platforms (Facebook, Instagram, TikTok) with a percentage for each.
+                3.  **Proposed Campaign Duration:** (e.g., 1 month, 3 months).
+                4.  **Performance Expectations (KPIs):** (e.g., reach, clicks, leads, cost per click).
+                5.  **Additional Notes:** Any tips to improve campaign performance.
 
-                صيغة الإجابة تكون كالتالي:
-                **أهداف الحملة:**
-                - [هدف 1]
-                - [هدف 2]
-                **توزيع الميزانية المقترح (بناءً على ميزانية ${promptData.budget}):**
-                - فيسبوك/انستجرام: [نسبة مئوية]% ([المبلغ المقدر])
-                - تيك توك: [نسبة مئوية]% ([المبلغ المقدر])
-                **المدة المقترحة للحملة:** [المدة]
-                **توقعات الأداء (KPIs):**
-                - [KPI 1]: [قيمة متوقعة]
-                - [KPI 2]: [قيمة متوقعة]
-                **ملاحظات إضافية:**
+                The response format should be as follows:
+                **Campaign Goals:**
+                - [Goal 1]
+                - [Goal 2]
+                **Proposed Budget Distribution (based on budget ${promptData.budget}):**
+                - Facebook/Instagram: [Percentage]% ([Estimated Amount])
+                - TikTok: [Percentage]% ([Estimated Amount])
+                **Proposed Campaign Duration:** [Duration]
+                **Performance Expectations (KPIs):**
+                - [KPI 1]: [Expected Value]
+                - [KPI 2]: [Expected Value]
+                **Additional Notes:**
                 - ...
                 `;
                 const budgetProposal = await callGemini(budgetProposalPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>5. اقتراح ميزانية ومدد للإعلانات الممولة</h3>${budgetProposal.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(4); // Task 4: Budget Proposal
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '5. اقتراح ميزانية ومدد للإعلانات الممولة' : '5. Proposed Budget and Ad Durations'}</h3><div class="collapsible-content">${budgetProposal.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(4); // Task 4: Budget Proposal
 
                 // --- 6. تقديم أفكار تصميم وابتكار ---
-                let designIdeasPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - الهوية التعريفية للبراند: ${brandIdentity} (ملخص من التحليل السابق)
-                - الجمهور المستهدف: ${audienceAnalysis} (ملخص من التحليل السابق)
+                let designIdeasPrompt = `Based on the following brand information, please provide design and innovation ideas for the brand's visual identity and visual content in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Brand Identity: ${brandIdentity} (summary from previous analysis)
+                - Target Audience: ${audienceAnalysis} (summary from previous analysis)
 
-                يرجى تقديم أفكار تصميم وابتكار للهوية البصرية والمحتوى المرئي للبراند، مع التركيز على:
-                1.  **الألوان المقترحة:** (لوحة ألوان أساسية وثانوية مع دلالاتها).
-                2.  **الخطوط المقترحة:** (خطوط للعناوين وخطوط للنصوص).
-                3.  **أنماط التصميم:** (مثال: عصري، كلاسيكي، بسيط، جريء، مرح).
-                4.  **أفكار لمحتوى مرئي مبتكر:** (مثال: أنواع صور/فيديوهات، استخدام الرسوم المتحركة، أفكار لحملات بصرية).
-                5.  **أفكار لتصميم الشعار:** (وصف عام لشكل الشعار أو رموزه).
+                Please focus on:
+                1.  **Suggested Colors:** (Primary and secondary color palette with their meanings).
+                2.  **Suggested Fonts:** (Fonts for headings and fonts for body text).
+                3.  **Design Styles:** (e.g., modern, classic, minimalist, bold, playful).
+                4.  **Ideas for Innovative Visual Content:** (e.g., types of images/videos, use of animation, ideas for visual campaigns).
+                5.  **Logo Design Ideas:** (General description of the logo shape or symbols).
 
-                صيغة الإجابة تكون كالتالي:
-                **الألوان المقترحة:**
-                - [لون 1] (#HEXCODE): [دلالته]
-                - [لون 2] (#HEXCODE): [دلالته]
-                **الخطوط المقترحة:**
-                - للعناوين: [اسم الخط]
-                - للنصوص: [اسم الخط]
-                **أنماط التصميم:**
+                The response format should be as follows:
+                **Suggested Colors:**
+                - [Color 1] (#HEXCODE): [Meaning]
+                - [Color 2] (#HEXCODE): [Meaning]
+                **Suggested Fonts:**
+                - For Headings: [Font Name]
+                - For Body Text: [Font Name]
+                **Design Styles:**
                 - ...
-                **أفكار لمحتوى مرئي مبتكر:**
+                **Ideas for Innovative Visual Content:**
                 - ...
-                **أفكار لتصميم الشعار:**
+                **Logo Design Ideas:**
                 - ...
                 `;
                 const designIdeas = await callGemini(designIdeasPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>6. أفكار تصميم وابتكار</h3>${designIdeas.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(5); // Task 5: Design Ideas
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '6. أفكار تصميم وابتكار' : '6. Design and Innovation Ideas'}</h3><div class="collapsible-content">${designIdeas.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(5); // Task 5: Design Ideas
 
                 // --- 7. بناء خطة تسويقية مختصرة وكاملة ---
-                let marketingPlanPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - الهوية التعريفية للبراند: ${brandIdentity}
-                - الجمهور المستهدف: ${audienceAnalysis}
-                - اقتراح الميزانية والإعلانات: ${budgetProposal}
-                - مكان النشاط: ${location}
+                let marketingPlanPrompt = `Based on the following brand information, please build a concise and complete marketing plan in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Brand Identity: ${brandIdentity}
+                - Target Audience: ${audienceAnalysis}
+                - Budget and Ad Proposal: ${budgetProposal}
+                - Location: ${location}
 
-                يرجى بناء خطة تسويقية مختصرة وكاملة، مع التركيز على:
-                1.  **أهداف الخطة:** (SMART Goals).
-                2.  **المراحل الرئيسية:** (مثال: مرحلة التحضير، مرحلة الإطلاق، مرحلة المتابعة والتحسين).
-                3.  **القنوات التسويقية المقترحة:** (مثل: السوشيال ميديا، الإعلانات المدفوعة، التسويق بالمحتوى، البريد الإلكتروني، SEO).
-                4.  **الجدول الزمني المقترح:** (تقسيم المهام على أسابيع أو أشهر).
-                5.  **مؤشرات الأداء الرئيسية (KPIs) للخطة ككل:** (كيف سيتم قياس النجاح).
+                Please focus on:
+                1.  **Plan Goals:** (SMART Goals).
+                2.  **Key Stages:** (e.g., Preparation Phase, Launch Phase, Monitoring and Optimization Phase).
+                3.  **Suggested Marketing Channels:** (e.g., Social Media, Paid Ads, Content Marketing, Email Marketing, SEO).
+                4.  **Proposed Timeline:** (Tasks divided into weeks or months).
+                5.  **Key Performance Indicators (KPIs) for the overall plan:** (How success will be measured).
 
-                صيغة الإجابة تكون كالتالي:
-                **أهداف الخطة:**
-                - [هدف 1]
-                - [هدف 2]
-                **المراحل الرئيسية والمهام:**
-                - **مرحلة التحضير:**
-                    - [مهمة 1]
-                    - [مهمة 2]
-                - **مرحلة الإطلاق:**
+                The response format should be as follows:
+                **Plan Goals:**
+                - [Goal 1]
+                - [Goal 2]
+                **Key Stages and Tasks:**
+                - **Preparation Phase:**
+                    - [Task 1]
+                    - [Task 2]
+                - **Launch Phase:**
                     - ...
-                **القنوات التسويقية المقترحة:**
+                **Suggested Marketing Channels:**
                 - ...
-                **الجدول الزمني المقترح (مثال لـ 3 أشهر):**
-                - الشهر الأول:
-                - الشهر الثاني:
-                - الشهر الثالث:
-                **مؤشرات الأداء الرئيسية (KPIs) للخطة:**
+                **Proposed Timeline (e.g., for 3 months):**
+                - Month 1:
+                - Month 2:
+                - Month 3:
+                **Key Performance Indicators (KPIs) for the Plan:**
                 - ...
                 `;
                 const marketingPlan = await callGemini(marketingPlanPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>7. خطة تسويقية مختصرة وكاملة</h3>${marketingPlan.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(6); // Task 6: Marketing Plan
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '7. خطة تسويقية مختصرة وكاملة' : '7. Concise and Complete Marketing Plan'}</h3><div class="collapsible-content">${marketingPlan.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(6); // Task 6: Marketing Plan
 
                 // --- 8. استراتيجية SEO وEmail Marketing ---
-                let seoEmailPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - الجمهور المستهدف: ${audienceAnalysis}
-                - مكان النشاط: ${location}
+                let seoEmailPrompt = `Based on the following brand information, please provide suggestions for Search Engine Optimization (SEO) and Email Marketing strategies in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Target Audience: ${audienceAnalysis}
+                - Location: ${location}
 
-                يرجى تقديم اقتراحات لاستراتيجية تحسين محركات البحث (SEO) والتسويق عبر البريد الإلكتروني (Email Marketing):
-                1.  **استراتيجية SEO:**
-                    - اقتراح 5-7 كلمات مفتاحية رئيسية محتملة.
-                    - نصائح عامة لتحسين الموقع لمحركات البحث (On-page SEO).
-                2.  **استراتيجية التسويق عبر البريد الإلكتروني:**
-                    - أفكار لأنواع رسائل البريد الإلكتروني (مثال: رسائل ترحيب، عروض، نشرات إخبارية).
-                    - نصائح لزيادة قائمة المشتركين.
+                Please provide:
+                1.  **SEO Strategy:**
+                    - Suggest 5-7 potential main keywords.
+                    - General tips for website optimization for search engines (On-page SEO).
+                2.  **Email Marketing Strategy:**
+                    - Ideas for types of email messages (e.g., welcome messages, offers, newsletters).
+                    - Tips for growing subscriber list.
 
-                صيغة الإجابة تكون كالتالي:
-                **استراتيجية تحسين محركات البحث (SEO):**
-                - **الكلمات المفتاحية المقترحة:**
-                    - [كلمة مفتاحية 1]
-                    - [كلمة مفتاحية 2]
-                - **نصائح عامة لتحسين الموقع:**
+                The response format should be as follows:
+                **Search Engine Optimization (SEO) Strategy:**
+                - **Suggested Keywords:**
+                    - [Keyword 1]
+                    - [Keyword 2]
+                - **General Website Optimization Tips:**
                     - ...
-                **استراتيجية التسويق عبر البريد الإلكتروني (Email Marketing):**
-                - **أنواع الرسائل المقترحة:**
+                **Email Marketing Strategy:**
+                - **Suggested Message Types:**
                     - ...
-                - **نصائح لزيادة قائمة المشتركين:**
+                - **Tips for Growing Subscriber List:**
                     - ...
                 `;
                 const seoEmailStrategy = await callGemini(seoEmailPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>8. استراتيجية SEO والتسويق عبر البريد الإلكتروني</h3>${seoEmailStrategy.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(7); // Task 7: SEO & Email
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '8. استراتيجية SEO والتسويق عبر البريد الإلكتروني' : '8. SEO and Email Marketing Strategy'}</h3><div class="collapsible-content">${seoEmailStrategy.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(7); // Task 7: SEO & Email
 
                 // --- 9. تحليل عائد الاستثمار (ROI) وتوقعات العوائد ---
-                let roiAnalysisPrompt = `بناءً على المعلومات التالية لبراند:
-                - اسم البراند: ${brandName}
-                - نوع النشاط التجاري: ${businessType}
-                - وصف الخدمة/الهدف: ${serviceDescription}
-                - الميزانية المتاحة: ${promptData.rawBudget > 0 ? promptData.rawBudget + ' ' + promptData.currency : 'غير محددة'}
-                - اقتراح الميزانية والإعلانات: ${budgetProposal}
-                - خطة التسويق: ${marketingPlan}
-                - مكان النشاط: ${location}
+                let roiAnalysisPrompt = `Based on the following brand information, please provide an initial analysis of Return on Investment (ROI) and projected returns, at least probabilistically, in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Available Budget: ${promptData.rawBudget > 0 ? promptData.rawBudget + ' ' + promptData.currency : 'Not specified'}
+                - Budget and Ad Proposal: ${budgetProposal}
+                - Marketing Plan: ${marketingPlan}
+                - Location: ${location}
 
-                يرجى تقديم تحليل مبدئي لعائد الاستثمار (ROI) والعوائد المتوقعة على الأقل احتمال، مع التركيز على:
-                1.  **توقعات العائد على الاستثمار (ROI):** تقدير تقريبي (كنسبة مئوية أو وصف) بناءً على الميزانية والأهداف.
-                2.  **تحليل نقطة التعادل (Break-even Point):** متى يمكن للبراند أن يبدأ بتغطية تكاليف التسويق.
-                3.  **توقعات نمو الوعي بالعلامة التجارية:** (مثال: زيادة في عدد المتابعين، الإشارة للبراند).
-                4.  **توقعات المبيعات/العملاء المحتملين:** (تقدير تقريبي).
-                5.  **ملاحظات حول المخاطر والافتراضات:** (ما هي العوامل التي قد تؤثر على هذه التوقعات).
+                Please focus on:
+                1.  **ROI Projections:** Approximate estimate (as a percentage or description) based on budget and goals.
+                2.  **Break-even Point Analysis:** When the brand can start covering marketing costs.
+                3.  **Brand Awareness Growth Projections:** (e.g., increase in followers, brand mentions).
+                4.  **Sales/Lead Projections:** (Approximate estimate).
+                5.  **Notes on Risks and Assumptions:** (What factors might affect these projections).
 
-                صيغة الإجابة تكون كالتالي:
-                **توقعات العائد على الاستثمار (ROI):**
+                The response format should be as follows:
+                **ROI Projections:**
                 - ...
-                **تحليل نقطة التعادل:**
+                **Break-even Point Analysis:**
                 - ...
-                **توقعات نمو الوعي بالعلامة التجارية:**
+                **Brand Awareness Growth Projections:**
                 - ...
-                **توقعات المبيعات/العملاء المحتملين:**
+                **Sales/Lead Projections:**
                 - ...
-                **ملاحظات حول المخاطر والافتراضات:**
+                **Notes on Risks and Assumptions:**
                 - ...
                 `;
                 const roiAnalysis = await callGemini(roiAnalysisPrompt);
-                generatedReportHTML += `<div class="report-section"><h3>9. تحليل عائد الاستثمار (ROI) والعوائد المتوقعة</h3>${roiAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-                completeTask(8); // Task 8: ROI Analysis
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '9. تحليل عائد الاستثمار (ROI) والعوائد المتوقعة' : '9. ROI Analysis and Projected Returns'}</h3><div class="collapsible-content">${roiAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(8); // Task 8: ROI Analysis
 
                 reportContent.innerHTML = generatedReportHTML;
                 reportOutput.classList.remove('hidden');
 
-                // --- Generate Charts ---
-                // Data for charts (illustrative, based on input budget and general assumptions)
-                const budgetAllocation = {
-                    facebookInstagram: promptData.rawBudget * 0.5,
-                    tiktok: promptData.rawBudget * 0.3,
-                    other: promptData.rawBudget * 0.2
-                };
+                // Draw charts after the report content is in the DOM
+                drawCharts();
+                updateLoadingProgress(9); // Task 9: Generate Charts
 
-                // Budget Distribution Chart
-                const budgetCtx = document.getElementById('budgetDistributionChart').getContext('2d');
-                myBudgetChart = new Chart(budgetCtx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['فيسبوك/انستجرام', 'تيك توك', 'أخرى/متنوعة'],
-                        datasets: [{
-                            data: [budgetAllocation.facebookInstagram, budgetAllocation.tiktok, budgetAllocation.other],
-                            backgroundColor: [
-                                'rgba(59, 130, 246, 0.8)', // Blue
-                                'rgba(239, 68, 68, 0.8)',  // Red
-                                'rgba(16, 185, 129, 0.8)'  // Green
-                            ],
-                            borderColor: [
-                                'rgba(59, 130, 246, 1)',
-                                'rgba(239, 68, 68, 1)',
-                                'rgba(16, 185, 129, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            title: {
-                                display: false,
-                                text: 'توزيع الميزانية المقترحة'
-                            }
+                // Add event listeners for collapsible sections
+                document.querySelectorAll('.report-section .read-more-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const content = button.previousElementSibling;
+                        content.classList.toggle('expanded');
+                        if (content.classList.contains('expanded')) {
+                            button.textContent = currentLanguage === 'ar' ? 'قراءة أقل' : 'Read Less';
+                        } else {
+                            button.textContent = currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More';
                         }
-                    }
+                    });
                 });
-
-                // Growth Projection Chart (Illustrative)
-                const growthCtx = document.getElementById('growthProjectionChart').getContext('2d');
-                const initialValue = promptData.rawBudget > 0 ? promptData.rawBudget * 2 : 1000; // Example starting point
-                myGrowthChart = new Chart(growthCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['الشهر 1', 'الشهر 2', 'الشهر 3', 'الشهر 4', 'الشهر 5', 'الشهر 6'],
-                        datasets: [{
-                            label: `نمو العوائد المتوقعة (${currency})`,
-                            data: [
-                                initialValue,
-                                initialValue * 1.1,
-                                initialValue * 1.25,
-                                initialValue * 1.4,
-                                initialValue * 1.55,
-                                initialValue * 1.7
-                            ],
-                            borderColor: 'rgba(139, 92, 246, 0.8)', // Purple
-                            backgroundColor: 'rgba(139, 92, 246, 0.2)',
-                            tension: 0.3,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            title: {
-                                display: false,
-                                text: 'توقعات النمو/العوائد الشهرية'
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: `القيمة (${currency})`,
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                },
-                                ticks: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            x: {
-                                ticks: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-
-                // Audience Demographics Chart (Illustrative)
-                const audienceCtx = document.getElementById('audienceDemographicsChart').getContext('2d');
-                myAudienceChart = new Chart(audienceCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
-                        datasets: [{
-                            label: 'النسبة المئوية للجمهور',
-                            data: [15, 35, 25, 15, 10], // Illustrative percentages
-                            backgroundColor: [
-                                'rgba(251, 191, 36, 0.8)', // Yellow
-                                'rgba(52, 211, 153, 0.8)', // Teal
-                                'rgba(99, 102, 241, 0.8)', // Indigo
-                                'rgba(249, 115, 22, 0.8)', // Orange
-                                'rgba(165, 180, 252, 0.8)' // Light Indigo
-                            ],
-                            borderColor: [
-                                'rgba(251, 191, 36, 1)',
-                                'rgba(52, 211, 153, 1)',
-                                'rgba(99, 102, 241, 1)',
-                                'rgba(249, 115, 22, 1)',
-                                'rgba(165, 180, 252, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            title: {
-                                display: false,
-                                text: 'تركيبة الجمهور المستهدف'
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'النسبة المئوية',
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                },
-                                ticks: {
-                                    callback: function(value) {
-                                        return value + '%';
-                                    },
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'الفئة العمرية',
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-
-                // Content Performance Chart (Illustrative)
-                const contentCtx = document.getElementById('contentPerformanceChart').getContext('2d');
-                myContentChart = new Chart(contentCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['منشورات ترويجية', 'منشورات تثقيفية', 'منشورات تفاعلية', 'إعلانات عروض'],
-                        datasets: [{
-                            label: 'متوسط التفاعل',
-                            data: [70, 85, 90, 75], // Illustrative engagement scores
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.8)', // Red
-                                'rgba(54, 162, 235, 0.8)', // Blue
-                                'rgba(255, 206, 86, 0.8)', // Yellow
-                                'rgba(75, 192, 192, 0.8)'  // Green
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            title: {
-                                display: false,
-                                text: 'أداء المحتوى حسب النوع'
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'مستوى التفاعل',
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                },
-                                ticks: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            x: {
-                                ticks: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-
-                // Customer Journey Chart (Illustrative)
-                const customerJourneyCtx = document.getElementById('customerJourneyChart').getContext('2d');
-                myCustomerJourneyChart = new Chart(customerJourneyCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['الوعي (Awareness)', 'الاهتمام (Consideration)', 'التحويل (Conversion)', 'الولاء (Loyalty)'],
-                        datasets: [{
-                            data: [30, 25, 20, 25], // Illustrative percentages
-                            backgroundColor: [
-                                'rgba(153, 102, 255, 0.8)', // Purple
-                                'rgba(255, 159, 64, 0.8)',  // Orange
-                                'rgba(201, 203, 207, 0.8)', // Gray
-                                'rgba(0, 200, 83, 0.8)'     // Green (for loyalty)
-                            ],
-                            borderColor: [
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(201, 203, 207, 1)',
-                                'rgba(0, 200, 83, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        family: 'Inter',
-                                    }
-                                }
-                            },
-                            title: {
-                                display: false,
-                                text: 'مراحل رحلة العميل'
-                            }
-                        }
-                    }
-                });
-
-                completeTask(9); // Task 9: Generate Charts
-                completeTask(10); // Task 10: Final Report Assembly
+                updateLoadingProgress(10); // Task 10: Final Report Assembly
 
             } catch (error) {
                 console.error("Error generating report:", error);
-                reportContent.innerHTML = `<p class="text-red-600">حدث خطأ أثناء توليد التقرير: ${error.message}. يرجى المحاولة مرة أخرى.</p>`;
+                reportContent.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد التقرير: ' : 'An error occurred while generating the report: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
                 reportOutput.classList.remove('hidden');
             } finally {
                 // Hide loading overlay and stop message cycling
@@ -1487,23 +2013,114 @@
                 clearInterval(messageInterval);
 
                 // Ensure the last task is marked as completed
-                if (activeTaskIndex !== -1) {
-                    const lastTaskItem = document.getElementById(`task-${activeTaskIndex}`);
-                    if (lastTaskItem) {
-                        lastTaskItem.classList.remove('active');
-                        lastTaskItem.classList.add('completed');
-                        lastTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
-                    }
+                if (activeTaskIndex !== -1 && mapNodes[activeTaskIndex]) {
+                    mapNodes[activeTaskIndex].classList.remove('active');
+                    mapNodes[activeTaskIndex].classList.add('completed');
+                    mapProgressFill.style.width = '100%'; // Ensure fill is 100% on completion
                 }
 
                 // Re-enable button and hide loading spinner
                 generateBtn.disabled = false;
-                generateBtn.innerHTML = 'توليد التقرير الشامل <i class="fas fa-magic mr-2"></i>';
+                generateBtn.innerHTML = `${translations[currentLanguage].generateReportButton} <i class="fas fa-magic mr-2"></i>`;
                 reportOutput.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to report
             }
         });
 
-        // Copy report to clipboard
+        // --- Social Media Post Generator Logic ---
+        generatePostBtn.addEventListener('click', async () => {
+            const postTopic = postTopicInput.value.trim();
+            if (!postTopic) {
+                alert(currentLanguage === 'ar' ? 'الرجاء إدخال موضوع المنشور.' : 'Please enter a topic for the post.');
+                return;
+            }
+
+            generatePostBtn.disabled = true;
+            postLoadingSpinner.classList.remove('hidden');
+            generatePostBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedPostOutput.classList.add('hidden');
+            postCopySuccessMessage.classList.add('hidden');
+
+            try {
+                const postPrompt = `Generate a social media post (for Facebook/Instagram) about "${postTopic}". The post should be engaging, include relevant emojis, 3-5 hashtags, and a clear call to action. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Format:
+                Title: [Post Title]
+                Body: [Post Body with Emojis]
+                Call to Action: [CTA]
+                Hashtags: [Hashtag1] [Hashtag2] ...`;
+
+                const generatedPost = await callGemini(postPrompt);
+
+                // Parse the generated post
+                const lines = generatedPost.split('\n').filter(line => line.trim() !== '');
+                let title = '';
+                let body = '';
+                let cta = '';
+                let hashtags = '';
+
+                lines.forEach(line => {
+                    if (line.startsWith('Title:')) {
+                        title = line.substring('Title:'.length).trim();
+                    } else if (line.startsWith('Body:')) {
+                        body = line.substring('Body:'.length).trim();
+                    } else if (line.startsWith('Call to Action:')) {
+                        cta = line.substring('Call to Action:'.length).trim();
+                    } else if (line.startsWith('Hashtags:')) {
+                        hashtags = line.substring('Hashtags:'.length).trim();
+                    }
+                });
+
+                postContentDiv.innerHTML = `
+                    <p><strong>${currentLanguage === 'ar' ? 'العنوان:' : 'Title:'}</strong> ${title}</p>
+                    <p><strong>${currentLanguage === 'ar' ? 'المنشور:' : 'Post:'}</strong> ${body}</p>
+                    <p><strong>${currentLanguage === 'ar' ? 'دعوة للعمل:' : 'Call to Action:'}</strong> ${cta}</p>
+                    <p><strong>${currentLanguage === 'ar' ? 'الهاشتاجات:' : 'Hashtags:'}</strong> ${hashtags}</p>
+                `;
+                generatedPostOutput.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error generating social media post:", error);
+                postContentDiv.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد المنشور: ' : 'An error occurred while generating the post: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedPostOutput.classList.remove('hidden');
+            } finally {
+                generatePostBtn.disabled = false;
+                postLoadingSpinner.classList.add('hidden');
+                postLoadingSpinner.classList.add('hidden');
+                generatePostBtn.querySelector('span').textContent = translations[currentLanguage].generatePostButtonText;
+            }
+        });
+
+        copyPostBtn.addEventListener('click', () => {
+            const postTextToCopy = postContentDiv.innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = postTextToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            postCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                postCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        sharePostBtn.addEventListener('click', () => {
+            const postText = postContentDiv.innerText;
+            if (navigator.share) {
+                navigator.share({
+                    title: currentLanguage === 'ar' ? 'منشور مقترح من EhabGM' : 'Suggested Post from EhabGM',
+                    text: postText,
+                    url: window.location.href,
+                }).catch((error) => console.log('Error sharing', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                alert(currentLanguage === 'ar' ? 'ميزة المشاركة غير مدعومة في متصفحك. تم نسخ المنشور إلى الحافظة.' : 'Share feature not supported in your browser. Post has been copied to clipboard.');
+                copyPostBtn.click(); // Automatically copy if share not supported
+            }
+        });
+
+
+        // --- Copy report to clipboard ---
         copyReportBtn.addEventListener('click', () => {
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = reportContent.innerHTML;
@@ -1513,16 +2130,12 @@
             canvases.forEach(canvas => canvas.remove());
 
             // Add a placeholder for charts
-            const chartsSectionInReport = tempDiv.querySelector('.report-section h3') && tempDiv.querySelector('.report-section h3').textContent.includes('التحليلات والرسوم البيانية');
+            const chartsSectionInReport = tempDiv.querySelector('#chartsSection');
             if (chartsSectionInReport) {
                 const chartsPlaceholder = document.createElement('p');
-                chartsPlaceholder.innerHTML = '<br>--- الرسوم البيانية التحليلية (الرجاء الرجوع للتطبيق الأصلي للمعاينة المرئية) ---<br>';
-                const firstReportSection = tempDiv.querySelector('.report-section');
-                if (firstReportSection) {
-                    firstReportSection.parentNode.insertBefore(chartsPlaceholder, firstReportSection.nextSibling);
-                } else {
-                    tempDiv.insertBefore(chartsPlaceholder, tempDiv.firstChild);
-                }
+                chartsPlaceholder.innerHTML = `<br>--- ${currentLanguage === 'ar' ? 'الرسوم البيانية التحليلية (الرجاء الرجوع للتطبيق الأصلي للمعاينة المرئية)' : 'Analytical Charts (Please refer to the original application for visual preview)'} ---<br>`;
+                chartsSectionInReport.parentNode.insertBefore(chartsPlaceholder, chartsSectionInReport.nextSibling);
+                chartsSectionInReport.remove(); // Remove the original charts section from tempDiv
             }
 
             const range = document.createRange();
@@ -1538,33 +2151,44 @@
                         copySuccessMessage.classList.add('hidden');
                     }, 3000);
                 } else {
-                    prompt('نسخ التقرير (Ctrl+C / Cmd+C):', tempDiv.innerText);
+                    prompt(currentLanguage === 'ar' ? 'نسخ التقرير (Ctrl+C / Cmd+C):' : 'Copy Report (Ctrl+C / Cmd+C):', tempDiv.innerText);
                 }
             } catch (err) {
-                prompt('نسخ التقرير (Ctrl+C / Cmd+C):', tempDiv.innerText);
+                prompt(currentLanguage === 'ar' ? 'نسخ التقرير (Ctrl+C / Cmd+C):' : 'Copy Report (Ctrl+C / Cmd+C):', tempDiv.innerText);
             } finally {
                 window.getSelection().removeAllRanges();
             }
         });
 
-        // Print to PDF Logic
+        // --- Print to PDF Logic ---
         printPdfBtn.addEventListener('click', () => {
             const element = document.getElementById('reportOutput');
-            const originalDisplay = element.style.display;
+            const originalReportDisplay = element.style.display;
 
-            // Temporarily remove social share buttons and developer info for cleaner PDF
+            // Temporarily hide social share and post generator sections for cleaner PDF
             const socialShareSection = element.querySelector('.social-share-buttons');
-            const developerInfoSection = element.querySelector('.report-section.bg-blue-50');
+            const postGeneratorSection = element.querySelector('.post-generator-section');
             const copySuccessMsg = element.querySelector('#copySuccessMessage');
+            const postCopySuccessMsg = element.querySelector('#postCopySuccessMessage');
 
             if (socialShareSection) socialShareSection.style.display = 'none';
-            if (developerInfoSection) developerInfoSection.style.display = 'none';
+            if (postGeneratorSection) postGeneratorSection.style.display = 'none';
             if (copySuccessMsg) copySuccessMsg.style.display = 'none';
+            if (postCopySuccessMsg) postCopySuccessMsg.style.display = 'none';
+
+            // Ensure all collapsible sections are expanded for PDF
+            document.querySelectorAll('.collapsible-content').forEach(content => {
+                content.classList.add('expanded');
+            });
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.style.display = 'none'; // Hide buttons in PDF
+            });
+
 
             // Options for html2pdf
             const options = {
                 margin: 10,
-                filename: `تقرير-EhabGM-${document.getElementById('brandName').value}.pdf`,
+                filename: `${currentLanguage === 'ar' ? 'تقرير-EhabGM-' : 'EhabGM-Report-'}${document.getElementById('brandName').value}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -1572,17 +2196,35 @@
 
             html2pdf().set(options).from(element).save().then(() => {
                 // Restore original display after PDF generation
-                if (socialShareSection) socialShareSection.style.display = originalDisplay;
-                if (developerInfoSection) developerInfoSection.style.display = originalDisplay;
-                if (copySuccessMsg) copySuccessMsg.style.display = originalDisplay;
+                if (socialShareSection) socialShareSection.style.display = originalReportDisplay;
+                if (postGeneratorSection) postGeneratorSection.style.display = originalReportDisplay;
+                if (copySuccessMsg) copySuccessMsg.style.display = originalReportDisplay;
+                if (postCopySuccessMsg) postCopySuccessMsg.style.display = originalReportDisplay;
+
+                // Restore collapsible sections state
+                document.querySelectorAll('.collapsible-content').forEach(content => {
+                    // This assumes they were collapsed before, if not, they will remain expanded
+                    // A more robust solution would store their state before printing
+                    content.classList.remove('expanded');
+                });
+                document.querySelectorAll('.read-more-btn').forEach(button => {
+                    button.style.display = 'block'; // Show buttons again
+                    // Reset text based on actual state
+                    const content = button.previousElementSibling;
+                    if (content.scrollHeight > content.clientHeight && !content.classList.contains('expanded')) {
+                         button.textContent = currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More';
+                    } else {
+                        button.textContent = currentLanguage === 'ar' ? 'قراءة أقل' : 'Read Less';
+                    }
+                });
             });
         });
 
-        // Social Share Buttons Logic
+        // Social Share Buttons Logic (for the report)
         const currentAppUrl = window.location.href;
 
         document.getElementById('shareWhatsappBtn').addEventListener('click', () => {
-            const shareText = `ألقِ نظرة على هذا التقرير التسويقي الشامل الذي تم إنشاؤه بواسطة وكيل EhabGM للتسويق الذكي! يمكنك إنشاء تقريرك الخاص مجانًا من هنا: ${currentAppUrl}`;
+            const shareText = `${currentLanguage === 'ar' ? 'ألقِ نظرة على هذا التقرير التسويقي الشامل الذي تم إنشاؤه بواسطة وكيل EhabGM للتسويق الذكي! يمكنك إنشاء تقريرك الخاص مجانًا من هنا:' : 'Check out this comprehensive marketing report generated by EhabGM Smart Marketing Agent! You can create your own report for free here:'} ${currentAppUrl}`;
             window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
         });
 
@@ -1592,14 +2234,14 @@
         });
 
         document.getElementById('shareTwitterBtn').addEventListener('click', () => {
-            const shareText = `وكيل EhabGM للتسويق الذكي: أنشئ تقريرك التسويقي الشامل مجانًا الآن!`;
+            const shareText = `${currentLanguage === 'ar' ? 'وكيل EhabGM للتسويق الذكي: أنشئ تقريرك التسويقي الشامل مجانًا الآن!' : 'EhabGM Smart Marketing Agent: Generate your comprehensive marketing report for free now!'}`;
             const shareUrl = currentAppUrl;
             window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
         });
 
         document.getElementById('shareLinkedInBtn').addEventListener('click', () => {
-            const shareTitle = `وكيل EhabGM للتسويق الذكي`;
-            const shareSummary = `أداة ذكاء اصطناعي متكاملة لإنشاء خطط تسويقية احترافية وتحليلات عميقة لبراندك.`;
+            const shareTitle = currentLanguage === 'ar' ? 'وكيل EhabGM للتسويق الذكي' : 'EhabGM Smart Marketing Agent';
+            const shareSummary = currentLanguage === 'ar' ? 'أداة ذكاء اصطناعي متكاملة لإنشاء خطط تسويقية احترافية وتحليلات عميقة لبراندك.' : 'An integrated AI tool for creating professional marketing plans and deep analytics for your brand.';
             const shareUrl = currentAppUrl;
             window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(shareSummary)}`, '_blank');
         });
