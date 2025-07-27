@@ -135,6 +135,56 @@
             width: 100%;
             margin-bottom: 1.5rem;
         }
+        /* Enhanced loading overlay */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly less opaque */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #loadingOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .main-spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3b82f6;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        .loading-message-container {
+            height: 3rem; /* Fixed height to prevent layout shifts */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .loading-message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            text-align: center;
+            animation: fadeInOut 4s infinite; /* Animation for text */
+            padding: 0 1rem; /* Add padding for better appearance */
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -147,6 +197,13 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-700">
+    <div id="loadingOverlay" class="hidden">
+        <div class="main-spinner"></div>
+        <div class="loading-message-container">
+            <div id="dynamicLoadingMessage" class="loading-message"></div>
+        </div>
+    </div>
+
     <div class="container">
         <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">وكيل EhabGM للتسويق الذكي (EMIA)</h1>
 
@@ -227,30 +284,6 @@
                 <!-- AI-generated content will be inserted here -->
             </div>
 
-            <div id="chartsSection" class="report-section hidden">
-                <h3>10. التحليلات والرسوم البيانية</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-2">توزيع الميزانية المقترحة</h4>
-                        <div class="chart-container">
-                            <canvas id="budgetDistributionChart"></canvas>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-2">توقعات النمو/العوائد الشهرية (توضيحي)</h4>
-                        <div class="chart-container">
-                            <canvas id="growthProjectionChart"></canvas>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-2">تركيبة الجمهور المستهدف (توضيحي)</h4>
-                        <div class="chart-container">
-                            <canvas id="audienceDemographicsChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden">
                 تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
             </div>
@@ -274,10 +307,33 @@
         const logoUpload = document.getElementById('logoUpload');
         const logoUploadArea = document.getElementById('logoUploadArea');
         const logoPreview = document.getElementById('logoPreview');
-        const chartsSection = document.getElementById('chartsSection');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const dynamicLoadingMessage = document.getElementById('dynamicLoadingMessage');
 
         let uploadedLogoBase64 = null;
-        let myBudgetChart, myGrowthChart, myAudienceChart; // To store Chart.js instances
+        let myBudgetChart, myGrowthChart, myAudienceChart, myContentChart, myCustomerJourneyChart; // To store Chart.js instances
+        let messageInterval; // To control the dynamic loading messages
+
+        // Array of engaging loading messages
+        const loadingMessages = [
+            "جاري تحليل بيانات السوق بدقة فائقة...",
+            "نعمل على صياغة هوية براندك الفريدة...",
+            "نقوم بإنشاء منشورات تسويقية جذابة خصيصًا لك...",
+            "جاري تقدير أفضل ميزانية إعلانية لتحقيق أهدافك...",
+            "نبتكر أفكار تصميمية مبدعة لعلامتك التجارية...",
+            "نضع اللمسات الأخيرة على خطتك التسويقية المتكاملة...",
+            "نستكشف أفضل استراتيجيات SEO والبريد الإلكتروني لنموك...",
+            "نحسب العوائد المتوقعة لضمان نجاح استثماراتك...",
+            "الذكاء الاصطناعي يعمل بجد لتقديم أفضل النتائج!",
+            "قريبًا سيكون تقريرك الشامل جاهزًا..."
+        ];
+        let currentMessageIndex = 0;
+
+        // Function to update the dynamic loading message
+        function updateLoadingMessage() {
+            dynamicLoadingMessage.textContent = loadingMessages[currentMessageIndex];
+            currentMessageIndex = (currentMessageIndex + 1) % loadingMessages.length;
+        }
 
         // Handle logo upload
         logoUploadArea.addEventListener('click', () => logoUpload.click());
@@ -306,15 +362,23 @@
             if (myBudgetChart) myBudgetChart.destroy();
             if (myGrowthChart) myGrowthChart.destroy();
             if (myAudienceChart) myAudienceChart.destroy();
+            if (myContentChart) myContentChart.destroy();
+            if (myCustomerJourneyChart) myCustomerJourneyChart.destroy();
 
-            // Disable button and show loading spinner
+            // Show loading overlay and start message cycling
+            loadingOverlay.classList.remove('hidden');
+            updateLoadingMessage(); // Display first message immediately
+            messageInterval = setInterval(updateLoadingMessage, 4000); // Change message every 4 seconds (matches CSS animation)
+
+            // Disable button and show loading spinner (redundant if overlay is full screen, but good for consistency)
             generateBtn.disabled = true;
             buttonText.textContent = 'جاري التوليد...';
             loadingSpinner.classList.remove('hidden');
+
+            // Hide report output and clear content
             reportOutput.classList.add('hidden');
             copySuccessMessage.classList.add('hidden');
-            reportContent.innerHTML = ''; // Clear previous content
-            chartsSection.classList.add('hidden'); // Hide charts section initially
+            reportContent.innerHTML = '';
 
             const brandName = document.getElementById('brandName').value;
             const businessType = document.getElementById('businessType').value;
@@ -349,7 +413,7 @@
             generatedReportHTML += `
                 <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">التقرير التسويقي الشامل لـ ${brandName}</h1>
                 <div class="report-section">
-                    <h3>1. معلومات البراند الأساسية</h3>
+                    <h3>معلومات البراند الأساسية</h3>
                     <p><strong>اسم البراند:</strong> ${brandName}</p>
                     <p><strong>نوع النشاط التجاري:</strong> ${businessType}</p>
                     <p><strong>وصف الخدمة/الهدف:</strong> ${serviceDescription}</p>
@@ -388,6 +452,48 @@
                         throw new Error("Invalid API response structure or no content.");
                     }
                 };
+
+                // --- Generate Charts First (Illustrative Data) ---
+                // Note: The actual chart rendering happens after reportContent.innerHTML is set.
+                // This HTML is just for structure and placeholders.
+                const chartsHTML = `
+                    <div class="report-section" id="chartsSection">
+                        <h3>1. التحليلات والرسوم البيانية</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">توزيع الميزانية المقترحة</h4>
+                                <div class="chart-container">
+                                    <canvas id="budgetDistributionChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">توقعات النمو/العوائد الشهرية (توضيحي)</h4>
+                                <div class="chart-container">
+                                    <canvas id="growthProjectionChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">تركيبة الجمهور المستهدف (توضيحي)</h4>
+                                <div class="chart-container">
+                                    <canvas id="audienceDemographicsChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">أداء المحتوى حسب النوع (توضيحي)</h4>
+                                <div class="chart-container">
+                                    <canvas id="contentPerformanceChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">مراحل رحلة العميل (توضيحي)</h4>
+                                <div class="chart-container">
+                                    <canvas id="customerJourneyChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                generatedReportHTML += chartsHTML; // Add charts section early in the report content
 
                 // --- 2. بناء الهوية التعريفية للبراند ---
                 let brandIdentityPrompt = `بناءً على المعلومات التالية لبراند:
@@ -641,7 +747,6 @@
 
                 reportContent.innerHTML = generatedReportHTML;
                 reportOutput.classList.remove('hidden');
-                chartsSection.classList.remove('hidden'); // Show charts section
 
                 // --- Generate Charts ---
                 // Data for charts (illustrative, based on input budget and general assumptions)
@@ -828,12 +933,118 @@
                                     font: {
                                         family: 'Inter',
                                     }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Content Performance Chart (Illustrative)
+                const contentCtx = document.getElementById('contentPerformanceChart').getContext('2d');
+                myContentChart = new Chart(contentCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['منشورات ترويجية', 'منشورات تثقيفية', 'منشورات تفاعلية', 'إعلانات عروض'],
+                        datasets: [{
+                            label: 'متوسط التفاعل',
+                            data: [70, 85, 90, 75], // Illustrative engagement scores
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.8)', // Red
+                                'rgba(54, 162, 235, 0.8)', // Blue
+                                'rgba(255, 206, 86, 0.8)', // Yellow
+                                'rgba(75, 192, 192, 0.8)'  // Green
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    font: {
+                                        family: 'Inter',
+                                    }
+                                }
+                            },
+                            title: {
+                                display: false,
+                                text: 'أداء المحتوى حسب النوع'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'مستوى التفاعل',
+                                    font: {
+                                        family: 'Inter',
+                                    }
                                 },
                                 ticks: {
                                     font: {
                                         family: 'Inter',
                                     }
                                 }
+                            },
+                            x: {
+                                ticks: {
+                                    font: {
+                                        family: 'Inter',
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Customer Journey Chart (Illustrative)
+                const customerJourneyCtx = document.getElementById('customerJourneyChart').getContext('2d');
+                myCustomerJourneyChart = new Chart(customerJourneyCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['الوعي (Awareness)', 'الاهتمام (Consideration)', 'التحويل (Conversion)', 'الولاء (Loyalty)'],
+                        datasets: [{
+                            data: [30, 25, 20, 25], // Illustrative percentages
+                            backgroundColor: [
+                                'rgba(153, 102, 255, 0.8)', // Purple
+                                'rgba(255, 159, 64, 0.8)',  // Orange
+                                'rgba(201, 203, 207, 0.8)', // Gray
+                                'rgba(0, 200, 83, 0.8)'     // Green (for loyalty)
+                            ],
+                            borderColor: [
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(201, 203, 207, 1)',
+                                'rgba(0, 200, 83, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    font: {
+                                        family: 'Inter',
+                                    }
+                                }
+                            },
+                            title: {
+                                display: false,
+                                text: 'مراحل رحلة العميل'
                             }
                         }
                     }
@@ -845,6 +1056,10 @@
                 reportContent.innerHTML = `<p class="text-red-600">حدث خطأ أثناء توليد التقرير: ${error.message}. يرجى المحاولة مرة أخرى.</p>`;
                 reportOutput.classList.remove('hidden');
             } finally {
+                // Hide loading overlay and stop message cycling
+                loadingOverlay.classList.add('hidden');
+                clearInterval(messageInterval);
+
                 // Re-enable button and hide loading spinner
                 generateBtn.disabled = false;
                 buttonText.textContent = 'توليد التقرير الشامل';
@@ -862,10 +1077,18 @@
             canvases.forEach(canvas => canvas.remove());
 
             // Add a placeholder for charts
-            if (chartsSection.classList.contains('hidden') === false) {
+            // This check ensures the placeholder is added only if charts were visible
+            const chartsSectionInReport = tempDiv.querySelector('.report-section h3') && tempDiv.querySelector('.report-section h3').textContent.includes('التحليلات والرسوم البيانية');
+            if (chartsSectionInReport) {
                 const chartsPlaceholder = document.createElement('p');
                 chartsPlaceholder.innerHTML = '<br>--- الرسوم البيانية التحليلية (الرجاء الرجوع للتطبيق الأصلي للمعاينة المرئية) ---<br>';
-                tempDiv.appendChild(chartsPlaceholder);
+                // Insert after the main info section, which is the first report-section
+                const firstReportSection = tempDiv.querySelector('.report-section');
+                if (firstReportSection) {
+                    firstReportSection.parentNode.insertBefore(chartsPlaceholder, firstReportSection.nextSibling);
+                } else {
+                    tempDiv.insertBefore(chartsPlaceholder, tempDiv.firstChild);
+                }
             }
 
 
