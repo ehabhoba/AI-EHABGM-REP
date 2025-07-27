@@ -896,6 +896,48 @@
                     </div>
                 </div>
 
+                <!-- New Customer Persona Generator Section -->
+                <div class="mt-8 customer-persona-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="customerPersonaGeneratorTitle">✨ منشئ شخصيات العملاء ✨</h3>
+                    <div class="mb-4">
+                        <label for="personaDescription" class="block text-sm font-medium text-gray-700 mb-1" data-key="personaDescriptionLabel">وصف العميل المثالي (اختياري، لو لديك معلومات محددة):</label>
+                        <textarea id="personaDescription" rows="3" placeholder="مثال: نساء شابات، مهتمات بالصحة، يبحثن عن منتجات طبيعية وعضوية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generatePersonaBtn" class="btn-primary w-full flex items-center justify-center" data-key="generatePersonaButton">
+                        <span data-key="generatePersonaButtonText">توليد شخصية العميل</span>
+                        <div id="personaLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedPersonaOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedPersonaHeader">الشخصية المقترحة:</h4>
+                        <div id="personaContent" class="text-gray-900 leading-relaxed whitespace-pre-wrap"></div>
+                        <button id="copyPersonaBtn" class="btn-secondary mt-4 flex items-center" data-key="copyPersonaButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الشخصية
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Email Subject Line Generator Section -->
+                <div class="mt-8 email-subject-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="emailSubjectGeneratorTitle">✨ مولد عناوين البريد الإلكتروني ✨</h3>
+                    <div class="mb-4">
+                        <label for="emailPurpose" class="block text-sm font-medium text-gray-700 mb-1" data-key="emailPurposeLabel">موضوع البريد الإلكتروني أو الغرض منه:</label>
+                        <textarea id="emailPurpose" rows="3" placeholder="مثال: إطلاق منتج جديد، خصم 20% على جميع المنتجات، رسالة إخبارية شهرية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateEmailSubjectsBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateEmailSubjectsButton">
+                        <span data-key="generateEmailSubjectsButtonText">توليد العناوين</span>
+                        <div id="emailSubjectLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedEmailSubjectsOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedEmailSubjectsHeader">العناوين المقترحة:</h4>
+                        <ul id="emailSubjectsList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copyEmailSubjectsBtn" class="btn-secondary mt-4 flex items-center" data-key="copyEmailSubjectsButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ العناوين
+                        </button>
+                    </div>
+                </div>
+
 
                 <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="copySuccessMessage">
                     تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
@@ -905,6 +947,12 @@
                 </div>
                 <div id="sloganCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="sloganCopySuccessMessage">
                     تم نسخ الشعارات بنجاح!
+                </div>
+                <div id="personaCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="personaCopySuccessMessage">
+                    تم نسخ شخصية العميل بنجاح!
+                </div>
+                <div id="emailSubjectCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="emailSubjectCopySuccessMessage">
+                    تم نسخ عناوين البريد الإلكتروني بنجاح!
                 </div>
             </div>
         </div>
@@ -961,6 +1009,24 @@
         const copySlogansBtn = document.getElementById('copySlogansBtn');
         const sloganCopySuccessMessage = document.getElementById('sloganCopySuccessMessage');
 
+        // New elements for Customer Persona Generator
+        const personaDescriptionInput = document.getElementById('personaDescription');
+        const generatePersonaBtn = document.getElementById('generatePersonaBtn');
+        const personaLoadingSpinner = document.getElementById('personaLoadingSpinner');
+        const generatedPersonaOutput = document.getElementById('generatedPersonaOutput');
+        const personaContentDiv = document.getElementById('personaContent');
+        const copyPersonaBtn = document.getElementById('copyPersonaBtn');
+        const personaCopySuccessMessage = document.getElementById('personaCopySuccessMessage');
+
+        // New elements for Email Subject Line Generator
+        const emailPurposeInput = document.getElementById('emailPurpose');
+        const generateEmailSubjectsBtn = document.getElementById('generateEmailSubjectsBtn');
+        const emailSubjectLoadingSpinner = document.getElementById('emailSubjectLoadingSpinner');
+        const generatedEmailSubjectsOutput = document.getElementById('generatedEmailSubjectsOutput');
+        const emailSubjectsList = document.getElementById('emailSubjectsList');
+        const copyEmailSubjectsBtn = document.getElementById('copyEmailSubjectsBtn');
+        const emailSubjectCopySuccessMessage = document.getElementById('emailSubjectCopySuccessMessage');
+
         // Splash screen elements
         const splashScreen = document.getElementById('splashScreen');
         const dynamicSplashTip = document.getElementById('dynamicSplashTip');
@@ -973,8 +1039,8 @@
         let currentLanguage = 'ar'; // Default language
         let currentTheme = 'light'; // Default theme
         let lastGeneratedBrandIdentity = ''; // Store the brand identity for slogan generation
-        let currentTipIndex = 0; // Initialize currentTipIndex here
-        
+        let currentTipIndex = 0; // Initialize currentTipIndex here, ensuring it's defined before updateSplashTip is called
+
         // --- Translations Object ---
         const translations = {
             ar: {
@@ -1025,6 +1091,8 @@
                 copySuccessMessage: "تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.",
                 postCopySuccessMessage: "تم نسخ المنشور بنجاح!",
                 sloganCopySuccessMessage: "تم نسخ الشعارات بنجاح!",
+                personaCopySuccessMessage: "تم نسخ شخصية العميل بنجاح!",
+                emailSubjectCopySuccessMessage: "تم نسخ عناوين البريد الإلكتروني بنجاح!",
                 footerCopyright: "&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.",
                 footerFreeService: "هذه الخدمة متاحة مجانًا لفترة محدودة!",
                 footerContactPrompt: "للتواصل مع المطور أو للاستفسارات:",
@@ -1043,6 +1111,18 @@
                 generateSlogansButtonText: "توليد الشعارات",
                 generatedSlogansHeader: "الشعارات المقترحة:",
                 copySlogansButton: "نسخ الشعارات",
+                customerPersonaGeneratorTitle: "✨ منشئ شخصيات العملاء ✨",
+                personaDescriptionLabel: "وصف العميل المثالي (اختياري، لو لديك معلومات محددة):",
+                generatePersonaButton: "توليد شخصية العميل",
+                generatePersonaButtonText: "توليد شخصية العميل",
+                generatedPersonaHeader: "الشخصية المقترحة:",
+                copyPersonaButton: "نسخ الشخصية",
+                emailSubjectGeneratorTitle: "✨ مولد عناوين البريد الإلكتروني ✨",
+                emailPurposeLabel: "موضوع البريد الإلكتروني أو الغرض منه:",
+                generateEmailSubjectsButton: "توليد العناوين",
+                generateEmailSubjectsButtonText: "توليد العناوين",
+                generatedEmailSubjectsHeader: "العناوين المقترحة:",
+                copyEmailSubjectsButton: "نسخ العناوين",
                 platformExplanationTitle: "حول وكيل EhabGM للتسويق الذكي (EMIA)",
                 platformExplanationContent: `
                     <p>وكيل EhabGM للتسويق الذكي (EMIA) هو أداة متكاملة تعتمد على الذكاء الاصطناعي لمساعدة الشركات والأفراد في صياغة استراتيجيات تسويقية فعالة. تهدف المنصة إلى تبسيط عملية التخطيط التسويقي وتقديم رؤى قيمة بناءً على بياناتك.</p>
@@ -1055,6 +1135,8 @@
                         <li><strong>استراتيجيات متكاملة:</strong> بناء خطط تسويقية شاملة، بما في ذلك SEO والتسويق عبر البريد الإلكتروني.</li>
                         <li><strong>تحليل عائد الاستثمار:</strong> توقعات مبدئية للعوائد ومؤشرات الأداء الرئيسية.</li>
                         <li><strong>تقارير قابلة للتصدير:</strong> إمكانية نسخ التقرير أو طباعته كملف PDF.</li>
+                        <li><strong>منشئ شخصيات العملاء:</strong> توليد شخصيات عملاء مفصلة لفهم جمهورك.</li>
+                        <li><strong>مولد عناوين البريد الإلكتروني:</strong> إنشاء عناوين بريد إلكتروني جذابة لزيادة معدلات الفتح.</li>
                     </ul>
                 `,
                 clientGuidanceTitle: "توجيهات هامة لعملائنا",
@@ -1130,6 +1212,8 @@
                 copySuccessMessage: "Report copied successfully! You can now paste it into a Google Docs or Word document.",
                 postCopySuccessMessage: "Post copied successfully!",
                 sloganCopySuccessMessage: "Slogans copied successfully!",
+                personaCopySuccessMessage: "Customer persona copied successfully!",
+                emailSubjectCopySuccessMessage: "Email subjects copied successfully!",
                 footerCopyright: "&copy; 2023 EhabGM Smart Marketing Agent (EMIA). All rights reserved.",
                 footerFreeService: "This service is available for a limited time for free!",
                 footerContactPrompt: "To contact the developer or for inquiries:",
@@ -1148,6 +1232,18 @@
                 generateSlogansButtonText: "Generate Slogans",
                 generatedSlogansHeader: "Suggested Slogans:",
                 copySlogansButton: "Copy Slogans",
+                customerPersonaGeneratorTitle: "✨ Customer Persona Generator ✨",
+                personaDescriptionLabel: "Ideal Customer Description (optional, if you have specific info):",
+                generatePersonaButton: "Generate Customer Persona",
+                generatePersonaButtonText: "Generate Customer Persona",
+                generatedPersonaHeader: "Suggested Persona:",
+                copyPersonaButton: "Copy Persona",
+                emailSubjectGeneratorTitle: "✨ Email Subject Line Generator ✨",
+                emailPurposeLabel: "Email topic or purpose:",
+                generateEmailSubjectsButton: "Generate Subject Lines",
+                generateEmailSubjectsButtonText: "Generate Subject Lines",
+                generatedEmailSubjectsHeader: "Suggested Subject Lines:",
+                copyEmailSubjectsButton: "Copy Subject Lines",
                 platformExplanationTitle: "About EhabGM Smart Marketing Agent (EMIA)",
                 platformExplanationContent: `
                     <p>EhabGM Smart Marketing Agent (EMIA) is an integrated AI-powered tool designed to assist businesses and individuals in crafting effective marketing strategies. The platform aims to simplify the marketing planning process and provide valuable insights based on your data.</p>
@@ -1160,6 +1256,8 @@
                         <li><strong>Integrated Strategies:</strong> Build comprehensive marketing plans, including SEO and email marketing.</li>
                         <li><strong>ROI Analysis:</strong> Initial projections for returns and key performance indicators.</li>
                         <li><strong>Exportable Reports:</strong> Ability to copy the report or print it as a PDF.</li>
+                        <li><strong>Customer Persona Generator:</strong> Generate detailed customer personas to understand your audience.</li>
+                        <li><strong>Email Subject Line Generator:</strong> Create catchy email subject lines to increase open rates.</li>
                     </ul>
                 `,
                 clientGuidanceTitle: "Important Guidance for Our Clients",
@@ -2405,6 +2503,156 @@
             }, 3000);
         });
 
+        // --- Customer Persona Generator Logic ---
+        generatePersonaBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const location = document.getElementById('location').value;
+            const personaDescription = personaDescriptionInput.value.trim();
+            const targetAudienceInput = document.getElementById('targetAudienceInput').value;
+
+            if (!brandName || !businessType || !serviceDescription) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية أولاً (الخطوة 1).' : 'Please fill in basic brand information first (Step 1).');
+                return;
+            }
+
+            generatePersonaBtn.disabled = true;
+            personaLoadingSpinner.classList.remove('hidden');
+            generatePersonaBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedPersonaOutput.classList.add('hidden');
+            personaCopySuccessMessage.classList.add('hidden');
+            personaContentDiv.innerHTML = '';
+
+            try {
+                const personaPrompt = `Generate a detailed customer persona for a brand with the following information. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Location: ${location}
+                Target Audience (from form): ${targetAudienceInput || 'Not specified'}
+                Additional Persona Description: ${personaDescription || 'Not specified'}
+
+                Please include the following sections for the persona:
+                - **Persona Name:** (A creative name for the persona)
+                - **Age:**
+                - **Gender:**
+                - **Occupation:**
+                - **Location:**
+                - **Income Level:**
+                - **Education Level:**
+                - **Marital Status:**
+                - **Goals:** (3-5 goals related to the brand's offering)
+                - **Challenges/Pain Points:** (3-5 challenges this persona faces)
+                - **Interests/Hobbies:** (3-5 interests)
+                - **Preferred Channels:** (Social media, email, website, etc.)
+                - **Quote:** (A representative quote from the persona)
+                - **Bio:** (A short paragraph summarizing the persona)
+
+                Format the output clearly with bolded headings and bullet points where appropriate.`;
+
+                const generatedPersona = await callGemini(personaPrompt);
+                personaContentDiv.innerHTML = generatedPersona.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                generatedPersonaOutput.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error generating customer persona:", error);
+                personaContentDiv.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد شخصية العميل: ' : 'An error occurred while generating the customer persona: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedPersonaOutput.classList.remove('hidden');
+            } finally {
+                generatePersonaBtn.disabled = false;
+                personaLoadingSpinner.classList.add('hidden');
+                generatePersonaBtn.querySelector('span').textContent = translations[currentLanguage].generatePersonaButtonText;
+            }
+        });
+
+        copyPersonaBtn.addEventListener('click', () => {
+            const personaTextToCopy = personaContentDiv.innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = personaTextToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            personaCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                personaCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // --- Email Subject Line Generator Logic ---
+        generateEmailSubjectsBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const emailPurpose = emailPurposeInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription || !emailPurpose) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية وموضوع البريد الإلكتروني.' : 'Please fill in basic brand information and email purpose.');
+                return;
+            }
+
+            generateEmailSubjectsBtn.disabled = true;
+            emailSubjectLoadingSpinner.classList.remove('hidden');
+            generateEmailSubjectsBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedEmailSubjectsOutput.classList.add('hidden');
+            emailSubjectCopySuccessMessage.classList.add('hidden');
+            emailSubjectsList.innerHTML = ''; // Clear previous subjects
+
+            try {
+                const emailSubjectPrompt = `Generate 5-7 catchy, engaging, and effective email subject lines for a brand with the following details. The subject lines should be suitable for the specified email purpose. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Email Purpose: ${emailPurpose}
+
+                Subject Lines (each on a new line, prefixed with a number and period, e.g., "1. [Subject Line]"):`;
+
+                const generatedSubjectsRaw = await callGemini(emailSubjectPrompt);
+                const subjects = generatedSubjectsRaw.split('\n').filter(line => line.trim() !== '');
+
+                if (subjects.length > 0) {
+                    subjects.forEach(subject => {
+                        const li = document.createElement('li');
+                        li.textContent = subject;
+                        emailSubjectsList.appendChild(li);
+                    });
+                    generatedEmailSubjectsOutput.classList.remove('hidden');
+                } else {
+                    emailSubjectsList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد عناوين. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No subject lines generated. Please try again with different information.'}</p>`;
+                    generatedEmailSubjectsOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating email subject lines:", error);
+                emailSubjectsList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد العناوين: ' : 'An error occurred while generating subject lines: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedEmailSubjectsOutput.classList.remove('hidden');
+            } finally {
+                generateEmailSubjectsBtn.disabled = false;
+                emailSubjectLoadingSpinner.classList.add('hidden');
+                generateEmailSubjectsBtn.querySelector('span').textContent = translations[currentLanguage].generateEmailSubjectsButtonText;
+            }
+        });
+
+        copyEmailSubjectsBtn.addEventListener('click', () => {
+            let allSubjectsText = '';
+            emailSubjectsList.querySelectorAll('li').forEach(li => {
+                allSubjectsText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allSubjectsText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            emailSubjectCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                emailSubjectCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
 
         // --- Copy report to clipboard ---
         copyReportBtn.addEventListener('click', () => {
@@ -2454,17 +2702,26 @@
             // Temporarily hide social share and post generator sections for cleaner PDF
             const socialShareSection = element.querySelector('.social-share-buttons');
             const postGeneratorSection = element.querySelector('.post-generator-section');
-            const sloganGeneratorSection = element.querySelector('.slogan-generator-section'); // New
+            const sloganGeneratorSection = element.querySelector('.slogan-generator-section');
+            const customerPersonaSection = element.querySelector('.customer-persona-section'); // New
+            const emailSubjectSection = element.querySelector('.email-subject-generator-section'); // New
             const copySuccessMsg = element.querySelector('#copySuccessMessage');
             const postCopySuccessMsg = element.querySelector('#postCopySuccessMessage');
-            const sloganCopySuccessMsg = element.querySelector('#sloganCopySuccessMessage'); // New
+            const sloganCopySuccessMsg = element.querySelector('#sloganCopySuccessMessage');
+            const personaCopySuccessMsg = element.querySelector('#personaCopySuccessMessage'); // New
+            const emailSubjectCopySuccessMsg = element.querySelector('#emailSubjectCopySuccessMessage'); // New
+
 
             if (socialShareSection) socialShareSection.style.display = 'none';
             if (postGeneratorSection) postGeneratorSection.style.display = 'none';
-            if (sloganGeneratorSection) sloganGeneratorSection.style.display = 'none'; // New
+            if (sloganGeneratorSection) sloganGeneratorSection.style.display = 'none';
+            if (customerPersonaSection) customerPersonaSection.style.display = 'none'; // New
+            if (emailSubjectSection) emailSubjectSection.style.display = 'none'; // New
             if (copySuccessMsg) copySuccessMsg.style.display = 'none';
             if (postCopySuccessMsg) postCopySuccessMsg.style.display = 'none';
-            if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = 'none'; // New
+            if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = 'none';
+            if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = 'none'; // New
+            if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = 'none'; // New
 
             // Ensure all collapsible sections are expanded for PDF
             document.querySelectorAll('.collapsible-content').forEach(content => {
@@ -2488,10 +2745,14 @@
                 // Restore original display after PDF generation
                 if (socialShareSection) socialShareSection.style.display = originalReportDisplay;
                 if (postGeneratorSection) postGeneratorSection.style.display = originalReportDisplay;
-                if (sloganGeneratorSection) sloganGeneratorSection.style.display = originalReportDisplay; // New
+                if (sloganGeneratorSection) sloganGeneratorSection.style.display = originalReportDisplay;
+                if (customerPersonaSection) customerPersonaSection.style.display = originalReportDisplay; // New
+                if (emailSubjectSection) emailSubjectSection.style.display = originalReportDisplay; // New
                 if (copySuccessMsg) copySuccessMsg.style.display = originalReportDisplay;
                 if (postCopySuccessMsg) postCopySuccessMsg.style.display = originalReportDisplay;
-                if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = originalReportDisplay; // New
+                if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = originalReportDisplay;
+                if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = originalReportDisplay; // New
+                if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = originalReportDisplay; // New
 
                 // Restore collapsible sections state
                 document.querySelectorAll('.collapsible-content').forEach(content => {
