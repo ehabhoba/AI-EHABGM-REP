@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="appTitle">وكيل EhabGM للتسويق الذكي</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="وكيل EhabGM للتسويق الذكي (EMIA) - أداة قوية لإنشاء تقارير تسويقية شاملة، تحليل البراند، توليد منشورات السوشيال ميديا، واقتراح الشعارات. عزز استراتيجيتك التسويقية الآن!">
+    <meta name="keywords" content="تسويق رقمي، تسويق الكتروني، تحليل براند، خطة تسويقية، منشورات سوشيال ميديا، شعارات، تصميم جرافيك، SEO، EMIA، EhabGM">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-app-url.com/"> <!-- Replace with actual app URL -->
+    <meta property="og:title" content="وكيل EhabGM للتسويق الذكي (EMIA)">
+    <meta property="og:description" content="أداة قوية لإنشاء تقارير تسويقية شاملة، تحليل البراند، توليد منشورات السوشيال ميديا، واقتراح الشعارات. عزز استراتيجيتك التسويقية الآن!">
+    <meta property="og:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png"> <!-- Your logo for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-app-url.com/"> <!-- Replace with actual app URL -->
+    <meta property="twitter:title" content="وكيل EhabGM للتسويق الذكي (EMIA)">
+    <meta property="twitter:description" content="أداة قوية لإنشاء تقارير تسويقية شاملة، تحليل البراند، توليد منشورات السوشيال ميديا، واقتراح الشعارات. عزز استراتيجيتك التسويقية الآن!">
+    <meta property="twitter:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png"> <!-- Your logo for social sharing -->
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -338,7 +357,7 @@
             color: var(--loading-task-completed-text-light);
         }
         #loadingTasks li.completed .task-icon i {
-            color: var(--loading-task-icon-completed-light);
+            color: #10b981; /* Always green for completed */
         }
 
         /* Progress Dots for Form */
@@ -587,9 +606,58 @@
             height: 20px;
             animation: spin 1s linear infinite;
         }
+
+        /* Splash Screen Styles */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 5000; /* Higher than other overlays */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Black background */
+            color: #fff;
+            transition: opacity 1s ease-out; /* Fade out effect */
+            opacity: 1;
+        }
+        #splashScreen.hidden {
+            opacity: 0;
+            pointer-events: none; /* Disable interaction after fade */
+        }
+        #splashScreen img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            animation: pulse 1.5s infinite alternate; /* Simple pulse animation for logo */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        #splashScreen .tip-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 0 2rem;
+            opacity: 0; /* Start hidden */
+            animation: fadeInOut 3s infinite; /* Fade in and out for tips */
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-700">
+    <!-- Splash Screen -->
+    <div id="splashScreen">
+        <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo">
+        <div id="dynamicSplashTip" class="tip-text"></div>
+    </div>
+
     <!-- Dynamic Background Stars -->
     <div class="star-bg" id="starBg"></div>
 
@@ -647,11 +715,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="brandName" class="block text-sm font-medium text-gray-700 mb-1" data-key="brandNameLabel">اسم العميل أو البراند:</label>
-                            <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full rounded-md shadow-sm">
+                            <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full rounded-md shadow-sm" required>
                         </div>
                         <div>
                             <label for="businessType" class="block text-sm font-medium text-gray-700 mb-1" data-key="businessTypeLabel">نوع النشاط التجاري:</label>
-                            <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس النسائية" class="block w-full rounded-md shadow-sm">
+                            <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس النسائية" class="block w-full rounded-md shadow-sm" required>
                         </div>
                     </div>
                     <div class="flex justify-end mt-6">
@@ -664,7 +732,7 @@
                     <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step2Title">الخطوة 2: وصف الخدمة والميزانية</h3>
                     <div>
                         <label for="serviceDescription" class="block text-sm font-medium text-gray-700 mb-1" data-key="serviceDescriptionLabel">وصف الخدمة أو المنتج/الهدف:</label>
-                        <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30% في الربع القادم." class="block w-full rounded-md shadow-sm"></textarea>
+                        <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30% في الربع القادم." class="block w-full rounded-md shadow-sm" required></textarea>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         <div>
@@ -693,7 +761,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="location" class="block text-sm font-medium text-gray-700 mb-1" data-key="locationLabel">الدولة/المحافظة (لتحديد الجمهور المستهدف):</label>
-                            <input type="text" id="location" name="location" placeholder="مثال: مصر، القاهرة / السعودية، الرياض / أونلاين" class="block w-full rounded-md shadow-sm">
+                            <input type="text" id="location" name="location" placeholder="مثال: مصر، القاهرة / السعودية، الرياض / أونلاين" class="block w-full rounded-md shadow-sm" required>
                         </div>
                         <div>
                             <label for="contactMethod" class="block text-sm font-medium text-gray-700 mb-1" data-key="contactMethodLabel">وسيلة التواصل المفضلة:</label>
@@ -785,7 +853,7 @@
                 </div>
 
                 <div class="mt-8 post-generator-section report-section">
-                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="postGeneratorTitle">منشئ منشورات السوشيال ميديا</h3>
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="postGeneratorTitle">✨ منشئ منشورات السوشيال ميديا ✨</h3>
                     <div class="mb-4">
                         <label for="postTopic" class="block text-sm font-medium text-gray-700 mb-1" data-key="postTopicLabel">موضوع المنشور أو وصف المنتج/الخدمة:</label>
                         <textarea id="postTopic" rows="3" placeholder="مثال: إطلاق منتج جديد لفساتين السهرة، أو حملة تخفيضات صيفية." class="block w-full rounded-md shadow-sm"></textarea>
@@ -807,11 +875,36 @@
                     </div>
                 </div>
 
+                <!-- New Slogan Generator Section -->
+                <div class="mt-8 slogan-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="sloganGeneratorTitle">✨ مولد الشعارات/العبارات التسويقية ✨</h3>
+                    <div class="mb-4">
+                        <label for="sloganContext" class="block text-sm font-medium text-gray-700 mb-1" data-key="sloganContextLabel">سياق إضافي للشعار (اختياري):</label>
+                        <textarea id="sloganContext" rows="2" placeholder="مثال: نريد شعارًا يركز على الجودة الفاخرة، أو شعارًا يعكس التوفير." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateSlogansBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateSlogansButton">
+                        <span data-key="generateSlogansButtonText">توليد الشعارات</span>
+                        <div id="sloganLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedSlogansOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedSlogansHeader">الشعارات المقترحة:</h4>
+                        <ul id="slogansList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copySlogansBtn" class="btn-secondary mt-4 flex items-center" data-key="copySlogansButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الشعارات
+                        </button>
+                    </div>
+                </div>
+
+
                 <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="copySuccessMessage">
                     تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
                 </div>
                  <div id="postCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="postCopySuccessMessage">
                     تم نسخ المنشور بنجاح!
+                </div>
+                <div id="sloganCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="sloganCopySuccessMessage">
+                    تم نسخ الشعارات بنجاح!
                 </div>
             </div>
         </div>
@@ -860,6 +953,17 @@
         const sharePostBtn = document.getElementById('sharePostBtn');
         const postCopySuccessMessage = document.getElementById('postCopySuccessMessage');
 
+        const sloganContextInput = document.getElementById('sloganContext');
+        const generateSlogansBtn = document.getElementById('generateSlogansBtn');
+        const sloganLoadingSpinner = document.getElementById('sloganLoadingSpinner');
+        const generatedSlogansOutput = document.getElementById('generatedSlogansOutput');
+        const slogansList = document.getElementById('slogansList');
+        const copySlogansBtn = document.getElementById('copySlogansBtn');
+        const sloganCopySuccessMessage = document.getElementById('sloganCopySuccessMessage');
+
+        // Splash screen elements
+        const splashScreen = document.getElementById('splashScreen');
+        const dynamicSplashTip = document.getElementById('dynamicSplashTip');
 
         let uploadedLogoBase64 = null;
         let myBudgetChart, myGrowthChart, myAudienceChart, myContentChart, myCustomerJourneyChart; // To store Chart.js instances
@@ -868,7 +972,9 @@
         let currentStep = 0; // Current step of the form
         let currentLanguage = 'ar'; // Default language
         let currentTheme = 'light'; // Default theme
-
+        let lastGeneratedBrandIdentity = ''; // Store the brand identity for slogan generation
+        let currentTipIndex = 0; // Initialize currentTipIndex here
+        
         // --- Translations Object ---
         const translations = {
             ar: {
@@ -918,18 +1024,63 @@
                 shareLinkedIn: "مشاركة عبر لينكدإن",
                 copySuccessMessage: "تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.",
                 postCopySuccessMessage: "تم نسخ المنشور بنجاح!",
+                sloganCopySuccessMessage: "تم نسخ الشعارات بنجاح!",
                 footerCopyright: "&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.",
                 footerFreeService: "هذه الخدمة متاحة مجانًا لفترة محدودة!",
                 footerContactPrompt: "للتواصل مع المطور أو للاستفسارات:",
                 footerContactButton: "تواصل عبر واتساب (01022679250)",
                 alertRequiredFields: "الرجاء ملء جميع الحقول المطلوبة في هذه الخطوة.",
-                postGeneratorTitle: "منشئ منشورات السوشيال ميديا",
+                postGeneratorTitle: "✨ منشئ منشورات السوشيال ميديا ✨",
                 postTopicLabel: "موضوع المنشور أو وصف المنتج/الخدمة:",
                 generatePostButton: "توليد المنشور",
                 generatePostButtonText: "توليد المنشور",
                 generatedPostHeader: "المنشور المقترح:",
                 copyPostButton: "نسخ المنشور",
-                sharePostButton: "مشاركة المنشور"
+                sharePostButton: "مشاركة المنشور",
+                sloganGeneratorTitle: "✨ مولد الشعارات/العبارات التسويقية ✨",
+                sloganContextLabel: "سياق إضافي للشعار (اختياري):",
+                generateSlogansButton: "توليد الشعارات",
+                generateSlogansButtonText: "توليد الشعارات",
+                generatedSlogansHeader: "الشعارات المقترحة:",
+                copySlogansButton: "نسخ الشعارات",
+                platformExplanationTitle: "حول وكيل EhabGM للتسويق الذكي (EMIA)",
+                platformExplanationContent: `
+                    <p>وكيل EhabGM للتسويق الذكي (EMIA) هو أداة متكاملة تعتمد على الذكاء الاصطناعي لمساعدة الشركات والأفراد في صياغة استراتيجيات تسويقية فعالة. تهدف المنصة إلى تبسيط عملية التخطيط التسويقي وتقديم رؤى قيمة بناءً على بياناتك.</p>
+                    <p><strong>مميزات المنصة:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>تحليل البراند:</strong> صياغة هوية براندك (الرؤية، الرسالة، القيم، قصة البراند).</li>
+                        <li><strong>تحليل الجمهور المستهدف:</strong> فهم ديموغرافي ونفسي لعملائك المحتملين.</li>
+                        <li><strong>توليد المحتوى:</strong> إنشاء منشورات سوشيال ميديا جذابة وشعارات تسويقية إبداعية.</li>
+                        <li><strong>تخطيط الميزانية:</strong> اقتراحات لميزانيات الإعلانات الممولة وتوزيعها.</li>
+                        <li><strong>استراتيجيات متكاملة:</strong> بناء خطط تسويقية شاملة، بما في ذلك SEO والتسويق عبر البريد الإلكتروني.</li>
+                        <li><strong>تحليل عائد الاستثمار:</strong> توقعات مبدئية للعوائد ومؤشرات الأداء الرئيسية.</li>
+                        <li><strong>تقارير قابلة للتصدير:</strong> إمكانية نسخ التقرير أو طباعته كملف PDF.</li>
+                    </ul>
+                `,
+                clientGuidanceTitle: "توجيهات هامة لعملائنا",
+                clientGuidanceContent: `
+                    <p>لتحقيق أقصى استفادة من هذا التقرير، نوصي بما يلي:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>البيانات الدقيقة:</strong> كلما كانت المعلومات التي تقدمها أكثر دقة وتفصيلاً، كانت النتائج التي تحصل عليها من التقرير أكثر فائدة وملاءمة.</li>
+                        <li><strong>التطبيق العملي:</strong> هذا التقرير هو نقطة انطلاق. قم بتطبيق الاستراتيجيات المقترحة وتكييفها مع ظروف السوق الخاصة بك.</li>
+                        <li><strong>المراقبة والتحسين:</strong> راقب أداء حملاتك باستمرار وكن مستعدًا لإجراء التعديلات اللازمة بناءً على البيانات.</li>
+                        <li><strong>الاستشارة المتخصصة:</strong> في بعض الحالات، قد تحتاج إلى استشارة متخصصين في التسويق لتعميق التحليل أو تنفيذ استراتيجيات معقدة.</li>
+                        <li><strong>المرونة:</strong> عالم التسويق الرقمي يتغير باستمرار. كن مرنًا ومستعدًا لتبني أدوات واستراتيجيات جديدة.</li>
+                    </ul>
+                    <p class="mt-4">نتمنى لك كل التوفيق في رحلتك التسويقية!</p>
+                `,
+                splashTips: [
+                    "التصميم الجرافيكي الجيد هو مفتاح جذب الانتباه الأول لبراندك.",
+                    "المحتوى هو الملك، والتسويق الرقمي هو التاج.",
+                    "استثمر في SEO لضمان ظهورك في نتائج البحث الأولى.",
+                    "البريد الإلكتروني لا يزال من أقوى أدوات التسويق المباشر.",
+                    "تحليل البيانات يساعدك على فهم عملائك وتطوير استراتيجياتك.",
+                    "الشعار الجذاب يعلق في الأذهان ويصنع فارقاً.",
+                    "التسويق عبر المؤثرين يمكن أن يوسع نطاق وصولك بشكل كبير.",
+                    "القصة الجيدة تبيع أكثر من المنتج نفسه.",
+                    "الاستمرارية في النشر على السوشيال ميديا تبني الولاء.",
+                    "فهم رحلة العميل يضمن تجربة تسويقية سلسة."
+                ]
             },
             en: {
                 appTitle: "EhabGM Smart Marketing Agent",
@@ -978,18 +1129,63 @@
                 shareLinkedIn: "Share via LinkedIn",
                 copySuccessMessage: "Report copied successfully! You can now paste it into a Google Docs or Word document.",
                 postCopySuccessMessage: "Post copied successfully!",
+                sloganCopySuccessMessage: "Slogans copied successfully!",
                 footerCopyright: "&copy; 2023 EhabGM Smart Marketing Agent (EMIA). All rights reserved.",
                 footerFreeService: "This service is available for a limited time for free!",
                 footerContactPrompt: "To contact the developer or for inquiries:",
                 footerContactButton: "Contact via WhatsApp (01022679250)",
                 alertRequiredFields: "Please fill in all required fields in this step.",
-                postGeneratorTitle: "Social Media Post Generator",
+                postGeneratorTitle: "✨ Social Media Post Generator ✨",
                 postTopicLabel: "Post topic or product/service description:",
                 generatePostButton: "Generate Post",
                 generatePostButtonText: "Generate Post",
                 generatedPostHeader: "Suggested Post:",
                 copyPostButton: "Copy Post",
-                sharePostButton: "Share Post"
+                sharePostButton: "Share Post",
+                sloganGeneratorTitle: "✨ Slogan/Tagline Generator ✨",
+                sloganContextLabel: "Additional slogan context (optional):",
+                generateSlogansButton: "Generate Slogans",
+                generateSlogansButtonText: "Generate Slogans",
+                generatedSlogansHeader: "Suggested Slogans:",
+                copySlogansButton: "Copy Slogans",
+                platformExplanationTitle: "About EhabGM Smart Marketing Agent (EMIA)",
+                platformExplanationContent: `
+                    <p>EhabGM Smart Marketing Agent (EMIA) is an integrated AI-powered tool designed to assist businesses and individuals in crafting effective marketing strategies. The platform aims to simplify the marketing planning process and provide valuable insights based on your data.</p>
+                    <p><strong>Platform Features:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Brand Analysis:</strong> Formulate your brand's identity (vision, mission, values, brand story).</li>
+                        <li><strong>Target Audience Analysis:</strong> Demographic and psychographic understanding of your potential customers.</li>
+                        <li><strong>Content Generation:</strong> Create engaging social media posts and creative marketing slogans.</li>
+                        <li><strong>Budget Planning:</strong> Suggestions for paid ad budgets and their distribution.</li>
+                        <li><strong>Integrated Strategies:</strong> Build comprehensive marketing plans, including SEO and email marketing.</li>
+                        <li><strong>ROI Analysis:</strong> Initial projections for returns and key performance indicators.</li>
+                        <li><strong>Exportable Reports:</strong> Ability to copy the report or print it as a PDF.</li>
+                    </ul>
+                `,
+                clientGuidanceTitle: "Important Guidance for Our Clients",
+                clientGuidanceContent: `
+                    <p>To get the most out of this report, we recommend the following:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Accurate Data:</strong> The more accurate and detailed the information you provide, the more useful and relevant the report's results will be.</li>
+                        <li><strong>Practical Application:</strong> This report is a starting point. Implement the suggested strategies and adapt them to your specific market conditions.</li>
+                        <li><strong>Monitoring and Optimization:</strong> Continuously monitor your campaign performance and be prepared to make necessary adjustments based on data.</li>
+                        <li><strong>Expert Consultation:</strong> In some cases, you may need to consult marketing professionals for deeper analysis or to implement complex strategies.</li>
+                        <li><strong>Flexibility:</strong> The world of digital marketing is constantly evolving. Be flexible and ready to adopt new tools and strategies.</li>
+                    </ul>
+                    <p class="mt-4">We wish you all the best in your marketing journey!</p>
+                `,
+                splashTips: [
+                    "Good graphic design is key to your brand's first impression.",
+                    "Content is king, and digital marketing is its crown.",
+                    "Invest in SEO to ensure your appearance in top search results.",
+                    "Email remains one of the most powerful direct marketing tools.",
+                    "Data analysis helps you understand your customers and refine strategies.",
+                    "A catchy slogan sticks in minds and makes a difference.",
+                    "Influencer marketing can significantly expand your reach.",
+                    "A good story sells more than the product itself.",
+                    "Consistency in social media posting builds loyalty.",
+                    "Understanding the customer journey ensures a smooth marketing experience."
+                ]
             }
         };
 
@@ -1026,7 +1222,7 @@
                 "صياغة الهوية التعريفية للبراند",
                 "تحليل الجمهور المستهدف بدقة",
                 "كتابة 5 منشورات تسويقية مبتكرة",
-                "اقتراح ميزانية ومدد الإعلانات الممولة",
+                "اقتراح ميزانية ومدد الإعلادات الممولة",
                 "تقديم أفكار تصميم وابتكار",
                 "بناء خطة تسويقية مختصرة وكاملة",
                 "توليد استراتيجيات SEO والبريد الإلكتروني",
@@ -1076,6 +1272,7 @@
             updateLoadingMessage(); // Update loading message immediately
             initializeLoadingTasks(); // Re-initialize tasks for new language
             updateProgressDots(currentStep); // Re-render progress dots text
+            updateSplashTip(); // Update splash screen tip
         }
 
         languageSelect.addEventListener('change', (event) => {
@@ -1210,7 +1407,7 @@
         });
 
         // Initial display
-        showStep(currentStep);
+        // showStep(currentStep); // This will be called after splash screen hides
 
         // --- Loading Overlay & Task Logic ---
         function updateLoadingMessage() {
@@ -1756,6 +1953,7 @@
                 **Brand Story:** [Story here]
                 `;
                 const brandIdentity = await callGemini(brandIdentityPrompt);
+                lastGeneratedBrandIdentity = brandIdentity; // Store for slogan generator
                 generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '2. الهوية التعريفية للبراند' : '2. Brand Identity'}</h3><div class="collapsible-content">${brandIdentity.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
                 updateLoadingProgress(1); // Task 1: Brand Identity
 
@@ -1982,6 +2180,13 @@
                 generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '9. تحليل عائد الاستثمار (ROI) والعوائد المتوقعة' : '9. ROI Analysis and Projected Returns'}</h3><div class="collapsible-content">${roiAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
                 updateLoadingProgress(8); // Task 8: ROI Analysis
 
+                // --- Platform Explanation Section ---
+                generatedReportHTML += `<div class="report-section"><h3>${translations[currentLanguage].platformExplanationTitle}</h3><div class="collapsible-content">${translations[currentLanguage].platformExplanationContent}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+
+                // --- Client Guidance Section ---
+                generatedReportHTML += `<div class="report-section"><h3>${translations[currentLanguage].clientGuidanceTitle}</h3><div class="collapsible-content">${translations[currentLanguage].clientGuidanceContent}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+
+
                 reportContent.innerHTML = generatedReportHTML;
                 reportOutput.classList.remove('hidden');
 
@@ -2119,6 +2324,87 @@
             }
         });
 
+        // --- Slogan Generator Logic ---
+        generateSlogansBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const sloganContext = sloganContextInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية أولاً (الخطوة 1).' : 'Please fill in basic brand information first (Step 1).');
+                return;
+            }
+
+            generateSlogansBtn.disabled = true;
+            sloganLoadingSpinner.classList.remove('hidden');
+            generateSlogansBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedSlogansOutput.classList.add('hidden');
+            sloganCopySuccessMessage.classList.add('hidden');
+            slogansList.innerHTML = ''; // Clear previous slogans
+
+            try {
+                // Ensure brand identity is available, if not, generate it first (or use a placeholder)
+                let brandIdentityText = lastGeneratedBrandIdentity;
+                if (!brandIdentityText) {
+                    // If the report wasn't generated yet, we might need a quick summary for the prompt
+                    brandIdentityText = `Brand Name: ${brandName}, Business Type: ${businessType}, Service: ${serviceDescription}`;
+                }
+
+                const sloganPrompt = `Generate 5 creative and memorable slogans/taglines for a brand with the following details. The slogans should be concise, impactful, and reflect the brand's unique selling proposition and core values. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                ${sloganContext ? `Additional context: ${sloganContext}` : ''}
+
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Brand Identity (Vision, Mission, USP, Core Values): ${brandIdentityText}
+
+                Slogans (each on a new line, prefixed with a hyphen):`;
+
+                const generatedSlogansRaw = await callGemini(sloganPrompt);
+                const slogans = generatedSlogansRaw.split('\n').filter(line => line.trim().startsWith('-')).map(line => line.trim().substring(1).trim());
+
+                if (slogans.length > 0) {
+                    slogans.forEach(slogan => {
+                        const li = document.createElement('li');
+                        li.textContent = slogan;
+                        slogansList.appendChild(li);
+                    });
+                    generatedSlogansOutput.classList.remove('hidden');
+                } else {
+                    slogansList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد شعارات. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No slogans generated. Please try again with different information.'}</p>`;
+                    generatedSlogansOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating slogans:", error);
+                slogansList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد الشعارات: ' : 'An error occurred while generating slogans: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedSlogansOutput.classList.remove('hidden');
+            } finally {
+                generateSlogansBtn.disabled = false;
+                sloganLoadingSpinner.classList.add('hidden');
+                generateSlogansBtn.querySelector('span').textContent = translations[currentLanguage].generateSlogansButtonText;
+            }
+        });
+
+        copySlogansBtn.addEventListener('click', () => {
+            let allSlogansText = '';
+            slogansList.querySelectorAll('li').forEach(li => {
+                allSlogansText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allSlogansText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            sloganCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                sloganCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
 
         // --- Copy report to clipboard ---
         copyReportBtn.addEventListener('click', () => {
@@ -2168,13 +2454,17 @@
             // Temporarily hide social share and post generator sections for cleaner PDF
             const socialShareSection = element.querySelector('.social-share-buttons');
             const postGeneratorSection = element.querySelector('.post-generator-section');
+            const sloganGeneratorSection = element.querySelector('.slogan-generator-section'); // New
             const copySuccessMsg = element.querySelector('#copySuccessMessage');
             const postCopySuccessMsg = element.querySelector('#postCopySuccessMessage');
+            const sloganCopySuccessMsg = element.querySelector('#sloganCopySuccessMessage'); // New
 
             if (socialShareSection) socialShareSection.style.display = 'none';
             if (postGeneratorSection) postGeneratorSection.style.display = 'none';
+            if (sloganGeneratorSection) sloganGeneratorSection.style.display = 'none'; // New
             if (copySuccessMsg) copySuccessMsg.style.display = 'none';
             if (postCopySuccessMsg) postCopySuccessMsg.style.display = 'none';
+            if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = 'none'; // New
 
             // Ensure all collapsible sections are expanded for PDF
             document.querySelectorAll('.collapsible-content').forEach(content => {
@@ -2198,8 +2488,10 @@
                 // Restore original display after PDF generation
                 if (socialShareSection) socialShareSection.style.display = originalReportDisplay;
                 if (postGeneratorSection) postGeneratorSection.style.display = originalReportDisplay;
+                if (sloganGeneratorSection) sloganGeneratorSection.style.display = originalReportDisplay; // New
                 if (copySuccessMsg) copySuccessMsg.style.display = originalReportDisplay;
                 if (postCopySuccessMsg) postCopySuccessMsg.style.display = originalReportDisplay;
+                if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = originalReportDisplay; // New
 
                 // Restore collapsible sections state
                 document.querySelectorAll('.collapsible-content').forEach(content => {
@@ -2245,6 +2537,42 @@
             const shareUrl = currentAppUrl;
             window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(shareSummary)}`, '_blank');
         });
+
+        // --- Splash Screen Logic ---
+        let splashTipInterval;
+
+        function updateSplashTip() {
+            if (dynamicSplashTip) {
+                const tips = translations[currentLanguage].splashTips;
+                dynamicSplashTip.textContent = tips[currentTipIndex];
+                currentTipIndex = (currentTipIndex + 1) % tips.length;
+            }
+        }
+
+        // Hide main content initially
+        document.querySelector('main').style.display = 'none';
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+
+        // Show splash screen and start tips
+        window.onload = () => {
+            updateSplashTip(); // Display first tip immediately
+            splashTipInterval = setInterval(updateSplashTip, 3000); // Change tip every 3 seconds
+
+            setTimeout(() => {
+                splashScreen.classList.add('hidden'); // Start fade out
+                clearInterval(splashTipInterval); // Stop changing tips
+
+                // After fade out, display main content
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    document.querySelector('main').style.display = 'flex';
+                    document.querySelector('header').style.display = 'flex';
+                    document.querySelector('footer').style.display = 'block';
+                    showStep(currentStep); // Show the first form step
+                }, 1000); // Wait for fade-out transition (1 second)
+            }, 3000); // Splash screen visible for 3 seconds before fading
+        };
 
     </script>
 </body>
