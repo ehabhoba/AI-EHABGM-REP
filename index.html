@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chart.js CDN for charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome for checkmark icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- html2pdf.js CDN for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -16,7 +20,7 @@
             color: #374151;
         }
         .container {
-            max-width: 90%;
+            max-width: 90%; /* Adjusted for better responsiveness */
             margin: 2rem auto;
             padding: 2rem;
             background-color: #ffffff;
@@ -59,18 +63,6 @@
         }
         .btn-secondary:hover {
             background-color: #4b5563;
-        }
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-top: 4px solid #3b82f6;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
         .report-section {
             background-color: #f9fafb;
@@ -142,13 +134,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly less opaque */
+            background-color: rgba(255, 255, 255, 0.98); /* More opaque */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 1000;
             transition: opacity 0.3s ease-in-out;
+            padding: 1rem; /* Added padding for small screens */
+            box-sizing: border-box; /* Include padding in element's total width and height */
         }
         #loadingOverlay.hidden {
             opacity: 0;
@@ -164,25 +158,140 @@
             margin-bottom: 1rem;
         }
         .loading-message-container {
-            height: 3rem; /* Fixed height to prevent layout shifts */
+            height: 3rem;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1rem; /* Space between message and tasks */
         }
         .loading-message {
             font-size: 1.5rem;
             font-weight: 600;
             color: #3b82f6;
             text-align: center;
-            animation: fadeInOut 4s infinite; /* Animation for text */
-            padding: 0 1rem; /* Add padding for better appearance */
+            animation: fadeInOut 4s infinite;
+            padding: 0 1rem;
         }
         @keyframes fadeInOut {
             0% { opacity: 0; transform: translateY(20px); }
             10% { opacity: 1; transform: translateY(0); }
             90% { opacity: 1; transform: translateY(0); }
             100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        /* Loading Tasks List */
+        #loadingTasks {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem; /* Adjusted margin */
+            width: 90%; /* More responsive width */
+            max-width: 500px; /* Slightly larger max width */
+        }
+        #loadingTasks li {
+            background-color: #e0f2fe;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            color: #1e40af;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        #loadingTasks li.active {
+            background-color: #bfdbfe;
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+            transform: scale(1.02);
+        }
+        #loadingTasks li.completed {
+            background-color: #d1fae5;
+            color: #065f46;
+            box-shadow: none;
+            transform: none;
+        }
+        #loadingTasks li .task-icon {
+            width: 24px;
+            text-align: center;
+            margin-left: 0.75rem;
+        }
+        #loadingTasks li .task-icon i {
+            color: #3b82f6;
+        }
+        #loadingTasks li.active .task-icon i {
+            color: #1e40af;
+        }
+        #loadingTasks li.completed .task-icon i {
+            color: #10b981;
+        }
+
+        /* Loading screen animation/image */
+        .loading-animation {
+            width: 120px; /* Larger animation */
+            height: 120px;
+            margin-bottom: 2rem; /* Space below animation */
+            /* Using a simple CSS animation for a "thinking" effect */
+            background: radial-gradient(circle, #3b82f6 10%, transparent 10%),
+                        radial-gradient(circle, #2563eb 10%, transparent 10%),
+                        radial-gradient(circle, #1d4ed8 10%, transparent 10%);
+            background-size: 30% 30%;
+            background-position: 0 50%, 50% 50%, 100% 50%;
+            background-repeat: no-repeat;
+            animation: pulse-dots 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-dots {
+            0% {
+                background-position: 0 50%, 50% 50%, 100% 50%;
+                opacity: 0.8;
+            }
+            33% {
+                background-position: 0 30%, 50% 50%, 100% 70%;
+                opacity: 1;
+            }
+            66% {
+                background-position: 0 70%, 50% 50%, 100% 30%;
+                opacity: 0.8;
+            }
+            100% {
+                background-position: 0 50%, 50% 50%, 100% 50%;
+                opacity: 0.8;
+            }
+        }
+
+        /* Social Share Buttons */
+        .social-share-buttons button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: white;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            margin: 0.5rem;
+        }
+        .social-share-buttons button i {
+            margin-left: 0.5rem;
+        }
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-whatsapp:hover { background-color: #1DA851; }
+        .btn-facebook { background-color: #1877F2; }
+        .btn-facebook:hover { background-color: #145CB3; }
+        .btn-twitter { background-color: #1DA1F2; }
+        .btn-twitter:hover { background-color: #168CC9; }
+        .btn-linkedin { background-color: #0A66C2; }
+        .btn-linkedin:hover { background-color: #074B92; }
+
+        /* Print to PDF button style */
+        .btn-pdf {
+            background-color: #dc2626; /* Red color for PDF */
+            color: #ffffff;
+            margin-right: 1rem; /* Space from copy button */
+        }
+        .btn-pdf:hover {
+            background-color: #b91c1c;
         }
 
         @media (max-width: 768px) {
@@ -193,15 +302,26 @@
             .grid-cols-1-md-2 {
                 grid-template-columns: 1fr;
             }
+            #loadingTasks {
+                width: 95%;
+            }
+            .social-share-buttons button {
+                width: calc(50% - 1rem); /* Two buttons per row on small screens */
+                margin: 0.5rem 0.5rem;
+            }
         }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-700">
     <div id="loadingOverlay" class="hidden">
-        <div class="main-spinner"></div>
+        <div class="loading-animation"></div> <!-- New animation element -->
+        <h2 class="text-3xl font-bold text-blue-700 mb-4">أهلاً بك في وكيل EhabGM للتسويق الذكي!</h2>
         <div class="loading-message-container">
             <div id="dynamicLoadingMessage" class="loading-message"></div>
         </div>
+        <ul id="loadingTasks">
+            <!-- Tasks will be dynamically added here -->
+        </ul>
     </div>
 
     <div class="container">
@@ -272,16 +392,47 @@
         </form>
 
         <div id="reportOutput" class="mt-10 p-6 bg-white rounded-xl shadow-lg hidden">
-            <div class="flex justify-between items-center mb-6 border-b-2 border-blue-600 pb-4">
-                <h2 class="text-2xl font-bold text-blue-700">التقرير التسويقي الشامل</h2>
-                <button id="copyReportBtn" class="btn-secondary flex items-center">
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
-                    نسخ التقرير
-                </button>
+            <div class="flex flex-wrap items-center justify-between mb-6 border-b-2 border-blue-600 pb-4">
+                <h2 class="text-2xl font-bold text-blue-700 mb-2 md:mb-0">التقرير التسويقي الشامل</h2>
+                <div class="flex flex-wrap justify-center md:justify-end gap-2">
+                    <button id="copyReportBtn" class="btn-secondary flex items-center">
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                        نسخ التقرير
+                    </button>
+                    <button id="printPdfBtn" class="btn-pdf flex items-center">
+                        <i class="fas fa-file-pdf ml-2"></i> طباعة كـ PDF
+                    </button>
+                </div>
             </div>
 
             <div id="reportContent" class="report-content text-lg leading-relaxed">
                 <!-- AI-generated content will be inserted here -->
+            </div>
+
+            <div class="mt-8 social-share-buttons text-center">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">شارك هذا التقرير أو التطبيق!</h3>
+                <button class="btn-whatsapp" id="shareWhatsappBtn">
+                    <i class="fab fa-whatsapp"></i> مشاركة عبر واتساب
+                </button>
+                <button class="btn-facebook" id="shareFacebookBtn">
+                    <i class="fab fa-facebook"></i> مشاركة عبر فيسبوك
+                </button>
+                <button class="btn-twitter" id="shareTwitterBtn">
+                    <i class="fab fa-twitter"></i> مشاركة عبر X
+                </button>
+                <button class="btn-linkedin" id="shareLinkedInBtn">
+                    <i class="fab fa-linkedin-in"></i> مشاركة عبر لينكدإن
+                </button>
+            </div>
+
+            <div class="report-section mt-8 text-center bg-blue-50 border-blue-200">
+                <h3 class="text-xl font-bold text-blue-700 mb-4">حول وكيل EhabGM للتسويق الذكي (EMIA)</h3>
+                <p class="mb-2">هذا التطبيق هو أداة ذكاء اصطناعي متكاملة لمساعدتك في بناء خطط تسويقية احترافية وتحليلات عميقة لبراندك أو شركتك.</p>
+                <p class="mb-4 font-semibold text-red-600">هذه الخدمة متاحة مجانًا لفترة محدودة!</p>
+                <p class="mb-2">للتواصل مع المطور أو للاستفسارات:</p>
+                <a href="https://wa.me/201022679250" target="_blank" class="btn-primary inline-flex items-center">
+                    <i class="fab fa-whatsapp ml-2"></i> تواصل مع المطور (واتساب)
+                </a>
             </div>
 
             <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden">
@@ -303,16 +454,19 @@
         const reportOutput = document.getElementById('reportOutput');
         const reportContent = document.getElementById('reportContent');
         const copyReportBtn = document.getElementById('copyReportBtn');
+        const printPdfBtn = document.getElementById('printPdfBtn'); // New PDF button
         const copySuccessMessage = document.getElementById('copySuccessMessage');
         const logoUpload = document.getElementById('logoUpload');
         const logoUploadArea = document.getElementById('logoUploadArea');
         const logoPreview = document.getElementById('logoPreview');
         const loadingOverlay = document.getElementById('loadingOverlay');
         const dynamicLoadingMessage = document.getElementById('dynamicLoadingMessage');
+        const loadingTasksList = document.getElementById('loadingTasks');
 
         let uploadedLogoBase64 = null;
         let myBudgetChart, myGrowthChart, myAudienceChart, myContentChart, myCustomerJourneyChart; // To store Chart.js instances
         let messageInterval; // To control the dynamic loading messages
+        let activeTaskIndex = -1; // To track the currently active task
 
         // Array of engaging loading messages
         const loadingMessages = [
@@ -329,10 +483,55 @@
         ];
         let currentMessageIndex = 0;
 
+        // Tasks for the loading screen (aligned with AI generation steps)
+        const tasks = [
+            "تهيئة النظام وجمع البيانات الأولية", // 0
+            "صياغة الهوية التعريفية للبراند",      // 1
+            "تحليل الجمهور المستهدف بدقة",         // 2
+            "كتابة 5 منشورات تسويقية مبتكرة",       // 3
+            "اقتراح ميزانية ومدد الإعلانات الممولة",// 4
+            "تقديم أفكار تصميم وابتكار",           // 5
+            "بناء خطة تسويقية مختصرة وكاملة",       // 6
+            "توليد استراتيجيات SEO والبريد الإلكتروني",// 7
+            "تحليل عائد الاستثمار والعوائد المتوقعة",// 8
+            "إنشاء الرسوم البيانية التحليلية",      // 9
+            "تجميع التقرير النهائي وعرضه"          // 10
+        ];
+
         // Function to update the dynamic loading message
         function updateLoadingMessage() {
             dynamicLoadingMessage.textContent = loadingMessages[currentMessageIndex];
             currentMessageIndex = (currentMessageIndex + 1) % loadingMessages.length;
+        }
+
+        // Function to initialize loading tasks UI
+        function initializeLoadingTasks() {
+            loadingTasksList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement('li');
+                listItem.id = `task-${index}`;
+                listItem.innerHTML = `<span class="task-icon"><i class="fas fa-spinner fa-spin"></i></span> ${task}`;
+                loadingTasksList.appendChild(listItem);
+            });
+            activeTaskIndex = -1; // Reset active task
+        }
+
+        // Function to mark a task as completed and set next as active
+        function completeTask(index) {
+            if (activeTaskIndex !== -1) {
+                const prevTaskItem = document.getElementById(`task-${activeTaskIndex}`);
+                if (prevTaskItem) {
+                    prevTaskItem.classList.remove('active');
+                    prevTaskItem.classList.add('completed');
+                    prevTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
+                }
+            }
+            activeTaskIndex = index;
+            const currentTaskItem = document.getElementById(`task-${activeTaskIndex}`);
+            if (currentTaskItem) {
+                currentTaskItem.classList.add('active');
+                currentTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; // Ensure it's spinning for active
+            }
         }
 
         // Handle logo upload
@@ -358,6 +557,17 @@
         marketingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Basic form validation
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const location = document.getElementById('location').value;
+
+            if (!brandName || !businessType || !serviceDescription || !location) {
+                alert('الرجاء ملء جميع الحقول المطلوبة (اسم البراند، نوع النشاط، وصف الخدمة، الدولة/المحافظة).');
+                return;
+            }
+
             // Destroy existing charts if they exist
             if (myBudgetChart) myBudgetChart.destroy();
             if (myGrowthChart) myGrowthChart.destroy();
@@ -367,6 +577,7 @@
 
             // Show loading overlay and start message cycling
             loadingOverlay.classList.remove('hidden');
+            initializeLoadingTasks(); // Initialize tasks list
             updateLoadingMessage(); // Display first message immediately
             messageInterval = setInterval(updateLoadingMessage, 4000); // Change message every 4 seconds (matches CSS animation)
 
@@ -380,13 +591,9 @@
             copySuccessMessage.classList.add('hidden');
             reportContent.innerHTML = '';
 
-            const brandName = document.getElementById('brandName').value;
-            const businessType = document.getElementById('businessType').value;
-            const serviceDescription = document.getElementById('serviceDescription').value;
             const budget = parseFloat(document.getElementById('budget').value) || 0; // Parse as float
             const currency = document.getElementById('currency').value;
             const contactMethod = document.getElementById('contactMethod').value;
-            const location = document.getElementById('location').value;
             const targetAudienceInput = document.getElementById('targetAudienceInput').value;
 
             const promptData = {
@@ -494,6 +701,7 @@
                     </div>
                 `;
                 generatedReportHTML += chartsHTML; // Add charts section early in the report content
+                completeTask(0); // Task 0: Initialize and collect data
 
                 // --- 2. بناء الهوية التعريفية للبراند ---
                 let brandIdentityPrompt = `بناءً على المعلومات التالية لبراند:
@@ -521,7 +729,7 @@
                 `;
                 const brandIdentity = await callGemini(brandIdentityPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>2. الهوية التعريفية للبراند</h3>${brandIdentity.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
-
+                completeTask(1); // Task 1: Brand Identity
 
                 // --- 3. تحليل الجمهور المستهدف ---
                 let audienceAnalysisPrompt = `بناءً على المعلومات التالية لبراند:
@@ -550,6 +758,7 @@
                 `;
                 const audienceAnalysis = await callGemini(audienceAnalysisPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>3. تحليل الجمهور المستهدف</h3>${audienceAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(2); // Task 2: Audience Analysis
 
                 // --- 4. كتابة 5 منشورات تسويقية ---
                 let postsPrompt = `بناءً على المعلومات التالية لبراند:
@@ -576,6 +785,7 @@
                 `;
                 const marketingPosts = await callGemini(postsPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>4. 5 منشورات تسويقية مقترحة</h3>${marketingPosts.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(3); // Task 3: Marketing Posts
 
                 // --- 5. اقتراح ميزانية ومدد للإعلانات الممولة ---
                 let budgetProposalPrompt = `بناءً على المعلومات التالية لبراند:
@@ -609,6 +819,7 @@
                 `;
                 const budgetProposal = await callGemini(budgetProposalPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>5. اقتراح ميزانية ومدد للإعلانات الممولة</h3>${budgetProposal.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(4); // Task 4: Budget Proposal
 
                 // --- 6. تقديم أفكار تصميم وابتكار ---
                 let designIdeasPrompt = `بناءً على المعلومات التالية لبراند:
@@ -641,6 +852,7 @@
                 `;
                 const designIdeas = await callGemini(designIdeasPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>6. أفكار تصميم وابتكار</h3>${designIdeas.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(5); // Task 5: Design Ideas
 
                 // --- 7. بناء خطة تسويقية مختصرة وكاملة ---
                 let marketingPlanPrompt = `بناءً على المعلومات التالية لبراند:
@@ -680,6 +892,7 @@
                 `;
                 const marketingPlan = await callGemini(marketingPlanPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>7. خطة تسويقية مختصرة وكاملة</h3>${marketingPlan.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(6); // Task 6: Marketing Plan
 
                 // --- 8. استراتيجية SEO وEmail Marketing ---
                 let seoEmailPrompt = `بناءً على المعلومات التالية لبراند:
@@ -712,6 +925,7 @@
                 `;
                 const seoEmailStrategy = await callGemini(seoEmailPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>8. استراتيجية SEO والتسويق عبر البريد الإلكتروني</h3>${seoEmailStrategy.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(7); // Task 7: SEO & Email
 
                 // --- 9. تحليل عائد الاستثمار (ROI) وتوقعات العوائد ---
                 let roiAnalysisPrompt = `بناءً على المعلومات التالية لبراند:
@@ -744,6 +958,7 @@
                 `;
                 const roiAnalysis = await callGemini(roiAnalysisPrompt);
                 generatedReportHTML += `<div class="report-section"><h3>9. تحليل عائد الاستثمار (ROI) والعوائد المتوقعة</h3>${roiAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+                completeTask(8); // Task 8: ROI Analysis
 
                 reportContent.innerHTML = generatedReportHTML;
                 reportOutput.classList.remove('hidden');
@@ -1050,6 +1265,8 @@
                     }
                 });
 
+                completeTask(9); // Task 9: Generate Charts
+                completeTask(10); // Task 10: Final Report Assembly
 
             } catch (error) {
                 console.error("Error generating report:", error);
@@ -1060,10 +1277,21 @@
                 loadingOverlay.classList.add('hidden');
                 clearInterval(messageInterval);
 
+                // Ensure the last task is marked as completed
+                if (activeTaskIndex !== -1) {
+                    const lastTaskItem = document.getElementById(`task-${activeTaskIndex}`);
+                    if (lastTaskItem) {
+                        lastTaskItem.classList.remove('active');
+                        lastTaskItem.classList.add('completed');
+                        lastTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
+                    }
+                }
+
                 // Re-enable button and hide loading spinner
                 generateBtn.disabled = false;
                 buttonText.textContent = 'توليد التقرير الشامل';
                 loadingSpinner.classList.add('hidden');
+                reportOutput.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to report
             }
         });
 
@@ -1117,6 +1345,65 @@
                 window.getSelection().removeAllRanges(); // Deselect the content
             }
         });
+
+        // Print to PDF Logic
+        printPdfBtn.addEventListener('click', () => {
+            const element = document.getElementById('reportOutput'); // The entire report section
+            const originalDisplay = element.style.display; // Store original display
+
+            // Temporarily remove social share buttons and developer info for cleaner PDF
+            const socialShareSection = element.querySelector('.social-share-buttons');
+            const developerInfoSection = element.querySelector('.report-section.bg-blue-50');
+            const copySuccessMsg = element.querySelector('#copySuccessMessage');
+
+            if (socialShareSection) socialShareSection.style.display = 'none';
+            if (developerInfoSection) developerInfoSection.style.display = 'none';
+            if (copySuccessMsg) copySuccessMsg.style.display = 'none';
+
+            // Options for html2pdf
+            const options = {
+                margin: 10,
+                filename: `تقرير-EhabGM-${document.getElementById('brandName').value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(options).from(element).save().then(() => {
+                // Restore original display after PDF generation
+                if (socialShareSection) socialShareSection.style.display = originalDisplay;
+                if (developerInfoSection) developerInfoSection.style.display = originalDisplay;
+                if (copySuccessMsg) copySuccessMsg.style.display = originalDisplay;
+            });
+        });
+
+
+        // Social Share Buttons Logic
+        const currentAppUrl = window.location.href; // Get the URL of the current app
+
+        document.getElementById('shareWhatsappBtn').addEventListener('click', () => {
+            const shareText = `ألقِ نظرة على هذا التقرير التسويقي الشامل الذي تم إنشاؤه بواسطة وكيل EhabGM للتسويق الذكي! يمكنك إنشاء تقريرك الخاص مجانًا من هنا: ${currentAppUrl}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+        });
+
+        document.getElementById('shareFacebookBtn').addEventListener('click', () => {
+            const shareUrl = currentAppUrl;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+        });
+
+        document.getElementById('shareTwitterBtn').addEventListener('click', () => {
+            const shareText = `وكيل EhabGM للتسويق الذكي: أنشئ تقريرك التسويقي الشامل مجانًا الآن!`;
+            const shareUrl = currentAppUrl;
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
+        });
+
+        document.getElementById('shareLinkedInBtn').addEventListener('click', () => {
+            const shareTitle = `وكيل EhabGM للتسويق الذكي`;
+            const shareSummary = `أداة ذكاء اصطناعي متكاملة لإنشاء خطط تسويقية احترافية وتحليلات عميقة لبراندك.`;
+            const shareUrl = currentAppUrl;
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(shareSummary)}`, '_blank');
+        });
+
     </script>
 </body>
 </html>
