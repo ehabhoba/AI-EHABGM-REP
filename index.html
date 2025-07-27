@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكيل EhabGM للتسويق الذكي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], textarea, select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            width: 100%;
+            font-size: 1rem;
+            transition: border-color 0.2s ease-in-out;
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+        }
+        button:hover {
+            transform: translateY(-1px);
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        .btn-secondary {
+            background-color: #6b7280;
+            color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .report-section {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .report-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+        .report-section ul {
+            list-style-type: disc;
+            margin-right: 1.25rem;
+            padding-right: 0;
+        }
+        .report-section ol {
+            list-style-type: decimal;
+            margin-right: 1.25rem;
+            padding-right: 0;
+        }
+        .report-section li {
+            margin-bottom: 0.5rem;
+        }
+        .report-section p {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        .report-section strong {
+            color: #1f2937;
+        }
+        .logo-upload-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s ease-in-out;
+        }
+        .logo-upload-section:hover {
+            border-color: #3b82f6;
+        }
+        .logo-preview {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                margin: 1rem auto;
+            }
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-700">
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">وكيل EhabGM للتسويق الذكي (EMIA)</h1>
+
+        <form id="marketingForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="brandName" class="block text-sm font-medium text-gray-700 mb-1">اسم العميل أو البراند:</label>
+                    <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full" required>
+                </div>
+                <div>
+                    <label for="businessType" class="block text-sm font-medium text-gray-700 mb-1">نوع النشاط التجاري:</label>
+                    <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس النسائية" class="block w-full" required>
+                </div>
+            </div>
+
+            <div>
+                <label for="serviceDescription" class="block text-sm font-medium text-gray-700 mb-1">وصف الخدمة أو المنتج/الهدف:</label>
+                <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30% في الربع القادم." class="block w-full" required></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="budget" class="block text-sm font-medium text-gray-700 mb-1">الميزانية المتاحة (بالدولار، اختياري):</label>
+                    <input type="text" id="budget" name="budget" placeholder="مثال: 1000" class="block w-full">
+                </div>
+                <div>
+                    <label for="contactMethod" class="block text-sm font-medium text-gray-700 mb-1">وسيلة التواصل المفضلة (تليفون / واتساب / بريد إلكتروني):</label>
+                    <input type="text" id="contactMethod" name="contactMethod" placeholder="مثال: 01012345678 أو info@brand.com" class="block w-full">
+                </div>
+            </div>
+
+            <div>
+                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">مكان النشاط (الدولة والمدينة، أو "أونلاين" إذا كان عالميًا):</label>
+                <input type="text" id="location" name="location" placeholder="مثال: مصر، القاهرة / أونلاين" class="block w-full" required>
+            </div>
+
+            <div>
+                <label for="targetAudienceInput" class="block text-sm font-medium text-gray-700 mb-1">الجمهور المستهدف (اختياري، لو لديك معلومات محددة):</label>
+                <textarea id="targetAudienceInput" name="targetAudienceInput" rows="2" placeholder="مثال: نساء من 25-45 سنة، مهتمات بالموضة والأزياء، يعشن في المدن الكبرى." class="block w-full"></textarea>
+            </div>
+
+            <div>
+                <label for="logoUpload" class="block text-sm font-medium text-gray-700 mb-2">شعار البراند (اختياري، سيظهر في التقرير):</label>
+                <div class="logo-upload-section" id="logoUploadArea">
+                    <input type="file" id="logoUpload" name="logoUpload" accept="image/*" class="hidden">
+                    <p class="text-gray-500">اسحب الشعار هنا أو انقر للتحميل</p>
+                    <img id="logoPreview" class="logo-preview hidden" src="#" alt="معاينة الشعار">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary w-full flex items-center justify-center" id="generateBtn">
+                <span id="buttonText">توليد التقرير الشامل</span>
+                <div id="loadingSpinner" class="loading-spinner hidden mr-2"></div>
+            </button>
+        </form>
+
+        <div id="reportOutput" class="mt-10 p-6 bg-white rounded-xl shadow-lg hidden">
+            <div class="flex justify-between items-center mb-6 border-b-2 border-blue-600 pb-4">
+                <h2 class="text-2xl font-bold text-blue-700">التقرير التسويقي الشامل</h2>
+                <button id="copyReportBtn" class="btn-secondary flex items-center">
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                    نسخ التقرير
+                </button>
+            </div>
+
+            <div id="reportContent" class="report-content text-lg leading-relaxed">
+                <!-- AI-generated content will be inserted here -->
+            </div>
+
+            <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden">
+                تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Global variables for Firebase configuration and app ID
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // Firebase imports (not directly used for this specific AI generation, but included for completeness if Firestore were added later)
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        // import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Initialize Firebase (if needed for other features like user data storage)
+        // let app, db, auth;
+        // if (Object.keys(firebaseConfig).length > 0) {
+        //     app = initializeApp(firebaseConfig);
+        //     db = getFirestore(app);
+        //     auth = getAuth(app);
+        //     // Sign in anonymously or with custom token
+        //     (async () => {
+        //         try {
+        //             if (initialAuthToken) {
+        //                 await signInWithCustomToken(auth, initialAuthToken);
+        //                 console.log("Signed in with custom token.");
+        //             } else {
+        //                 await signInAnonymously(auth);
+        //                 console.log("Signed in anonymously.");
+        //             }
+        //         } catch (error) {
+        //             console.error("Firebase authentication error:", error);
+        //         }
+        //     })();
+        // } else {
+        //     console.warn("Firebase config not found. Some features might be limited.");
+        // }
+
+
+        const marketingForm = document.getElementById('marketingForm');
+        const generateBtn = document.getElementById('generateBtn');
+        const buttonText = document.getElementById('buttonText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const reportOutput = document.getElementById('reportOutput');
+        const reportContent = document.getElementById('reportContent');
+        const copyReportBtn = document.getElementById('copyReportBtn');
+        const copySuccessMessage = document.getElementById('copySuccessMessage');
+        const logoUpload = document.getElementById('logoUpload');
+        const logoUploadArea = document.getElementById('logoUploadArea');
+        const logoPreview = document.getElementById('logoPreview');
+
+        let uploadedLogoBase64 = null;
+
+        // Handle logo upload
+        logoUploadArea.addEventListener('click', () => logoUpload.click());
+
+        logoUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    logoPreview.src = e.target.result;
+                    logoPreview.classList.remove('hidden');
+                    uploadedLogoBase64 = e.target.result; // Store base64 for report
+                };
+                reader.readAsDataURL(file);
+            } else {
+                logoPreview.classList.add('hidden');
+                logoPreview.src = '#';
+                uploadedLogoBase64 = null;
+            }
+        });
+
+        marketingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Disable button and show loading spinner
+            generateBtn.disabled = true;
+            buttonText.textContent = 'جاري التوليد...';
+            loadingSpinner.classList.remove('hidden');
+            reportOutput.classList.add('hidden');
+            copySuccessMessage.classList.add('hidden');
+            reportContent.innerHTML = ''; // Clear previous content
+
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const budget = document.getElementById('budget').value;
+            const contactMethod = document.getElementById('contactMethod').value;
+            const location = document.getElementById('location').value;
+            const targetAudienceInput = document.getElementById('targetAudienceInput').value;
+
+            const promptData = {
+                brandName,
+                businessType,
+                serviceDescription,
+                budget: budget ? `${budget} دولار` : 'غير محددة',
+                contactMethod,
+                location,
+                targetAudienceInput: targetAudienceInput || 'غير محددة بشكل دقيق، يرجى تحليلها بناءً على نوع النشاط.',
+            };
+
+            let generatedReportHTML = '';
+
+            // Add logo to the report if uploaded
+            if (uploadedLogoBase64) {
+                generatedReportHTML += `<div class="text-center mb-8">
+                                            <img src="${uploadedLogoBase64}" alt="شعار البراند" class="logo-preview mx-auto" style="max-width: 200px; max-height: 200px;">
+                                        </div>`;
+            }
+
+            generatedReportHTML += `
+                <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">التقرير التسويقي الشامل لـ ${brandName}</h1>
+                <div class="report-section">
+                    <h3>1. معلومات البراند الأساسية</h3>
+                    <p><strong>اسم البراند:</strong> ${brandName}</p>
+                    <p><strong>نوع النشاط التجاري:</strong> ${businessType}</p>
+                    <p><strong>وصف الخدمة/الهدف:</strong> ${serviceDescription}</p>
+                    <p><strong>الميزانية المتاحة:</strong> ${promptData.budget}</p>
+                    <p><strong>وسيلة التواصل:</strong> ${contactMethod}</p>
+                    <p><strong>مكان النشاط:</strong> ${location}</p>
+                </div>
+            `;
+
+            try {
+                // Function to call Gemini API
+                const callGemini = async (prompt) => {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`API error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error("Invalid API response structure or no content.");
+                    }
+                };
+
+                // --- 2. بناء الهوية التعريفية للبراند ---
+                let brandIdentityPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - مكان النشاط: ${location}
+
+                يرجى صياغة:
+                1.  **الرؤية (Vision):** جملة ملهمة تعبر عن الطموح المستقبلي للبراند.
+                2.  **الرسالة (Mission):** ما يقدمه البراند حاليًا وكيف يحقق رؤيته.
+                3.  **القيم الأساسية (Core Values):** 3-5 قيم تمثل جوهر البراند.
+                4.  **نقاط البيع الفريدة (Unique Selling Proposition - USP):** ما يميز البراند عن منافسيه.
+                5.  **قصة البراند (Brand Story):** فقرة قصيرة وجذابة عن نشأة البراند أو فلسفته.
+
+                صيغة الإجابة تكون كالتالي:
+                **الرؤية:** [الرؤية هنا]
+                **الرسالة:** [الرسالة هنا]
+                **القيم الأساسية:**
+                - [قيمة 1]
+                - [قيمة 2]
+                - [قيمة 3]
+                **نقاط البيع الفريدة:** [USP هنا]
+                **قصة البراند:** [القصة هنا]
+                `;
+                const brandIdentity = await callGemini(brandIdentityPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>2. الهوية التعريفية للبراند</h3>${brandIdentity.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+
+                // --- 3. تحليل الجمهور المستهدف ---
+                let audienceAnalysisPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - مكان النشاط: ${location}
+                - الجمهور المستهدف المدخل: ${promptData.targetAudienceInput}
+
+                يرجى تحليل الجمهور المستهدف بالتفصيل، مع التركيز على:
+                1.  **الخصائص الديموغرافية:** (السن، الجنس، المستوى التعليمي، الدخل، الحالة الاجتماعية، الموقع الجغرافي).
+                2.  **الخصائص النفسية/السلوكية:** (الاهتمامات، الهوايات، القيم، نمط الحياة، التحديات/نقاط الألم، الدوافع للشراء، السلوك الشرائي، المنصات المفضلة).
+                3.  **الاحتياجات والرغبات:** ما الذي يبحث عنه هذا الجمهور وكيف يمكن للبراند أن يلبي هذه الاحتياجات.
+
+                صيغة الإجابة تكون كالتالي:
+                **الخصائص الديموغرافية:**
+                - السن:
+                - الجنس:
+                - ...
+                **الخصائص النفسية/السلوكية:**
+                - الاهتمامات:
+                - الهوايات:
+                - ...
+                **الاحتياجات والرغبات:**
+                - ...
+                `;
+                const audienceAnalysis = await callGemini(audienceAnalysisPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>3. تحليل الجمهور المستهدف</h3>${audienceAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                // --- 4. كتابة 5 منشورات تسويقية ---
+                let postsPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - الجمهور المستهدف: ${audienceAnalysis} (ملخص من التحليل السابق)
+
+                يرجى كتابة 5 منشورات تسويقية متنوعة (مثل: ترويجية، تفاعلية، تثقيفية، إعلان عرض، تحفيزية) لمنصات التواصل الاجتماعي (فيسبوك/انستجرام). لكل منشور:
+                - يجب أن يحتوي على نص جذاب.
+                - اقتراح صورة/فيديو مناسب.
+                - Call to Action (CTA) واضحة.
+                - 3-5 هاشتاجات ذات صلة.
+
+                صيغة الإجابة تكون كالتالي:
+                **المنشور 1 (نوع المنشور):**
+                النص: [نص المنشور]
+                اقتراح مرئي: [وصف الصورة/الفيديو]
+                CTA: [دعوة للعمل]
+                الهاشتاجات: [هاشتاج1] [هاشتاج2] ...
+
+                **المنشور 2 (نوع المنشور):**
+                ...
+                `;
+                const marketingPosts = await callGemini(postsPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>4. 5 منشورات تسويقية مقترحة</h3>${marketingPosts.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                // --- 5. اقتراح ميزانية ومدد للإعلانات الممولة ---
+                let budgetProposalPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - الميزانية المتاحة: ${promptData.budget}
+                - الجمهور المستهدف: ${audienceAnalysis} (ملخص من التحليل السابق)
+
+                يرجى تقديم اقتراح لميزانية ومدد للإعلانات الممولة على (فيسبوك، إنستجرام، تيك توك). يجب أن يتضمن الاقتراح:
+                1.  **أهداف الحملة:** (مثال: زيادة الوعي، زيادة المبيعات، جمع العملاء المحتملين).
+                2.  **توزيع الميزانية المقترح:** على المنصات المختلفة (فيسبوك، انستجرام، تيك توك) مع نسبة لكل منصة.
+                3.  **المدة المقترحة للحملة:** (مثال: شهر، 3 أشهر).
+                4.  **توقعات الأداء (KPIs):** (مثال: عدد مرات الوصول، عدد النقرات، عدد العملاء المحتملين، تكلفة النقرة).
+                5.  **ملاحظات إضافية:** أي نصائح لتحسين أداء الحملة.
+
+                صيغة الإجابة تكون كالتالي:
+                **أهداف الحملة:**
+                - [هدف 1]
+                - [هدف 2]
+                **توزيع الميزانية المقترح (بناءً على ميزانية ${promptData.budget}):**
+                - فيسبوك/انستجرام: [نسبة مئوية]% ([المبلغ المقدر])
+                - تيك توك: [نسبة مئوية]% ([المبلغ المقدر])
+                **المدة المقترحة للحملة:** [المدة]
+                **توقعات الأداء (KPIs):**
+                - [KPI 1]: [قيمة متوقعة]
+                - [KPI 2]: [قيمة متوقعة]
+                **ملاحظات إضافية:**
+                - ...
+                `;
+                const budgetProposal = await callGemini(budgetProposalPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>5. اقتراح ميزانية ومدد للإعلانات الممولة</h3>${budgetProposal.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                // --- 6. تقديم أفكار تصميم وابتكار ---
+                let designIdeasPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - الهوية التعريفية للبراند: ${brandIdentity} (ملخص من التحليل السابق)
+                - الجمهور المستهدف: ${audienceAnalysis} (ملخص من التحليل السابق)
+
+                يرجى تقديم أفكار تصميم وابتكار للهوية البصرية والمحتوى المرئي للبراند، مع التركيز على:
+                1.  **الألوان المقترحة:** (لوحة ألوان أساسية وثانوية مع دلالاتها).
+                2.  **الخطوط المقترحة:** (خطوط للعناوين وخطوط للنصوص).
+                3.  **أنماط التصميم:** (مثال: عصري، كلاسيكي، بسيط، جريء، مرح).
+                4.  **أفكار لمحتوى مرئي مبتكر:** (مثال: أنواع صور/فيديوهات، استخدام الرسوم المتحركة، أفكار لحملات بصرية).
+                5.  **أفكار لتصميم الشعار:** (وصف عام لشكل الشعار أو رموزه).
+
+                صيغة الإجابة تكون كالتالي:
+                **الألوان المقترحة:**
+                - [لون 1] (#HEXCODE): [دلالته]
+                - [لون 2] (#HEXCODE): [دلالته]
+                **الخطوط المقترحة:**
+                - للعناوين: [اسم الخط]
+                - للنصوص: [اسم الخط]
+                **أنماط التصميم:**
+                - ...
+                **أفكار لمحتوى مرئي مبتكر:**
+                - ...
+                **أفكار لتصميم الشعار:**
+                - ...
+                `;
+                const designIdeas = await callGemini(designIdeasPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>6. أفكار تصميم وابتكار</h3>${designIdeas.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                // --- 7. بناء خطة تسويقية مختصرة وكاملة ---
+                let marketingPlanPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - الهوية التعريفية للبراند: ${brandIdentity}
+                - الجمهور المستهدف: ${audienceAnalysis}
+                - اقتراح الميزانية والإعلانات: ${budgetProposal}
+
+                يرجى بناء خطة تسويقية مختصرة وكاملة، مع التركيز على:
+                1.  **أهداف الخطة:** (SMART Goals).
+                2.  **المراحل الرئيسية:** (مثال: مرحلة التحضير، مرحلة الإطلاق، مرحلة المتابعة والتحسين).
+                3.  **القنوات التسويقية المقترحة:** (مثل: السوشيال ميديا، الإعلانات المدفوعة، التسويق بالمحتوى، البريد الإلكتروني، SEO).
+                4.  **الجدول الزمني المقترح:** (تقسيم المهام على أسابيع أو أشهر).
+                5.  **مؤشرات الأداء الرئيسية (KPIs) للخطة ككل:** (كيف سيتم قياس النجاح).
+
+                صيغة الإجابة تكون كالتالي:
+                **أهداف الخطة:**
+                - [هدف 1]
+                - [هدف 2]
+                **المراحل الرئيسية والمهام:**
+                - **مرحلة التحضير:**
+                    - [مهمة 1]
+                    - [مهمة 2]
+                - **مرحلة الإطلاق:**
+                    - ...
+                **القنوات التسويقية المقترحة:**
+                - ...
+                **الجدول الزمني المقترح (مثال لـ 3 أشهر):**
+                - الشهر الأول:
+                - الشهر الثاني:
+                - الشهر الثالث:
+                **مؤشرات الأداء الرئيسية (KPIs) للخطة:**
+                - ...
+                `;
+                const marketingPlan = await callGemini(marketingPlanPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>7. خطة تسويقية مختصرة وكاملة</h3>${marketingPlan.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                // --- 8. استراتيجية SEO وEmail Marketing ---
+                let seoEmailPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - الجمهور المستهدف: ${audienceAnalysis}
+
+                يرجى تقديم اقتراحات لاستراتيجية تحسين محركات البحث (SEO) والتسويق عبر البريد الإلكتروني (Email Marketing):
+                1.  **استراتيجية SEO:**
+                    - اقتراح 5-7 كلمات مفتاحية رئيسية محتملة.
+                    - نصائح عامة لتحسين الموقع لمحركات البحث (On-page SEO).
+                2.  **استراتيجية التسويق عبر البريد الإلكتروني:**
+                    - أفكار لأنواع رسائل البريد الإلكتروني (مثال: رسائل ترحيب، عروض، نشرات إخبارية).
+                    - نصائح لزيادة قائمة المشتركين.
+
+                صيغة الإجابة تكون كالتالي:
+                **استراتيجية تحسين محركات البحث (SEO):**
+                - **الكلمات المفتاحية المقترحة:**
+                    - [كلمة مفتاحية 1]
+                    - [كلمة مفتاحية 2]
+                - **نصائح عامة لتحسين الموقع:**
+                    - ...
+                **استراتيجية التسويق عبر البريد الإلكتروني (Email Marketing):**
+                - **أنواع الرسائل المقترحة:**
+                    - ...
+                - **نصائح لزيادة قائمة المشتركين:**
+                    - ...
+                `;
+                const seoEmailStrategy = await callGemini(seoEmailPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>8. استراتيجية SEO والتسويق عبر البريد الإلكتروني</h3>${seoEmailStrategy.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                // --- 9. تحليل عائد الاستثمار (ROI) وتوقعات العوائد ---
+                let roiAnalysisPrompt = `بناءً على المعلومات التالية لبراند:
+                - اسم البراند: ${brandName}
+                - نوع النشاط التجاري: ${businessType}
+                - وصف الخدمة/الهدف: ${serviceDescription}
+                - الميزانية المتاحة: ${promptData.budget}
+                - اقتراح الميزانية والإعلانات: ${budgetProposal}
+                - خطة التسويق: ${marketingPlan}
+
+                يرجى تقديم تحليل مبدئي لعائد الاستثمار (ROI) والعوائد المتوقعة على الأقل احتمال، مع التركيز على:
+                1.  **توقعات العائد على الاستثمار (ROI):** تقدير تقريبي (كنسبة مئوية أو وصف) بناءً على الميزانية والأهداف.
+                2.  **تحليل نقطة التعادل (Break-even Point):** متى يمكن للبراند أن يبدأ بتغطية تكاليف التسويق.
+                3.  **توقعات نمو الوعي بالعلامة التجارية:** (مثال: زيادة في عدد المتابعين، الإشارة للبراند).
+                4.  **توقعات المبيعات/العملاء المحتملين:** (تقدير تقريبي).
+                5.  **ملاحظات حول المخاطر والافتراضات:** (ما هي العوامل التي قد تؤثر على هذه التوقعات).
+
+                صيغة الإجابة تكون كالتالي:
+                **توقعات العائد على الاستثمار (ROI):**
+                - ...
+                **تحليل نقطة التعادل:**
+                - ...
+                **توقعات نمو الوعي بالعلامة التجارية:**
+                - ...
+                **توقعات المبيعات/العملاء المحتملين:**
+                - ...
+                **ملاحظات حول المخاطر والافتراضات:**
+                - ...
+                `;
+                const roiAnalysis = await callGemini(roiAnalysisPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>9. تحليل عائد الاستثمار (ROI) والعوائد المتوقعة</h3>${roiAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>`;
+
+                reportContent.innerHTML = generatedReportHTML;
+                reportOutput.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error generating report:", error);
+                reportContent.innerHTML = `<p class="text-red-600">حدث خطأ أثناء توليد التقرير: ${error.message}. يرجى المحاولة مرة أخرى.</p>`;
+                reportOutput.classList.remove('hidden');
+            } finally {
+                // Re-enable button and hide loading spinner
+                generateBtn.disabled = false;
+                buttonText.textContent = 'توليد التقرير الشامل';
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+
+        // Copy report to clipboard
+        copyReportBtn.addEventListener('click', () => {
+            const range = document.createRange();
+            range.selectNode(reportContent);
+            window.getSelection().removeAllRanges(); // Clear current selection
+            window.getSelection().addRange(range); // Select the report content
+
+            try {
+                // Use execCommand for broader compatibility in iframes
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    copySuccessMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        copySuccessMessage.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    console.error('Failed to copy text using execCommand.');
+                    // Fallback for browsers that might not support execCommand in iframes
+                    // (though for Canvas, execCommand is generally preferred)
+                    prompt('نسخ التقرير (Ctrl+C / Cmd+C):', reportContent.innerText);
+                }
+            } catch (err) {
+                console.error('Error copying text:', err);
+                prompt('نسخ التقرير (Ctrl+C / Cmd+C):', reportContent.innerText);
+            } finally {
+                window.getSelection().removeAllRanges(); // Deselect the content
+            }
+        });
+    </script>
+</body>
+</html>
