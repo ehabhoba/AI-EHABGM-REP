@@ -1,1 +1,3205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="appTitle">وكيل EhabGM للتسويق الذكي</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="وكيل EhabGM للتسويق الذكي (EMIA) - أداة قوية لإنشاء تقارير تسويقية شاملة، تحليل البراند، توليد منشورات السوشيال ميديا، واقتراح الشعارات. عزز استراتيجيتك التسويقية الآن!">
+    <meta name="keywords" content="تسويق رقمي، تسويق الكتروني، تحليل براند، خطة تسويقية، منشورات سوشيال ميديا، شعارات، تصميم جرافيك، SEO، EMIA، EhabGM">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-app-url.com/"> <!-- Replace with actual app URL -->
+    <meta property="og:title" content="وكيل EhabGM للتسويق الذكي (EMIA)">
+    <meta property="og:description" content="أداة قوية لإنشاء تقارير تسويقية شاملة، تحليل البراند، توليد منشورات السوشيال ميديا، واقتراح الشعارات. عزز استراتيجيتك التسويقية الآن!">
+    <meta property="og:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png"> <!-- Your logo for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-app-url.com/"> <!-- Replace with actual app URL -->
+    <meta property="twitter:title" content="وكيل EhabGM للتسويق الذكي (EMIA)">
+    <meta property="twitter:description" content="أداة قوية لإنشاء تقارير تسويقية شاملة، تحليل البراند، توليد منشورات السوشيال ميديا، واقتراح الشعارات. عزز استراتيجيتك التسويقية الآن!">
+    <meta property="twitter:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png"> <!-- Your logo for social sharing -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- html2pdf.js CDN for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Tone.js for background music -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <style>
+        :root {
+            --bg-color-light: #f3f4f6;
+            --text-color-light: #374151;
+            --header-footer-bg-light: #000000;
+            --header-footer-text-light: #ffffff;
+            --container-bg-light: #ffffff;
+            --container-shadow-light: rgba(0, 0, 0, 0.15);
+            --input-border-light: #d1d5db;
+            --input-focus-border-light: #dc2626;
+            --input-focus-shadow-light: rgba(220, 38, 38, 0.25);
+            --primary-btn-bg-light: #dc2626;
+            --primary-btn-hover-light: #b91c1c;
+            --secondary-btn-bg-light: #4b5563;
+            --secondary-btn-hover-light: #1f2937;
+            --report-section-bg-light: #f9fafb;
+            --report-section-border-light: #e5e7eb;
+            --report-section-shadow-light: rgba(0, 0, 0, 0.05);
+            --report-title-border-light: #dc2626;
+            --logo-upload-border-light: #dc2626;
+            --logo-upload-hover-bg-light: #fef2f2;
+            --loading-overlay-bg-light: rgba(0, 0, 0, 0.95);
+            --loading-message-color-light: #dc2626;
+            --loading-task-bg-light: rgba(255, 255, 255, 0.1);
+            --loading-task-border-light: rgba(255, 255, 255, 0.2);
+            --loading-task-active-bg-light: rgba(220, 38, 38, 0.2);
+            --loading-task-active-border-light: #dc2626;
+            --loading-task-active-shadow-light: rgba(220, 38, 38, 0.4);
+            --loading-task-completed-bg-light: rgba(255, 255, 255, 0.05);
+            --loading-task-completed-text-light: #cccccc;
+            --loading-task-icon-pending-light: #dc2626;
+            --loading-task-icon-active-light: #ffffff;
+            --loading-task-icon-completed-light: #10b981;
+            --progress-dot-inactive-light: #d1d5db;
+            --progress-dot-active-light: #dc2626;
+            --progress-dot-completed-light: #10b981;
+            --footer-link-color-light: #dc2626;
+            --footer-link-hover-light: #b91c1c;
+
+            /* Dark Mode Colors */
+            --bg-color-dark: #1a1a1a;
+            --text-color-dark: #e0e0e0;
+            --header-footer-bg-dark: #000000;
+            --header-footer-text-dark: #ffffff;
+            --container-bg-dark: #2a2a2a;
+            --container-shadow-dark: rgba(0, 0, 0, 0.4);
+            --input-border-dark: #444444;
+            --input-focus-border-dark: #dc2626;
+            --input-focus-shadow-dark: rgba(220, 38, 38, 0.4);
+            --primary-btn-bg-dark: #dc2626;
+            --primary-btn-hover-dark: #b91c1c;
+            --secondary-btn-bg-dark: #6b7280;
+            --secondary-btn-hover-dark: #4b5563;
+            --report-section-bg-dark: #333333;
+            --report-section-border-dark: #444444;
+            --report-section-shadow-dark: rgba(0, 0, 0, 0.2);
+            --report-title-border-dark: #dc2626;
+            --logo-upload-border-dark: #dc2626;
+            --logo-upload-hover-bg-dark: #3a3a3a;
+            --loading-overlay-bg-dark: rgba(0, 0, 0, 0.95); /* Stays dark */
+            --loading-message-color-dark: #dc2626; /* Stays red */
+            --loading-task-bg-dark: rgba(255, 255, 255, 0.1); /* Stays semi-transparent */
+            --loading-task-border-dark: rgba(255, 255, 255, 0.2);
+            --loading-task-active-bg-dark: rgba(220, 38, 38, 0.2);
+            --loading-task-active-border-dark: #dc2626;
+            --loading-task-active-shadow-dark: rgba(220, 38, 38, 0.4);
+            --loading-task-completed-bg-dark: rgba(255, 255, 255, 0.05);
+            --loading-task-completed-text-dark: #999999;
+            --loading-task-icon-pending-dark: #dc2626;
+            --loading-task-icon-active-dark: #ffffff;
+            --loading-task-icon-completed-dark: #10b981;
+            --progress-dot-inactive-dark: #666666;
+            --progress-dot-active-dark: #dc2626;
+            --progress-dot-completed-dark: #10b981;
+            --footer-link-color-dark: #dc2626;
+            --footer-link-hover-dark: #b91c1c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        body.dark-mode {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+        header {
+            background-color: var(--header-footer-bg-light);
+            color: var(--header-footer-text-light);
+            box-shadow: 0 2px 4px var(--container-shadow-light);
+            padding: 1rem;
+        }
+        body.dark-mode header {
+            background-color: var(--header-footer-bg-dark);
+            color: var(--header-footer-text-dark);
+            box-shadow: 0 2px 4px var(--container-shadow-dark);
+        }
+        main {
+            flex-grow: 1;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for longer content */
+        }
+        .container {
+            background-color: var(--container-bg-light);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 8px 16px var(--container-shadow-light);
+            max-width: 800px;
+            width: 95%;
+            margin: 0 auto; /* Center the container */
+        }
+        body.dark-mode .container {
+            background-color: var(--container-bg-dark);
+            box-shadow: 0 8px 16px var(--container-shadow-dark);
+        }
+        input[type="text"], textarea, select {
+            border: 1px solid var(--input-border-light);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        body.dark-mode input[type="text"], body.dark-mode textarea, body.dark-mode select {
+            background-color: #3a3a3a;
+            color: var(--text-color-dark);
+            border-color: var(--input-border-dark);
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--input-focus-border-light);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-light);
+        }
+        body.dark-mode input[type="text"]:focus, body.dark-mode textarea:focus, body.dark-mode select:focus {
+            border-color: var(--input-focus-border-dark);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-dark);
+        }
+        .btn-primary {
+            background-color: var(--primary-btn-bg-light);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-btn-hover-light);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-primary:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .btn-secondary {
+            background-color: var(--secondary-btn-bg-light);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background-color: var(--secondary-btn-hover-light);
+            transform: translateY(-1px);
+        }
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+        .report-section {
+            background-color: var(--report-section-bg-light);
+            border: 1px solid var(--report-section-border-light);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px var(--report-section-shadow-light);
+        }
+        body.dark-mode .report-section {
+            background-color: var(--report-section-bg-dark);
+            border-color: var(--report-section-border-dark);
+            box-shadow: 0 2px 8px var(--report-section-shadow-dark);
+        }
+        .report-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--report-title-border-light);
+        }
+        body.dark-mode .report-section h3 {
+            color: var(--text-color-dark);
+            border-bottom-color: var(--report-title-border-dark);
+        }
+        .logo-upload-section {
+            border: 2px dashed var(--logo-upload-border-light);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            background-color: #fff;
+        }
+        .logo-upload-section:hover {
+            border-color: var(--primary-btn-hover-light);
+            background-color: var(--logo-upload-hover-bg-light);
+        }
+        body.dark-mode .logo-upload-section {
+            background-color: #333333;
+            border-color: var(--logo-upload-border-dark);
+        }
+        body.dark-mode .logo-upload-section:hover {
+            border-color: var(--primary-btn-hover-dark);
+            background-color: var(--logo-upload-hover-bg-dark);
+        }
+        .logo-preview {
+            max-width: 150px;
+            max-height: 150px;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Loading Overlay */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--loading-overlay-bg-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+        #loadingOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-animation {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            border-top: 8px solid #dc2626; /* Red spinner */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-message-container {
+            height: 3rem; /* Fixed height to prevent layout shift */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .loading-message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--loading-message-color-light);
+            transition: color 0.3s ease;
+        }
+        #loadingTasks {
+            list-style: none;
+            padding: 0;
+            width: 90%;
+            max-width: 400px;
+        }
+        #loadingTasks li {
+            background-color: var(--loading-task-bg-light);
+            border: 1px solid var(--loading-task-border-light);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #loadingTasks li .task-icon {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+        #loadingTasks li .task-icon i {
+            color: var(--loading-task-icon-pending-light);
+            transition: color 0.3s ease;
+        }
+        #loadingTasks li.active {
+            background-color: var(--loading-task-active-bg-light);
+            border-color: var(--loading-task-active-border-light);
+            box-shadow: 0 0 10px var(--loading-task-active-shadow-light);
+        }
+        #loadingTasks li.completed {
+            background-color: var(--loading-task-completed-bg-light);
+            color: var(--loading-task-completed-text-light);
+        }
+        #loadingTasks li.completed .task-icon i {
+            color: #10b981; /* Always green for completed */
+        }
+
+        /* Progress Dots for Form */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .progress-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--progress-dot-inactive-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .progress-dot.active {
+            background-color: var(--progress-dot-active-light);
+            transform: scale(1.2);
+        }
+        .progress-dot.completed {
+            background-color: var(--progress-dot-completed-light);
+        }
+
+        footer {
+            background-color: var(--header-footer-bg-light);
+            color: var(--header-footer-text-light);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 4px var(--container-shadow-light);
+            margin-top: 2rem;
+        }
+        body.dark-mode footer {
+            background-color: var(--header-footer-bg-dark);
+            color: var(--header-footer-text-dark);
+            box-shadow: 0 -2px 4px var(--container-shadow-dark);
+        }
+        footer a {
+            color: var(--footer-link-color-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        footer a:hover {
+            color: var(--footer-link-hover-light);
+            text-decoration: underline;
+        }
+        body.dark-mode footer a {
+            color: var(--footer-link-color-dark);
+        }
+        body.dark-mode footer a:hover {
+            color: var(--footer-link-hover-dark);
+        }
+
+        /* Print to PDF button style */
+        .btn-pdf {
+            background-color: #dc2626; /* Red color for PDF */
+            color: #ffffff;
+        }
+        .btn-pdf:hover {
+            background-color: #b91c1c;
+        }
+
+        /* Dynamic Background Stars */
+        .star-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+            background: #000000; /* Base black for stars */
+            perspective: 1000px; /* For 3D effect */
+        }
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--star-speed) infinite ease-in-out alternate;
+            transform-style: preserve-3d; /* For 3D transforms */
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.5) translateZ(0); }
+            50% { opacity: 1; transform: scale(1) translateZ(50px); } /* Move forward in 3D space */
+            100% { opacity: 0; transform: scale(0.5) translateZ(0); }
+        }
+
+        /* Collapsible Sections */
+        .collapsible-content {
+            max-height: 150px; /* Initial height for summary */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            position: relative;
+        }
+        .collapsible-content.expanded {
+            max-height: 2000px; /* Large enough to show all content */
+            transition: max-height 0.7s ease-in;
+        }
+        .collapsible-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Fade out effect */
+            background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.dark-mode .collapsible-content::after {
+             background: linear-gradient(to top, var(--container-bg-dark) 10%, rgba(0,0,0,0));
+        }
+        .collapsible-content.expanded::after {
+            opacity: 0;
+        }
+        .read-more-btn {
+            display: block;
+            margin-top: 1rem;
+            background-color: #f0f0f0; /* Light grey for read more button */
+            color: #dc2626; /* Red text */
+            border: 1px solid #dc2626;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .read-more-btn:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+        body.dark-mode .read-more-btn {
+            background-color: #444444;
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+        body.dark-mode .read-more-btn:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+
+        /* Project Map Loading */
+        .project-map {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 2rem;
+            position: relative;
+            height: 40px; /* Height for the line */
+        }
+        .map-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2); /* Light grey line */
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        .map-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: #dc2626; /* Red progress fill */
+            border-radius: 2px;
+            transition: width 0.7s ease-in-out;
+        }
+        .map-node {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.3); /* Inactive node */
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .map-node.active {
+            background-color: #dc2626; /* Active node red */
+            border-color: #ffffff; /* White border for active */
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.7); /* Red glow */
+            transform: scale(1.2);
+        }
+        .map-node.completed {
+            background-color: #10b981; /* Completed node green */
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); /* Green glow */
+            transform: scale(1);
+        }
+
+        /* Ensure report content is hidden when form is active */
+        #reportOutput.hidden {
+            display: none;
+        }
+
+        /* Social Share Buttons */
+        .social-share-buttons button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: white;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+            margin: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .social-share-buttons button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .social-share-buttons button:active {
+            transform: translateY(0);
+        }
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-facebook { background-color: #1877F2; }
+        .btn-twitter { background-color: #1DA1F2; }
+        .btn-linkedin { background-color: #0A66C2; }
+
+        /* Loading Spinner for Post Generator */
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Splash Screen Styles */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 5000; /* Higher than other overlays */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Black background */
+            color: #fff;
+            transition: opacity 1s ease-out; /* Fade out effect */
+            opacity: 1;
+        }
+        #splashScreen.hidden {
+            opacity: 0;
+            pointer-events: none; /* Disable interaction after fade */
+        }
+        #splashScreen img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            animation: pulse 1.5s infinite alternate; /* Simple pulse animation for logo */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        #splashScreen .tip-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 0 2rem;
+            opacity: 0; /* Start hidden */
+            animation: fadeInOut 3s infinite; /* Fade in and out for tips */
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Music Toggle Button */
+        #musicToggle {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 100; /* Above other content but below loading overlay */
+        }
+        #musicToggle:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-700">
+    <!-- Splash Screen -->
+    <div id="splashScreen">
+        <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo">
+        <div id="dynamicSplashTip" class="tip-text"></div>
+    </div>
+
+    <!-- Dynamic Background Stars -->
+    <div class="star-bg" id="starBg"></div>
+
+    <header>
+        <div class="flex items-center justify-between max-w-6xl mx-auto p-4">
+            <div class="flex items-center">
+                <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo" class="h-10 ml-3">
+                <h1 class="text-xl font-bold" data-key="appTitleHeader">وكيل EhabGM للتسويق الذكي (EMIA)</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-sun" data-key="themeIcon"></i>
+                </button>
+                <select id="languageSelect" class="bg-gray-700 text-white p-2 rounded-md transition-colors">
+                    <option value="ar" data-key="langArabic">العربية</option>
+                    <option value="en" data-key="langEnglish">English</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div id="loadingOverlay" class="hidden">
+        <div class="loading-animation"></div>
+        <h2 class="text-3xl font-bold text-white mb-4" data-key="welcomeMessage">أهلاً بك في وكيل EhabGM للتسويق الذكي!</h2>
+        <div class="loading-message-container">
+            <div id="dynamicLoadingMessage" class="loading-message"></div>
+        </div>
+        <!-- Project Map Visualization -->
+        <div class="project-map" id="projectMap">
+            <div class="map-line">
+                <div class="map-progress-fill" id="mapProgressFill"></div>
+            </div>
+            <!-- Nodes will be added dynamically by JS -->
+        </div>
+        <ul id="loadingTasks" class="mt-8">
+            <!-- Tasks will be dynamically added here -->
+        </ul>
+    </div>
+
+    <main>
+        <div class="container">
+            <!-- Progress Dots / Project Map for Form -->
+            <div class="progress-dots" id="progressDots">
+                <span class="progress-dot active" id="dot-0"></span>
+                <span class="progress-dot" id="dot-1"></span>
+                <span class="progress-dot" id="dot-2"></span>
+                <span class="progress-dot" id="dot-3"></span>
+                <span class="progress-dot" id="dot-4"></span>
+            </div>
+
+            <form id="marketingForm" class="space-y-6">
+                <!-- Step 1: Brand Info -->
+                <div class="form-step active" id="step-0">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step1Title">الخطوة 1: معلومات البراند الأساسية</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="brandName" class="block text-sm font-medium text-gray-700 mb-1" data-key="brandNameLabel">اسم العميل أو البراند:</label>
+                            <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="businessType" class="block text-sm font-medium text-gray-700 mb-1" data-key="businessTypeLabel">نوع النشاط التجاري:</label>
+                            <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس النسائية" class="block w-full rounded-md shadow-sm" required>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-6">
+                        <button type="button" class="btn-primary" id="nextStepBtn-0" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Service/Product & Budget -->
+                <div class="form-step hidden" id="step-1">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step2Title">الخطوة 2: وصف الخدمة والميزانية</h3>
+                    <div>
+                        <label for="serviceDescription" class="block text-sm font-medium text-gray-700 mb-1" data-key="serviceDescriptionLabel">وصف الخدمة أو المنتج/الهدف:</label>
+                        <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30% في الربع القادم." class="block w-full rounded-md shadow-sm" required></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <div>
+                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-1" data-key="budgetLabel">الميزانية المتاحة (رقم فقط، اختياري):</label>
+                            <input type="text" id="budget" name="budget" placeholder="مثال: 1000" class="block w-full rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <label for="currency" class="block text-sm font-medium text-gray-700 mb-1" data-key="currencyLabel">العملة:</label>
+                            <select id="currency" name="currency" class="block w-full rounded-md shadow-sm">
+                                <option value="USD" data-key="currencyUSD">دولار أمريكي (USD)</option>
+                                <option value="EGP" data-key="currencyEGP">جنيه مصري (EGP)</option>
+                                <option value="SAR" data-key="currencySAR">ريال سعودي (SAR)</option>
+                                <option value="AED" data-key="currencyAED">درهم إماراتي (AED)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn-secondary" id="prevStepBtn-1" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-1" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Location & Contact -->
+                <div class="form-step hidden" id="step-2">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step3Title">الخطوة 3: الموقع ووسيلة التواصل</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1" data-key="locationLabel">الدولة/المحافظة (لتحديد الجمهور المستهدف):</label>
+                            <input type="text" id="location" name="location" placeholder="مثال: مصر، القاهرة / السعودية، الرياض / أونلاين" class="block w-full rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="contactMethod" class="block text-sm font-medium text-gray-700 mb-1" data-key="contactMethodLabel">وسيلة التواصل المفضلة:</label>
+                            <input type="text" id="contactMethod" name="contactMethod" placeholder="مثال: 01012345678 أو info@brand.com" class="block w-full rounded-md shadow-sm">
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn-secondary" id="prevStepBtn-2" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-2" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Target Audience & Logo -->
+                <div class="form-step hidden" id="step-3">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step4Title">الخطوة 4: الجمهور المستهدف والشعار</h3>
+                    <div>
+                        <label for="targetAudienceInput" class="block text-sm font-medium text-gray-700 mb-1" data-key="targetAudienceLabel">الجمهور المستهدف (اختياري، لو لديك معلومات محددة):</label>
+                        <textarea id="targetAudienceInput" name="targetAudienceInput" rows="2" placeholder="مثال: نساء من 25-45 سنة، مهتمات بالموضة والأزياء، يعشن في المدن الكبرى." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <div class="mt-6">
+                        <label for="logoUpload" class="block text-sm font-medium text-gray-700 mb-2" data-key="logoUploadLabel">شعار البراند (اختياري، سيظهر في التقرير):</label>
+                        <div class="logo-upload-section" id="logoUploadArea">
+                            <input type="file" id="logoUpload" name="logoUpload" accept="image/*" class="hidden">
+                            <p class="text-gray-500" data-key="logoUploadPlaceholder">اسحب الشعار هنا أو انقر للتحميل</p>
+                            <img id="logoPreview" class="logo-preview hidden" src="#" alt="معاينة الشعار">
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn-secondary" id="prevStepBtn-3" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn-primary" id="nextStepBtn-3" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Review and Generate -->
+                <div class="form-step hidden" id="step-4">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step5Title">الخطوة 5: مراجعة وتوليد التقرير</h3>
+                    <div class="report-section mb-6">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="summaryTitle">ملخص بياناتك:</h4>
+                        <p><strong data-key="summaryBrandName">اسم البراند:</strong> <span id="reviewBrandName"></span></p>
+                        <p><strong data-key="summaryBusinessType">نوع النشاط:</strong> <span id="reviewBusinessType"></span></p>
+                        <p><strong data-key="summaryServiceDescription">وصف الخدمة/الهدف:</strong> <span id="reviewServiceDescription"></span></p>
+                        <p><strong data-key="summaryBudget">الميزانية:</strong> <span id="reviewBudget"></span> <span id="reviewCurrency"></span></p>
+                        <p><strong data-key="summaryLocation">الموقع:</strong> <span id="reviewLocation"></span></p>
+                        <p><strong data-key="summaryContactMethod">التواصل:</strong> <span id="reviewContactMethod"></span></p>
+                        <p><strong data-key="summaryTargetAudience">الجمهور المستهدف:</strong> <span id="reviewTargetAudience"></span></p>
+                        <div class="text-center mt-4" id="reviewLogoContainer">
+                            <img id="reviewLogoPreview" class="logo-preview hidden" src="#" alt="شعار البراند">
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn-secondary" id="prevStepBtn-4" data-key="previousButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="submit" class="btn-primary" id="generateReportFinalBtn" data-key="generateReportButton">توليد التقرير الشامل <i class="fas fa-magic mr-2"></i></button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="reportOutput" class="mt-10 p-6 bg-white rounded-xl shadow-lg hidden">
+                <div class="flex flex-wrap items-center justify-between mb-6 border-b-2 border-red-600 pb-4">
+                    <h2 class="text-2xl font-bold text-red-700 mb-2 md:mb-0" data-key="reportTitle">التقرير التسويقي الشامل</h2>
+                    <div class="flex flex-wrap justify-center md:justify-end gap-2">
+                        <button id="copyReportBtn" class="btn-secondary flex items-center" data-key="copyReportButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ التقرير
+                        </button>
+                        <button id="printPdfBtn" class="btn-pdf flex items-center" data-key="printPdfButton">
+                            <i class="fas fa-file-pdf ml-2"></i> طباعة كـ PDF
+                        </button>
+                    </div>
+                </div>
+
+                <div id="reportContent" class="report-content text-lg leading-relaxed">
+                    <!-- AI-generated content will be inserted here -->
+                </div>
+
+                <div class="mt-8 social-share-buttons text-center">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-key="shareReportTitle">شارك هذا التقرير أو التطبيق!</h3>
+                    <button class="btn-whatsapp" id="shareWhatsappBtn" data-key="shareWhatsapp">
+                        <i class="fab fa-whatsapp"></i> مشاركة عبر واتساب
+                    </button>
+                    <button class="btn-facebook" id="shareFacebookBtn" data-key="shareFacebook">
+                        <i class="fab fa-facebook"></i> مشاركة عبر فيسبوك
+                    </button>
+                    <button class="btn-twitter" id="shareTwitterBtn" data-key="shareTwitter">
+                        <i class="fab fa-twitter"></i> مشاركة عبر X
+                    </button>
+                    <button class="btn-linkedin" id="shareLinkedInBtn" data-key="shareLinkedIn">
+                        <i class="fab fa-linkedin-in"></i> مشاركة عبر لينكدإن
+                    </button>
+                </div>
+
+                <div class="mt-8 post-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="postGeneratorTitle">✨ منشئ منشورات السوشيال ميديا ✨</h3>
+                    <div class="mb-4">
+                        <label for="postTopic" class="block text-sm font-medium text-gray-700 mb-1" data-key="postTopicLabel">موضوع المنشور أو وصف المنتج/الخدمة:</label>
+                        <textarea id="postTopic" rows="3" placeholder="مثال: إطلاق منتج جديد لفساتين السهرة، أو حملة تخفيضات صيفية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generatePostBtn" class="btn-primary w-full flex items-center justify-center" data-key="generatePostButton">
+                        <span data-key="generatePostButtonText">توليد المنشور</span>
+                        <div id="postLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedPostOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedPostHeader">المنشور المقترح:</h4>
+                        <div id="postContent" class="text-gray-900 leading-relaxed whitespace-pre-wrap"></div>
+                        <button id="copyPostBtn" class="btn-secondary mt-4 flex items-center" data-key="copyPostButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ المنشور
+                        </button>
+                        <button id="sharePostBtn" class="btn-primary mt-4 mr-2 flex items-center" data-key="sharePostButton">
+                            <i class="fas fa-share-alt ml-2"></i> مشاركة المنشور
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Slogan Generator Section -->
+                <div class="mt-8 slogan-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="sloganGeneratorTitle">✨ مولد الشعارات/العبارات التسويقية ✨</h3>
+                    <div class="mb-4">
+                        <label for="sloganContext" class="block text-sm font-medium text-gray-700 mb-1" data-key="sloganContextLabel">سياق إضافي للشعار (اختياري):</label>
+                        <textarea id="sloganContext" rows="2" placeholder="مثال: نريد شعارًا يركز على الجودة الفاخرة، أو شعارًا يعكس التوفير." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateSlogansBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateSlogansButton">
+                        <span data-key="generateSlogansButtonText">توليد الشعارات</span>
+                        <div id="sloganLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedSlogansOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedSlogansHeader">الشعارات المقترحة:</h4>
+                        <ul id="slogansList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copySlogansBtn" class="btn-secondary mt-4 flex items-center" data-key="copySlogansButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الشعارات
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Customer Persona Generator Section -->
+                <div class="mt-8 customer-persona-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="customerPersonaGeneratorTitle">✨ منشئ شخصيات العملاء ✨</h3>
+                    <div class="mb-4">
+                        <label for="personaDescription" class="block text-sm font-medium text-gray-700 mb-1" data-key="personaDescriptionLabel">وصف العميل المثالي (اختياري، لو لديك معلومات محددة):</label>
+                        <textarea id="personaDescription" rows="3" placeholder="مثال: نساء شابات، مهتمات بالصحة، يبحثن عن منتجات طبيعية وعضوية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generatePersonaBtn" class="btn-primary w-full flex items-center justify-center" data-key="generatePersonaButton">
+                        <span data-key="generatePersonaButtonText">توليد شخصية العميل</span>
+                        <div id="personaLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedPersonaOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedPersonaHeader">الشخصية المقترحة:</h4>
+                        <div id="personaContent" class="text-gray-900 leading-relaxed whitespace-pre-wrap"></div>
+                        <button id="copyPersonaBtn" class="btn-secondary mt-4 flex items-center" data-key="copyPersonaButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الشخصية
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Email Subject Line Generator Section -->
+                <div class="mt-8 email-subject-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="emailSubjectGeneratorTitle">✨ مولد عناوين البريد الإلكتروني ✨</h3>
+                    <div class="mb-4">
+                        <label for="emailPurpose" class="block text-sm font-medium text-gray-700 mb-1" data-key="emailPurposeLabel">موضوع البريد الإلكتروني أو الغرض منه:</label>
+                        <textarea id="emailPurpose" rows="3" placeholder="مثال: إطلاق منتج جديد، خصم 20% على جميع المنتجات، رسالة إخبارية شهرية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateEmailSubjectsBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateEmailSubjectsButton">
+                        <span data-key="generateEmailSubjectsButtonText">توليد العناوين</span>
+                        <div id="emailSubjectLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedEmailSubjectsOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedEmailSubjectsHeader">العناوين المقترحة:</h4>
+                        <ul id="emailSubjectsList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copyEmailSubjectsBtn" class="btn-secondary mt-4 flex items-center" data-key="copyEmailSubjectsButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ العناوين
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Content Idea Generator Section -->
+                <div class="mt-8 content-idea-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="contentIdeaGeneratorTitle">✨ مولد أفكار المحتوى ✨</h3>
+                    <div class="mb-4">
+                        <label for="contentTopicInput" class="block text-sm font-medium text-gray-700 mb-1" data-key="contentTopicLabel">موضوع المحتوى المطلوب (مثال: مقال مدونة عن، فكرة فيديو عن):</label>
+                        <textarea id="contentTopicInput" rows="3" placeholder="مثال: مقال مدونة عن أحدث صيحات الموضة، أو فكرة فيديو عن كيفية العناية بالبشرة." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateContentIdeasBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateContentIdeasButton">
+                        <span data-key="generateContentIdeasButtonText">توليد الأفكار</span>
+                        <div id="contentIdeaLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedContentIdeasOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedContentIdeasHeader">الأفكار المقترحة:</h4>
+                        <ul id="contentIdeasList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copyContentIdeasBtn" class="btn-secondary mt-4 flex items-center" data-key="copyContentIdeasButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الأفكار
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Marketing Campaign Name Generator Section -->
+                <div class="mt-8 campaign-name-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="campaignNameGeneratorTitle">✨ مولد أسماء الحملات التسويقية ✨</h3>
+                    <div class="mb-4">
+                        <label for="campaignPurposeInput" class="block text-sm font-medium text-gray-700 mb-1" data-key="campaignPurposeLabel">الغرض من الحملة التسويقية (مثال: إطلاق منتج جديد، تخفيضات موسمية):</label>
+                        <textarea id="campaignPurposeInput" rows="3" placeholder="مثال: إطلاق مجموعة أزياء شتوية جديدة، أو حملة توعية بيئية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateCampaignNamesBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateCampaignNamesButton">
+                        <span data-key="generateCampaignNamesButtonText">توليد الأسماء</span>
+                        <div id="campaignNameLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedCampaignNamesOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedCampaignNamesHeader">الأسماء المقترحة:</h4>
+                        <ul id="campaignNamesList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copyCampaignNamesBtn" class="btn-secondary mt-4 flex items-center" data-key="copyCampaignNamesButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الأسماء
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="copySuccessMessage">
+                    تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
+                </div>
+                 <div id="postCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="postCopySuccessMessage">
+                    تم نسخ المنشور بنجاح!
+                </div>
+                <div id="sloganCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="sloganCopySuccessMessage">
+                    تم نسخ الشعارات بنجاح!
+                </div>
+                <div id="personaCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="personaCopySuccessMessage">
+                    تم نسخ شخصية العميل بنجاح!
+                </div>
+                <div id="emailSubjectCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="emailSubjectCopySuccessMessage">
+                    تم نسخ عناوين البريد الإلكتروني بنجاح!
+                </div>
+                <div id="contentIdeaCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="contentIdeaCopySuccessMessage">
+                    تم نسخ أفكار المحتوى بنجاح!
+                </div>
+                <div id="campaignNameCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="campaignNameCopySuccessMessage">
+                    تم نسخ أسماء الحملات بنجاح!
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p data-key="footerCopyright">&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.</p>
+        <p class="mb-2 font-semibold text-red-400" data-key="footerFreeService">هذه الخدمة متاحة مجانًا لفترة محدودة!</p>
+        <p data-key="footerContactPrompt">للتواصل مع المطور أو للاستفسارات:</p>
+        <a href="https://wa.me/201022679250" target="_blank" class="text-red-400 hover:text-red-200 inline-flex items-center justify-center" data-key="footerContactButton">
+            <i class="fab fa-whatsapp ml-2"></i> تواصل عبر واتساب (01022679250)
+        </a>
+    </footer>
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle">
+        <i class="fas fa-volume-up" id="musicIcon"></i>
+    </button>
+
+    <script type="module">
+        // Global variables for Firebase configuration and app ID (not used in this specific version for AI calls)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        const marketingForm = document.getElementById('marketingForm');
+        const generateBtn = document.getElementById('generateReportFinalBtn');
+        const reportOutput = document.getElementById('reportOutput');
+        const reportContent = document.getElementById('reportContent');
+        const copyReportBtn = document.getElementById('copyReportBtn');
+        const printPdfBtn = document.getElementById('printPdfBtn');
+        const copySuccessMessage = document.getElementById('copySuccessMessage');
+        const logoUpload = document.getElementById('logoUpload');
+        const logoUploadArea = document.getElementById('logoUploadArea');
+        const logoPreview = document.getElementById('logoPreview');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const dynamicLoadingMessage = document.getElementById('dynamicLoadingMessage');
+        const loadingTasksList = document.getElementById('loadingTasks');
+        const progressDotsContainer = document.getElementById('progressDots');
+        const themeToggle = document.getElementById('themeToggle');
+        const languageSelect = document.getElementById('languageSelect');
+        const projectMap = document.getElementById('projectMap');
+        const mapProgressFill = document.getElementById('mapProgressFill');
+
+        const postTopicInput = document.getElementById('postTopic');
+        const generatePostBtn = document.getElementById('generatePostBtn');
+        const postLoadingSpinner = document.getElementById('postLoadingSpinner');
+        const generatedPostOutput = document.getElementById('generatedPostOutput');
+        const postContentDiv = document.getElementById('postContent');
+        const copyPostBtn = document.getElementById('copyPostBtn');
+        const sharePostBtn = document.getElementById('sharePostBtn');
+        const postCopySuccessMessage = document.getElementById('postCopySuccessMessage');
+
+        const sloganContextInput = document.getElementById('sloganContext');
+        const generateSlogansBtn = document.getElementById('generateSlogansBtn');
+        const sloganLoadingSpinner = document.getElementById('sloganLoadingSpinner');
+        const generatedSlogansOutput = document.getElementById('generatedSlogansOutput');
+        const slogansList = document.getElementById('slogansList');
+        const copySlogansBtn = document.getElementById('copySlogansBtn');
+        const sloganCopySuccessMessage = document.getElementById('sloganCopySuccessMessage');
+
+        // Elements for Customer Persona Generator
+        const personaDescriptionInput = document.getElementById('personaDescription');
+        const generatePersonaBtn = document.getElementById('generatePersonaBtn');
+        const personaLoadingSpinner = document.getElementById('personaLoadingSpinner');
+        const generatedPersonaOutput = document.getElementById('generatedPersonaOutput');
+        const personaContentDiv = document.getElementById('personaContent');
+        const copyPersonaBtn = document.getElementById('copyPersonaBtn');
+        const personaCopySuccessMessage = document.getElementById('personaCopySuccessMessage');
+
+        // Elements for Email Subject Line Generator
+        const emailPurposeInput = document.getElementById('emailPurpose');
+        const generateEmailSubjectsBtn = document.getElementById('generateEmailSubjectsBtn');
+        const emailSubjectLoadingSpinner = document.getElementById('emailSubjectLoadingSpinner');
+        const generatedEmailSubjectsOutput = document.getElementById('generatedEmailSubjectsOutput');
+        const emailSubjectsList = document.getElementById('emailSubjectsList');
+        const copyEmailSubjectsBtn = document.getElementById('copyEmailSubjectsBtn');
+        const emailSubjectCopySuccessMessage = document.getElementById('emailSubjectCopySuccessMessage');
+
+        // New elements for Content Idea Generator
+        const contentTopicInput = document.getElementById('contentTopicInput');
+        const generateContentIdeasBtn = document.getElementById('generateContentIdeasBtn');
+        const contentIdeaLoadingSpinner = document.getElementById('contentIdeaLoadingSpinner');
+        const generatedContentIdeasOutput = document.getElementById('generatedContentIdeasOutput');
+        const contentIdeasList = document.getElementById('contentIdeasList');
+        const copyContentIdeasBtn = document.getElementById('copyContentIdeasBtn');
+        const contentIdeaCopySuccessMessage = document.getElementById('contentIdeaCopySuccessMessage');
+
+        // New elements for Marketing Campaign Name Generator
+        const campaignPurposeInput = document.getElementById('campaignPurposeInput');
+        const generateCampaignNamesBtn = document.getElementById('generateCampaignNamesBtn');
+        const campaignNameLoadingSpinner = document.getElementById('campaignNameLoadingSpinner');
+        const generatedCampaignNamesOutput = document.getElementById('generatedCampaignNamesOutput');
+        const campaignNamesList = document.getElementById('campaignNamesList');
+        const copyCampaignNamesBtn = document.getElementById('copyCampaignNamesBtn');
+        const campaignNameCopySuccessMessage = document.getElementById('campaignNameCopySuccessMessage');
+
+        // Splash screen elements
+        const splashScreen = document.getElementById('splashScreen');
+        const dynamicSplashTip = document.getElementById('dynamicSplashTip');
+
+        // Music elements
+        const musicToggle = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+
+        let uploadedLogoBase64 = null;
+        let myBudgetChart, myGrowthChart, myAudienceChart, myContentChart, myCustomerJourneyChart; // To store Chart.js instances
+        let messageInterval; // To control the dynamic loading messages
+        let activeTaskIndex = -1; // To track the currently active task
+        let currentStep = 0; // Current step of the form
+        let currentLanguage = 'ar'; // Default language
+        let currentTheme = 'light'; // Default theme
+        let lastGeneratedBrandIdentity = ''; // Store the brand identity for slogan generation
+        let currentTipIndex = 0; // Initialize currentTipIndex here, ensuring it's defined before updateSplashTip is called
+
+        // Tone.js Synth for background music
+        let synth = null;
+        let isMusicPlaying = false;
+
+        // --- Translations Object ---
+        const translations = {
+            ar: {
+                appTitle: "وكيل EhabGM للتسويق الذكي",
+                appTitleHeader: "وكيل EhabGM للتسويق الذكي (EMIA)",
+                langArabic: "العربية",
+                langEnglish: "English",
+                themeIcon: "fas fa-sun", // Sun icon for light mode
+                welcomeMessage: "أهلاً بك في وكيل EhabGM للتسويق الذكي!",
+                step1Title: "الخطوة 1: معلومات البراند الأساسية",
+                brandNameLabel: "اسم العميل أو البراند:",
+                businessTypeLabel: "نوع النشاط التجاري:",
+                nextButton: "التالي",
+                previousButton: "السابق",
+                step2Title: "الخطوة 2: وصف الخدمة والميزانية",
+                serviceDescriptionLabel: "وصف الخدمة أو المنتج/الهدف:",
+                budgetLabel: "الميزانية المتاحة (رقم فقط، اختياري):",
+                currencyLabel: "العملة:",
+                currencyUSD: "دولار أمريكي (USD)",
+                currencyEGP: "جنيه مصري (EGP)",
+                currencySAR: "ريال سعودي (SAR)",
+                currencyAED: "درهم إماراتي (AED)",
+                step3Title: "الخطوة 3: الموقع ووسيلة التواصل",
+                locationLabel: "الدولة/المحافظة (لتحديد الجمهور المستهدف):",
+                contactMethodLabel: "وسيلة التواصل المفضلة:",
+                step4Title: "الخطوة 4: الجمهور المستهدف والشعار",
+                targetAudienceLabel: "الجمهور المستهدف (اختياري، لو لديك معلومات محددة):",
+                logoUploadLabel: "شعار البراند (اختياري، سيظهر في التقرير):",
+                logoUploadPlaceholder: "اسحب الشعار هنا أو انقر للتحميل",
+                step5Title: "الخطوة 5: مراجعة وتوليد التقرير",
+                summaryTitle: "ملخص بياناتك:",
+                summaryBrandName: "اسم البراند:",
+                summaryBusinessType: "نوع النشاط:",
+                summaryServiceDescription: "وصف الخدمة/الهدف:",
+                summaryBudget: "الميزانية:",
+                summaryLocation: "الموقع:",
+                summaryContactMethod: "التواصل:",
+                summaryTargetAudience: "الجمهور المستهدف:",
+                generateReportButton: "توليد التقرير الشامل",
+                reportTitle: "التقرير التسويقي الشامل",
+                copyReportButton: "نسخ التقرير",
+                printPdfButton: "طباعة كـ PDF",
+                shareReportTitle: "شارك هذا التقرير أو التطبيق!",
+                shareWhatsapp: "مشاركة عبر واتساب",
+                shareFacebook: "مشاركة عبر فيسبوك",
+                shareTwitter: "مشاركة عبر X",
+                shareLinkedIn: "مشاركة عبر لينكدإن",
+                copySuccessMessage: "تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.",
+                postCopySuccessMessage: "تم نسخ المنشور بنجاح!",
+                sloganCopySuccessMessage: "تم نسخ الشعارات بنجاح!",
+                personaCopySuccessMessage: "تم نسخ شخصية العميل بنجاح!",
+                emailSubjectCopySuccessMessage: "تم نسخ عناوين البريد الإلكتروني بنجاح!",
+                contentIdeaCopySuccessMessage: "تم نسخ أفكار المحتوى بنجاح!",
+                campaignNameCopySuccessMessage: "تم نسخ أسماء الحملات بنجاح!",
+                footerCopyright: "&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.",
+                footerFreeService: "هذه الخدمة متاحة مجانًا لفترة محدودة!",
+                footerContactPrompt: "للتواصل مع المطور أو للاستفسارات:",
+                footerContactButton: "تواصل عبر واتساب (01022679250)",
+                alertRequiredFields: "الرجاء ملء جميع الحقول المطلوبة في هذه الخطوة.",
+                postGeneratorTitle: "✨ منشئ منشورات السوشيال ميديا ✨",
+                postTopicLabel: "موضوع المنشور أو وصف المنتج/الخدمة:",
+                generatePostButton: "توليد المنشور",
+                generatePostButtonText: "توليد المنشور",
+                generatedPostHeader: "المنشور المقترح:",
+                copyPostButton: "نسخ المنشور",
+                sharePostButton: "مشاركة المنشور",
+                sloganGeneratorTitle: "✨ مولد الشعارات/العبارات التسويقية ✨",
+                sloganContextLabel: "سياق إضافي للشعار (اختياري):",
+                generateSlogansButton: "توليد الشعارات",
+                generateSlogansButtonText: "توليد الشعارات",
+                generatedSlogansHeader: "الشعارات المقترحة:",
+                copySlogansButton: "نسخ الشعارات",
+                customerPersonaGeneratorTitle: "✨ منشئ شخصيات العملاء ✨",
+                personaDescriptionLabel: "وصف العميل المثالي (اختياري، لو لديك معلومات محددة):",
+                generatePersonaButton: "توليد شخصية العميل",
+                generatePersonaButtonText: "توليد شخصية العميل",
+                generatedPersonaHeader: "الشخصية المقترحة:",
+                copyPersonaButton: "نسخ الشخصية",
+                emailSubjectGeneratorTitle: "✨ مولد عناوين البريد الإلكتروني ✨",
+                emailPurposeLabel: "موضوع البريد الإلكتروني أو الغرض منه:",
+                generateEmailSubjectsButton: "توليد العناوين",
+                generateEmailSubjectsButtonText: "توليد العناوين",
+                generatedEmailSubjectsHeader: "العناوين المقترحة:",
+                copyEmailSubjectsButton: "نسخ العناوين",
+                contentIdeaGeneratorTitle: "✨ مولد أفكار المحتوى ✨",
+                contentTopicLabel: "موضوع المحتوى المطلوب (مثال: مقال مدونة عن، فكرة فيديو عن):",
+                generateContentIdeasButton: "توليد الأفكار",
+                generateContentIdeasButtonText: "توليد الأفكار",
+                generatedContentIdeasHeader: "الأفكار المقترحة:",
+                copyContentIdeasButton: "نسخ الأفكار",
+                campaignNameGeneratorTitle: "✨ مولد أسماء الحملات التسويقية ✨",
+                campaignPurposeLabel: "الغرض من الحملة التسويقية (مثال: إطلاق منتج جديد، تخفيضات موسمية):",
+                generateCampaignNamesButton: "توليد الأسماء",
+                generateCampaignNamesButtonText: "توليد الأسماء",
+                generatedCampaignNamesHeader: "الأسماء المقترحة:",
+                copyCampaignNamesButton: "نسخ الأسماء",
+                platformExplanationTitle: "حول وكيل EhabGM للتسويق الذكي (EMIA)",
+                platformExplanationContent: `
+                    <p>وكيل EhabGM للتسويق الذكي (EMIA) هو أداة متكاملة تعتمد على الذكاء الاصطناعي لمساعدة الشركات والأفراد في صياغة استراتيجيات تسويقية فعالة. تهدف المنصة إلى تبسيط عملية التخطيط التسويقي وتقديم رؤى قيمة بناءً على بياناتك.</p>
+                    <p><strong>مميزات المنصة:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>تحليل البراند:</strong> صياغة هوية براندك (الرؤية، الرسالة، القيم، قصة البراند).</li>
+                        <li><strong>تحليل الجمهور المستهدف:</strong> فهم ديموغرافي ونفسي لعملائك المحتملين.</li>
+                        <li><strong>توليد المحتوى:</strong> إنشاء منشورات سوشيال ميديا جذابة وشعارات تسويقية إبداعية.</li>
+                        <li><strong>تخطيط الميزانية:</strong> اقتراحات لميزانيات الإعلانات الممولة وتوزيعها.</li>
+                        <li><strong>استراتيجيات متكاملة:</strong> بناء خطط تسويقية شاملة، بما في ذلك SEO والتسويق عبر البريد الإلكتروني.</li>
+                        <li><strong>تحليل عائد الاستثمار:</strong> توقعات مبدئية للعوائد ومؤشرات الأداء الرئيسية.</li>
+                        <li><strong>تقارير قابلة للتصدير:</strong> إمكانية نسخ التقرير أو طباعته كملف PDF.</li>
+                        <li><strong>منشئ شخصيات العملاء:</strong> توليد شخصيات عملاء مفصلة لفهم جمهورك.</li>
+                        <li><strong>مولد عناوين البريد الإلكتروني:</strong> إنشاء عناوين بريد إلكتروني جذابة لزيادة معدلات الفتح.</li>
+                        <li><strong>مولد أفكار المحتوى:</strong> ابتكار أفكار جديدة للمقالات، الفيديوهات، وغيرها.</li>
+                        <li><strong>مولد أسماء الحملات:</strong> اقتراح أسماء إبداعية لحملاتك التسويقية.</li>
+                    </ul>
+                `,
+                clientGuidanceTitle: "توجيهات هامة لعملائنا",
+                clientGuidanceContent: `
+                    <p>لتحقيق أقصى استفادة من هذا التقرير، نوصي بما يلي:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>البيانات الدقيقة:</strong> كلما كانت المعلومات التي تقدمها أكثر دقة وتفصيلاً، كانت النتائج التي تحصل عليها من التقرير أكثر فائدة وملاءمة.</li>
+                        <li><strong>التطبيق العملي:</strong> هذا التقرير هو نقطة انطلاق. قم بتطبيق الاستراتيجيات المقترحة وتكييفها مع ظروف السوق الخاصة بك.</li>
+                        <li><strong>المراقبة والتحسين:</strong> راقب أداء حملاتك باستمرار وكن مستعدًا لإجراء التعديلات اللازمة بناءً على البيانات.</li>
+                        <li><strong>الاستشارة المتخصصة:</strong> في بعض الحالات، قد تحتاج إلى استشارة متخصصين في التسويق لتعميق التحليل أو تنفيذ استراتيجيات معقدة.</li>
+                        <li><strong>المرونة:</strong> عالم التسويق الرقمي يتغير باستمرار. كن مرنًا ومستعدًا لتبني أدوات واستراتيجيات جديدة.</li>
+                    </ul>
+                    <p class="mt-4">نتمنى لك كل التوفيق في رحلتك التسويقية!</p>
+                `,
+                splashTips: [
+                    "التصميم الجرافيكي الجيد هو مفتاح جذب الانتباه الأول لبراندك.",
+                    "المحتوى هو الملك، والتسويق الرقمي هو التاج.",
+                    "استثمر في SEO لضمان ظهورك في نتائج البحث الأولى.",
+                    "البريد الإلكتروني لا يزال من أقوى أدوات التسويق المباشر.",
+                    "تحليل البيانات يساعدك على فهم عملائك وتطوير استراتيجياتك.",
+                    "الشعار الجذاب يعلق في الأذهان ويصنع فارقاً.",
+                    "التسويق عبر المؤثرين يمكن أن يوسع نطاق وصولك بشكل كبير.",
+                    "القصة الجيدة تبيع أكثر من المنتج نفسه.",
+                    "الاستمرارية في النشر على السوشيال ميديا تبني الولاء.",
+                    "فهم رحلة العميل يضمن تجربة تسويقية سلسة."
+                ]
+            },
+            en: {
+                appTitle: "EhabGM Smart Marketing Agent",
+                appTitleHeader: "EhabGM Smart Marketing Agent (EMIA)",
+                langArabic: "العربية",
+                langEnglish: "English",
+                themeIcon: "fas fa-moon", // Moon icon for dark mode
+                welcomeMessage: "Welcome to EhabGM Smart Marketing Agent!",
+                step1Title: "Step 1: Basic Brand Information",
+                brandNameLabel: "Client/Brand Name:",
+                businessTypeLabel: "Business Type:",
+                nextButton: "Next",
+                previousButton: "Previous",
+                step2Title: "Step 2: Service/Product Description & Budget",
+                serviceDescriptionLabel: "Service/Product Description or Goal:",
+                budgetLabel: "Available Budget (Number only, optional):",
+                currencyLabel: "Currency:",
+                currencyUSD: "US Dollar (USD)",
+                currencyEGP: "Egyptian Pound (EGP)",
+                currencySAR: "Saudi Riyal (SAR)",
+                currencyAED: "UAE Dirham (AED)",
+                step3Title: "Step 3: Location & Contact Method",
+                locationLabel: "Country/City (for target audience):",
+                contactMethodLabel: "Preferred Contact Method:",
+                step4Title: "Step 4: Target Audience & Logo",
+                targetAudienceLabel: "Target Audience (optional, if you have specific info):",
+                logoUploadLabel: "Brand Logo (optional, will appear in report):",
+                logoUploadPlaceholder: "Drag logo here or click to upload",
+                step5Title: "Step 5: Review and Generate Report",
+                summaryTitle: "Your Data Summary:",
+                summaryBrandName: "Brand Name:",
+                summaryBusinessType: "Business Type:",
+                summaryServiceDescription: "Service/Goal:",
+                summaryBudget: "Budget:",
+                summaryLocation: "Location:",
+                summaryContactMethod: "Contact:",
+                summaryTargetAudience: "Target Audience:",
+                generateReportButton: "Generate Comprehensive Report",
+                reportTitle: "Comprehensive Marketing Report",
+                copyReportButton: "Copy Report",
+                printPdfButton: "Print as PDF",
+                shareReportTitle: "Share this Report or App!",
+                shareWhatsapp: "Share via WhatsApp",
+                shareFacebook: "Share via Facebook",
+                shareTwitter: "Share via X",
+                shareLinkedIn: "Share via LinkedIn",
+                copySuccessMessage: "Report copied successfully! You can now paste it into a Google Docs or Word document.",
+                postCopySuccessMessage: "Post copied successfully!",
+                sloganCopySuccessMessage: "Slogans copied successfully!",
+                personaCopySuccessMessage: "Customer persona copied successfully!",
+                emailSubjectCopySuccessMessage: "Email subjects copied successfully!",
+                contentIdeaCopySuccessMessage: "Content ideas copied successfully!",
+                campaignNameCopySuccessMessage: "Campaign names copied successfully!",
+                footerCopyright: "&copy; 2023 EhabGM Smart Marketing Agent (EMIA). All rights reserved.",
+                footerFreeService: "This service is available for a limited time for free!",
+                footerContactPrompt: "To contact the developer or for inquiries:",
+                footerContactButton: "Contact via WhatsApp (01022679250)",
+                alertRequiredFields: "Please fill in all required fields in this step.",
+                postGeneratorTitle: "✨ Social Media Post Generator ✨",
+                postTopicLabel: "Post topic or product/service description:",
+                generatePostButton: "Generate Post",
+                generatePostButtonText: "Generate Post",
+                generatedPostHeader: "Suggested Post:",
+                copyPostButton: "Copy Post",
+                sharePostButton: "Share Post",
+                sloganGeneratorTitle: "✨ Slogan/Tagline Generator ✨",
+                sloganContextLabel: "Additional slogan context (optional):",
+                generateSlogansButton: "Generate Slogans",
+                generateSlogansButtonText: "Generate Slogans",
+                generatedSlogansHeader: "Suggested Slogans:",
+                copySlogansButton: "Copy Slogans",
+                customerPersonaGeneratorTitle: "✨ Customer Persona Generator ✨",
+                personaDescriptionLabel: "Ideal Customer Description (optional, if you have specific info):",
+                generatePersonaButton: "Generate Customer Persona",
+                generatePersonaButtonText: "Generate Customer Persona",
+                generatedPersonaHeader: "Suggested Persona:",
+                copyPersonaButton: "Copy Persona",
+                emailSubjectGeneratorTitle: "✨ Email Subject Line Generator ✨",
+                emailPurposeLabel: "Email topic or purpose:",
+                generateEmailSubjectsButton: "Generate Subject Lines",
+                generateEmailSubjectsButtonText: "Generate Subject Lines",
+                generatedEmailSubjectsHeader: "Suggested Subject Lines:",
+                copyEmailSubjectsButton: "Copy Subject Lines",
+                contentIdeaGeneratorTitle: "✨ Content Idea Generator ✨",
+                contentTopicLabel: "Desired content topic (e.g., blog post about, video idea about):",
+                generateContentIdeasButton: "Generate Ideas",
+                generateContentIdeasButtonText: "Generate Ideas",
+                generatedContentIdeasHeader: "Suggested Ideas:",
+                copyContentIdeasButton: "Copy Ideas",
+                campaignNameGeneratorTitle: "✨ Marketing Campaign Name Generator ✨",
+                campaignPurposeLabel: "Purpose of the marketing campaign (e.g., new product launch, seasonal sale):",
+                generateCampaignNamesButton: "Generate Names",
+                generateCampaignNamesButtonText: "Generate Names",
+                generatedCampaignNamesHeader: "Suggested Names:",
+                copyCampaignNamesButton: "Copy Names",
+                platformExplanationTitle: "About EhabGM Smart Marketing Agent (EMIA)",
+                platformExplanationContent: `
+                    <p>EhabGM Smart Marketing Agent (EMIA) is an integrated AI-powered tool designed to assist businesses and individuals in crafting effective marketing strategies. The platform aims to simplify the marketing planning process and provide valuable insights based on your data.</p>
+                    <p><strong>Platform Features:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Brand Analysis:</strong> Formulate your brand's identity (vision, mission, values, brand story).</li>
+                        <li><strong>Target Audience Analysis:</strong> Demographic and psychographic understanding of your potential customers.</li>
+                        <li><strong>Content Generation:</strong> Create engaging social media posts and creative marketing slogans.</li>
+                        <li><strong>Budget Planning:</strong> Suggestions for paid ad budgets and their distribution.</li>
+                        <li><strong>Integrated Strategies:</strong> Build comprehensive marketing plans, including SEO and email marketing.</li>
+                        <li><strong>ROI Analysis:</strong> Initial projections for returns and key performance indicators.</li>
+                        <li><strong>Exportable Reports:</strong> Ability to copy the report or print it as a PDF.</li>
+                        <li><strong>Customer Persona Generator:</strong> Generate detailed customer personas to understand your audience.</li>
+                        <li><strong>Email Subject Line Generator:</strong> Create catchy email subject lines to increase open rates.</li>
+                        <li><strong>Content Idea Generator:</strong> Innovate new ideas for articles, videos, and more.</li>
+                        <li><strong>Campaign Name Generator:</strong> Suggest creative names for your marketing campaigns.</li>
+                    </ul>
+                `,
+                clientGuidanceTitle: "Important Guidance for Our Clients",
+                clientGuidanceContent: `
+                    <p>To get the most out of this report, we recommend the following:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Accurate Data:</strong> The more accurate and detailed the information you provide, the more useful and relevant the report's results will be.</li>
+                        <li><strong>Practical Application:</strong> This report is a starting point. Implement the suggested strategies and adapt them to your specific market conditions.</li>
+                        <li><strong>Monitoring and Optimization:</strong> Continuously monitor your campaign performance and be prepared to make necessary adjustments based on data.</li>
+                        <li><strong>Expert Consultation:</strong> In some cases, you may need to consult marketing professionals for deeper analysis or to implement complex strategies.</li>
+                        <li><strong>Flexibility:</strong> The world of digital marketing is constantly evolving. Be flexible and ready to adopt new tools and strategies.</li>
+                    </ul>
+                    <p class="mt-4">We wish you all the best in your marketing journey!</p>
+                `,
+                splashTips: [
+                    "Good graphic design is key to your brand's first impression.",
+                    "Content is king, and digital marketing is its crown.",
+                    "Invest in SEO to ensure your appearance in top search results.",
+                    "Email remains one of the most powerful direct marketing tools.",
+                    "Data analysis helps you understand your customers and refine strategies.",
+                    "A catchy slogan sticks in minds and makes a difference.",
+                    "Influencer marketing can significantly expand your reach.",
+                    "A good story sells more than the product itself.",
+                    "Consistency in social media posting builds loyalty.",
+                    "Understanding the customer journey ensures a smooth marketing experience."
+                ]
+            }
+        };
+
+        const loadingMessages = {
+            ar: [
+                "جاري تحليل بيانات السوق بدقة فائقة...",
+                "نعمل على صياغة هوية براندك الفريدة...",
+                "نقوم بإنشاء منشورات تسويقية جذابة خصيصًا لك...",
+                "جاري تقدير أفضل ميزانية إعلانية لتحقيق أهدافك...",
+                "نبتكر أفكار تصميمية مبدعة لعلامتك التجارية...",
+                "نضع اللمسات الأخيرة على خطتك التسويقية المتكاملة...",
+                "نستكشف أفضل استراتيجيات SEO والبريد الإلكتروني لنموك...",
+                "نحسب العوائد المتوقعة لضمان نجاح استثماراتك...",
+                "الذكاء الاصطناعي يعمل بجد لتقديم أفضل النتائج!",
+                "قريبًا سيكون تقريرك الشامل جاهزًا..."
+            ],
+            en: [
+                "Analyzing market data with high precision...",
+                "Crafting your unique brand identity...",
+                "Creating engaging marketing posts just for you...",
+                "Estimating the optimal advertising budget for your goals...",
+                "Innovating creative design ideas for your brand...",
+                "Finalizing your comprehensive marketing plan...",
+                "Exploring the best SEO and email strategies for your growth...",
+                "Calculating projected returns to ensure your investment success...",
+                "AI is working hard to deliver the best results!",
+                "Your comprehensive report will be ready soon..."
+            ]
+        };
+
+        const tasks = {
+            ar: [
+                "تهيئة النظام وجمع البيانات الأولية",
+                "صياغة الهوية التعريفية للبراند",
+                "تحليل الجمهور المستهدف بدقة",
+                "كتابة 5 منشورات تسويقية مبتكرة",
+                "اقتراح ميزانية ومدد الإعلادات الممولة",
+                "تقديم أفكار تصميم وابتكار",
+                "بناء خطة تسويقية مختصرة وكاملة",
+                "توليد استراتيجيات SEO والبريد الإلكتروني",
+                "تحليل عائد الاستثمار والعوائد المتوقعة",
+                "إنشاء الرسوم البيانية التحليلية",
+                "تجميع التقرير النهائي وعرضه"
+            ],
+            en: [
+                "System initialization and preliminary data collection",
+                "Brand identity formulation",
+                "Precise target audience analysis",
+                "Writing 5 innovative marketing posts",
+                "Proposing budget and duration for paid ads",
+                "Providing design and innovation ideas",
+                "Building a concise and complete marketing plan",
+                "Generating SEO and Email Marketing strategies",
+                "Analyzing ROI and projected returns",
+                "Creating analytical charts and graphs",
+                "Assembling and displaying the final report"
+            ]
+        };
+
+        // --- Language Switching Function ---
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    } else if (element.tagName === 'TEXTAREA' && element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    }
+                    else if (element.tagName === 'OPTION') {
+                        element.textContent = translations[lang][key];
+                    } else if (element.tagName === 'I' && (key === 'themeIcon')) {
+                        element.className = translations[lang][key];
+                    }
+                    else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            // Update specific elements that are not data-key
+            document.title = translations[lang].appTitle;
+            themeToggle.querySelector('i').className = translations[lang].themeIcon;
+            updateLoadingMessage(); // Update loading message immediately
+            initializeLoadingTasks(); // Re-initialize tasks for new language
+            updateProgressDots(currentStep); // Re-render progress dots text
+            updateSplashTip(); // Update splash screen tip
+        }
+
+        languageSelect.addEventListener('change', (event) => {
+            setLanguage(event.target.value);
+        });
+
+        // Set initial language based on browser or default
+        const browserLang = navigator.language.split('-')[0];
+        if (browserLang === 'ar' || browserLang === 'en') {
+            currentLanguage = browserLang;
+        }
+        languageSelect.value = currentLanguage;
+        // Explicitly re-initialize currentMessageIndex before the first call to setLanguage
+        let currentMessageIndex = 0; // Moved declaration here to ensure it's defined
+        
+        // --- Form Navigation Logic ---
+        const formSteps = document.querySelectorAll('.form-step');
+        const totalSteps = formSteps.length; // Declared here, after formSteps is defined
+
+        setLanguage(currentLanguage); // Call setLanguage after totalSteps is defined
+
+
+        // --- Theme Switching Function ---
+        function setTheme(theme) {
+            currentTheme = theme;
+            document.body.classList.toggle('dark-mode', theme === 'dark');
+            themeToggle.querySelector('i').className = (theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun');
+            themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            // Update chart colors on theme change
+            if (reportOutput.classList.contains('hidden') === false) {
+                // Only redraw if report is visible
+                drawCharts();
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+
+        // Set initial theme based on user preference or default
+        const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDarkMode ? 'dark' : 'light');
+
+        // --- Dynamic Background Stars ---
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = star.style.height = `${Math.random() * 3 + 1}px`; // 1-4px
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`; // Randomize start time
+            star.style.setProperty('--star-speed', `${Math.random() * 3 + 2}s`); // 2-5s animation speed
+            starBg.appendChild(star);
+        }
+
+        const starBg = document.getElementById('starBg');
+        for (let i = 0; i < 100; i++) { // Create 100 stars
+            createStar();
+        }
+
+
+        function showStep(stepNum) {
+            formSteps.forEach((step, index) => {
+                step.classList.add('hidden'); // Hide all steps first
+                if (index === stepNum) {
+                    step.classList.remove('hidden'); // Show current step
+                }
+            });
+            updateProgressDots(stepNum);
+            if (stepNum === totalSteps - 1) { // If it's the last step (review step)
+                populateReviewStep();
+            }
+        }
+
+        function updateProgressDots(stepNum) {
+            progressDotsContainer.innerHTML = ''; // Clear existing dots
+            for (let i = 0; i < totalSteps; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'progress-dot';
+                dot.id = `dot-${i}`;
+                if (i < stepNum) {
+                    dot.classList.add('completed');
+                } else if (i === stepNum) {
+                    dot.classList.add('active');
+                }
+                dot.textContent = i + 1; // Add step number inside dot
+                progressDotsContainer.appendChild(dot);
+            }
+        }
+
+        function validateStep(stepNum) {
+            let isValid = true;
+            const currentStepElement = document.getElementById(`step-${stepNum}`);
+            const requiredInputs = currentStepElement.querySelectorAll('[required]');
+
+            requiredInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#dc2626'; /* Red border for invalid */
+                } else {
+                    input.style.borderColor = '#d1d5db';
+                }
+            });
+            if (!isValid) {
+                alert(translations[currentLanguage].alertRequiredFields);
+            }
+            return isValid;
+        }
+
+        // Attach event listeners for navigation buttons
+        document.querySelectorAll('[id^="nextStepBtn-"]').forEach(button => {
+            button.addEventListener('click', () => {
+                const stepIndex = parseInt(button.id.split('-')[1]);
+                // Only validate if it's not the last step
+                if (stepIndex < totalSteps - 1) {
+                    if (validateStep(stepIndex)) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                } else { // For the last step, just move to the next (which is submitting the form)
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        document.querySelectorAll('[id^="prevStepBtn-"]').forEach(button => {
+            button.addEventListener('click', () => {
+                currentStep--;
+                showStep(currentStep);
+            });
+        });
+
+        // Initial display
+        // showStep(currentStep); // This will be called after splash screen hides
+
+        // --- Loading Overlay & Task Logic ---
+        function updateLoadingMessage() {
+            dynamicLoadingMessage.textContent = loadingMessages[currentLanguage][currentMessageIndex];
+            currentMessageIndex = (currentMessageIndex + 1) % loadingMessages[currentLanguage].length;
+        }
+
+        // Project Map Nodes for Loading Screen
+        const mapNodes = [];
+        function initializeProjectMap() {
+            projectMap.querySelectorAll('.map-node').forEach(node => node.remove()); // Clear old nodes
+            mapNodes.length = 0; // Clear array
+
+            // Create nodes for each task
+            tasks[currentLanguage].forEach((task, index) => {
+                const node = document.createElement('div');
+                node.className = 'map-node';
+                node.id = `map-node-${index}`;
+                node.textContent = index + 1; // Display task number
+                // Calculate position based on index
+                node.style.position = 'absolute';
+                node.style.left = `${(index / (tasks[currentLanguage].length - 1)) * 100}%`;
+                node.style.transform = 'translateX(-50%)'; // Center the node
+                projectMap.appendChild(node);
+                mapNodes.push(node);
+            });
+            mapProgressFill.style.width = '0%'; // Reset progress fill
+            if (mapNodes.length > 0) {
+                mapNodes[0].classList.add('active'); // Set first node as active
+            }
+        }
+
+        function updateLoadingProgress(taskIndex) {
+            if (activeTaskIndex !== -1 && mapNodes[activeTaskIndex]) {
+                mapNodes[activeTaskIndex].classList.remove('active');
+                mapNodes[activeTaskIndex].classList.add('completed');
+            }
+
+            activeTaskIndex = taskIndex;
+            if (mapNodes[activeTaskIndex]) {
+                mapNodes[activeTaskIndex].classList.add('active');
+                const progressPercentage = (taskIndex / (tasks[currentLanguage].length - 1)) * 100;
+                mapProgressFill.style.width = `${progressPercentage}%`;
+            }
+
+            // Update traditional task list as well
+            const taskItem = document.getElementById(`task-${taskIndex}`);
+            if (taskItem) {
+                if (taskIndex > 0) { // Mark previous task as completed
+                    const prevTaskItem = document.getElementById(`task-${taskIndex - 1}`);
+                    if (prevTaskItem) {
+                        prevTaskItem.classList.remove('active');
+                        prevTaskItem.classList.add('completed');
+                        prevTaskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
+                    }
+                }
+                taskItem.classList.add('active');
+                taskItem.querySelector('.task-icon').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            }
+        }
+
+        function initializeLoadingTasks() {
+            loadingTasksList.innerHTML = '';
+            tasks[currentLanguage].forEach((task, index) => {
+                const listItem = document.createElement('li');
+                listItem.id = `task-${index}`;
+                listItem.innerHTML = `<span class="task-icon"><i class="fas fa-spinner fa-spin"></i></span> ${task}`;
+                loadingTasksList.appendChild(listItem);
+            });
+            activeTaskIndex = -1; // Reset active task
+        }
+
+        // --- Logo Upload Logic ---
+        logoUploadArea.addEventListener('click', () => logoUpload.click());
+
+        logoUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    logoPreview.src = e.target.result;
+                    logoPreview.classList.remove('hidden');
+                    uploadedLogoBase64 = e.target.result; // Store base64 for report
+                    document.getElementById('reviewLogoPreview').src = e.target.result; // Update review step logo
+                    document.getElementById('reviewLogoPreview').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                logoPreview.classList.add('hidden');
+                logoPreview.src = '#';
+                uploadedLogoBase64 = null;
+                document.getElementById('reviewLogoPreview').classList.add('hidden');
+                document.getElementById('reviewLogoPreview').src = '#';
+            }
+        });
+
+        // --- Populate Review Step ---
+        function populateReviewStep() {
+            document.getElementById('reviewBrandName').textContent = document.getElementById('brandName').value;
+            document.getElementById('reviewBusinessType').textContent = document.getElementById('businessType').value;
+            document.getElementById('reviewServiceDescription').textContent = document.getElementById('serviceDescription').value;
+            document.getElementById('reviewBudget').textContent = document.getElementById('budget').value || (currentLanguage === 'ar' ? 'غير محددة' : 'Not specified');
+            document.getElementById('reviewCurrency').textContent = document.getElementById('currency').value;
+            document.getElementById('reviewLocation').textContent = document.getElementById('location').value;
+            document.getElementById('reviewContactMethod').textContent = document.getElementById('contactMethod').value || (currentLanguage === 'ar' ? 'غير محددة' : 'Not specified');
+            document.getElementById('reviewTargetAudience').textContent = document.getElementById('targetAudienceInput').value || (currentLanguage === 'ar' ? 'غير محددة بشكل دقيق' : 'Not precisely defined');
+
+            if (uploadedLogoBase64) {
+                document.getElementById('reviewLogoPreview').src = uploadedLogoBase64;
+                document.getElementById('reviewLogoPreview').classList.remove('hidden');
+            } else {
+                document.getElementById('reviewLogoPreview').classList.add('hidden');
+                document.getElementById('reviewLogoPreview').src = '#'; // Clear src if no logo
+            }
+        }
+
+        // --- AI Call Function ---
+        const callGemini = async (prompt) => {
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "AIzaSyB6jnqtwtZ-p2G_8D9KMhvhlNywwLhw3HQ"; // Canvas will provide this at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`API error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                return result.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Invalid API response structure or no content.");
+            }
+        };
+
+        // --- Chart Drawing Function (to be called on theme change) ---
+        function drawCharts() {
+            // Destroy existing charts if they exist
+            if (myBudgetChart) myBudgetChart.destroy();
+            if (myGrowthChart) myGrowthChart.destroy();
+            if (myAudienceChart) myAudienceChart.destroy();
+            if (myContentChart) myContentChart.destroy();
+            if (myCustomerJourneyChart) myCustomerJourneyChart.destroy();
+
+            const brandName = document.getElementById('brandName').value;
+            const budget = parseFloat(document.getElementById('budget').value) || 0;
+            const currency = document.getElementById('currency').value;
+            const promptData = { rawBudget: budget, currency: currency }; // Simplified for chart data
+
+            const chartFontColor = currentTheme === 'dark' ? '#e0e0e0' : '#374151';
+            const chartGridColor = currentTheme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
+            // Budget Distribution Chart
+            const budgetCtx = document.getElementById('budgetDistributionChart').getContext('2d');
+            myBudgetChart = new Chart(budgetCtx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'فيسبوك/انستجرام' : 'Facebook/Instagram',
+                        currentLanguage === 'ar' ? 'تيك توك' : 'TikTok',
+                        currentLanguage === 'ar' ? 'أخرى/متنوعة' : 'Other/Miscellaneous'
+                    ],
+                    datasets: [{
+                        data: [budget * 0.5, budget * 0.3, budget * 0.2],
+                        backgroundColor: [
+                            currentTheme === 'dark' ? 'rgba(220, 38, 38, 0.8)' : 'rgba(220, 38, 38, 0.9)', /* Red */
+                            currentTheme === 'dark' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.9)', /* White/Black */
+                            currentTheme === 'dark' ? 'rgba(100, 100, 100, 0.8)' : 'rgba(150, 150, 150, 0.9)' /* Grey */
+                        ],
+                        borderColor: currentTheme === 'dark' ? '#1a1a1a' : '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Growth Projection Chart (Illustrative)
+            const growthCtx = document.getElementById('growthProjectionChart').getContext('2d');
+            const initialValue = budget > 0 ? budget * 2 : 1000;
+            myGrowthChart = new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'الشهر 1' : 'Month 1',
+                        currentLanguage === 'ar' ? 'الشهر 2' : 'Month 2',
+                        currentLanguage === 'ar' ? 'الشهر 3' : 'Month 3',
+                        currentLanguage === 'ar' ? 'الشهر 4' : 'Month 4',
+                        currentLanguage === 'ar' ? 'الشهر 5' : 'Month 5',
+                        currentLanguage === 'ar' ? 'الشهر 6' : 'Month 6'
+                    ],
+                    datasets: [{
+                        label: currentLanguage === 'ar' ? `نمو العوائد المتوقعة (${currency})` : `Projected Revenue Growth (${currency})`,
+                        data: [
+                            initialValue, initialValue * 1.1, initialValue * 1.25,
+                            initialValue * 1.4, initialValue * 1.55, initialValue * 1.7
+                        ],
+                        borderColor: '#dc2626', /* Red */
+                        backgroundColor: 'rgba(220, 38, 38, 0.2)', /* Light red fill */
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? `القيمة (${currency})` : `Value (${currency})`,
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        },
+                        x: {
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        }
+                    }
+                }
+            });
+
+            // Audience Demographics Chart (Illustrative)
+            const audienceCtx = document.getElementById('audienceDemographicsChart').getContext('2d');
+            myAudienceChart = new Chart(audienceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
+                    datasets: [{
+                        label: currentLanguage === 'ar' ? 'النسبة المئوية للجمهور' : 'Audience Percentage',
+                        data: [15, 35, 25, 15, 10],
+                        backgroundColor: [
+                            '#dc2626', /* Red */
+                            '#000000', /* Black */
+                            '#f0f0f0', /* Light grey/white */
+                            '#b91c1c', /* Darker red */
+                            '#333333' /* Darker black */
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color), // Adjust white for dark mode
+                        borderColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c', '#333333'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? 'النسبة المئوية' : 'Percentage',
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: {
+                                callback: function(value) { return value + '%'; },
+                                color: chartFontColor, font: { family: 'Inter' }
+                            },
+                            grid: { color: chartGridColor }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? 'الفئة العمرية' : 'Age Group',
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        }
+                    }
+                }
+            });
+
+            // Content Performance Chart (Illustrative)
+            const contentCtx = document.getElementById('contentPerformanceChart').getContext('2d');
+            myContentChart = new Chart(contentCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'منشورات ترويجية' : 'Promotional Posts',
+                        currentLanguage === 'ar' ? 'منشورات تثقيفية' : 'Educational Posts',
+                        currentLanguage === 'ar' ? 'منشورات تفاعلية' : 'Interactive Posts',
+                        currentLanguage === 'ar' ? 'إعلانات عروض' : 'Offer Ads'
+                    ],
+                    datasets: [{
+                        label: currentLanguage === 'ar' ? 'متوسط التفاعل' : 'Average Engagement',
+                        data: [70, 85, 90, 75],
+                        backgroundColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'ar' ? 'مستوى التفاعل' : 'Engagement Level',
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            },
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        },
+                        x: {
+                            ticks: { color: chartFontColor, font: { family: 'Inter' } },
+                            grid: { color: chartGridColor }
+                        }
+                    }
+                }
+            });
+
+            // Customer Journey Chart (Illustrative)
+            const customerJourneyCtx = document.getElementById('customerJourneyChart').getContext('2d');
+            myCustomerJourneyChart = new Chart(customerJourneyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        currentLanguage === 'ar' ? 'الوعي (Awareness)' : 'Awareness',
+                        currentLanguage === 'ar' ? 'الاهتمام (Consideration)' : 'Consideration',
+                        currentLanguage === 'ar' ? 'التحويل (Conversion)' : 'Conversion',
+                        currentLanguage === 'ar' ? 'الولاء (Loyalty)' : 'Loyalty'
+                    ],
+                    datasets: [{
+                        data: [30, 25, 20, 25],
+                        backgroundColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderColor: [
+                            '#dc2626', '#000000', '#f0f0f0', '#b91c1c'
+                        ].map(color => currentTheme === 'dark' && color === '#f0f0f0' ? '#aaaaaa' : color),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: chartFontColor,
+                                font: { family: 'Inter' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- Main Report Generation Logic ---
+        marketingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Populate review step before starting generation (in case user jumps back)
+            // populateReviewStep(); // Already called by showStep(totalSteps - 1)
+
+            // Show loading overlay and start message cycling
+            loadingOverlay.classList.remove('hidden');
+            initializeProjectMap(); // Initialize project map nodes
+            initializeLoadingTasks(); // Initialize traditional tasks list
+            updateLoadingMessage(); // Display first message immediately
+            messageInterval = setInterval(updateLoadingMessage, 4000); // Change message every 4 seconds (matches CSS animation)
+
+            // Disable button
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = `${translations[currentLanguage].generateReportButton} <i class="fas fa-spinner fa-spin mr-2"></i>`;
+
+            // Hide report output and clear content
+            reportOutput.classList.add('hidden');
+            copySuccessMessage.classList.add('hidden');
+            reportContent.innerHTML = '';
+
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const budget = parseFloat(document.getElementById('budget').value) || 0;
+            const currency = document.getElementById('currency').value;
+            const contactMethod = document.getElementById('contactMethod').value;
+            const location = document.getElementById('location').value;
+            const targetAudienceInput = document.getElementById('targetAudienceInput').value;
+
+            const promptData = {
+                brandName,
+                businessType,
+                serviceDescription,
+                budget: budget > 0 ? `${budget} ${currency}` : (currentLanguage === 'ar' ? 'غير محددة' : 'Not specified'),
+                rawBudget: budget,
+                currency,
+                contactMethod,
+                location,
+                targetAudienceInput: targetAudienceInput || (currentLanguage === 'ar' ? 'غير محددة بشكل دقيق، يرجى تحليلها بناءً على نوع النشاط.' : 'Not precisely defined, please analyze based on business type.'),
+            };
+
+            let generatedReportHTML = '';
+
+            // Add logo to the report if uploaded
+            if (uploadedLogoBase64) {
+                generatedReportHTML += `<div class="text-center mb-8">
+                                            <img src="${uploadedLogoBase64}" alt="${currentLanguage === 'ar' ? 'شعار البراند' : 'Brand Logo'}" class="logo-preview mx-auto" style="max-width: 200px; max-height: 200px;">
+                                        </div>`;
+            }
+
+            generatedReportHTML += `
+                <h1 class="text-3xl font-bold text-center text-red-800 mb-8">${currentLanguage === 'ar' ? 'التقرير التسويقي الشامل لـ ' : 'Comprehensive Marketing Report for '}${brandName}</h1>
+                <div class="report-section">
+                    <h3 data-key="summaryTitle">${currentLanguage === 'ar' ? 'معلومات البراند الأساسية' : 'Basic Brand Information'}</h3>
+                    <p><strong data-key="summaryBrandName">${currentLanguage === 'ar' ? 'اسم البراند:' : 'Brand Name:'}</strong> ${brandName}</p>
+                    <p><strong data-key="summaryBusinessType">${currentLanguage === 'ar' ? 'نوع النشاط التجاري:' : 'Business Type:'}</strong> ${businessType}</p>
+                    <p><strong data-key="summaryServiceDescription">${currentLanguage === 'ar' ? 'وصف الخدمة/الهدف:' : 'Service/Goal Description:'}</strong> ${serviceDescription}</p>
+                    <p><strong data-key="summaryBudget">${currentLanguage === 'ar' ? 'الميزانية المتاحة:' : 'Available Budget:'}</strong> ${promptData.budget}</p>
+                    <p><strong data-key="summaryContactMethod">${currentLanguage === 'ar' ? 'وسيلة التواصل:' : 'Contact Method:'}</strong> ${contactMethod}</p>
+                    <p><strong data-key="summaryLocation">${currentLanguage === 'ar' ? 'مكان النشاط:' : 'Location:'}</strong> ${location}</p>
+                </div>
+            `;
+
+            try {
+                // --- Generate Charts Section HTML ---
+                const chartsHTML = `
+                    <div class="report-section" id="chartsSection">
+                        <h3 data-key="chartsTitle">${currentLanguage === 'ar' ? '1. التحليلات والرسوم البيانية' : '1. Analytics and Charts'}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'توزيع الميزانية المقترحة' : 'Proposed Budget Distribution'}</h4>
+                                <div class="chart-container">
+                                    <canvas id="budgetDistributionChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'توقعات النمو/العوائد الشهرية (توضيحي)' : 'Monthly Growth/Revenue Projections (Illustrative)'}</h4>
+                                <div class="chart-container">
+                                    <canvas id="growthProjectionChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'تركيبة الجمهور المستهدف (توضيحي)' : 'Target Audience Demographics (Illustrative)'}</h4>
+                                <div class="chart-container">
+                                    <canvas id="audienceDemographicsChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'أداء المحتوى حسب النوع (توضيحي)' : 'Content Performance by Type (Illustrative)'}</h4>
+                                <div class="chart-container">
+                                    <canvas id="contentPerformanceChart"></canvas>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">${currentLanguage === 'ar' ? 'مراحل رحلة العميل (توضيحي)' : 'Customer Journey Stages (Illustrative)'}</h4>
+                                <div class="chart-container">
+                                    <canvas id="customerJourneyChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                generatedReportHTML += chartsHTML;
+                updateLoadingProgress(0); // Task 0: Initialize and collect data
+
+                // --- 2. بناء الهوية التعريفية للبراند ---
+                let brandIdentityPrompt = `Based on the following brand information, please formulate the brand identity in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Location: ${location}
+
+                Please provide:
+                1.  **Vision:** An inspiring statement expressing the brand's future ambition.
+                2.  **Mission:** What the brand currently offers and how it achieves its vision.
+                3.  **Core Values:** 3-5 values representing the brand's essence.
+                4.  **Unique Selling Proposition (USP):** What differentiates the brand from its competitors.
+                5.  **Brand Story:** A short, engaging paragraph about the brand's origin or philosophy.
+
+                The response format should be as follows:
+                **Vision:** [Vision here]
+                **Mission:** [Mission here]
+                **Core Values:**
+                - [Value 1]
+                - [Value 2]
+                - [Value 3]
+                **Unique Selling Proposition:** [USP here]
+                **Brand Story:** [Story here]
+                `;
+                const brandIdentity = await callGemini(brandIdentityPrompt);
+                lastGeneratedBrandIdentity = brandIdentity; // Store for slogan generator
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '2. الهوية التعريفية للبراند' : '2. Brand Identity'}</h3><div class="collapsible-content">${brandIdentity.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(1); // Task 1: Brand Identity
+
+                // --- 3. تحليل الجمهور المستهدف ---
+                let audienceAnalysisPrompt = `Based on the following brand information, please analyze the target audience in detail in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Location: ${location}
+                - Provided Target Audience: ${promptData.targetAudienceInput}
+
+                Please focus on:
+                1.  **Demographic Characteristics:** (Age, Gender, Education Level, Income, Marital Status, Geographical Location).
+                2.  **Psychographic/Behavioral Characteristics:** (Interests, Hobbies, Values, Lifestyle, Challenges/Pain Points, Purchase Motivations, Buying Behavior, Preferred Platforms).
+                3.  **Needs and Desires:** What this audience is looking for and how the brand can meet these needs.
+
+                The response format should be as follows:
+                **Demographic Characteristics:**
+                - Age:
+                - Gender:
+                - ...
+                **Psychographic/Behavioral Characteristics:**
+                - Interests:
+                - Hobbies:
+                - ...
+                **Needs and Desires:**
+                - ...
+                `;
+                const audienceAnalysis = await callGemini(audienceAnalysisPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '3. تحليل الجمهور المستهدف' : '3. Target Audience Analysis'}</h3><div class="collapsible-content">${audienceAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(2); // Task 2: Audience Analysis
+
+                // --- 4. كتابة 5 منشورات تسويقية ---
+                let postsPrompt = `Based on the following brand information, please write 5 diverse marketing posts (e.g., promotional, interactive, educational, offer announcement, motivational) for social media platforms (Facebook/Instagram) in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}. For each post:
+                - It must contain engaging text.
+                - Suggest a suitable image/video.
+                - Clear Call to Action (CTA).
+                - 3-5 relevant hashtags.
+
+                The response format should be as follows:
+                **Post 1 (Post Type):**
+                Text: [Post text]
+                Visual Suggestion: [Image/Video description]
+                CTA: [Call to Action]
+                Hashtags: [hashtag1] [hashtag2] ...
+
+                **Post 2 (Post Type):**
+                ...
+                `;
+                const marketingPosts = await callGemini(postsPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '4. 5 منشورات تسويقية مقترحة' : '4. 5 Suggested Marketing Posts'}</h3><div class="collapsible-content">${marketingPosts.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(3); // Task 3: Marketing Posts
+
+                // --- 5. اقتراح ميزانية ومدد للإعلانات الممولة ---
+                let budgetProposalPrompt = `Based on the following brand information, please provide a proposal for budget and durations for paid advertisements on (Facebook, Instagram, TikTok) in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Available Budget: ${promptData.rawBudget > 0 ? promptData.rawBudget + ' ' + promptData.currency : 'Not specified'}
+                - Target Audience: ${audienceAnalysis} (summary from previous analysis)
+                - Location: ${location}
+
+                The proposal should include:
+                1.  **Campaign Goals:** (e.g., increase awareness, increase sales, lead generation).
+                2.  **Proposed Budget Distribution:** across different platforms (Facebook, Instagram, TikTok) with a percentage for each.
+                3.  **Proposed Campaign Duration:** (e.g., 1 month, 3 months).
+                4.  **Performance Expectations (KPIs):** (e.g., reach, clicks, leads, cost per click).
+                5.  **Additional Notes:** Any tips to improve campaign performance.
+
+                The response format should be as follows:
+                **Campaign Goals:**
+                - [Goal 1]
+                - [Goal 2]
+                **Proposed Budget Distribution (based on budget ${promptData.budget}):**
+                - Facebook/Instagram: [Percentage]% ([Estimated Amount])
+                - TikTok: [Percentage]% ([Estimated Amount])
+                **Proposed Campaign Duration:** [Duration]
+                **Performance Expectations (KPIs):**
+                - [KPI 1]: [Expected Value]
+                - [KPI 2]: [Expected Value]
+                **Additional Notes:**
+                - ...
+                `;
+                const budgetProposal = await callGemini(budgetProposalPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '5. اقتراح ميزانية ومدد للإعلانات الممولة' : '5. Proposed Budget and Ad Durations'}</h3><div class="collapsible-content">${budgetProposal.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(4); // Task 4: Budget Proposal
+
+                // --- 6. تقديم أفكار تصميم وابتكار ---
+                let designIdeasPrompt = `Based on the following brand information, please provide design and innovation ideas for the brand's visual identity and visual content in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Brand Identity: ${brandIdentity} (summary from previous analysis)
+                - Target Audience: ${audienceAnalysis} (summary from previous analysis)
+
+                Please focus on:
+                1.  **Suggested Colors:** (Primary and secondary color palette with their meanings).
+                2.  **Suggested Fonts:** (Fonts for headings and fonts for body text).
+                3.  **Design Styles:** (e.g., modern, classic, minimalist, bold, playful).
+                4.  **Ideas for Innovative Visual Content:** (e.g., types of images/videos, use of animation, ideas for visual campaigns).
+                5.  **Logo Design Ideas:** (General description of the logo shape or symbols).
+
+                The response format should be as follows:
+                **Suggested Colors:**
+                - [Color 1] (#HEXCODE): [Meaning]
+                - [Color 2] (#HEXCODE): [Meaning]
+                **Suggested Fonts:**
+                - For Headings: [Font Name]
+                - For Body Text: [Font Name]
+                **Design Styles:**
+                - ...
+                **Ideas for Innovative Visual Content:**
+                - ...
+                **Logo Design Ideas:**
+                - ...
+                `;
+                const designIdeas = await callGemini(designIdeasPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '6. أفكار تصميم وابتكار' : '6. Design and Innovation Ideas'}</h3><div class="collapsible-content">${designIdeas.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(5); // Task 5: Design Ideas
+
+                // --- 7. بناء خطة تسويقية مختصرة وكاملة ---
+                let marketingPlanPrompt = `Based on the following brand information, please build a concise and complete marketing plan in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Brand Identity: ${brandIdentity}
+                - Target Audience: ${audienceAnalysis}
+                - Budget and Ad Proposal: ${budgetProposal}
+                - Location: ${location}
+
+                Please focus on:
+                1.  **Plan Goals:** (SMART Goals).
+                2.  **Key Stages:** (e.g., Preparation Phase, Launch Phase, Monitoring and Optimization Phase).
+                3.  **Suggested Marketing Channels:** (e.g., Social Media, Paid Ads, Content Marketing, Email Marketing, SEO).
+                4.  **Proposed Timeline:** (Tasks divided into weeks or months).
+                5.  **Key Performance Indicators (KPIs) for the overall plan:** (How success will be measured).
+
+                The response format should be as follows:
+                **Plan Goals:**
+                - [Goal 1]
+                - [Goal 2]
+                **Key Stages and Tasks:**
+                - **Preparation Phase:**
+                    - [Task 1]
+                    - [Task 2]
+                - **Launch Phase:**
+                    - ...
+                **Suggested Marketing Channels:**
+                - ...
+                **Proposed Timeline (e.g., for 3 months):**
+                - Month 1:
+                - Month 2:
+                - Month 3:
+                **Key Performance Indicators (KPIs) for the Plan:**
+                - ...
+                `;
+                const marketingPlan = await callGemini(marketingPlanPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '7. خطة تسويقية مختصرة وكاملة' : '7. Concise and Complete Marketing Plan'}</h3><div class="collapsible-content">${marketingPlan.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(6); // Task 6: Marketing Plan
+
+                // --- 8. استراتيجية SEO وEmail Marketing ---
+                let seoEmailPrompt = `Based on the following brand information, please provide suggestions for Search Engine Optimization (SEO) and Email Marketing strategies in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Target Audience: ${audienceAnalysis}
+                - Location: ${location}
+
+                Please provide:
+                1.  **SEO Strategy:**
+                    - Suggest 5-7 potential main keywords.
+                    - General tips for website optimization for search engines (On-page SEO).
+                2.  **Email Marketing Strategy:**
+                    - Ideas for types of email messages (e.g., welcome messages, offers, newsletters).
+                    - Tips for growing subscriber list.
+
+                The response format should be as follows:
+                **Search Engine Optimization (SEO) Strategy:**
+                - **Suggested Keywords:**
+                    - [Keyword 1]
+                    - [Keyword 2]
+                - **General Website Optimization Tips:**
+                    - ...
+                **Email Marketing Strategy:**
+                - **Suggested Message Types:**
+                    - ...
+                - **Tips for Growing Subscriber List:**
+                    - ...
+                `;
+                const seoEmailStrategy = await callGemini(seoEmailPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '8. استراتيجية SEO والتسويق عبر البريد الإلكتروني' : '8. SEO and Email Marketing Strategy'}</h3><div class="collapsible-content">${seoEmailStrategy.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(7); // Task 7: SEO & Email
+
+                // --- 9. تحليل عائد الاستثمار (ROI) وتوقعات العوائد ---
+                let roiAnalysisPrompt = `Based on the following brand information, please provide an initial analysis of Return on Investment (ROI) and projected returns, at least probabilistically, in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}:
+                - Brand Name: ${brandName}
+                - Business Type: ${businessType}
+                - Service/Goal Description: ${serviceDescription}
+                - Available Budget: ${promptData.rawBudget > 0 ? promptData.rawBudget + ' ' + promptData.currency : 'Not specified'}
+                - Budget and Ad Proposal: ${budgetProposal}
+                - Marketing Plan: ${marketingPlan}
+                - Location: ${location}
+
+                Please focus on:
+                1.  **ROI Projections:** Approximate estimate (as a percentage or description) based on budget and goals.
+                2.  **Break-even Point Analysis:** When the brand can start covering marketing costs.
+                3.  **Brand Awareness Growth Projections:** (e.g., increase in followers, brand mentions).
+                4.  **Sales/Lead Projections:** (Approximate estimate).
+                5.  **Notes on Risks and Assumptions:** (What factors might affect these projections).
+
+                The response format should be as follows:
+                **ROI Projections:**
+                - ...
+                **Break-even Point Analysis:**
+                - ...
+                **Brand Awareness Growth Projections:**
+                - ...
+                **Sales/Lead Projections:**
+                - ...
+                **Notes on Risks and Assumptions:**
+                - ...
+                `;
+                const roiAnalysis = await callGemini(roiAnalysisPrompt);
+                generatedReportHTML += `<div class="report-section"><h3>${currentLanguage === 'ar' ? '9. تحليل عائد الاستثمار (ROI) والعوائد المتوقعة' : '9. ROI Analysis and Projected Returns'}</h3><div class="collapsible-content">${roiAnalysis.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+                updateLoadingProgress(8); // Task 8: ROI Analysis
+
+                // --- Platform Explanation Section ---
+                generatedReportHTML += `<div class="report-section"><h3>${translations[currentLanguage].platformExplanationTitle}</h3><div class="collapsible-content">${translations[currentLanguage].platformExplanationContent}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+
+                // --- Client Guidance Section ---
+                generatedReportHTML += `<div class="report-section"><h3>${translations[currentLanguage].clientGuidanceTitle}</h3><div class="collapsible-content">${translations[currentLanguage].clientGuidanceContent}</div><button class="read-more-btn" data-key="readMoreButton">${currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More'}</button></div>`;
+
+
+                reportContent.innerHTML = generatedReportHTML;
+                reportOutput.classList.remove('hidden');
+
+                // Draw charts after the report content is in the DOM
+                drawCharts();
+                updateLoadingProgress(9); // Task 9: Generate Charts
+
+                // Add event listeners for collapsible sections
+                document.querySelectorAll('.report-section .read-more-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const content = button.previousElementSibling;
+                        content.classList.toggle('expanded');
+                        if (content.classList.contains('expanded')) {
+                            button.textContent = currentLanguage === 'ar' ? 'قراءة أقل' : 'Read Less';
+                        } else {
+                            button.textContent = currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More';
+                        }
+                    });
+                });
+                updateLoadingProgress(10); // Task 10: Final Report Assembly
+
+            } catch (error) {
+                console.error("Error generating report:", error);
+                reportContent.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد التقرير: ' : 'An error occurred while generating the report: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                reportOutput.classList.remove('hidden');
+            } finally {
+                // Hide loading overlay and stop message cycling
+                loadingOverlay.classList.add('hidden');
+                clearInterval(messageInterval);
+
+                // Ensure the last task is marked as completed
+                if (activeTaskIndex !== -1 && mapNodes[activeTaskIndex]) {
+                    mapNodes[activeTaskIndex].classList.remove('active');
+                    mapNodes[activeTaskIndex].classList.add('completed');
+                    mapProgressFill.style.width = '100%'; // Ensure fill is 100% on completion
+                }
+
+                // Re-enable button and hide loading spinner
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = `${translations[currentLanguage].generateReportButton} <i class="fas fa-magic mr-2"></i>`;
+                reportOutput.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to report
+            }
+        });
+
+        // --- Social Media Post Generator Logic ---
+        generatePostBtn.addEventListener('click', async () => {
+            const postTopic = postTopicInput.value.trim();
+            if (!postTopic) {
+                alert(currentLanguage === 'ar' ? 'الرجاء إدخال موضوع المنشور.' : 'Please enter a topic for the post.');
+                return;
+            }
+
+            generatePostBtn.disabled = true;
+            postLoadingSpinner.classList.remove('hidden');
+            generatePostBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedPostOutput.classList.add('hidden');
+            postCopySuccessMessage.classList.add('hidden');
+
+            try {
+                const postPrompt = `Generate a social media post (for Facebook/Instagram) about "${postTopic}". The post should be engaging, include relevant emojis, 3-5 hashtags, and a clear call to action. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Format:
+                Title: [Post Title]
+                Body: [Post Body with Emojis]
+                Call to Action: [CTA]
+                Hashtags: [Hashtag1] [Hashtag2] ...`;
+
+                const generatedPost = await callGemini(postPrompt);
+
+                // Parse the generated post
+                const lines = generatedPost.split('\n').filter(line => line.trim() !== '');
+                let title = '';
+                let body = '';
+                let cta = '';
+                let hashtags = '';
+
+                lines.forEach(line => {
+                    if (line.startsWith('Title:')) {
+                        title = line.substring('Title:'.length).trim();
+                    } else if (line.startsWith('Body:')) {
+                        body = line.substring('Body:'.length).trim();
+                    } else if (line.startsWith('Call to Action:')) {
+                        cta = line.substring('Call to Action:'.length).trim();
+                    } else if (line.startsWith('Hashtags:')) {
+                        hashtags = line.substring('Hashtags:'.length).trim();
+                    }
+                });
+
+                postContentDiv.innerHTML = `
+                    <p><strong>${currentLanguage === 'ar' ? 'العنوان:' : 'Title:'}</strong> ${title}</p>
+                    <p><strong>${currentLanguage === 'ar' ? 'المنشور:' : 'Post:'}</strong> ${body}</p>
+                    <p><strong>${currentLanguage === 'ar' ? 'دعوة للعمل:' : 'Call to Action:'}</strong> ${cta}</p>
+                    <p><strong>${currentLanguage === 'ar' ? 'الهاشتاجات:' : 'Hashtags:'}</strong> ${hashtags}</p>
+                `;
+                generatedPostOutput.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error generating social media post:", error);
+                postContentDiv.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد المنشور: ' : 'An error occurred while generating the post: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedPostOutput.classList.remove('hidden');
+            } finally {
+                generatePostBtn.disabled = false;
+                postLoadingSpinner.classList.add('hidden');
+                postLoadingSpinner.classList.add('hidden');
+                generatePostBtn.querySelector('span').textContent = translations[currentLanguage].generatePostButtonText;
+            }
+        });
+
+        copyPostBtn.addEventListener('click', () => {
+            const postTextToCopy = postContentDiv.innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = postTextToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            postCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                postCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        sharePostBtn.addEventListener('click', () => {
+            const postText = postContentDiv.innerText;
+            if (navigator.share) {
+                navigator.share({
+                    title: currentLanguage === 'ar' ? 'منشور مقترح من EhabGM' : 'Suggested Post from EhabGM',
+                    text: postText,
+                    url: window.location.href,
+                }).catch((error) => console.log('Error sharing', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                alert(currentLanguage === 'ar' ? 'ميزة المشاركة غير مدعومة في متصفحك. تم نسخ المنشور إلى الحافظة.' : 'Share feature not supported in your browser. Post has been copied to clipboard.');
+                copyPostBtn.click(); // Automatically copy if share not supported
+            }
+        });
+
+        // --- Slogan Generator Logic ---
+        generateSlogansBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const sloganContext = sloganContextInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية أولاً (الخطوة 1).' : 'Please fill in basic brand information first (Step 1).');
+                return;
+            }
+
+            generateSlogansBtn.disabled = true;
+            sloganLoadingSpinner.classList.remove('hidden');
+            generateSlogansBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedSlogansOutput.classList.add('hidden');
+            sloganCopySuccessMessage.classList.add('hidden');
+            slogansList.innerHTML = ''; // Clear previous slogans
+
+            try {
+                // Ensure brand identity is available, if not, generate it first (or use a placeholder)
+                let brandIdentityText = lastGeneratedBrandIdentity;
+                if (!brandIdentityText) {
+                    // If the report wasn't generated yet, we might need a quick summary for the prompt
+                    brandIdentityText = `Brand Name: ${brandName}, Business Type: ${businessType}, Service: ${serviceDescription}`;
+                }
+
+                const sloganPrompt = `Generate 5 creative and memorable slogans/taglines for a brand with the following details. The slogans should be concise, impactful, and reflect the brand's unique selling proposition and core values. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                ${sloganContext ? `Additional context: ${sloganContext}` : ''}
+
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Brand Identity (Vision, Mission, USP, Core Values): ${brandIdentityText}
+
+                Slogans (each on a new line, prefixed with a hyphen):`;
+
+                const generatedSlogansRaw = await callGemini(sloganPrompt);
+                const slogans = generatedSlogansRaw.split('\n').filter(line => line.trim().startsWith('-')).map(line => line.trim().substring(1).trim());
+
+                if (slogans.length > 0) {
+                    slogans.forEach(slogan => {
+                        const li = document.createElement('li');
+                        li.textContent = slogan;
+                        slogansList.appendChild(li);
+                    });
+                    generatedSlogansOutput.classList.remove('hidden');
+                } else {
+                    slogansList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد شعارات. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No slogans generated. Please try again with different information.'}</p>`;
+                    generatedSlogansOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating slogans:", error);
+                slogansList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد الشعارات: ' : 'An error occurred while generating slogans: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedSlogansOutput.classList.remove('hidden');
+            } finally {
+                generateSlogansBtn.disabled = false;
+                sloganLoadingSpinner.classList.add('hidden');
+                generateSlogansBtn.querySelector('span').textContent = translations[currentLanguage].generateSlogansButtonText;
+            }
+        });
+
+        copySlogansBtn.addEventListener('click', () => {
+            let allSlogansText = '';
+            slogansList.querySelectorAll('li').forEach(li => {
+                allSlogansText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allSlogansText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            sloganCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                sloganCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // --- Customer Persona Generator Logic ---
+        generatePersonaBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const location = document.getElementById('location').value;
+            const personaDescription = personaDescriptionInput.value.trim();
+            const targetAudienceInput = document.getElementById('targetAudienceInput').value;
+
+            if (!brandName || !businessType || !serviceDescription) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية أولاً (الخطوة 1).' : 'Please fill in basic brand information first (Step 1).');
+                return;
+            }
+
+            generatePersonaBtn.disabled = true;
+            personaLoadingSpinner.classList.remove('hidden');
+            generatePersonaBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedPersonaOutput.classList.add('hidden');
+            personaCopySuccessMessage.classList.add('hidden');
+            personaContentDiv.innerHTML = '';
+
+            try {
+                const personaPrompt = `Generate a detailed customer persona for a brand with the following information. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Location: ${location}
+                Target Audience (from form): ${targetAudienceInput || 'Not specified'}
+                Additional Persona Description: ${personaDescription || 'Not specified'}
+
+                Please include the following sections for the persona:
+                - **Persona Name:** (A creative name for the persona)
+                - **Age:**
+                - **Gender:**
+                - **Occupation:**
+                - **Location:**
+                - **Income Level:**
+                - **Education Level:**
+                - **Marital Status:**
+                - **Goals:** (3-5 goals related to the brand's offering)
+                - **Challenges/Pain Points:** (3-5 challenges this persona faces)
+                - **Interests/Hobbies:** (3-5 interests)
+                - **Preferred Channels:** (Social media, email, website, etc.)
+                - **Quote:** (A representative quote from the persona)
+                - **Bio:** (A short paragraph summarizing the persona)
+
+                Format the output clearly with bolded headings and bullet points where appropriate.`;
+
+                const generatedPersona = await callGemini(personaPrompt);
+                personaContentDiv.innerHTML = generatedPersona.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                generatedPersonaOutput.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error generating customer persona:", error);
+                personaContentDiv.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد شخصية العميل: ' : 'An error occurred while generating the customer persona: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedPersonaOutput.classList.remove('hidden');
+            } finally {
+                generatePersonaBtn.disabled = false;
+                personaLoadingSpinner.classList.add('hidden');
+                generatePersonaBtn.querySelector('span').textContent = translations[currentLanguage].generatePersonaButtonText;
+            }
+        });
+
+        copyPersonaBtn.addEventListener('click', () => {
+            const personaTextToCopy = personaContentDiv.innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = personaTextToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            personaCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                personaCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // --- Email Subject Line Generator Logic ---
+        generateEmailSubjectsBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const emailPurpose = emailPurposeInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription || !emailPurpose) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية وموضوع البريد الإلكتروني.' : 'Please fill in basic brand information and email purpose.');
+                return;
+            }
+
+            generateEmailSubjectsBtn.disabled = true;
+            emailSubjectLoadingSpinner.classList.remove('hidden');
+            generateEmailSubjectsBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedEmailSubjectsOutput.classList.add('hidden');
+            emailSubjectCopySuccessMessage.classList.add('hidden');
+            emailSubjectsList.innerHTML = ''; // Clear previous subjects
+
+            try {
+                const emailSubjectPrompt = `Generate 5-7 catchy, engaging, and effective email subject lines for a brand with the following details. The subject lines should be suitable for the specified email purpose. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Email Purpose: ${emailPurpose}
+
+                Subject Lines (each on a new line, prefixed with a number and period, e.g., "1. [Subject Line]"):`;
+
+                const generatedSubjectsRaw = await callGemini(emailSubjectPrompt);
+                const subjects = generatedSubjectsRaw.split('\n').filter(line => line.trim() !== '');
+
+                if (subjects.length > 0) {
+                    subjects.forEach(subject => {
+                        const li = document.createElement('li');
+                        li.textContent = subject;
+                        emailSubjectsList.appendChild(li);
+                    });
+                    generatedEmailSubjectsOutput.classList.remove('hidden');
+                } else {
+                    emailSubjectsList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد عناوين. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No subject lines generated. Please try again with different information.'}</p>`;
+                    generatedEmailSubjectsOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating email subject lines:", error);
+                emailSubjectsList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد العناوين: ' : 'An error occurred while generating subject lines: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedEmailSubjectsOutput.classList.remove('hidden');
+            } finally {
+                generateEmailSubjectsBtn.disabled = false;
+                emailSubjectLoadingSpinner.classList.add('hidden');
+                generateEmailSubjectsBtn.querySelector('span').textContent = translations[currentLanguage].generateEmailSubjectsButtonText;
+            }
+        });
+
+        copyEmailSubjectsBtn.addEventListener('click', () => {
+            let allSubjectsText = '';
+            emailSubjectsList.querySelectorAll('li').forEach(li => {
+                allSubjectsText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allSubjectsText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            emailSubjectCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                emailSubjectCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // --- Content Idea Generator Logic ---
+        generateContentIdeasBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const contentTopic = contentTopicInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription || !contentTopic) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية وموضوع المحتوى.' : 'Please fill in basic brand information and content topic.');
+                return;
+            }
+
+            generateContentIdeasBtn.disabled = true;
+            contentIdeaLoadingSpinner.classList.remove('hidden');
+            generateContentIdeasBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedContentIdeasOutput.classList.add('hidden');
+            contentIdeaCopySuccessMessage.classList.add('hidden');
+            contentIdeasList.innerHTML = ''; // Clear previous ideas
+
+            try {
+                const contentIdeaPrompt = `Generate 5-7 creative and relevant content ideas (e.g., blog post titles, video concepts, social media series topics) for a brand with the following details, focusing on the provided content topic. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Content Topic: ${contentTopic}
+
+                Content Ideas (each on a new line, prefixed with a number and period, e.g., "1. [Idea]"):`;
+
+                const generatedIdeasRaw = await callGemini(contentIdeaPrompt);
+                const ideas = generatedIdeasRaw.split('\n').filter(line => line.trim() !== '');
+
+                if (ideas.length > 0) {
+                    ideas.forEach(idea => {
+                        const li = document.createElement('li');
+                        li.textContent = idea;
+                        contentIdeasList.appendChild(li);
+                    });
+                    generatedContentIdeasOutput.classList.remove('hidden');
+                } else {
+                    contentIdeasList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد أفكار محتوى. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No content ideas generated. Please try again with different information.'}</p>`;
+                    generatedContentIdeasOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating content ideas:", error);
+                contentIdeasList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد أفكار المحتوى: ' : 'An error occurred while generating content ideas: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedContentIdeasOutput.classList.remove('hidden');
+            } finally {
+                generateContentIdeasBtn.disabled = false;
+                contentIdeaLoadingSpinner.classList.add('hidden');
+                generateContentIdeasBtn.querySelector('span').textContent = translations[currentLanguage].generateContentIdeasButtonText;
+            }
+        });
+
+        copyContentIdeasBtn.addEventListener('click', () => {
+            let allIdeasText = '';
+            contentIdeasList.querySelectorAll('li').forEach(li => {
+                allIdeasText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allIdeasText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            contentIdeaCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                contentIdeaCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // --- Marketing Campaign Name Generator Logic ---
+        generateCampaignNamesBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const campaignPurpose = campaignPurposeInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription || !campaignPurpose) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية والغرض من الحملة التسويقية.' : 'Please fill in basic brand information and campaign purpose.');
+                return;
+            }
+
+            generateCampaignNamesBtn.disabled = true;
+            campaignNameLoadingSpinner.classList.remove('hidden');
+            generateCampaignNamesBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedCampaignNamesOutput.classList.add('hidden');
+            campaignNameCopySuccessMessage.classList.add('hidden');
+            campaignNamesList.innerHTML = ''; // Clear previous names
+
+            try {
+                const campaignNamePrompt = `Generate 5-7 creative, memorable, and impactful marketing campaign names for a brand with the following details, focusing on the provided campaign purpose. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Campaign Purpose: ${campaignPurpose}
+
+                Campaign Names (each on a new line, prefixed with a number and period, e.g., "1. [Campaign Name]"):`;
+
+                const generatedNamesRaw = await callGemini(campaignNamePrompt);
+                const names = generatedNamesRaw.split('\n').filter(line => line.trim() !== '');
+
+                if (names.length > 0) {
+                    names.forEach(name => {
+                        const li = document.createElement('li');
+                        li.textContent = name;
+                        campaignNamesList.appendChild(li);
+                    });
+                    generatedCampaignNamesOutput.classList.remove('hidden');
+                } else {
+                    campaignNamesList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد أسماء حملات. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No campaign names generated. Please try again with different information.'}</p>`;
+                    generatedCampaignNamesOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating campaign names:", error);
+                campaignNamesList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد أسماء الحملات: ' : 'An error occurred while generating campaign names: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedCampaignNamesOutput.classList.remove('hidden');
+            } finally {
+                generateCampaignNamesBtn.disabled = false;
+                campaignNameLoadingSpinner.classList.add('hidden');
+                generateCampaignNamesBtn.querySelector('span').textContent = translations[currentLanguage].generateCampaignNamesButtonText;
+            }
+        });
+
+        copyCampaignNamesBtn.addEventListener('click', () => {
+            let allNamesText = '';
+            campaignNamesList.querySelectorAll('li').forEach(li => {
+                allNamesText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allNamesText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            campaignNameCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                campaignNameCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+
+        // --- Copy report to clipboard ---
+        copyReportBtn.addEventListener('click', () => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = reportContent.innerHTML;
+
+            // Remove chart canvases as they can't be copied as images directly to text clipboard
+            const canvases = tempDiv.querySelectorAll('canvas');
+            canvases.forEach(canvas => canvas.remove());
+
+            // Add a placeholder for charts
+            const chartsSectionInReport = tempDiv.querySelector('#chartsSection');
+            if (chartsSectionInReport) {
+                const chartsPlaceholder = document.createElement('p');
+                chartsPlaceholder.innerHTML = `<br>--- ${currentLanguage === 'ar' ? 'الرسوم البيانية التحليلية (الرجاء الرجوع للتطبيق الأصلي للمعاينة المرئية)' : 'Analytical Charts (Please refer to the original application for visual preview)'} ---<br>`;
+                chartsSectionInReport.parentNode.insertBefore(chartsPlaceholder, chartsSectionInReport.nextSibling);
+                chartsSectionInReport.remove(); // Remove the original charts section from tempDiv
+            }
+
+            const range = document.createRange();
+            range.selectNode(tempDiv);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    copySuccessMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        copySuccessMessage.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    prompt(currentLanguage === 'ar' ? 'نسخ التقرير (Ctrl+C / Cmd+C):' : 'Copy Report (Ctrl+C / Cmd+C):', tempDiv.innerText);
+                }
+            } catch (err) {
+                prompt(currentLanguage === 'ar' ? 'نسخ التقرير (Ctrl+C / Cmd+C):' : 'Copy Report (Ctrl+C / Cmd+C):', tempDiv.innerText);
+            } finally {
+                window.getSelection().removeAllRanges();
+            }
+        });
+
+        // --- Print to PDF Logic ---
+        printPdfBtn.addEventListener('click', () => {
+            const element = document.getElementById('reportOutput');
+            const originalReportDisplay = element.style.display;
+
+            // Temporarily hide social share and post generator sections for cleaner PDF
+            const socialShareSection = element.querySelector('.social-share-buttons');
+            const postGeneratorSection = element.querySelector('.post-generator-section');
+            const sloganGeneratorSection = element.querySelector('.slogan-generator-section');
+            const customerPersonaSection = element.querySelector('.customer-persona-section');
+            const emailSubjectSection = element.querySelector('.email-subject-generator-section');
+            const contentIdeaSection = element.querySelector('.content-idea-generator-section');
+            const campaignNameSection = element.querySelector('.campaign-name-generator-section');
+
+            const copySuccessMsg = element.querySelector('#copySuccessMessage');
+            const postCopySuccessMsg = element.querySelector('#postCopySuccessMessage');
+            const sloganCopySuccessMsg = element.querySelector('#sloganCopySuccessMessage');
+            const personaCopySuccessMsg = element.querySelector('#personaCopySuccessMessage');
+            const emailSubjectCopySuccessMsg = element.querySelector('#emailSubjectCopySuccessMessage');
+            const contentIdeaCopySuccessMsg = element.querySelector('#contentIdeaCopySuccessMessage');
+            const campaignNameCopySuccessMsg = element.querySelector('#campaignNameCopySuccessMessage');
+
+
+            if (socialShareSection) socialShareSection.style.display = 'none';
+            if (postGeneratorSection) postGeneratorSection.style.display = 'none';
+            if (sloganGeneratorSection) sloganGeneratorSection.style.display = 'none';
+            if (customerPersonaSection) customerPersonaSection.style.display = 'none';
+            if (emailSubjectSection) emailSubjectSection.style.display = 'none';
+            if (contentIdeaSection) contentIdeaSection.style.display = 'none';
+            if (campaignNameSection) campaignNameSection.style.display = 'none';
+
+            if (copySuccessMsg) copySuccessMsg.style.display = 'none';
+            if (postCopySuccessMsg) postCopySuccessMsg.style.display = 'none';
+            if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = 'none';
+            if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = 'none';
+            if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = 'none';
+            if (contentIdeaCopySuccessMsg) contentIdeaCopySuccessMsg.style.display = 'none';
+            if (campaignNameCopySuccessMsg) campaignNameCopySuccessMsg.style.display = 'none';
+
+            // Ensure all collapsible sections are expanded for PDF
+            document.querySelectorAll('.collapsible-content').forEach(content => {
+                content.classList.add('expanded');
+            });
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.style.display = 'none'; // Hide buttons in PDF
+            });
+
+
+            // Options for html2pdf
+            const options = {
+                margin: 10,
+                filename: `${currentLanguage === 'ar' ? 'تقرير-EhabGM-' : 'EhabGM-Report-'}${document.getElementById('brandName').value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(options).from(element).save().then(() => {
+                // Restore original display after PDF generation
+                if (socialShareSection) socialShareSection.style.display = originalReportDisplay;
+                if (postGeneratorSection) postGeneratorSection.style.display = originalReportDisplay;
+                if (sloganGeneratorSection) sloganGeneratorSection.style.display = originalReportDisplay;
+                if (customerPersonaSection) customerPersonaSection.style.display = originalReportDisplay;
+                if (emailSubjectSection) emailSubjectSection.style.display = originalReportDisplay;
+                if (contentIdeaSection) contentIdeaSection.style.display = originalReportDisplay;
+                if (campaignNameSection) campaignNameSection.style.display = originalReportDisplay;
+
+                if (copySuccessMsg) copySuccessMsg.style.display = originalReportDisplay;
+                if (postCopySuccessMsg) postCopySuccessMsg.style.display = originalReportDisplay;
+                if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = originalReportDisplay;
+                if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = originalReportDisplay;
+                if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = originalReportDisplay;
+                if (contentIdeaCopySuccessMsg) contentIdeaCopySuccessMsg.style.display = originalReportDisplay;
+                if (campaignNameCopySuccessMsg) campaignNameCopySuccessMsg.style.display = originalReportDisplay;
+
+                // Restore collapsible sections state
+                document.querySelectorAll('.collapsible-content').forEach(content => {
+                    // This assumes they were collapsed before, if not, they will remain expanded
+                    // A more robust solution would store their state before printing
+                    content.classList.remove('expanded');
+                });
+                document.querySelectorAll('.read-more-btn').forEach(button => {
+                    button.style.display = 'block'; // Show buttons again
+                    // Reset text based on actual state
+                    const content = button.previousElementSibling;
+                    if (content.scrollHeight > content.clientHeight && !content.classList.contains('expanded')) {
+                         button.textContent = currentLanguage === 'ar' ? 'قراءة المزيد' : 'Read More';
+                    } else {
+                        button.textContent = currentLanguage === 'ar' ? 'قراءة أقل' : 'Read Less';
+                    }
+                });
+            });
+        });
+
+        // Social Share Buttons Logic (for the report)
+        const currentAppUrl = window.location.href;
+
+        document.getElementById('shareWhatsappBtn').addEventListener('click', () => {
+            const shareText = `${currentLanguage === 'ar' ? 'ألقِ نظرة على هذا التقرير التسويقي الشامل الذي تم إنشاؤه بواسطة وكيل EhabGM للتسويق الذكي! يمكنك إنشاء تقريرك الخاص مجانًا من هنا:' : 'Check out this comprehensive marketing report generated by EhabGM Smart Marketing Agent! You can create your own report for free here:'} ${currentAppUrl}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+        });
+
+        document.getElementById('shareFacebookBtn').addEventListener('click', () => {
+            const shareUrl = currentAppUrl;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+        });
+
+        document.getElementById('shareTwitterBtn').addEventListener('click', () => {
+            const shareText = `${currentLanguage === 'ar' ? 'وكيل EhabGM للتسويق الذكي: أنشئ تقريرك التسويقي الشامل مجانًا الآن!' : 'EhabGM Smart Marketing Agent: Generate your comprehensive marketing report for free now!'}`;
+            const shareUrl = currentAppUrl;
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
+        });
+
+        document.getElementById('shareLinkedInBtn').addEventListener('click', () => {
+            const shareTitle = currentLanguage === 'ar' ? 'وكيل EhabGM للتسويق الذكي' : 'EhabGM Smart Marketing Agent';
+            const shareSummary = currentLanguage === 'ar' ? 'أداة ذكاء اصطناعي متكاملة لإنشاء خطط تسويقية احترافية وتحليلات عميقة لبراندك.' : 'An integrated AI tool for creating professional marketing plans and deep analytics for your brand.';
+            const shareUrl = currentAppUrl;
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(shareSummary)}`, '_blank');
+        });
+
+        // --- Splash Screen Logic ---
+        let splashTipInterval;
+
+        function updateSplashTip() {
+            if (dynamicSplashTip) {
+                const tips = translations[currentLanguage].splashTips;
+                dynamicSplashTip.textContent = tips[currentTipIndex];
+                currentTipIndex = (currentTipIndex + 1) % tips.length;
+            }
+        }
+
+        // Hide main content initially
+        document.querySelector('main').style.display = 'none';
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+        musicToggle.style.display = 'none'; // Hide music button initially
+
+        // Show splash screen and start tips
+        window.onload = () => {
+            updateSplashTip(); // Display first tip immediately
+            splashTipInterval = setInterval(updateSplashTip, 3000); // Change tip every 3 seconds
+
+            setTimeout(() => {
+                splashScreen.classList.add('hidden'); // Start fade out
+                clearInterval(splashTipInterval); // Stop changing tips
+
+                // After fade out, display main content
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    document.querySelector('main').style.display = 'flex';
+                    document.querySelector('header').style.display = 'flex';
+                    document.querySelector('footer').style.display = 'block';
+                    musicToggle.style.display = 'flex'; // Show music button
+                    showStep(currentStep); // Show the first form step
+
+                    // Initialize and start music after user interaction (splash screen fade)
+                    if (Tone.context.state !== 'running') {
+                        Tone.start();
+                    }
+                    initializeMusic();
+                    // Autoplay music after a short delay to ensure Tone.js context is running
+                    setTimeout(() => {
+                        if (!isMusicPlaying) {
+                            toggleMusic(); // Start music automatically if not playing
+                        }
+                    }, 500); // Short delay
+                }, 1000); // Wait for fade-out transition (1 second)
+            }, 3000); // Splash screen visible for 3 seconds before fading
+        };
+
+        // --- Background Music Logic (Tone.js) ---
+        function initializeMusic() {
+            // Create a simple synth for ambient background music
+            synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: {
+                    type: "sine"
+                },
+                envelope: {
+                    attack: 2,
+                    decay: 1,
+                    sustain: 0.5,
+                    release: 2
+                },
+                volume: -20 // Start with a low volume
+            }).toDestination();
+
+            // A simple, repeating ambient chord progression
+            const chords = [
+                ["C3", "E3", "G3"],
+                ["F3", "A3", "C4"],
+                ["G3", "B3", "D4"],
+                ["Am3", "C4", "E4"]
+            ];
+            let chordIndex = 0;
+
+            Tone.Transport.scheduleRepeat(time => {
+                const currentChord = chords[chordIndex % chords.length];
+                synth.triggerAttackRelease(currentChord, "4n", time);
+                chordIndex++;
+            }, "2n"); // Play a chord every half note
+
+            Tone.Transport.bpm.value = 60; // Slow tempo
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                Tone.Transport.stop();
+                musicIcon.classList.remove('fa-volume-up');
+                musicIcon.classList.add('fa-volume-mute');
+                isMusicPlaying = false;
+            } else {
+                Tone.Transport.start();
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
+                isMusicPlaying = true;
+            }
+        }
+
+        musicToggle.addEventListener('click', toggleMusic);
+
+    </script>
+</body>
+</html>
 
