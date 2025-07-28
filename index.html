@@ -5,23 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-ar="EhabGM | المسوق الذكي" data-lang-en="EhabGM | Smart Marketer">EhabGM | المسوق الذكي</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="EhabGM Online Services: حلول متكاملة للتصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع. شريكك الرقمي لنمو أعمالك في مصر والخليج.">
-    <meta name="keywords" content="تصميم جرافيك، تسويق الكتروني، تصميم مواقع، هوية بصرية، إعلانات ممولة، SEO، EhabGM، خدمات رقمية، مصر، الخليج">
-    
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ehabgm.online"> <!-- Replace with your actual domain -->
-    <meta property="og:title" content="EhabGM | Online Services - شريكك الرقمي لنمو أعمالك">
-    <meta property="og:description" content="نقدم حلولاً متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة.">
-    <meta property="og:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+    <!-- Favicon - Logo for tab icon -->
+    <link rel="icon" href="https://i.postimg.cc/TYyK2Rtv/logo.png" type="image/png">
 
-    <!-- Twitter -->
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="EhabGM Online Services: حلول متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وإدارة الإعلانات. شريكك الرقمي لنمو أعمالك في مصر والخليج.">
+    <meta name="keywords" content="تصميم جرافيك، تسويق الكتروني، تصميم مواقع، هوية بصرية، إعلانات ممولة، SEO، EhabGM، خدمات رقمية، مصر، الخليج، تصميم شعارات، إدارة حملات تسويقية">
+    
+    <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ehabonlineservice.online"> <!-- Updated with user's domain -->
+    <meta property="og:title" content="EhabGM | Online Services - حلول رقمية مبتكرة لنمو أعمالك">
+    <meta property="og:description" content="نقدم خدمات متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة. اكتشف EMIA المسوق الذكي!">
+    <meta property="og:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+    <meta property="og:image:alt" content="EhabGM Logo - Online Services">
+    <meta property="og:locale" content="ar_AR">
+
+    <!-- Twitter Card Meta Tags -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://x.com/ehabgm"> <!-- Replace with your actual Twitter URL -->
+    <meta property="twitter:url" content="https://x.com/ehabgm"> <!-- User's Twitter URL -->
     <meta property="twitter:title" content="EhabGM | Online Services - شريكك الرقمي لنمو أعمالك">
-    <meta property="twitter:description" content="نقدم حلولاً متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة.">
+    <meta property="twitter:description" content="نقدم حلولاً متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة. اكتشف EMIA المسوق الذكي!">
     <meta property="twitter:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+    <meta property="twitter:image:alt" content="EhabGM Logo - Online Services">
+    <meta name="twitter:creator" content="@ehabgm">
+
+    <!-- Schema.org Structured Data for AI Search Visibility -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "EhabGM | Online Services",
+      "url": "https://ehabonlineservice.online",
+      "logo": "https://i.postimg.cc/TYyK2Rtv/logo.png",
+      "description": "منصة شاملة تقدم مجموعة من الخدمات الرقمية في التصميم الجرافيكي، التسويق الإلكتروني، إدارة الإعلانات الممولة، إنشاء الهوية الرقمية، وتصميم المواقع والمتاجر الإلكترونية.",
+      "sameAs": [
+        "https://www.facebook.com/ehab.gm1",
+        "https://www.youtube.com/@ehabgm",
+        "https://x.com/ehabgm",
+        "https://www.linkedin.com/in/ehabgm-online-services-487a82331",
+        "https://www.tiktok.com/@ehab.gm1"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+201022679250",
+        "contactType": "customer service",
+        "email": "info@ehabgm.online",
+        "areaServed": ["EG", "SA", "AE", "KW", "BH", "QA"],
+        "availableLanguage": ["ar", "en"]
+      }
+    }
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -303,12 +337,61 @@
             @apply text-white py-2 px-4 rounded-md text-sm hover:bg-gray-700 transition duration-300;
         }
         /* Input field styling for AI tools */
+        .input-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
         .ai-input-field {
-            @apply w-full p-3 rounded-lg border border-gray-300 mb-4 text-right;
+            @apply w-full p-3 rounded-lg border border-gray-300 text-right;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .ai-input-field:focus {
             @apply border-red-500 ring-2 ring-red-200 outline-none;
+        }
+        .ai-help-icon {
+            position: absolute;
+            left: 10px; /* Adjust for RTL positioning */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ef4444; /* Red color for the icon */
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.2s ease-in-out;
+        }
+        .ai-help-icon:hover {
+            color: #b91c1c; /* Darker red on hover */
+        }
+        .tooltip {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the icon */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap; /* Keep text on one line */
+            font-size: 0.85rem;
+        }
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        .tooltip.show {
+            visibility: visible;
+            opacity: 1;
         }
 
         /* Custom message box for copy confirmation */
@@ -465,8 +548,8 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-black mb-8" data-lang-ar="EMIA المسوق الذكي | EhabGM" data-lang-en="EMIA Smart Marketer | EhabGM">
                     EMIA المسوق الذكي | EhabGM
                 </h2>
-                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12" data-lang-ar="نقدم لكم أحدث ابتكاراتنا في عالم التسويق الرقمي، EMIA، المسوق الذكي الذي يوفر حلولاً تسويقية سريعة، فعالة، ومجانية لمساعدتكم على تحقيق أهدافكم." data-lang-en="We present our latest innovations in the world of digital marketing, EMIA, the Smart Marketer that provides fast, effective, and free marketing solutions to help you achieve your goals.">
-                    نقدم لكم أحدث ابتكاراتنا في عالم التسويق الرقمي، EMIA، المسوق الذكي الذي يوفر حلولاً تسويقية سريعة، فعالة، ومجانية لمساعدتكم على تحقيق أهدافكم.
+                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12" data-lang-ar="نقدم لكم أحدث ابتكاراتنا في عالم التسويق الرقمي، EMIA، المسوق الذكي الذي يوفر حلولاً تسويقية سريعة، فعالة، ومجانية لمساعدتكم على تحقيق أهدافكم. 🚀" data-lang-en="We present our latest innovations in the world of digital marketing, EMIA, the Smart Marketer that provides fast, effective, and free marketing solutions to help you achieve your goals. 🚀">
+                    نقدم لكم أحدث ابتكاراتنا في عالم التسويق الرقمي، EMIA، المسوق الذكي الذي يوفر حلولاً تسويقية سريعة، فعالة، ومجانية لمساعدتكم على تحقيق أهدافكم. 🚀
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -475,8 +558,8 @@
                         <i class="fas fa-star absolute top-4 left-4 text-2xl star-icon" data-model="v0"></i>
                         <i class="fas fa-robot text-red-600 text-6xl mb-6"></i>
                         <h3 class="text-3xl font-bold text-gray-800 mb-4" data-lang-ar="EMIA V0.0 - EhabGM" data-lang-en="EMIA V0.0 - EhabGM">EMIA V0.0 - EhabGM</h3>
-                        <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي." data-lang-en="The initial version of EMIA Smart Marketer, offering basic marketing analytics and quick suggestions to improve your digital campaigns. Ideal for getting started in smart marketing.">
-                            النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي.
+                        <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي. ✨" data-lang-en="The initial version of EMIA Smart Marketer, offering basic marketing analytics and quick suggestions to improve your digital campaigns. Ideal for getting started in smart marketing. ✨">
+                            النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي. ✨
                         </p>
                         <ul class="text-gray-600 text-right w-full px-4 mb-8 space-y-2">
                             <li class="flex items-center justify-end" data-lang-ar="تحليلات تسويقية أساسية" data-lang-en="Basic marketing analytics"><i class="fas fa-check-circle text-green-500 ml-2"></i> تحليلات تسويقية أساسية</li>
@@ -494,8 +577,8 @@
                         <i class="fas fa-star absolute top-4 left-4 text-2xl star-icon" data-model="v1"></i>
                         <i class="fas fa-brain text-red-600 text-6xl mb-6"></i>
                         <h3 class="text-3xl font-bold text-gray-800 mb-4" data-lang-ar="EMIA V1.0 - EhabGM" data-lang-en="EMIA V1.0 - EhabGM">EMIA V1.0 - EhabGM</h3>
-                        <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع." data-lang-en="The advanced version of EMIA Smart Marketer, providing advanced analytics, precise audience targeting, and customized recommendations to increase ROI. Your optimal choice for rapid growth.">
-                            النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع.
+                        <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع. 📈" data-lang-en="The advanced version of EMIA Smart Marketer, providing advanced analytics, precise audience targeting, and customized recommendations to increase ROI. Your optimal choice for rapid growth. 📈">
+                            النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع. 📈
                         </p>
                         <ul class="text-gray-600 text-right w-full px-4 mb-8 space-y-2">
                             <li class="flex items-center justify-end" data-lang-ar="تحليلات متقدمة وعميقة" data-lang-en="Advanced & in-depth analytics"><i class="fas fa-check-circle text-green-500 ml-2"></i> تحليلات متقدمة وعميقة</li>
@@ -521,10 +604,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-lightbulb text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد شعارات تسويقية ✨" data-lang-en="Marketing Slogan Generator ✨">مولّد شعارات تسويقية ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة." data-lang-en="Enter your product or service description to get innovative and catchy marketing slogans.">
-                                أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة. 💡" data-lang-en="Enter your product or service description to get innovative and catchy marketing slogans. 💡">
+                                أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة. 💡
                             </p>
-                            <input type="text" id="slogan-input" placeholder="مثال: قهوة سريعة التحضير" class="ai-input-field" data-lang-ar-placeholder="مثال: قهوة سريعة التحضير" data-lang-en-placeholder="Example: Instant coffee">
+                            <div class="input-group">
+                                <input type="text" id="slogan-input" placeholder="مثال: قهوة سريعة التحضير" class="ai-input-field" data-lang-ar-placeholder="مثال: قهوة سريعة التحضير" data-lang-en-placeholder="Example: Instant coffee" data-hint-ar="أدخل كلمة أو جملة قصيرة تصف منتجك أو خدمتك (مثل: 'مطعم مأكولات بحرية'، 'خدمات تصميم مواقع')." data-hint-en="Enter a short word or phrase describing your product or service (e.g., 'seafood restaurant', 'website design services').">
+                                <i class="fas fa-robot ai-help-icon" data-target="slogan-input"></i>
+                            </div>
                             <button id="generate-slogan-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد شعار" data-lang-en="Generate Slogan">
                                 توليد شعار
                             </button>
@@ -543,10 +629,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-share-alt text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد أفكار منشورات سوشيال ميديا ✨" data-lang-en="Social Media Post Idea Generator ✨">مولّد أفكار منشورات سوشيال ميديا ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي." data-lang-en="Enter a topic or service to generate creative social media post ideas.">
-                                أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي. 📱" data-lang-en="Enter a topic or service to generate creative social media post ideas. 📱">
+                                أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي. 📱
                             </p>
-                            <input type="text" id="post-idea-input" placeholder="مثال: خدمة تصميم لوجو" class="ai-input-field" data-lang-ar-placeholder="مثال: خدمة تصميم لوجو" data-lang-en-placeholder="Example: Logo design service">
+                            <div class="input-group">
+                                <input type="text" id="post-idea-input" placeholder="مثال: خدمة تصميم لوجو" class="ai-input-field" data-lang-ar-placeholder="مثال: خدمة تصميم لوجو" data-lang-en-placeholder="Example: Logo design service" data-hint-ar="اكتب موضوعاً محدداً أو وصفاً لخدمة تريد إنشاء منشورات عنها (مثل: 'عروض الصيف للملابس'، 'نصائح للعناية بالبشرة')." data-hint-en="Type a specific topic or service you want to create posts about (e.g., 'summer clothing offers', 'skincare tips').">
+                                <i class="fas fa-robot ai-help-icon" data-target="post-idea-input"></i>
+                            </div>
                             <button id="generate-post-idea-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد أفكار" data-lang-en="Generate Ideas">
                                 توليد أفكار
                             </button>
@@ -565,10 +654,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-ad text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد نصوص إعلانية ✨" data-lang-en="Ad Copy Generator ✨">مولّد نصوص إعلانية ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة." data-lang-en="Enter a product or service description to get attractive and compelling ad copies.">
-                                أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة. 📢" data-lang-en="Enter a product or service description to get attractive and compelling ad copies. 📢">
+                                أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة. 📢
                             </p>
-                            <input type="text" id="ad-copy-input" placeholder="مثال: عطر رجالي فاخر" class="ai-input-field" data-lang-ar-placeholder="مثال: عطر رجالي فاخر" data-lang-en-placeholder="Example: Luxury men's perfume">
+                            <div class="input-group">
+                                <input type="text" id="ad-copy-input" placeholder="مثال: عطر رجالي فاخر" class="ai-input-field" data-lang-ar-placeholder="مثال: عطر رجالي فاخر" data-lang-en-placeholder="Example: Luxury men's perfume" data-hint-ar="صف المنتج أو الخدمة التي تريد إنشاء إعلان لها (مثل: 'دورة تدريبية في التسويق الرقمي'، 'سيارة عائلية جديدة')." data-hint-en="Describe the product or service you want to create an ad for (e.g., 'digital marketing training course', 'new family car').">
+                                <i class="fas fa-robot ai-help-icon" data-target="ad-copy-input"></i>
+                            </div>
                             <button id="generate-ad-copy-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد نص إعلاني" data-lang-en="Generate Ad Copy">
                                 توليد نص إعلاني
                             </button>
@@ -587,10 +679,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-blog text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد أفكار للمقالات/المدونات ✨" data-lang-en="Blog Post Idea Generator ✨">مولّد أفكار للمقالات/المدونات ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات." data-lang-en="Enter a topic to get ideas and outlines for articles and blog posts.">
-                                أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات. ✍️" data-lang-en="Enter a topic to get ideas and outlines for articles and blog posts. ✍️">
+                                أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات. ✍️
                             </p>
-                            <input type="text" id="blog-idea-input" placeholder="مثال: أهمية التسويق الرقمي" class="ai-input-field" data-lang-ar-placeholder="مثال: أهمية التسويق الرقمي" data-lang-en-placeholder="Example: Importance of Digital Marketing">
+                            <div class="input-group">
+                                <input type="text" id="blog-idea-input" placeholder="مثال: أهمية التسويق الرقمي" class="ai-input-field" data-lang-ar-placeholder="مثال: أهمية التسويق الرقمي" data-lang-en-placeholder="Example: Importance of Digital Marketing" data-hint-ar="أدخل موضوعاً عاماً أو محدداً تريد كتابة مقال عنه (مثل: 'فوائد اليوجا للصحة النفسية'، 'تاريخ الفن الإسلامي')." data-hint-en="Enter a general or specific topic you want to write an article about (e.g., 'benefits of yoga for mental health', 'history of Islamic art').">
+                                <i class="fas fa-robot ai-help-icon" data-target="blog-idea-input"></i>
+                            </div>
                             <button id="generate-blog-idea-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد أفكار مقالات" data-lang-en="Generate Blog Ideas">
                                 توليد أفكار مقالات
                             </button>
@@ -609,10 +704,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-redo-alt text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد إعادة صياغة المحتوى ✨" data-lang-en="Content Rewriter ✨">مولّد إعادة صياغة المحتوى ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل أي نص لإعادة صياغته بأسلوب احترافي وجذاب." data-lang-en="Enter any text to rephrase it in a professional and engaging style.">
-                                أدخل أي نص لإعادة صياغته بأسلوب احترافي وجذاب.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل أي نص لإعادة صياغته بأسلوب احترافي وجذاب. 📝" data-lang-en="Enter any text to rephrase it in a professional and engaging style. 📝">
+                                أدخل أي نص لإعادة صياغته بأسلوب احترافي وجذاب. 📝
                             </p>
-                            <textarea id="text-to-rewrite-input" placeholder="مثال: هذا النص يحتاج إلى تحسين ليكون أكثر جاذبية." class="ai-input-field h-32" data-lang-ar-placeholder="مثال: هذا النص يحتاج إلى تحسين ليكون أكثر جاذبية." data-lang-en-placeholder="Example: This text needs improvement to be more engaging."></textarea>
+                            <div class="input-group">
+                                <textarea id="text-to-rewrite-input" placeholder="مثال: هذا النص يحتاج إلى تحسين ليكون أكثر جاذبية." class="ai-input-field h-32" data-lang-ar-placeholder="مثال: هذا النص يحتاج إلى تحسين ليكون أكثر جاذبية." data-lang-en-placeholder="Example: This text needs improvement to be more engaging." data-hint-ar="الصق النص الذي تريد إعادة صياغته هنا. يمكن أن يكون جملة، فقرة، أو نصاً أطول." data-hint-en="Paste the text you want to rephrase here. It can be a sentence, paragraph, or longer text."></textarea>
+                                <i class="fas fa-robot ai-help-icon" data-target="text-to-rewrite-input"></i>
+                            </div>
                             <button id="rewrite-content-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="إعادة صياغة" data-lang-en="Rewrite Content">
                                 إعادة صياغة
                             </button>
@@ -631,10 +729,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-key text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد الكلمات المفتاحية ✨" data-lang-en="Keyword Generator ✨">مولّد الكلمات المفتاحية ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة للحصول على كلمات مفتاحية ذات صلة للـ SEO والإعلانات." data-lang-en="Enter a topic or service to get relevant keywords for SEO and ads.">
-                                أدخل موضوعاً أو خدمة للحصول على كلمات مفتاحية ذات صلة للـ SEO والإعلانات.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة للحصول على كلمات مفتاحية ذات صلة للـ SEO والإعلانات. 🔑" data-lang-en="Enter a topic or service to get relevant keywords for SEO and ads. 🔑">
+                                أدخل موضوعاً أو خدمة للحصول على كلمات مفتاحية ذات صلة للـ SEO والإعلانات. 🔑
                             </p>
-                            <input type="text" id="keyword-topic-input" placeholder="مثال: تسويق المطاعم" class="ai-input-field" data-lang-ar-placeholder="مثال: تسويق المطاعم" data-lang-en-placeholder="Example: Restaurant marketing">
+                            <div class="input-group">
+                                <input type="text" id="keyword-topic-input" placeholder="مثال: تسويق المطاعم" class="ai-input-field" data-lang-ar-placeholder="مثال: تسويق المطاعم" data-lang-en-placeholder="Example: Restaurant marketing" data-hint-ar="اكتب موضوعاً أو مجال عمل تريد استخراج كلمات مفتاحية له (مثل: 'أزياء نسائية'، 'خدمات تنظيف المنازل')." data-hint-en="Type a topic or business area for which you want to extract keywords (e.g., 'women's fashion', 'home cleaning services').">
+                                <i class="fas fa-robot ai-help-icon" data-target="keyword-topic-input"></i>
+                            </div>
                             <button id="generate-keywords-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد كلمات مفتاحية" data-lang-en="Generate Keywords">
                                 توليد كلمات مفتاحية
                             </button>
@@ -653,10 +754,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-envelope text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد عناوين البريد الإلكتروني ✨" data-lang-en="Email Subject Line Generator ✨">مولّد عناوين البريد الإلكتروني ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوع البريد الإلكتروني أو محتواه للحصول على عناوين جذابة." data-lang-en="Enter the email subject or content to get catchy subject lines.">
-                                أدخل موضوع البريد الإلكتروني أو محتواه للحصول على عناوين جذابة.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوع البريد الإلكتروني أو محتواه للحصول على عناوين جذابة. 📧" data-lang-en="Enter the email subject or content to get catchy subject lines. 📧">
+                                أدخل موضوع البريد الإلكتروني أو محتواه للحصول على عناوين جذابة. 📧
                             </p>
-                            <textarea id="email-subject-input" placeholder="مثال: إعلان عن خصم جديد على خدمات التصميم." class="ai-input-field h-32" data-lang-ar-placeholder="مثال: إعلان عن خصم جديد على خدمات التصميم." data-lang-en-placeholder="Example: Announcing a new discount on design services."></textarea>
+                            <div class="input-group">
+                                <textarea id="email-subject-input" placeholder="مثال: إعلان عن خصم جديد على خدمات التصميم." class="ai-input-field h-32" data-lang-ar-placeholder="مثال: إعلان عن خصم جديد على خدمات التصميم." data-lang-en-placeholder="Example: Announcing a new discount on design services." data-hint-ar="اكتب ملخصاً لمحتوى البريد الإلكتروني أو الغرض منه (مثل: 'دعوة لحضور ندوة عبر الإنترنت'، 'تحديثات على سياسة الخصوصية')." data-hint-en="Write a summary of the email content or its purpose (e.g., 'invitation to a webinar', 'privacy policy updates')."></textarea>
+                                <i class="fas fa-robot ai-help-icon" data-target="email-subject-input"></i>
+                            </div>
                             <button id="generate-email-subject-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد عنوان" data-lang-en="Generate Subject">
                                 توليد عنوان
                             </button>
@@ -675,10 +779,13 @@
                         <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                             <i class="fas fa-comment-dots text-red-600 text-6xl mb-6"></i>
                             <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد الردود على مراجعات العملاء ✨" data-lang-en="Customer Review Response Generator ✨">مولّد الردود على مراجعات العملاء ✨</h4>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل مراجعة العميل (إيجابية أو سلبية) للحصول على رد احترافي." data-lang-en="Enter a customer review (positive or negative) to get a professional response.">
-                                أدخل مراجعة العميل (إيجابية أو سلبية) للحصول على رد احترافي.
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل مراجعة العميل (إيجابية أو سلبية) للحصول على رد احترافي. 💬" data-lang-en="Enter a customer review (positive or negative) to get a professional response. 💬">
+                                أدخل مراجعة العميل (إيجابية أو سلبية) للحصول على رد احترافي. 💬
                             </p>
-                            <textarea id="review-response-input" placeholder="مثال: 'خدمة رائعة وتصميم مبدع، شكراً لكم!'" class="ai-input-field h-32" data-lang-ar-placeholder="مثال: 'خدمة رائعة وتصميم مبدع، شكراً لكم!'" data-lang-en-placeholder="Example: 'Great service and creative design, thank you!'"></textarea>
+                            <div class="input-group">
+                                <textarea id="review-response-input" placeholder="مثال: 'خدمة رائعة وتصميم مبدع، شكراً لكم!'" class="ai-input-field h-32" data-lang-ar-placeholder="مثال: 'خدمة رائعة وتصميم مبدع، شكراً لكم!'" data-lang-en-placeholder="Example: 'Great service and creative design, thank you!'" data-hint-ar="الصق مراجعة العميل هنا (إيجابية أو سلبية) للحصول على رد مناسب." data-hint-en="Paste the customer review here (positive or negative) to get a suitable response."></textarea>
+                                <i class="fas fa-robot ai-help-icon" data-target="review-response-input"></i>
+                            </div>
                             <button id="generate-review-response-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد رد" data-lang-en="Generate Response">
                                 توليد رد
                             </button>
@@ -692,6 +799,31 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- AI Powered Search -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-search text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="البحث بالذكاء الاصطناعي ✨" data-lang-en="AI Powered Search ✨">البحث بالذكاء الاصطناعي ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل استفسارك للحصول على ملخصات ومعلومات مدعومة بالذكاء الاصطناعي. 🔍" data-lang-en="Enter your query to get AI-powered summaries and information. 🔍">
+                                أدخل استفسارك للحصول على ملخصات ومعلومات مدعومة بالذكاء الاصطناعي. 🔍
+                            </p>
+                            <div class="input-group">
+                                <textarea id="ai-search-input" placeholder="مثال: ما هي أحدث اتجاهات التصميم الجرافيكي في 2024؟" class="ai-input-field h-32" data-lang-ar-placeholder="مثال: ما هي أحدث اتجاهات التصميم الجرافيكي في 2024؟" data-lang-en-placeholder="Example: What are the latest graphic design trends in 2024?" data-hint-ar="اكتب سؤالاً أو موضوعاً تريد الحصول على معلومات عنه (مثلاً: 'كيفية تحسين SEO لموقع إلكتروني؟'، 'أفضل برامج التصميم الجرافيكي للمبتدئين؟')." data-hint-en="Type a question or topic you want to get information about (e.g., 'How to improve SEO for a website?', 'Best graphic design software for beginners?')."></textarea>
+                                <i class="fas fa-robot ai-help-icon" data-target="ai-search-input"></i>
+                            </div>
+                            <button id="perform-ai-search-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="بحث بالذكاء الاصطناعي" data-lang-en="Perform AI Search">
+                                بحث بالذكاء الاصطناعي
+                            </button>
+                            <div id="ai-search-output-container" class="ai-output-container">
+                                <div id="ai-search-output" class="ai-output-content" data-lang-ar="نتائج البحث ستظهر هنا..." data-lang-en="Search results will appear here...">
+                                    نتائج البحث ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="ai-search-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="ai-search-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -701,8 +833,8 @@
         <section id="contact" class="py-16 md:py-24 px-6 md:px-12 bg-red-600 text-white rounded-lg shadow-lg m-8">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8" data-lang-ar="تواصل معنا" data-lang-en="Contact Us">تواصل معنا</h2>
-                <p class="text-lg md:text-xl mb-10 opacity-90" data-lang-ar="نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا." data-lang-en="We are here to help! Contact us for any inquiries or to request our services.">
-                    نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا.
+                <p class="text-lg md:text-xl mb-10 opacity-90" data-lang-ar="نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا. 📞" data-lang-en="We are here to help! Contact us for any inquiries or to request our services. 📞">
+                    نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا. 📞
                 </p>
                 <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-8">
                     <a href="https://wa.me/201022679250" target="_blank" class="btn-secondary btn-red-style flex items-center justify-center">
@@ -789,7 +921,7 @@
             const chatInput = document.getElementById('chat-input');
             const chatSendBtn = document.getElementById('chat-send-btn');
 
-            // Existing AI tool elements
+            // AI tool elements
             const sloganInput = document.getElementById('slogan-input');
             const generateSloganBtn = document.getElementById('generate-slogan-btn');
             const sloganOutput = document.getElementById('slogan-output');
@@ -808,14 +940,15 @@
             const keywordTopicInput = document.getElementById('keyword-topic-input');
             const generateKeywordsBtn = document.getElementById('generate-keywords-btn');
             const keywordOutput = document.getElementById('keyword-output');
-
-            // New AI tool elements
             const emailSubjectInput = document.getElementById('email-subject-input');
             const generateEmailSubjectBtn = document.getElementById('generate-email-subject-btn');
             const emailSubjectOutput = document.getElementById('email-subject-output');
             const reviewResponseInput = document.getElementById('review-response-input');
-            const generateReviewResponseBtn = document.getElementById('generate-review-response-btn');
+            const generateReviewResponseBtn = document = document.getElementById('generate-review-response-btn');
             const reviewResponseOutput = document.getElementById('review-response-output');
+            const aiSearchInput = document.getElementById('ai-search-input');
+            const performAiSearchBtn = document.getElementById('perform-ai-search-btn');
+            const aiSearchOutput = document.getElementById('ai-search-output');
 
 
             // Custom Message Box elements
@@ -886,6 +1019,19 @@
                         element.placeholder = element.dataset.langEnPlaceholder;
                     }
                 });
+                // Update hints for AI help icons
+                document.querySelectorAll('.ai-help-icon').forEach(icon => {
+                    const targetInput = document.getElementById(icon.dataset.target);
+                    const tooltip = icon.nextElementSibling; // Assuming tooltip is next sibling
+                    if (targetInput && tooltip) {
+                        if (lang === 'ar') {
+                            tooltip.innerText = targetInput.dataset.hintAr;
+                        } else {
+                            tooltip.innerText = targetInput.dataset.hintEn;
+                        }
+                    }
+                });
+
                 const titleElement = document.querySelector('title');
                 if (titleElement) {
                     if (lang === 'ar') {
@@ -1097,8 +1243,8 @@
                 sloganOutput.innerText = "جاري توليد الشعارات...";
                 sloganOutput.classList.add('italic');
 
-                const arabicPrompt = `توليد 3 شعارات تسويقية جذابة واحترافية لـ "${description}". يجب أن تكون الشعارات باللغة العربية الفصحى، كل شعار في سطر جديد.`;
-                const englishPrompt = `Generate 3 catchy and professional marketing slogans for "${description}". The slogans should be in English, each on a new line.`;
+                const arabicPrompt = `توليد 3 شعارات تسويقية جذابة واحترافية ومبتكرة لـ "${description}". يجب أن تكون الشعارات باللغة العربية الفصحى، كل شعار في سطر جديد، وتتنوع في أسلوبها (مثلاً: شعار مباشر، شعار إبداعي، شعار يركز على الفائدة).`;
+                const englishPrompt = `Generate 3 catchy, professional, and innovative marketing slogans for "${description}". The slogans should be in English, each on a new line, and vary in style (e.g., direct, creative, benefit-oriented).`;
                 const prompt = isArabicText(description) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1122,8 +1268,8 @@
                 postIdeaOutput.innerText = "جاري توليد الأفكار...";
                 postIdeaOutput.classList.add('italic');
 
-                const arabicPrompt = `توليد 3 أفكار إبداعية لمنشورات وسائل التواصل الاجتماعي حول "${topic}". لكل فكرة، قدم عنواناً واضحاً، نصاً موجزاً وجذاباً، و3-5 هاشتاجات ذات صلة. استخدم اللغة العربية الفصحى. التنسيق: "الفكرة [رقم]:\nالعنوان: [عنوان الفكرة]\nالنص: [نص المنشور]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`;
-                const englishPrompt = `Generate 3 creative social media post ideas for "${topic}". For each idea, provide a clear title, a brief engaging text, and 3-5 relevant hashtags. Use English. Format as: "Idea [Number]:\nTitle: [Idea Title]\nText: [Post Text]\nHashtags: #[hashtag1] #[hashtag2]"`;
+                const arabicPrompt = `توليد 3 أفكار إبداعية لمنشورات وسائل التواصل الاجتماعي حول "${topic}". لكل فكرة، قدم عنواناً واضحاً، نصاً موجزاً وجذاباً مع دعوة لاتخاذ إجراء (Call to Action)، و5-7 هاشتاجات ذات صلة وشائعة. استخدم اللغة العربية الفصحى. التنسيق: "الفكرة [رقم]:\nالعنوان: [عنوان الفكرة]\nالنص: [نص المنشور]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2] #[هاشتاج3]..."`;
+                const englishPrompt = `Generate 3 creative social media post ideas for "${topic}". For each idea, provide a clear title, a brief engaging text with a strong Call to Action, and 5-7 relevant and trending hashtags. Use English. Format as: "Idea [Number]:\nTitle: [Idea Title]\nText: [Post Text]\nHashtags: #[hashtag1] #[hashtag2] #[hashtag3]..."`;
                 const prompt = isArabicText(topic) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1147,8 +1293,8 @@
                 adCopyOutput.innerText = "جاري توليد النص الإعلاني...";
                 adCopyOutput.classList.add('italic');
 
-                const arabicPrompt = `توليد 3 نصوص إعلانية مقنعة وموجزة لـ "${description}". لكل نص إعلاني، قدم عنواناً جذاباً، نصاً إعلانياً مقنعاً، و3-5 هاشتاجات ذات صلة. استخدم اللغة العربية الفصحى. التنسيق: "الإعلان [رقم]:\nالعنوان: [عنوان الإعلان]\nالنص: [نص الإعلان]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`;
-                const englishPrompt = `Generate 3 compelling and concise ad copies for "${description}". For each ad copy, provide a catchy headline, a persuasive body text, and 3-5 relevant hashtags. Use English. Format as: "Ad [Number]:\nHeadline: [Ad Headline]\nText: [Ad Text]\nHashtags: #[hashtag1] #[hashtag2]"`;
+                const arabicPrompt = `توليد 3 نصوص إعلانية مقنعة وموجزة لـ "${description}" تستهدف جذب العملاء للشراء. لكل نص إعلاني، قدم عنواناً جذاباً، نصاً إعلانياً يبرز الفوائد وحلاً لمشكلة، ودعوة واضحة لاتخاذ إجراء (Call to Action)، و3-5 هاشتاجات ذات صلة. استخدم اللغة العربية الفصحى. التنسيق: "الإعلان [رقم]:\nالعنوان: [عنوان الإعلان]\nالنص: [نص الإعلان]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`;
+                const englishPrompt = `Generate 3 compelling and concise ad copies for "${description}" aimed at attracting customers to purchase. For each ad copy, provide a catchy headline, a persuasive body text highlighting benefits and solving a problem, a clear Call to Action, and 3-5 relevant hashtags. Use English. Format as: "Ad [Number]:\nHeadline: [Ad Headline]\nText: [Ad Text]\nHashtags: #[hashtag1] #[hashtag2]"`;
                 const prompt = isArabicText(description) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1172,8 +1318,8 @@
                 blogIdeaOutput.innerText = "جاري توليد أفكار المقالات...";
                 blogIdeaOutput.classList.add('italic');
 
-                const arabicPrompt = `توليد 3 أفكار إبداعية وجذابة لمقالات المدونة (مع مخطط موجز لكل منها) حول موضوع: "${topic}". يجب أن تكون الأفكار باللغة العربية الفصحى. التنسيق: "المقترح [رقم]:\nالعنوان: [عنوان المقال]\nالنقاط الرئيسية:\n- [نقطة 1]\n- [نقطة 2]\n- [نقطة 3]"`;
-                const englishPrompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each) about "${topic}". The ideas should be in English. Format as: "Proposal [Number]:\nTitle: [Article Title]\nKey Points:\n- [Point 1]\n- [Point 2]\n- [Point 3]"`;
+                const arabicPrompt = `توليد 3 أفكار إبداعية وجذابة لمقالات المدونة (مع مخطط موجز لكل منها يتضمن مقدمة ونقاط رئيسية وخاتمة) حول موضوع: "${topic}". يجب أن تكون الأفكار باللغة العربية الفصحى. التنسيق: "المقترح [رقم]:\nالعنوان: [عنوان المقال]\nمقدمة:\nالنقاط الرئيسية:\n- [نقطة 1]\n- [نقطة 2]\n- [نقطة 3]\nخاتمة:"`;
+                const englishPrompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each with an introduction, key points, and conclusion) about "${topic}". The ideas should be in English. Format as: "Proposal [Number]:\nTitle: [Article Title]\nIntroduction:\nKey Points:\n- [Point 1]\n- [Point 2]\n- [Point 3]\nConclusion:"`;
                 const prompt = isArabicText(topic) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1197,8 +1343,8 @@
                 rewriteContentOutput.innerText = "جاري إعادة صياغة المحتوى...";
                 rewriteContentOutput.classList.add('italic');
 
-                const arabicPrompt = `أعد صياغة النص التالي بأسلوب احترافي وجذاب باللغة العربية الفصحى. اجعله أكثر إيجازًا ووضوحًا مع الحفاظ على المعنى الأصلي:\n\n"${textToRewrite}"`;
-                const englishPrompt = `Rewrite the following text in a professional and engaging style in English. Make it more concise and clear while preserving the original meaning:\n\n"${textToRewrite}"`;
+                const arabicPrompt = `أعد صياغة النص التالي بأسلوب احترافي وجذاب باللغة العربية الفصحى. اجعله أكثر إيجازًا ووضوحًا وتأثيراً، مع إمكانية تغيير النبرة (مثلاً: من نبرة إخبارية إلى نبرة تسويقية) والحفاظ على المعنى الأصلي:\n\n"${textToRewrite}"`;
+                const englishPrompt = `Rewrite the following text in a professional and engaging style in English. Make it more concise, clear, and impactful, with the option to change the tone (e.g., from informative to persuasive) while preserving the original meaning:\n\n"${textToRewrite}"`;
                 const prompt = isArabicText(textToRewrite) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1222,8 +1368,8 @@
                 keywordOutput.innerText = "جاري توليد الكلمات المفتاحية...";
                 keywordOutput.classList.add('italic');
 
-                const arabicPrompt = `اقتراح 10 كلمات مفتاحية (keywords) ذات صلة ومناسبة لتحسين محركات البحث (SEO) أو الحملات الإعلانية المدفوعة حول موضوع: "${topic}". يجب أن تكون الكلمات المفتاحية باللغة العربية الفصحى، كل كلمة في سطر جديد.`;
-                const englishPrompt = `Suggest 10 relevant and suitable keywords for SEO or paid advertising campaigns about the topic: "${topic}". The keywords should be in English, each on a new line.`;
+                const arabicPrompt = `اقتراح 10-15 كلمة مفتاحية (keywords) ذات صلة وعالية البحث ومناسبة لتحسين محركات البحث (SEO) أو الحملات الإعلانية المدفوعة حول موضوع: "${topic}". يجب أن تكون الكلمات المفتاحية باللغة العربية الفصحى، كل كلمة في سطر جديد، وتشمل كلمات مفتاحية طويلة الذيل (long-tail keywords) إن أمكن.`;
+                const englishPrompt = `Suggest 10-15 relevant and high-volume keywords for SEO or paid advertising campaigns about the topic: "${topic}". The keywords should be in English, each on a new line, and include long-tail keywords if possible.`;
                 const prompt = isArabicText(topic) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1247,8 +1393,8 @@
                 emailSubjectOutput.innerText = "جاري توليد العناوين...";
                 emailSubjectOutput.classList.add('italic');
 
-                const arabicPrompt = `توليد 3 عناوين بريد إلكتروني جذابة واحترافية باللغة العربية الفصحى بناءً على محتوى/غرض البريد الإلكتروني التالي:\n\n"${emailContent}"`;
-                const englishPrompt = `Generate 3 catchy and professional email subject lines in English based on the following email content/purpose:\n\n"${emailContent}"`;
+                const arabicPrompt = `توليد 3-5 عناوين بريد إلكتروني جذابة واحترافية باللغة العربية الفصحى بناءً على محتوى/غرض البريد الإلكتروني التالي: "${emailContent}". يجب أن تكون العناوين قصيرة، واضحة، ومحفزة للفتح (مثلاً: باستخدام الفضول، الفائدة، أو الإلحاح).`;
+                const englishPrompt = `Generate 3-5 catchy and professional email subject lines in English based on the following email content/purpose: "${emailContent}". The subject lines should be concise, clear, and enticing (e.g., using curiosity, benefit, or urgency).`;
                 const prompt = isArabicText(emailContent) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1272,8 +1418,8 @@
                 reviewResponseOutput.innerText = "جاري توليد الرد...";
                 reviewResponseOutput.classList.add('italic');
 
-                const arabicPrompt = `توليد رد احترافي ومناسب باللغة العربية الفصحى لمراجعة العميل التالية. ضع في اعتبارك ما إذا كانت المراجعة إيجابية أو سلبية وقم بتكييف الرد وفقاً لذلك:\n\n"${reviewText}"`;
-                const englishPrompt = `Generate a professional and appropriate response in English to the following customer review. Consider if it's positive or negative and tailor the response accordingly:\n\n"${reviewText}"`;
+                const arabicPrompt = `توليد رد احترافي ومناسب باللغة العربية الفصحى لمراجعة العميل التالية: "${reviewText}". يجب أن يكون الرد موجزاً، مهذباً، ويعكس التقدير للمراجعات الإيجابية أو التعاطف وتقديم الحلول للمراجعات السلبية.`;
+                const englishPrompt = `Generate a professional and appropriate response in English to the following customer review: "${reviewText}". The response should be concise, polite, and reflect appreciation for positive reviews or empathy and solution-offering for negative reviews.`;
                 const prompt = isArabicText(reviewText) ? arabicPrompt : englishPrompt;
 
                 try {
@@ -1287,6 +1433,31 @@
                 }
             });
 
+            // --- AI Powered Search Logic ---
+            performAiSearchBtn.addEventListener('click', async () => {
+                const query = aiSearchInput.value.trim();
+                if (query === '') {
+                    aiSearchOutput.innerText = "الرجاء إدخال استفسارك للبحث.";
+                    return;
+                }
+
+                aiSearchOutput.innerText = "جاري البحث بالذكاء الاصطناعي...";
+                aiSearchOutput.classList.add('italic');
+
+                const arabicPrompt = `بصفتك خبيراً في التصميم الجرافيكي والتسويق الإلكتروني، قم بتلخيص وتقديم معلومات ذات صلة ومفيدة حول الاستفسار التالي باللغة العربية الفصحى: "${query}". اجعل الإجابة شاملة ومباشرة.`;
+                const englishPrompt = `As an expert in graphic design and digital marketing, summarize and provide relevant and useful information about the following query in English: "${query}". Make the answer comprehensive and direct.`;
+                const prompt = isArabicText(query) ? arabicPrompt : englishPrompt;
+
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    aiSearchOutput.innerText = response;
+                } catch (error) {
+                    aiSearchOutput.innerText = "عذراً، حدث خطأ أثناء البحث بالذكاء الاصطناعي.";
+                    console.error("Error performing AI search:", error);
+                } finally {
+                    aiSearchOutput.classList.remove('italic');
+                }
+            });
 
             // Separate Gemini API call function for tools to avoid prompt conflicts with chatbot
             async function getGeminiResponseForTools(promptText) {
@@ -1329,6 +1500,40 @@
                     const title = titleElement ? titleElement.innerText : 'تقرير EhabGM AI';
                     printAsPdf(targetId, title);
                 });
+            });
+
+            // --- AI Help Icon (Robot Assistant) Logic ---
+            document.querySelectorAll('.ai-help-icon').forEach(icon => {
+                const targetInput = document.getElementById(icon.dataset.target);
+                if (targetInput) {
+                    // Create a tooltip element
+                    const tooltip = document.createElement('span');
+                    tooltip.classList.add('tooltip');
+                    icon.parentNode.appendChild(tooltip); // Append tooltip next to the icon within the input-group
+
+                    // Set initial tooltip text based on current language
+                    const currentLang = document.documentElement.lang;
+                    tooltip.innerText = currentLang === 'ar' ? targetInput.dataset.hintAr : targetInput.dataset.hintEn;
+
+                    icon.addEventListener('click', () => {
+                        // Toggle tooltip visibility
+                        tooltip.classList.toggle('show');
+                        // Hide after a few seconds
+                        setTimeout(() => {
+                            tooltip.classList.remove('show');
+                        }, 5000);
+                    });
+
+                    // Hide tooltip if user clicks outside or focuses away from input
+                    document.addEventListener('click', (event) => {
+                        if (!icon.contains(event.target) && !targetInput.contains(event.target)) {
+                            tooltip.classList.remove('show');
+                        }
+                    });
+                    targetInput.addEventListener('focusout', () => {
+                        tooltip.classList.remove('show');
+                    });
+                }
             });
         });
     </script>
