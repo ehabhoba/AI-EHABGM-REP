@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- html2pdf.js CDN for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Tone.js for background music -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
     <style>
         :root {
             --bg-color-light: #f3f4f6;
@@ -426,7 +428,7 @@
             background-color: #b91c1c;
         }
 
-        /* Dynamic Background - Stars */
+        /* Dynamic Background Stars */
         .star-bg {
             position: fixed;
             top: 0;
@@ -437,6 +439,7 @@
             z-index: -1;
             pointer-events: none;
             background: #000000; /* Base black for stars */
+            perspective: 1000px; /* For 3D effect */
         }
         .star {
             position: absolute;
@@ -444,11 +447,12 @@
             border-radius: 50%;
             opacity: 0;
             animation: twinkle var(--star-speed) infinite ease-in-out alternate;
+            transform-style: preserve-3d; /* For 3D transforms */
         }
         @keyframes twinkle {
-            0% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.5); }
+            0% { opacity: 0; transform: scale(0.5) translateZ(0); }
+            50% { opacity: 1; transform: scale(1) translateZ(50px); } /* Move forward in 3D space */
+            100% { opacity: 0; transform: scale(0.5) translateZ(0); }
         }
 
         /* Collapsible Sections */
@@ -648,6 +652,29 @@
             20% { opacity: 1; }
             80% { opacity: 1; }
             100% { opacity: 0; }
+        }
+
+        /* Music Toggle Button */
+        #musicToggle {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 100; /* Above other content but below loading overlay */
+        }
+        #musicToggle:hover {
+            background-color: rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
@@ -938,6 +965,48 @@
                     </div>
                 </div>
 
+                <!-- New Content Idea Generator Section -->
+                <div class="mt-8 content-idea-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="contentIdeaGeneratorTitle">✨ مولد أفكار المحتوى ✨</h3>
+                    <div class="mb-4">
+                        <label for="contentTopicInput" class="block text-sm font-medium text-gray-700 mb-1" data-key="contentTopicLabel">موضوع المحتوى المطلوب (مثال: مقال مدونة عن، فكرة فيديو عن):</label>
+                        <textarea id="contentTopicInput" rows="3" placeholder="مثال: مقال مدونة عن أحدث صيحات الموضة، أو فكرة فيديو عن كيفية العناية بالبشرة." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateContentIdeasBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateContentIdeasButton">
+                        <span data-key="generateContentIdeasButtonText">توليد الأفكار</span>
+                        <div id="contentIdeaLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedContentIdeasOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedContentIdeasHeader">الأفكار المقترحة:</h4>
+                        <ul id="contentIdeasList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copyContentIdeasBtn" class="btn-secondary mt-4 flex items-center" data-key="copyContentIdeasButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الأفكار
+                        </button>
+                    </div>
+                </div>
+
+                <!-- New Marketing Campaign Name Generator Section -->
+                <div class="mt-8 campaign-name-generator-section report-section">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="campaignNameGeneratorTitle">✨ مولد أسماء الحملات التسويقية ✨</h3>
+                    <div class="mb-4">
+                        <label for="campaignPurposeInput" class="block text-sm font-medium text-gray-700 mb-1" data-key="campaignPurposeLabel">الغرض من الحملة التسويقية (مثال: إطلاق منتج جديد، تخفيضات موسمية):</label>
+                        <textarea id="campaignPurposeInput" rows="3" placeholder="مثال: إطلاق مجموعة أزياء شتوية جديدة، أو حملة توعية بيئية." class="block w-full rounded-md shadow-sm"></textarea>
+                    </div>
+                    <button id="generateCampaignNamesBtn" class="btn-primary w-full flex items-center justify-center" data-key="generateCampaignNamesButton">
+                        <span data-key="generateCampaignNamesButtonText">توليد الأسماء</span>
+                        <div id="campaignNameLoadingSpinner" class="loading-spinner hidden ml-2"></div>
+                    </button>
+                    <div id="generatedCampaignNamesOutput" class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md hidden">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2" data-key="generatedCampaignNamesHeader">الأسماء المقترحة:</h4>
+                        <ul id="campaignNamesList" class="list-disc list-inside text-gray-900 leading-relaxed"></ul>
+                        <button id="copyCampaignNamesBtn" class="btn-secondary mt-4 flex items-center" data-key="copyCampaignNamesButton">
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2M8 8H6a2 2 0 00-2 2v2m8-8v8m0 0H8m4 0h2"></path></svg>
+                            نسخ الأسماء
+                        </button>
+                    </div>
+                </div>
+
 
                 <div id="copySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="copySuccessMessage">
                     تم نسخ التقرير بنجاح! يمكنك الآن لصقه في مستند Google Docs أو Word.
@@ -954,6 +1023,12 @@
                 <div id="emailSubjectCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="emailSubjectCopySuccessMessage">
                     تم نسخ عناوين البريد الإلكتروني بنجاح!
                 </div>
+                <div id="contentIdeaCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="contentIdeaCopySuccessMessage">
+                    تم نسخ أفكار المحتوى بنجاح!
+                </div>
+                <div id="campaignNameCopySuccessMessage" class="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center hidden" data-key="campaignNameCopySuccessMessage">
+                    تم نسخ أسماء الحملات بنجاح!
+                </div>
             </div>
         </div>
     </main>
@@ -966,6 +1041,11 @@
             <i class="fab fa-whatsapp ml-2"></i> تواصل عبر واتساب (01022679250)
         </a>
     </footer>
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle">
+        <i class="fas fa-volume-up" id="musicIcon"></i>
+    </button>
 
     <script type="module">
         // Global variables for Firebase configuration and app ID (not used in this specific version for AI calls)
@@ -1009,7 +1089,7 @@
         const copySlogansBtn = document.getElementById('copySlogansBtn');
         const sloganCopySuccessMessage = document.getElementById('sloganCopySuccessMessage');
 
-        // New elements for Customer Persona Generator
+        // Elements for Customer Persona Generator
         const personaDescriptionInput = document.getElementById('personaDescription');
         const generatePersonaBtn = document.getElementById('generatePersonaBtn');
         const personaLoadingSpinner = document.getElementById('personaLoadingSpinner');
@@ -1018,7 +1098,7 @@
         const copyPersonaBtn = document.getElementById('copyPersonaBtn');
         const personaCopySuccessMessage = document.getElementById('personaCopySuccessMessage');
 
-        // New elements for Email Subject Line Generator
+        // Elements for Email Subject Line Generator
         const emailPurposeInput = document.getElementById('emailPurpose');
         const generateEmailSubjectsBtn = document.getElementById('generateEmailSubjectsBtn');
         const emailSubjectLoadingSpinner = document.getElementById('emailSubjectLoadingSpinner');
@@ -1027,9 +1107,31 @@
         const copyEmailSubjectsBtn = document.getElementById('copyEmailSubjectsBtn');
         const emailSubjectCopySuccessMessage = document.getElementById('emailSubjectCopySuccessMessage');
 
+        // New elements for Content Idea Generator
+        const contentTopicInput = document.getElementById('contentTopicInput');
+        const generateContentIdeasBtn = document.getElementById('generateContentIdeasBtn');
+        const contentIdeaLoadingSpinner = document.getElementById('contentIdeaLoadingSpinner');
+        const generatedContentIdeasOutput = document.getElementById('generatedContentIdeasOutput');
+        const contentIdeasList = document.getElementById('contentIdeasList');
+        const copyContentIdeasBtn = document.getElementById('copyContentIdeasBtn');
+        const contentIdeaCopySuccessMessage = document.getElementById('contentIdeaCopySuccessMessage');
+
+        // New elements for Marketing Campaign Name Generator
+        const campaignPurposeInput = document.getElementById('campaignPurposeInput');
+        const generateCampaignNamesBtn = document.getElementById('generateCampaignNamesBtn');
+        const campaignNameLoadingSpinner = document.getElementById('campaignNameLoadingSpinner');
+        const generatedCampaignNamesOutput = document.getElementById('generatedCampaignNamesOutput');
+        const campaignNamesList = document.getElementById('campaignNamesList');
+        const copyCampaignNamesBtn = document.getElementById('copyCampaignNamesBtn');
+        const campaignNameCopySuccessMessage = document.getElementById('campaignNameCopySuccessMessage');
+
         // Splash screen elements
         const splashScreen = document.getElementById('splashScreen');
         const dynamicSplashTip = document.getElementById('dynamicSplashTip');
+
+        // Music elements
+        const musicToggle = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
 
         let uploadedLogoBase64 = null;
         let myBudgetChart, myGrowthChart, myAudienceChart, myContentChart, myCustomerJourneyChart; // To store Chart.js instances
@@ -1040,6 +1142,10 @@
         let currentTheme = 'light'; // Default theme
         let lastGeneratedBrandIdentity = ''; // Store the brand identity for slogan generation
         let currentTipIndex = 0; // Initialize currentTipIndex here, ensuring it's defined before updateSplashTip is called
+
+        // Tone.js Synth for background music
+        let synth = null;
+        let isMusicPlaying = false;
 
         // --- Translations Object ---
         const translations = {
@@ -1093,6 +1199,8 @@
                 sloganCopySuccessMessage: "تم نسخ الشعارات بنجاح!",
                 personaCopySuccessMessage: "تم نسخ شخصية العميل بنجاح!",
                 emailSubjectCopySuccessMessage: "تم نسخ عناوين البريد الإلكتروني بنجاح!",
+                contentIdeaCopySuccessMessage: "تم نسخ أفكار المحتوى بنجاح!",
+                campaignNameCopySuccessMessage: "تم نسخ أسماء الحملات بنجاح!",
                 footerCopyright: "&copy; 2023 وكيل EhabGM للتسويق الذكي (EMIA). جميع الحقوق محفوظة.",
                 footerFreeService: "هذه الخدمة متاحة مجانًا لفترة محدودة!",
                 footerContactPrompt: "للتواصل مع المطور أو للاستفسارات:",
@@ -1123,6 +1231,18 @@
                 generateEmailSubjectsButtonText: "توليد العناوين",
                 generatedEmailSubjectsHeader: "العناوين المقترحة:",
                 copyEmailSubjectsButton: "نسخ العناوين",
+                contentIdeaGeneratorTitle: "✨ مولد أفكار المحتوى ✨",
+                contentTopicLabel: "موضوع المحتوى المطلوب (مثال: مقال مدونة عن، فكرة فيديو عن):",
+                generateContentIdeasButton: "توليد الأفكار",
+                generateContentIdeasButtonText: "توليد الأفكار",
+                generatedContentIdeasHeader: "الأفكار المقترحة:",
+                copyContentIdeasButton: "نسخ الأفكار",
+                campaignNameGeneratorTitle: "✨ مولد أسماء الحملات التسويقية ✨",
+                campaignPurposeLabel: "الغرض من الحملة التسويقية (مثال: إطلاق منتج جديد، تخفيضات موسمية):",
+                generateCampaignNamesButton: "توليد الأسماء",
+                generateCampaignNamesButtonText: "توليد الأسماء",
+                generatedCampaignNamesHeader: "الأسماء المقترحة:",
+                copyCampaignNamesButton: "نسخ الأسماء",
                 platformExplanationTitle: "حول وكيل EhabGM للتسويق الذكي (EMIA)",
                 platformExplanationContent: `
                     <p>وكيل EhabGM للتسويق الذكي (EMIA) هو أداة متكاملة تعتمد على الذكاء الاصطناعي لمساعدة الشركات والأفراد في صياغة استراتيجيات تسويقية فعالة. تهدف المنصة إلى تبسيط عملية التخطيط التسويقي وتقديم رؤى قيمة بناءً على بياناتك.</p>
@@ -1137,6 +1257,8 @@
                         <li><strong>تقارير قابلة للتصدير:</strong> إمكانية نسخ التقرير أو طباعته كملف PDF.</li>
                         <li><strong>منشئ شخصيات العملاء:</strong> توليد شخصيات عملاء مفصلة لفهم جمهورك.</li>
                         <li><strong>مولد عناوين البريد الإلكتروني:</strong> إنشاء عناوين بريد إلكتروني جذابة لزيادة معدلات الفتح.</li>
+                        <li><strong>مولد أفكار المحتوى:</strong> ابتكار أفكار جديدة للمقالات، الفيديوهات، وغيرها.</li>
+                        <li><strong>مولد أسماء الحملات:</strong> اقتراح أسماء إبداعية لحملاتك التسويقية.</li>
                     </ul>
                 `,
                 clientGuidanceTitle: "توجيهات هامة لعملائنا",
@@ -1214,6 +1336,8 @@
                 sloganCopySuccessMessage: "Slogans copied successfully!",
                 personaCopySuccessMessage: "Customer persona copied successfully!",
                 emailSubjectCopySuccessMessage: "Email subjects copied successfully!",
+                contentIdeaCopySuccessMessage: "Content ideas copied successfully!",
+                campaignNameCopySuccessMessage: "Campaign names copied successfully!",
                 footerCopyright: "&copy; 2023 EhabGM Smart Marketing Agent (EMIA). All rights reserved.",
                 footerFreeService: "This service is available for a limited time for free!",
                 footerContactPrompt: "To contact the developer or for inquiries:",
@@ -1244,6 +1368,18 @@
                 generateEmailSubjectsButtonText: "Generate Subject Lines",
                 generatedEmailSubjectsHeader: "Suggested Subject Lines:",
                 copyEmailSubjectsButton: "Copy Subject Lines",
+                contentIdeaGeneratorTitle: "✨ Content Idea Generator ✨",
+                contentTopicLabel: "Desired content topic (e.g., blog post about, video idea about):",
+                generateContentIdeasButton: "Generate Ideas",
+                generateContentIdeasButtonText: "Generate Ideas",
+                generatedContentIdeasHeader: "Suggested Ideas:",
+                copyContentIdeasButton: "Copy Ideas",
+                campaignNameGeneratorTitle: "✨ Marketing Campaign Name Generator ✨",
+                campaignPurposeLabel: "Purpose of the marketing campaign (e.g., new product launch, seasonal sale):",
+                generateCampaignNamesButton: "Generate Names",
+                generateCampaignNamesButtonText: "Generate Names",
+                generatedCampaignNamesHeader: "Suggested Names:",
+                copyCampaignNamesButton: "Copy Names",
                 platformExplanationTitle: "About EhabGM Smart Marketing Agent (EMIA)",
                 platformExplanationContent: `
                     <p>EhabGM Smart Marketing Agent (EMIA) is an integrated AI-powered tool designed to assist businesses and individuals in crafting effective marketing strategies. The platform aims to simplify the marketing planning process and provide valuable insights based on your data.</p>
@@ -1258,6 +1394,8 @@
                         <li><strong>Exportable Reports:</strong> Ability to copy the report or print it as a PDF.</li>
                         <li><strong>Customer Persona Generator:</strong> Generate detailed customer personas to understand your audience.</li>
                         <li><strong>Email Subject Line Generator:</strong> Create catchy email subject lines to increase open rates.</li>
+                        <li><strong>Content Idea Generator:</strong> Innovate new ideas for articles, videos, and more.</li>
+                        <li><strong>Campaign Name Generator:</strong> Suggest creative names for your marketing campaigns.</li>
                     </ul>
                 `,
                 clientGuidanceTitle: "Important Guidance for Our Clients",
@@ -1354,7 +1492,10 @@
                 if (translations[lang][key]) {
                     if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
                         element.setAttribute('placeholder', translations[lang][key]);
-                    } else if (element.tagName === 'OPTION') {
+                    } else if (element.tagName === 'TEXTAREA' && element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    }
+                    else if (element.tagName === 'OPTION') {
                         element.textContent = translations[lang][key];
                     } else if (element.tagName === 'I' && (key === 'themeIcon')) {
                         element.className = translations[lang][key];
@@ -2653,6 +2794,150 @@
             }, 3000);
         });
 
+        // --- Content Idea Generator Logic ---
+        generateContentIdeasBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const contentTopic = contentTopicInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription || !contentTopic) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية وموضوع المحتوى.' : 'Please fill in basic brand information and content topic.');
+                return;
+            }
+
+            generateContentIdeasBtn.disabled = true;
+            contentIdeaLoadingSpinner.classList.remove('hidden');
+            generateContentIdeasBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedContentIdeasOutput.classList.add('hidden');
+            contentIdeaCopySuccessMessage.classList.add('hidden');
+            contentIdeasList.innerHTML = ''; // Clear previous ideas
+
+            try {
+                const contentIdeaPrompt = `Generate 5-7 creative and relevant content ideas (e.g., blog post titles, video concepts, social media series topics) for a brand with the following details, focusing on the provided content topic. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Content Topic: ${contentTopic}
+
+                Content Ideas (each on a new line, prefixed with a number and period, e.g., "1. [Idea]"):`;
+
+                const generatedIdeasRaw = await callGemini(contentIdeaPrompt);
+                const ideas = generatedIdeasRaw.split('\n').filter(line => line.trim() !== '');
+
+                if (ideas.length > 0) {
+                    ideas.forEach(idea => {
+                        const li = document.createElement('li');
+                        li.textContent = idea;
+                        contentIdeasList.appendChild(li);
+                    });
+                    generatedContentIdeasOutput.classList.remove('hidden');
+                } else {
+                    contentIdeasList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد أفكار محتوى. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No content ideas generated. Please try again with different information.'}</p>`;
+                    generatedContentIdeasOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating content ideas:", error);
+                contentIdeasList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد أفكار المحتوى: ' : 'An error occurred while generating content ideas: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedContentIdeasOutput.classList.remove('hidden');
+            } finally {
+                generateContentIdeasBtn.disabled = false;
+                contentIdeaLoadingSpinner.classList.add('hidden');
+                generateContentIdeasBtn.querySelector('span').textContent = translations[currentLanguage].generateContentIdeasButtonText;
+            }
+        });
+
+        copyContentIdeasBtn.addEventListener('click', () => {
+            let allIdeasText = '';
+            contentIdeasList.querySelectorAll('li').forEach(li => {
+                allIdeasText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allIdeasText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            contentIdeaCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                contentIdeaCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // --- Marketing Campaign Name Generator Logic ---
+        generateCampaignNamesBtn.addEventListener('click', async () => {
+            const brandName = document.getElementById('brandName').value;
+            const businessType = document.getElementById('businessType').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const campaignPurpose = campaignPurposeInput.value.trim();
+
+            if (!brandName || !businessType || !serviceDescription || !campaignPurpose) {
+                alert(currentLanguage === 'ar' ? 'الرجاء ملء معلومات البراند الأساسية والغرض من الحملة التسويقية.' : 'Please fill in basic brand information and campaign purpose.');
+                return;
+            }
+
+            generateCampaignNamesBtn.disabled = true;
+            campaignNameLoadingSpinner.classList.remove('hidden');
+            generateCampaignNamesBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'جاري التوليد...' : 'Generating...';
+            generatedCampaignNamesOutput.classList.add('hidden');
+            campaignNameCopySuccessMessage.classList.add('hidden');
+            campaignNamesList.innerHTML = ''; // Clear previous names
+
+            try {
+                const campaignNamePrompt = `Generate 5-7 creative, memorable, and impactful marketing campaign names for a brand with the following details, focusing on the provided campaign purpose. Provide the output in ${currentLanguage === 'ar' ? 'Arabic' : 'English'}.
+                Brand Name: ${brandName}
+                Business Type: ${businessType}
+                Service/Goal Description: ${serviceDescription}
+                Campaign Purpose: ${campaignPurpose}
+
+                Campaign Names (each on a new line, prefixed with a number and period, e.g., "1. [Campaign Name]"):`;
+
+                const generatedNamesRaw = await callGemini(campaignNamePrompt);
+                const names = generatedNamesRaw.split('\n').filter(line => line.trim() !== '');
+
+                if (names.length > 0) {
+                    names.forEach(name => {
+                        const li = document.createElement('li');
+                        li.textContent = name;
+                        campaignNamesList.appendChild(li);
+                    });
+                    generatedCampaignNamesOutput.classList.remove('hidden');
+                } else {
+                    campaignNamesList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'لم يتم توليد أسماء حملات. يرجى المحاولة مرة أخرى بمعلومات مختلفة.' : 'No campaign names generated. Please try again with different information.'}</p>`;
+                    generatedCampaignNamesOutput.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error("Error generating campaign names:", error);
+                campaignNamesList.innerHTML = `<p class="text-red-600">${currentLanguage === 'ar' ? 'حدث خطأ أثناء توليد أسماء الحملات: ' : 'An error occurred while generating campaign names: '}${error.message}. ${currentLanguage === 'ar' ? 'يرجى المحاولة مرة أخرى.' : 'Please try again.'}</p>`;
+                generatedCampaignNamesOutput.classList.remove('hidden');
+            } finally {
+                generateCampaignNamesBtn.disabled = false;
+                campaignNameLoadingSpinner.classList.add('hidden');
+                generateCampaignNamesBtn.querySelector('span').textContent = translations[currentLanguage].generateCampaignNamesButtonText;
+            }
+        });
+
+        copyCampaignNamesBtn.addEventListener('click', () => {
+            let allNamesText = '';
+            campaignNamesList.querySelectorAll('li').forEach(li => {
+                allNamesText += li.textContent + '\n';
+            });
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allNamesText.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            campaignNameCopySuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                campaignNameCopySuccessMessage.classList.add('hidden');
+            }, 3000);
+        });
+
 
         // --- Copy report to clipboard ---
         copyReportBtn.addEventListener('click', () => {
@@ -2703,25 +2988,35 @@
             const socialShareSection = element.querySelector('.social-share-buttons');
             const postGeneratorSection = element.querySelector('.post-generator-section');
             const sloganGeneratorSection = element.querySelector('.slogan-generator-section');
-            const customerPersonaSection = element.querySelector('.customer-persona-section'); // New
-            const emailSubjectSection = element.querySelector('.email-subject-generator-section'); // New
+            const customerPersonaSection = element.querySelector('.customer-persona-section');
+            const emailSubjectSection = element.querySelector('.email-subject-generator-section');
+            const contentIdeaSection = element.querySelector('.content-idea-generator-section');
+            const campaignNameSection = element.querySelector('.campaign-name-generator-section');
+
             const copySuccessMsg = element.querySelector('#copySuccessMessage');
             const postCopySuccessMsg = element.querySelector('#postCopySuccessMessage');
             const sloganCopySuccessMsg = element.querySelector('#sloganCopySuccessMessage');
-            const personaCopySuccessMsg = element.querySelector('#personaCopySuccessMessage'); // New
-            const emailSubjectCopySuccessMsg = element.querySelector('#emailSubjectCopySuccessMessage'); // New
+            const personaCopySuccessMsg = element.querySelector('#personaCopySuccessMessage');
+            const emailSubjectCopySuccessMsg = element.querySelector('#emailSubjectCopySuccessMessage');
+            const contentIdeaCopySuccessMsg = element.querySelector('#contentIdeaCopySuccessMessage');
+            const campaignNameCopySuccessMsg = element.querySelector('#campaignNameCopySuccessMessage');
 
 
             if (socialShareSection) socialShareSection.style.display = 'none';
             if (postGeneratorSection) postGeneratorSection.style.display = 'none';
             if (sloganGeneratorSection) sloganGeneratorSection.style.display = 'none';
-            if (customerPersonaSection) customerPersonaSection.style.display = 'none'; // New
-            if (emailSubjectSection) emailSubjectSection.style.display = 'none'; // New
+            if (customerPersonaSection) customerPersonaSection.style.display = 'none';
+            if (emailSubjectSection) emailSubjectSection.style.display = 'none';
+            if (contentIdeaSection) contentIdeaSection.style.display = 'none';
+            if (campaignNameSection) campaignNameSection.style.display = 'none';
+
             if (copySuccessMsg) copySuccessMsg.style.display = 'none';
             if (postCopySuccessMsg) postCopySuccessMsg.style.display = 'none';
             if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = 'none';
-            if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = 'none'; // New
-            if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = 'none'; // New
+            if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = 'none';
+            if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = 'none';
+            if (contentIdeaCopySuccessMsg) contentIdeaCopySuccessMsg.style.display = 'none';
+            if (campaignNameCopySuccessMsg) campaignNameCopySuccessMsg.style.display = 'none';
 
             // Ensure all collapsible sections are expanded for PDF
             document.querySelectorAll('.collapsible-content').forEach(content => {
@@ -2746,13 +3041,18 @@
                 if (socialShareSection) socialShareSection.style.display = originalReportDisplay;
                 if (postGeneratorSection) postGeneratorSection.style.display = originalReportDisplay;
                 if (sloganGeneratorSection) sloganGeneratorSection.style.display = originalReportDisplay;
-                if (customerPersonaSection) customerPersonaSection.style.display = originalReportDisplay; // New
-                if (emailSubjectSection) emailSubjectSection.style.display = originalReportDisplay; // New
+                if (customerPersonaSection) customerPersonaSection.style.display = originalReportDisplay;
+                if (emailSubjectSection) emailSubjectSection.style.display = originalReportDisplay;
+                if (contentIdeaSection) contentIdeaSection.style.display = originalReportDisplay;
+                if (campaignNameSection) campaignNameSection.style.display = originalReportDisplay;
+
                 if (copySuccessMsg) copySuccessMsg.style.display = originalReportDisplay;
                 if (postCopySuccessMsg) postCopySuccessMsg.style.display = originalReportDisplay;
                 if (sloganCopySuccessMsg) sloganCopySuccessMsg.style.display = originalReportDisplay;
-                if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = originalReportDisplay; // New
-                if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = originalReportDisplay; // New
+                if (personaCopySuccessMsg) personaCopySuccessMsg.style.display = originalReportDisplay;
+                if (emailSubjectCopySuccessMsg) emailSubjectCopySuccessMsg.style.display = originalReportDisplay;
+                if (contentIdeaCopySuccessMsg) contentIdeaCopySuccessMsg.style.display = originalReportDisplay;
+                if (campaignNameCopySuccessMsg) campaignNameCopySuccessMsg.style.display = originalReportDisplay;
 
                 // Restore collapsible sections state
                 document.querySelectorAll('.collapsible-content').forEach(content => {
@@ -2814,6 +3114,7 @@
         document.querySelector('main').style.display = 'none';
         document.querySelector('header').style.display = 'none';
         document.querySelector('footer').style.display = 'none';
+        musicToggle.style.display = 'none'; // Hide music button initially
 
         // Show splash screen and start tips
         window.onload = () => {
@@ -2830,10 +3131,73 @@
                     document.querySelector('main').style.display = 'flex';
                     document.querySelector('header').style.display = 'flex';
                     document.querySelector('footer').style.display = 'block';
+                    musicToggle.style.display = 'flex'; // Show music button
                     showStep(currentStep); // Show the first form step
+
+                    // Initialize and start music after user interaction (splash screen fade)
+                    if (Tone.context.state !== 'running') {
+                        Tone.start();
+                    }
+                    initializeMusic();
+                    // Autoplay music after a short delay to ensure Tone.js context is running
+                    setTimeout(() => {
+                        if (!isMusicPlaying) {
+                            toggleMusic(); // Start music automatically if not playing
+                        }
+                    }, 500); // Short delay
                 }, 1000); // Wait for fade-out transition (1 second)
             }, 3000); // Splash screen visible for 3 seconds before fading
         };
+
+        // --- Background Music Logic (Tone.js) ---
+        function initializeMusic() {
+            // Create a simple synth for ambient background music
+            synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: {
+                    type: "sine"
+                },
+                envelope: {
+                    attack: 2,
+                    decay: 1,
+                    sustain: 0.5,
+                    release: 2
+                },
+                volume: -20 // Start with a low volume
+            }).toDestination();
+
+            // A simple, repeating ambient chord progression
+            const chords = [
+                ["C3", "E3", "G3"],
+                ["F3", "A3", "C4"],
+                ["G3", "B3", "D4"],
+                ["Am3", "C4", "E4"]
+            ];
+            let chordIndex = 0;
+
+            Tone.Transport.scheduleRepeat(time => {
+                const currentChord = chords[chordIndex % chords.length];
+                synth.triggerAttackRelease(currentChord, "4n", time);
+                chordIndex++;
+            }, "2n"); // Play a chord every half note
+
+            Tone.Transport.bpm.value = 60; // Slow tempo
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                Tone.Transport.stop();
+                musicIcon.classList.remove('fa-volume-up');
+                musicIcon.classList.add('fa-volume-mute');
+                isMusicPlaying = false;
+            } else {
+                Tone.Transport.start();
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
+                isMusicPlaying = true;
+            }
+        }
+
+        musicToggle.addEventListener('click', toggleMusic);
 
     </script>
 </body>
