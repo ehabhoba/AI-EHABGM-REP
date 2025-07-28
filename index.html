@@ -232,6 +232,60 @@
                 right: 15px;
             }
         }
+        /* Styles for AI tool outputs */
+        .ai-output-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: right; /* Align text to the right for RTL */
+        }
+        .ai-output-content {
+            white-space: pre-wrap; /* Preserve whitespace and wrap text */
+            text-align: right;
+            direction: rtl; /* Ensure RTL for content */
+        }
+        .output-actions {
+            display: flex;
+            justify-content: center; /* Center buttons */
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .output-actions button {
+            @apply bg-gray-700 text-white py-2 px-4 rounded-md text-sm hover:bg-gray-900 transition duration-300;
+        }
+        /* Custom message box for copy confirmation */
+        #custom-message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 10000;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 90%;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        #custom-message-box button {
+            background-color: #dc2626; /* Red-600 */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+        #custom-message-box button:hover {
+            background-color: #b91c1c;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -416,8 +470,14 @@
                             <button id="generate-slogan-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد شعار" data-lang-en="Generate Slogan">
                                 توليد شعار
                             </button>
-                            <div id="slogan-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="الشعارات ستظهر هنا..." data-lang-en="Slogans will appear here...">
-                                الشعارات ستظهر هنا...
+                            <div id="slogan-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                                <div id="slogan-output" class="ai-output-content" data-lang-ar="الشعارات ستظهر هنا..." data-lang-en="Slogans will appear here...">
+                                    الشعارات ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="slogan-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="slogan-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
                             </div>
                         </div>
 
@@ -432,8 +492,14 @@
                             <button id="generate-post-idea-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد أفكار" data-lang-en="Generate Ideas">
                                 توليد أفكار
                             </button>
-                            <div id="post-idea-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="الأفكار ستظهر هنا..." data-lang-en="Ideas will appear here...">
-                                الأفكار ستظهر هنا...
+                            <div id="post-idea-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                                <div id="post-idea-output" class="ai-output-content" data-lang-ar="الأفكار ستظهر هنا..." data-lang-en="Ideas will appear here...">
+                                    الأفكار ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="post-idea-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="post-idea-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
                             </div>
                         </div>
 
@@ -448,8 +514,14 @@
                             <button id="generate-ad-copy-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد نص إعلاني" data-lang-en="Generate Ad Copy">
                                 توليد نص إعلاني
                             </button>
-                            <div id="ad-copy-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="النصوص الإعلانية ستظهر هنا..." data-lang-en="Ad copies will appear here...">
-                                النصوص الإعلانية ستظهر هنا...
+                            <div id="ad-copy-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                                <div id="ad-copy-output" class="ai-output-content" data-lang-ar="النصوص الإعلانية ستظهر هنا..." data-lang-en="Ad copies will appear here...">
+                                    النصوص الإعلانية ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="ad-copy-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="ad-copy-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
                             </div>
                         </div>
 
@@ -464,8 +536,14 @@
                             <button id="generate-blog-idea-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد أفكار مقالات" data-lang-en="Generate Blog Ideas">
                                 توليد أفكار مقالات
                             </button>
-                            <div id="blog-idea-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="أفكار المقالات ستظهر هنا..." data-lang-en="Blog post ideas will appear here...">
-                                أفكار المقالات ستظهر هنا...
+                            <div id="blog-idea-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                                <div id="blog-idea-output" class="ai-output-content" data-lang-ar="أفكار المقالات ستظهر هنا..." data-lang-en="Blog post ideas will appear here...">
+                                    أفكار المقالات ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="blog-idea-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="blog-idea-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -546,6 +624,12 @@
         </div>
     </div>
 
+    <!-- Custom Message Box for Alerts -->
+    <div id="custom-message-box">
+        <p id="custom-message-text"></p>
+        <button id="custom-message-ok-btn">حسناً</button>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const splashScreen = document.getElementById('splash-screen');
@@ -573,6 +657,11 @@
             const generateBlogIdeaBtn = document.getElementById('generate-blog-idea-btn');
             const blogIdeaOutput = document.getElementById('blog-idea-output');
 
+            // Custom Message Box elements
+            const customMessageBox = document.getElementById('custom-message-box');
+            const customMessageText = document.getElementById('custom-message-text');
+            const customMessageOkBtn = document.getElementById('custom-message-ok-btn');
+
 
             // --- Splash Screen Logic ---
             setTimeout(() => {
@@ -589,7 +678,7 @@
                     starIcons.forEach(s => s.classList.remove('favorited'));
                     star.classList.add('favorited');
                     const modelName = star.dataset.model === 'v0' ? 'EMIA V0.0' : 'EMIA V1.0';
-                    alert(`تم تفضيل نموذج: ${modelName}`);
+                    customAlert(`تم تفضيل نموذج: ${modelName}`);
                 });
             });
 
@@ -648,49 +737,15 @@
 
             updateTextContent(document.documentElement.lang); // Initial text update
 
-            // --- Custom Alert Function ---
-            function alert(message) {
-                const alertBox = document.createElement('div');
-                alertBox.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background-color: #333;
-                    color: white;
-                    padding: 20px 30px;
-                    border-radius: 10px;
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                    z-index: 10000;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 15px;
-                    max-width: 90%;
-                    text-align: center;
-                    font-size: 1.1rem;
-                `;
-                alertBox.innerHTML = `
-                    <p>${message}</p>
-                    <button style="
-                        background-color: #dc2626; /* Red-600 */
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-size: 1rem;
-                        transition: background-color 0.2s;
-                    " onmouseover="this.style.backgroundColor='#b91c1c'" onmouseout="this.style.backgroundColor='#dc2626'">
-                        حسناً
-                    </button>
-                `;
-                document.body.appendChild(alertBox);
-
-                alertBox.querySelector('button').onclick = () => {
-                    document.body.removeChild(alertBox);
-                };
+            // --- Custom Alert Function (replaces window.alert) ---
+            function customAlert(message) {
+                customMessageText.innerText = message;
+                customMessageBox.style.display = 'flex';
             }
+
+            customMessageOkBtn.onclick = () => {
+                customMessageBox.style.display = 'none';
+            };
 
             // --- Chatbot Logic ---
             chatBubble.addEventListener('click', () => {
@@ -835,6 +890,37 @@
                 }
             }
 
+            // --- Copy and Print Functions ---
+            function copyToClipboard(elementId) {
+                const element = document.getElementById(elementId);
+                const textToCopy = element.innerText;
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                customAlert('تم نسخ المحتوى بنجاح!');
+            }
+
+            function printAsPdf(elementId, title) {
+                const element = document.getElementById(elementId);
+                const content = element.innerHTML; // Get innerHTML to preserve formatting
+                const printWindow = window.open('', '', 'height=600,width=800');
+                printWindow.document.write('<html><head><title>' + title + '</title>');
+                printWindow.document.write('<style>');
+                printWindow.document.write('body { font-family: \'Inter\', sans-serif; direction: rtl; text-align: right; margin: 20px; }');
+                printWindow.document.write('h1 { text-align: center; margin-bottom: 20px; }');
+                printWindow.document.write('pre { white-space: pre-wrap; word-wrap: break-word; }');
+                printWindow.document.write('</style>');
+                printWindow.document.write('</head><body>');
+                printWindow.document.write('<h1>' + title + '</h1>');
+                printWindow.document.write('<pre>' + content + '</pre>'); // Use <pre> to preserve newlines
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+            }
+
             // --- New AI Tools Logic ---
             generateSloganBtn.addEventListener('click', async () => {
                 const description = sloganInput.value.trim();
@@ -846,7 +932,7 @@
                 sloganOutput.innerText = "جاري توليد الشعارات...";
                 sloganOutput.classList.add('italic');
 
-                const prompt = `Generate 3 catchy and professional marketing slogans for a ${description}. The slogans should be in Arabic and suitable for a digital marketing agency like EhabGM.`;
+                const prompt = `Generate 3 catchy and professional marketing slogans for a ${description}. The slogans should be in formal Arabic (اللغة العربية الفصحى), each on a new line.`;
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     sloganOutput.innerText = response;
@@ -868,7 +954,7 @@
                 postIdeaOutput.innerText = "جاري توليد الأفكار...";
                 postIdeaOutput.classList.add('italic');
 
-                const prompt = `Generate 3 creative social media post ideas (including a brief description/call to action) for a ${topic}. The ideas should be in Arabic and suitable for a digital marketing agency like EhabGM.`;
+                const prompt = `Generate 3 creative social media post ideas for a ${topic}. For each idea, provide a clear title, a brief engaging text, and 3-5 relevant hashtags. Use formal Arabic (اللغة العربية الفصحى). Format as: "الفكرة [رقم]:\nالعنوان: [عنوان الفكرة]\nالنص: [نص المنشور]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     postIdeaOutput.innerText = response;
@@ -890,7 +976,7 @@
                 adCopyOutput.innerText = "جاري توليد النص الإعلاني...";
                 adCopyOutput.classList.add('italic');
 
-                const prompt = `Generate 3 compelling and concise ad copies for a ${description}. The ad copies should be in Arabic, suitable for digital marketing platforms, and include a strong call to action.`;
+                const prompt = `Generate 3 compelling and concise ad copies for a ${description}. For each ad copy, provide a catchy headline, a persuasive body text, and 3-5 relevant hashtags. Use formal Arabic (اللغة العربية الفصحى). Format as: "الإعلان [رقم]:\nالعنوان: [عنوان الإعلان]\nالنص: [نص الإعلان]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     adCopyOutput.innerText = response;
@@ -912,7 +998,7 @@
                 blogIdeaOutput.innerText = "جاري توليد أفكار المقالات...";
                 blogIdeaOutput.classList.add('italic');
 
-                const prompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each) about "${topic}". The ideas should be in Arabic and relevant to digital marketing or graphic design if applicable.`;
+                const prompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each) about "${topic}". The ideas should be in formal Arabic (اللغة العربية الفصحى). Format as: "المقترح [رقم]:\nالعنوان: [عنوان المقال]\nالنقاط الرئيسية:\n- [نقطة 1]\n- [نقطة 2]\n- [نقطة 3]"`
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     blogIdeaOutput.innerText = response;
@@ -949,6 +1035,23 @@
                     throw new Error("Unexpected response structure from Gemini API.");
                 }
             }
+
+            // Event listeners for copy and print buttons
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetId = e.target.dataset.target;
+                    copyToClipboard(targetId);
+                });
+            });
+
+            document.querySelectorAll('.print-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetId = e.target.dataset.target;
+                    const titleElement = document.getElementById(targetId).closest('.ai-output-container').previousElementSibling;
+                    const title = titleElement ? titleElement.innerText : 'تقرير EhabGM AI';
+                    printAsPdf(targetId, title);
+                });
+            });
         });
     </script>
 </body>
