@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="appTitle">وكيل التسويق الذكي (EMIA) | EhabGM Online Services</title>
+    <link rel="canonical" href="https://ehabonlineservice.online/">
+
+    <!-- SEO Meta Tags - Enhanced -->
+    <meta name="description" content="وكيل EhabGM للتسويق الذكي (EMIA) هو أداتك المجانية لتحليل العلامات التجارية، إنشاء خطط تسويق متكاملة، توليد محتوى للسوشيال ميديا، وتصميم شعارات بالذكاء الاصطناعي. ابدأ الآن وعزز وجودك الرقمي.">
+    <meta name="keywords" content="تحليل سوات, خطة تسويقية جاهزة, تحليل المنافسين, شخصية العميل, أفكار محتوى, تسويق رقمي, تصميم شعارات بالذكاء الاصطناعي, وكيل تسويق ذكي, EhabGM, خدمات تسويق, SEO, تسويق الكتروني">
+    <meta name="author" content="EhabGM Online Services">
+
+    <!-- Open Graph / Facebook / LinkedIn - Enhanced -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ehabonlineservice.online/">
+    <meta property="og:title" content="وكيل EhabGM للتسويق الذكي (EMIA) - أداتك المجانية للنمو الرقمي">
+    <meta property="og:description" content="أنشئ تقارير تسويقية شاملة، حلل علامتك التجارية، واحصل على أفكار محتوى وشعارات مبتكرة بالذكاء الاصطناعي. مقدمة من EhabGM Online Services.">
+    <meta property="og:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+    <meta property="og:site_name" content="EhabGM Online Services">
+
+    <!-- Twitter - Enhanced -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ehabonlineservice.online/">
+    <meta name="twitter:title" content="وكيل EhabGM للتسويق الذكي (EMIA)">
+    <meta name="twitter:description" content="أداتك المجانية لتحليل العلامات التجارية، إنشاء خطط تسويق، توليد محتوى للسوشيال ميديا، وتصميم شعارات بالذكاء الاصطناعي.">
+    <meta name="twitter:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- html2pdf.js CDN for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Tone.js for background music -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "وكيل EhabGM للتسويق الذكي (EMIA)",
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "150"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "EhabGM Online Services",
+        "url": "https://ehabonlineservice.online/"
+      },
+      "description": "أداة مجانية لتحليل العلامات التجارية، إنشاء خطط تسويق، توليد محتوى للسوشيال ميديا، وتصميم شعارات بالذكاء الاصطناعي."
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color-light: #f3f4f6;
+            --text-color-light: #374151;
+            --header-footer-bg-light: #000000;
+            --header-footer-text-light: #ffffff;
+            --container-bg-light: #ffffff;
+            --container-shadow-light: rgba(0, 0, 0, 0.15);
+            --input-border-light: #d1d5db;
+            --input-focus-border-light: #dc2626;
+            --input-focus-shadow-light: rgba(220, 38, 38, 0.25);
+            --primary-btn-bg-light: #dc2626;
+            --primary-btn-hover-light: #b91c1c;
+            --secondary-btn-bg-light: #4b5563;
+            --secondary-btn-hover-light: #1f2937;
+            --report-section-bg-light: #f9fafb;
+            --report-section-border-light: #e5e7eb;
+            --report-section-shadow-light: rgba(0, 0, 0, 0.05);
+            --report-title-border-light: #dc2626;
+            --logo-upload-border-light: #dc2626;
+            --logo-upload-hover-bg-light: #fef2f2;
+            --loading-overlay-bg-light: rgba(0, 0, 0, 0.95);
+            --loading-message-color-light: #dc2626;
+            --loading-task-bg-light: rgba(255, 255, 255, 0.1);
+            --loading-task-border-light: rgba(255, 255, 255, 0.2);
+            --loading-task-active-bg-light: rgba(220, 38, 38, 0.2);
+            --loading-task-active-border-light: #dc2626;
+            --loading-task-active-shadow-light: rgba(220, 38, 38, 0.4);
+            --loading-task-completed-bg-light: rgba(255, 255, 255, 0.05);
+            --loading-task-completed-text-light: #cccccc;
+            --loading-task-icon-pending-light: #dc2626;
+            --loading-task-icon-active-light: #ffffff;
+            --loading-task-icon-completed-light: #10b981;
+            --progress-dot-inactive-light: #d1d5db;
+            --progress-dot-active-light: #dc2626;
+            --progress-dot-completed-light: #10b981;
+            --footer-link-color-light: #dc2626;
+            --footer-link-hover-light: #b91c1c;
+
+            /* Dark Mode Colors */
+            --bg-color-dark: #1a1a1a;
+            --text-color-dark: #e0e0e0;
+            --header-footer-bg-dark: #000000;
+            --header-footer-text-dark: #ffffff;
+            --container-bg-dark: #2a2a2a;
+            --container-shadow-dark: rgba(0, 0, 0, 0.4);
+            --input-border-dark: #444444;
+            --input-focus-border-dark: #dc2626;
+            --input-focus-shadow-dark: rgba(220, 38, 38, 0.4);
+            --primary-btn-bg-dark: #dc2626;
+            --primary-btn-hover-dark: #b91c1c;
+            --secondary-btn-bg-dark: #6b7280;
+            --secondary-btn-hover-dark: #4b5563;
+            --report-section-bg-dark: #333333;
+            --report-section-border-dark: #444444;
+            --report-section-shadow-dark: rgba(0, 0, 0, 0.2);
+            --report-title-border-dark: #dc2626;
+            --logo-upload-border-dark: #dc2626;
+            --logo-upload-hover-bg-dark: #3a3a3a;
+            --loading-overlay-bg-dark: rgba(0, 0, 0, 0.95); /* Stays dark */
+            --loading-message-color-dark: #dc2626; /* Stays red */
+            --loading-task-bg-dark: rgba(255, 255, 255, 0.1); /* Stays semi-transparent */
+            --loading-task-border-dark: rgba(255, 255, 255, 0.2);
+            --loading-task-active-bg-dark: rgba(220, 38, 38, 0.2);
+            --loading-task-active-border-dark: #dc2626;
+            --loading-task-active-shadow-dark: rgba(220, 38, 38, 0.4);
+            --loading-task-completed-bg-dark: rgba(255, 255, 255, 0.05);
+            --loading-task-completed-text-dark: #999999;
+            --loading-task-icon-pending-dark: #dc2626;
+            --loading-task-icon-active-dark: #ffffff;
+            --loading-task-icon-completed-dark: #10b981;
+            --progress-dot-inactive-dark: #666666;
+            --progress-dot-active-dark: #dc2626;
+            --progress-dot-completed-dark: #10b981;
+            --footer-link-color-dark: #dc2626;
+            --footer-link-hover-dark: #b91c1c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        body.dark-mode {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+        header {
+            background-color: var(--header-footer-bg-light);
+            color: var(--header-footer-text-light);
+            box-shadow: 0 2px 4px var(--container-shadow-light);
+            padding: 1rem;
+        }
+        body.dark-mode header {
+            background-color: var(--header-footer-bg-dark);
+            color: var(--header-footer-text-dark);
+            box-shadow: 0 2px 4px var(--container-shadow-dark);
+        }
+        main {
+            flex-grow: 1;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for longer content */
+        }
+        .container {
+            background-color: var(--container-bg-light);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 8px 16px var(--container-shadow-light);
+            max-width: 800px;
+            width: 95%;
+            margin: 0 auto; /* Center the container */
+        }
+        body.dark-mode .container {
+            background-color: var(--container-bg-dark);
+            box-shadow: 0 8px 16px var(--container-shadow-dark);
+        }
+        input[type="text"], textarea, select {
+            border: 1px solid var(--input-border-light);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
+            color: #374151;
+        }
+        body.dark-mode input[type="text"], body.dark-mode textarea, body.dark-mode select {
+            background-color: #3a3a3a;
+            color: var(--text-color-dark);
+            border-color: var(--input-border-dark);
+        }
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--input-focus-border-light);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-light);
+        }
+        body.dark-mode input[type="text"]:focus, body.dark-mode textarea:focus, body.dark-mode select:focus {
+            border-color: var(--input-focus-border-dark);
+            box-shadow: 0 0 0 3px var(--input-focus-shadow-dark);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: var(--primary-btn-bg-light);
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-btn-hover-light);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-primary:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-secondary {
+            background-color: var(--secondary-btn-bg-light);
+            color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background-color: var(--secondary-btn-hover-light);
+            transform: translateY(-1px);
+        }
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+        .report-section {
+            background-color: var(--report-section-bg-light);
+            border: 1px solid var(--report-section-border-light);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px var(--report-section-shadow-light);
+        }
+        body.dark-mode .report-section {
+            background-color: var(--report-section-bg-dark);
+            border-color: var(--report-section-border-dark);
+            box-shadow: 0 2px 8px var(--report-section-shadow-dark);
+        }
+        .report-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--report-title-border-light);
+        }
+        body.dark-mode .report-section h3 {
+            color: var(--text-color-dark);
+            border-bottom-color: var(--report-title-border-dark);
+        }
+        .logo-upload-section {
+            border: 2px dashed var(--logo-upload-border-light);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            background-color: #fff;
+        }
+        .logo-upload-section:hover {
+            border-color: var(--primary-btn-hover-light);
+            background-color: var(--logo-upload-hover-bg-light);
+        }
+        body.dark-mode .logo-upload-section {
+            background-color: #333333;
+            border-color: var(--logo-upload-border-dark);
+        }
+        body.dark-mode .logo-upload-section:hover {
+            border-color: var(--primary-btn-hover-dark);
+            background-color: var(--logo-upload-hover-bg-dark);
+        }
+        .logo-preview {
+            max-width: 150px;
+            max-height: 150px;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Loading Overlay */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--loading-overlay-bg-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+        #loadingOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-animation {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            border-top: 8px solid #dc2626; /* Red spinner */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-message-container {
+            height: 3rem; /* Fixed height to prevent layout shift */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .loading-message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--loading-message-color-light);
+            transition: color 0.3s ease;
+        }
+        #loadingTasks {
+            list-style: none;
+            padding: 0;
+            width: 90%;
+            max-width: 400px;
+        }
+        #loadingTasks li {
+            background-color: var(--loading-task-bg-light);
+            border: 1px solid var(--loading-task-border-light);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            color: #fff;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #loadingTasks li .task-icon {
+            margin-left: 0.75rem; /* Adjusted for RTL */
+            margin-right: 0;
+            width: 20px;
+            text-align: center;
+        }
+        #loadingTasks li .task-icon i {
+            color: var(--loading-task-icon-pending-light);
+            transition: color 0.3s ease;
+        }
+        #loadingTasks li.active {
+            background-color: var(--loading-task-active-bg-light);
+            border-color: var(--loading-task-active-border-light);
+            box-shadow: 0 0 10px var(--loading-task-active-shadow-light);
+        }
+        #loadingTasks li.completed {
+            background-color: var(--loading-task-completed-bg-light);
+            color: var(--loading-task-completed-text-light);
+        }
+        #loadingTasks li.completed .task-icon i {
+            color: #10b981; /* Always green for completed */
+        }
+
+        /* Progress Dots for Form */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .progress-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--progress-dot-inactive-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .progress-dot.active {
+            background-color: var(--progress-dot-active-light);
+            transform: scale(1.2);
+        }
+        .progress-dot.completed {
+            background-color: var(--progress-dot-completed-light);
+        }
+
+        footer {
+            background-color: var(--header-footer-bg-light);
+            color: var(--header-footer-text-light);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 4px var(--container-shadow-light);
+            margin-top: 2rem;
+        }
+        body.dark-mode footer {
+            background-color: var(--header-footer-bg-dark);
+            color: var(--header-footer-text-dark);
+            box-shadow: 0 -2px 4px var(--container-shadow-dark);
+        }
+        footer a {
+            color: var(--footer-link-color-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        footer a:hover {
+            color: var(--footer-link-hover-light);
+            text-decoration: underline;
+        }
+        body.dark-mode footer a {
+            color: var(--footer-link-color-dark);
+        }
+        body.dark-mode footer a:hover {
+            color: var(--footer-link-hover-dark);
+        }
+
+        /* Print to PDF button style */
+        .btn-pdf {
+            background-color: #dc2626; /* Red color for PDF */
+            color: #ffffff;
+        }
+        .btn-pdf:hover {
+            background-color: #b91c1c;
+        }
+
+        /* Dynamic Background Stars */
+        .star-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+            background: #000000; /* Base black for stars */
+            perspective: 1000px; /* For 3D effect */
+        }
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--star-speed) infinite ease-in-out alternate;
+            transform-style: preserve-3d; /* For 3D transforms */
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.5) translateZ(0); }
+            50% { opacity: 1; transform: scale(1) translateZ(50px); } /* Move forward in 3D space */
+            100% { opacity: 0; transform: scale(0.5) translateZ(0); }
+        }
+
+        /* Collapsible Sections */
+        .collapsible-content {
+            max-height: 150px; /* Initial height for summary */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            position: relative;
+        }
+        .collapsible-content.expanded {
+            max-height: 2000px; /* Large enough to show all content */
+            transition: max-height 0.7s ease-in;
+        }
+        .collapsible-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Fade out effect */
+            background: linear-gradient(to top, var(--container-bg-light), rgba(255,255,255,0));
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.dark-mode .collapsible-content::after {
+             background: linear-gradient(to top, var(--container-bg-dark) 10%, rgba(0,0,0,0));
+        }
+        .collapsible-content.expanded::after {
+            opacity: 0;
+        }
+        .read-more-btn {
+            display: block;
+            margin-top: 1rem;
+            background-color: #f0f0f0; /* Light grey for read more button */
+            color: #dc2626; /* Red text */
+            border: 1px solid #dc2626;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+        }
+        .read-more-btn:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+        body.dark-mode .read-more-btn {
+            background-color: #444444;
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+        body.dark-mode .read-more-btn:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+
+        /* Project Map Loading */
+        .project-map {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 2rem;
+            position: relative;
+            height: 40px; /* Height for the line */
+        }
+        .map-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2); /* Light grey line */
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        .map-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: #dc2626; /* Red progress fill */
+            border-radius: 2px;
+            transition: width 0.7s ease-in-out;
+        }
+        .map-node {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.3); /* Inactive node */
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .map-node.active {
+            background-color: #dc2626; /* Active node red */
+            border-color: #ffffff; /* White border for active */
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.7); /* Red glow */
+            transform: scale(1.2);
+        }
+        .map-node.completed {
+            background-color: #10b981; /* Completed node green */
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); /* Green glow */
+            transform: scale(1);
+        }
+
+        /* Ensure report content is hidden when form is active */
+        #reportOutput.hidden, .form-step.hidden {
+            display: none;
+        }
+
+        /* Social Share Buttons */
+        .social-share-buttons button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: white;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+            margin: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .social-share-buttons button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .social-share-buttons button:active {
+            transform: translateY(0);
+        }
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-facebook { background-color: #1877F2; }
+        .btn-twitter { background-color: #1DA1F2; }
+        .btn-linkedin { background-color: #0A66C2; }
+
+        /* Loading Spinner for Generators */
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #dc2626;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        body.dark-mode .loading-spinner {
+            border-color: rgba(255, 255, 255, 0.2);
+            border-left-color: #fff;
+        }
+        #logoSuggestionsOutput .loading-spinner {
+             width: 40px;
+             height: 40px;
+        }
+
+        /* Splash Screen Styles */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 5000; /* Higher than other overlays */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Black background */
+            color: #fff;
+            transition: opacity 1s ease-out; /* Fade out effect */
+            opacity: 1;
+        }
+        #splashScreen.hidden {
+            opacity: 0;
+            pointer-events: none; /* Disable interaction after fade */
+        }
+        #splashScreen img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            animation: pulse 1.5s infinite alternate; /* Simple pulse animation for logo */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        #splashScreen .tip-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 0 2rem;
+            opacity: 0; /* Start hidden */
+            animation: fadeInOut 4s infinite; /* Fade in and out for tips */
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Music Toggle Button */
+        #musicToggle {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem; /* Changed to left for RTL */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 100; /* Above other content but below loading overlay */
+        }
+        #musicToggle:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .form-step {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .form-step.hidden {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+            transform: translateX(20px);
+        }
+        .form-step.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* About Us Modal */
+        #aboutModalOverlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #aboutModalOverlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #aboutModal {
+            background-color: var(--container-bg-light);
+            color: var(--text-color-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        #aboutModalOverlay.visible #aboutModal {
+            transform: scale(1);
+        }
+        body.dark-mode #aboutModal {
+             background-color: var(--container-bg-dark);
+             color: var(--text-color-dark);
+        }
+        #aboutModal h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-btn-bg-light);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-btn-bg-light);
+            padding-bottom: 0.5rem;
+        }
+         body.dark-mode #aboutModal h2 {
+            color: var(--primary-btn-bg-dark);
+            border-bottom-color: var(--primary-btn-bg-dark);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-700">
+    <!-- Splash Screen -->
+    <div id="splashScreen">
+        <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo">
+        <div id="dynamicSplashTip" class="tip-text"></div>
+    </div>
+
+    <!-- Dynamic Background Stars -->
+    <div class="star-bg" id="starBg"></div>
+
+    <header>
+        <div class="flex items-center justify-between max-w-6xl mx-auto p-4">
+            <div class="flex items-center">
+                <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo" class="h-10 ml-3">
+                <h1 class="text-xl font-bold" data-key="appTitleHeader">وكيل EhabGM للتسويق الذكي (EMIA)</h1>
+            </div>
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <button id="aboutBtn" class="bg-gray-700 text-white px-3 py-2 text-sm rounded-md hover:bg-gray-600 transition-colors" data-key="aboutUsBtn">من نحن</button>
+                <button id="themeToggle" class="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-sun" data-key="themeIcon"></i>
+                </button>
+                <select id="languageSelect" class="bg-gray-700 text-white p-2 rounded-md transition-colors text-sm">
+                    <option value="ar" data-key="langArabic">العربية</option>
+                    <option value="en" data-key="langEnglish">English</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div id="loadingOverlay" class="hidden">
+        <div class="loading-animation"></div>
+        <h2 class="text-3xl font-bold text-white mb-4" data-key="welcomeMessage">أهلاً بك في وكيل EhabGM للتسويق الذكي!</h2>
+        <div class="loading-message-container">
+            <div id="dynamicLoadingMessage" class="loading-message"></div>
+        </div>
+        <!-- Project Map Visualization -->
+        <div class="project-map" id="projectMap">
+            <div class="map-line">
+                <div class="map-progress-fill" id="mapProgressFill"></div>
+            </div>
+            <!-- Nodes will be added dynamically by JS -->
+        </div>
+        <ul id="loadingTasks" class="mt-8">
+            <!-- Tasks will be dynamically added here -->
+        </ul>
+    </div>
+
+    <main>
+        <div class="container">
+            <!-- Progress Dots for Form -->
+            <div class="progress-dots" id="progressDots">
+                <span class="progress-dot active" id="dot-0">1</span>
+                <span class="progress-dot" id="dot-1">2</span>
+                <span class="progress-dot" id="dot-2">3</span>
+                <span class="progress-dot" id="dot-3">4</span>
+                <span class="progress-dot" id="dot-4">5</span>
+            </div>
+
+            <!-- Intro Text -->
+            <div id="introText" class="text-center mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <h2 class="text-xl font-bold text-red-600" data-key="introTitle">مساعدك التسويقي الذكي والمجاني</h2>
+                <p class="mt-2" data-key="introDesc">أدخل بيانات علامتك التجارية واحصل على تحليل تسويقي شامل، أفكار محتوى، وحتى مقترحات للشعار، كل ذلك بقوة الذكاء الاصطناعي.</p>
+            </div>
+
+            <form id="marketingForm" class="space-y-6 relative">
+                <!-- Step 1: Brand Info -->
+                <div class="form-step active" id="step-0">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step1Title">الخطوة 1: معلومات البراند الأساسية</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="brandName" class="block text-sm font-medium mb-1" data-key="brandNameLabel">اسم العميل أو البراند:</label>
+                            <input type="text" id="brandName" name="brandName" placeholder="مثال: متجر الأناقة للملابس" class="block w-full rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="businessType" class="block text-sm font-medium mb-1" data-key="businessTypeLabel">نوع النشاط التجاري:</label>
+                            <input type="text" id="businessType" name="businessType" placeholder="مثال: تجارة إلكترونية للملابس" class="block w-full rounded-md shadow-sm" required>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-6">
+                        <button type="button" class="btn btn-primary" data-step-next="0" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Service/Product & Budget -->
+                <div class="form-step hidden" id="step-1">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step2Title">الخطوة 2: وصف الخدمة والميزانية</h3>
+                    <div>
+                        <label for="serviceDescription" class="block text-sm font-medium mb-1" data-key="serviceDescriptionLabel">وصف الخدمة أو المنتج/الهدف:</label>
+                        <textarea id="serviceDescription" name="serviceDescription" rows="4" placeholder="مثال: بيع فساتين سهرة عصرية بجودة عالية وأسعار تنافسية، الهدف هو زيادة المبيعات بنسبة 30%." class="block w-full rounded-md shadow-sm" required></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <div>
+                            <label for="budget" class="block text-sm font-medium mb-1" data-key="budgetLabel">الميزانية المتاحة (رقم فقط، اختياري):</label>
+                            <input type="text" id="budget" name="budget" placeholder="مثال: 1000" class="block w-full rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <label for="currency" class="block text-sm font-medium mb-1" data-key="currencyLabel">العملة:</label>
+                            <select id="currency" name="currency" class="block w-full rounded-md shadow-sm">
+                                <option value="USD" data-key="currencyUSD">دولار أمريكي (USD)</option>
+                                <option value="EGP" data-key="currencyEGP">جنيه مصري (EGP)</option>
+                                <option value="SAR" data-key="currencySAR">ريال سعودي (SAR)</option>
+                                <option value="AED" data-key="currencyAED">درهم إماراتي (AED)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn btn-secondary" data-step-prev="1" data-key="prevButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn btn-primary" data-step-next="1" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Target Audience -->
+                <div class="form-step hidden" id="step-2">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step3Title">الخطوة 3: الجمهور المستهدف</h3>
+                    <div>
+                        <label for="targetAudience" class="block text-sm font-medium mb-1" data-key="targetAudienceLabel">صف جمهورك المستهدف:</label>
+                        <textarea id="targetAudience" name="targetAudience" rows="4" placeholder="مثال: نساء تتراوح أعمارهن بين 25-40 عامًا، مهتمات بالموضة والأناقة، ويقطن في المدن الكبرى." class="block w-full rounded-md shadow-sm" required></textarea>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn btn-secondary" data-step-prev="2" data-key="prevButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn btn-primary" data-step-next="2" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Competitors & Tone -->
+                <div class="form-step hidden" id="step-3">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step4Title">الخطوة 4: المنافسون ونبرة الصوت</h3>
+                    <div>
+                        <label for="competitors" class="block text-sm font-medium mb-1" data-key="competitorsLabel">من هم أبرز المنافسين؟ (اختياري)</label>
+                        <input type="text" id="competitors" name="competitors" placeholder="مثال: متجر X، علامة Y التجارية" class="block w-full rounded-md shadow-sm">
+                    </div>
+                    <div class="mt-6">
+                        <label for="toneOfVoice" class="block text-sm font-medium mb-1" data-key="toneOfVoiceLabel">ما هي نبرة الصوت المرغوبة؟</label>
+                        <select id="toneOfVoice" name="toneOfVoice" class="block w-full rounded-md shadow-sm">
+                            <option value="احترافية" data-key="toneProfessional">احترافية</option>
+                            <option value="ودودة" data-key="toneFriendly">ودودة ومرحة</option>
+                            <option value="فاخرة" data-key="toneLuxury">فاخرة وراقية</option>
+                            <option value="ملهمة" data-key="toneInspirational">ملهمة ومحفزة</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="btn btn-secondary" data-step-prev="3" data-key="prevButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="button" class="btn btn-primary" data-step-next="3" data-key="nextButton">التالي <i class="fas fa-arrow-left mr-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Logo & Finalize -->
+                <div class="form-step hidden" id="step-4">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center" data-key="step5Title">الخطوة 5: الشعار (اختياري)</h3>
+                    <div id="logoUploadContainer" class="logo-upload-section">
+                        <input type="file" id="logoUpload" class="hidden" accept="image/*">
+                        <div class="text-center">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-red-500 mb-2"></i>
+                            <p class="font-semibold" data-key="logoUploadPrompt">انقر هنا لرفع شعار البراند</p>
+                            <p class="text-xs text-gray-500" data-key="logoUploadNote">سيساعدنا هذا في تحليل الهوية البصرية</p>
+                        </div>
+                    </div>
+                    <div id="logoPreviewContainer" class="text-center mt-4 hidden">
+                        <img id="logoPreview" class="logo-preview inline-block" src="#" alt="Logo Preview">
+                        <button type="button" id="removeLogoBtn" class="mt-2 text-red-500 hover:text-red-700 text-sm" data-key="removeLogo">إزالة الشعار</button>
+                    </div>
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="btn btn-secondary" data-step-prev="4" data-key="prevButton"><i class="fas fa-arrow-right ml-2"></i> السابق</button>
+                        <button type="submit" id="generateReportBtn" class="btn btn-primary" data-key="generateReportBtn">
+                            <i class="fas fa-cogs mr-2"></i> إنشاء التقرير الآن
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Report Output Area -->
+            <div id="reportOutput" class="hidden space-y-8">
+                <!-- Report Header -->
+                <div class="text-center border-b-2 pb-4">
+                    <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo" class="h-20 mx-auto mb-2">
+                    <h2 class="text-3xl font-bold" data-key="reportTitle">تقرير تسويقي شامل لـ <span id="reportBrandName" class="text-red-600"></span></h2>
+                    <p class="text-sm text-gray-500" id="reportDate"></p>
+                </div>
+
+                <!-- Brand Summary -->
+                <div class="report-section">
+                    <h3 data-key="brandSummaryTitle"><i class="fas fa-briefcase text-red-500 ml-2"></i>ملخص البراند</h3>
+                    <div id="brandSummaryContent" class="collapsible-content prose"></div>
+                    <button class="read-more-btn" data-key="readMore">اقرأ المزيد</button>
+                </div>
+
+                <!-- SWOT Analysis -->
+                <div class="report-section">
+                    <h3 data-key="swotTitle"><i class="fas fa-balance-scale text-red-500 mr-2"></i>تحليل SWOT</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div id="swotText" class="prose"></div>
+                        <div>
+                            <canvas id="swotChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Target Audience -->
+                <div class="report-section">
+                    <h3 data-key="personaTitle"><i class="fas fa-users text-red-500 mr-2"></i>شخصية العميل المثالي (Persona)</h3>
+                    <div id="personaContent" class="collapsible-content prose"></div>
+                     <button class="read-more-btn" data-key="readMore">اقرأ المزيد</button>
+                </div>
+
+                 <!-- Marketing Funnel (AIDA) -->
+                <div class="report-section">
+                    <h3 data-key="funnelTitle"><i class="fas fa-filter text-red-500 mr-2"></i>استراتيجية القمع التسويقي (AIDA)</h3>
+                    <div id="funnelContent" class="space-y-4"></div>
+                </div>
+
+                <!-- Content Pillars -->
+                <div class="report-section">
+                    <h3 data-key="contentPillarsTitle"><i class="fas fa-lightbulb text-red-500 mr-2"></i>أفكار وركائز المحتوى</h3>
+                    <div id="contentPillarsContent" class="collapsible-content prose"></div>
+                    <button class="read-more-btn" data-key="readMore">اقرأ المزيد</button>
+                </div>
+
+                <!-- Social Media Post Generator -->
+                <div class="report-section">
+                    <h3 data-key="postsGeneratorTitle"><i class="fas fa-share-square text-red-500 mr-2"></i>مولد منشورات السوشيال ميديا</h3>
+                    <div class="flex items-center gap-4 mb-4">
+                        <select id="platformSelect" class="block w-full rounded-md shadow-sm">
+                            <option value="Facebook" data-key="platformFacebook">فيسبوك</option>
+                            <option value="Instagram" data-key="platformInstagram">انستغرام</option>
+                            <option value="Twitter" data-key="platformTwitter">تويتر (X)</option>
+                            <option value="LinkedIn" data-key="platformLinkedIn">لينكدإن</option>
+                        </select>
+                        <button id="generatePostBtn" class="btn btn-primary whitespace-nowrap" data-key="generatePostBtn">
+                            <i class="fas fa-magic mr-2"></i> توليد منشور
+                        </button>
+                    </div>
+                    <div id="postOutput" class="p-4 border rounded-lg bg-white dark:bg-gray-800 min-h-[100px] prose"></div>
+                </div>
+
+                <!-- Logo Suggestions -->
+                <div class="report-section">
+                    <h3 data-key="logoSuggestionsTitle"><i class="fas fa-palette text-red-500 mr-2"></i>مقترحات للشعار والهوية البصرية</h3>
+                    <button id="generateLogosBtn" class="btn btn-primary mb-4" data-key="generateLogosBtn">
+                        <i class="fas fa-image mr-2"></i> توليد 3 مقترحات للشعار
+                    </button>
+                    <div id="logoSuggestionsOutput" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Logo suggestions will appear here -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center space-y-4 pt-6">
+                    <div class="social-share-buttons">
+                         <button class="btn-whatsapp" id="shareWhatsapp"><i class="fab fa-whatsapp mr-2"></i> <span data-key="shareWhatsapp">واتساب</span></button>
+                         <button class="btn-facebook" id="shareFacebook"><i class="fab fa-facebook-f mr-2"></i> <span data-key="shareFacebook">فيسبوك</span></button>
+                         <button class="btn-twitter" id="shareTwitter"><i class="fab fa-twitter mr-2"></i> <span data-key="shareTwitter">تويتر</span></button>
+                         <button class="btn-linkedin" id="shareLinkedin"><i class="fab fa-linkedin-in mr-2"></i> <span data-key="shareLinkedin">لينكدإن</span></button>
+                    </div>
+                    <div>
+                        <button id="printPdfBtn" class="btn btn-pdf"><i class="fas fa-file-pdf mr-2"></i> <span data-key="downloadPdf">تحميل كـ PDF</span></button>
+                        <button id="startNewReportBtn" class="btn btn-secondary"><i class="fas fa-redo mr-2"></i> <span data-key="newReport">بدء تقرير جديد</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p data-key="footerText">
+            أحد مشاريع <a href="https://ehabonlineservice.online/" target="_blank" rel="noopener noreferrer">EhabGM Online Services</a>. جميع الحقوق محفوظة © 2024.
+        </p>
+    </footer>
+
+    <!-- About Us Modal -->
+    <div id="aboutModalOverlay" class="hidden">
+        <div id="aboutModal">
+            <div class="flex justify-between items-center mb-4">
+                <h2 data-key="aboutModalTitle">عن EhabGM Online Services</h2>
+                <button id="closeModalBtn" class="text-2xl">&times;</button>
+            </div>
+            <div class="space-y-4 prose dark:prose-invert">
+                <p data-key="aboutModalDesc">
+                    نحن منصة شاملة تقدم حلولاً متكاملة في المجالات الرقمية بما يشمل التصميم الجرافيكي، التسويق الإلكتروني، إدارة الإعلانات الممولة، إنشاء الهوية الرقمية، وتصميم المواقع والمتاجر الإلكترونية.
+                </p>
+                <h3 class="font-bold" data-key="aboutModalVision">رؤيتنا</h3>
+                <p data-key="aboutModalVisionDesc">
+                    توفير حلول إبداعية مبتكرة تُلبّي احتياجات السوق المصري والخليجي وتساعد على بناء علامات تجارية متكاملة تعكس جودة واحترافية الخدمات المقدمة.
+                </p>
+                <h3 class="font-bold" data-key="aboutModalValues">قيمنا الأساسية</h3>
+                <ul class="list-disc list-inside">
+                    <li data-key="valueQuality"><strong>الجودة والاحترافية:</strong> تحقيق أعلى معايير التصميم والتسويق.</li>
+                    <li data-key="valueIntegration"><strong>التكامل:</strong> تقديم مجموعة متكاملة من الخدمات الرقمية في منصة واحدة.</li>
+                    <li data-key="valueResponse"><strong>الاستجابة الفورية:</strong> دعم على مدار 24 ساعة لتلبية كافة الاحتياجات.</li>
+                    <li data-key="valueCreativity"><strong>الإبداع والتفرد:</strong> تصميم حلول فريدة تناسب كل عميل.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Element Selectors ---
+            const form = document.getElementById('marketingForm');
+            const reportOutput = document.getElementById('reportOutput');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const splashScreen = document.getElementById('splashScreen');
+            const themeToggle = document.getElementById('themeToggle');
+            const languageSelect = document.getElementById('languageSelect');
+            const musicToggle = document.getElementById('musicToggle');
+            const starBg = document.getElementById('starBg');
+            const progressDotsContainer = document.getElementById('progressDots');
+            const introText = document.getElementById('introText');
+            const formSteps = document.querySelectorAll('.form-step');
+            const nextButtons = document.querySelectorAll('[data-step-next]');
+            const prevButtons = document.querySelectorAll('[data-step-prev]');
+            const logoUploadContainer = document.getElementById('logoUploadContainer');
+            const logoUpload = document.getElementById('logoUpload');
+            const logoPreviewContainer = document.getElementById('logoPreviewContainer');
+            const logoPreview = document.getElementById('logoPreview');
+            const removeLogoBtn = document.getElementById('removeLogoBtn');
+            const startNewReportBtn = document.getElementById('startNewReportBtn');
+            const printPdfBtn = document.getElementById('printPdfBtn');
+            const generatePostBtn = document.getElementById('generatePostBtn');
+            const generateLogosBtn = document.getElementById('generateLogosBtn');
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            const aboutBtn = document.getElementById('aboutBtn');
+            const aboutModalOverlay = document.getElementById('aboutModalOverlay');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+
+            // --- State Variables ---
+            let currentStep = 0;
+            let isMusicPlaying = false;
+            let musicInitialized = false;
+            let synth, pattern;
+            let formDataCache = null; // To cache form data for generators
+
+            // --- Translations ---
+            const translations = {
+                en: {
+                    appTitle: "Intelligent Marketing Agent (EMIA) | EhabGM Online Services",
+                    appTitleHeader: "EhabGM's Intelligent Marketing Agent (EMIA)",
+                    welcomeMessage: "Welcome to EhabGM's Intelligent Marketing Agent!",
+                    langArabic: "العربية",
+                    langEnglish: "English",
+                    introTitle: "Your Free & Smart Marketing Assistant",
+                    introDesc: "Enter your brand details and get a comprehensive marketing analysis, content ideas, and even logo suggestions, all powered by AI.",
+                    aboutUsBtn: "About Us",
+                    step1Title: "Step 1: Basic Brand Information",
+                    brandNameLabel: "Client or Brand Name:",
+                    businessTypeLabel: "Business Type:",
+                    nextButton: "Next",
+                    prevButton: "Previous",
+                    step2Title: "Step 2: Service Description & Budget",
+                    serviceDescriptionLabel: "Service/Product Description/Goal:",
+                    budgetLabel: "Available Budget (number only, optional):",
+                    currencyLabel: "Currency:",
+                    currencyUSD: "US Dollar (USD)",
+                    currencyEGP: "Egyptian Pound (EGP)",
+                    currencySAR: "Saudi Riyal (SAR)",
+                    currencyAED: "UAE Dirham (AED)",
+                    step3Title: "Step 3: Target Audience",
+                    targetAudienceLabel: "Describe your target audience:",
+                    step4Title: "Step 4: Competitors & Tone of Voice",
+                    competitorsLabel: "Who are the main competitors? (optional)",
+                    toneOfVoiceLabel: "What is the desired tone of voice?",
+                    toneProfessional: "Professional",
+                    toneFriendly: "Friendly & Fun",
+                    toneLuxury: "Luxurious & Elegant",
+                    toneInspirational: "Inspirational & Motivational",
+                    step5Title: "Step 5: Logo (Optional)",
+                    logoUploadPrompt: "Click here to upload the brand logo",
+                    logoUploadNote: "This will help us analyze the visual identity",
+                    removeLogo: "Remove Logo",
+                    generateReportBtn: "Generate Report Now",
+                    reportTitle: "Comprehensive Marketing Report for",
+                    brandSummaryTitle: "Brand Summary",
+                    swotTitle: "SWOT Analysis",
+                    personaTitle: "Ideal Customer Persona",
+                    funnelTitle: "Marketing Funnel Strategy (AIDA)",
+                    contentPillarsTitle: "Content Ideas & Pillars",
+                    postsGeneratorTitle: "Social Media Post Generator",
+                    platformFacebook: "Facebook",
+                    platformInstagram: "Instagram",
+                    platformTwitter: "Twitter (X)",
+                    platformLinkedIn: "LinkedIn",
+                    generatePostBtn: "Generate Post",
+                    postPlaceholder: "The suggested post will appear here...",
+                    logoSuggestionsTitle: "Logo & Visual Identity Suggestions",
+                    generateLogosBtn: "Generate 3 Logo Suggestions",
+                    shareWhatsapp: "WhatsApp",
+                    shareFacebook: "Facebook",
+                    shareTwitter: "Twitter",
+                    shareLinkedin: "LinkedIn",
+                    downloadPdf: "Download as PDF",
+                    newReport: "Start New Report",
+                    footerText: "A project of <a href='https://ehabonlineservice.online/' target='_blank' rel='noopener noreferrer'>EhabGM Online Services</a>. All rights reserved © 2024.",
+                    readMore: "Read More",
+                    readLess: "Read Less",
+                    // Loading messages
+                    loading_init: "Initializing AI analysis...",
+                    loading_brand: "Analyzing brand identity...",
+                    loading_swot: "Conducting SWOT analysis...",
+                    loading_audience: "Defining target audience...",
+                    loading_strategy: "Building marketing strategy...",
+                    loading_content: "Generating content ideas...",
+                    loading_final: "Finalizing your AI report...",
+                    // Splash tips
+                    tip1: "Tip: A detailed description yields a more accurate report.",
+                    tip2: "Tip: Uploading your logo helps in visual identity analysis.",
+                    tip3: "Did you know? The AIDA model helps guide customers through their journey.",
+                    tip4: "Tip: Understanding your competition is key to standing out.",
+                    // About Modal
+                    aboutModalTitle: "About EhabGM Online Services",
+                    aboutModalDesc: "We are a comprehensive platform offering integrated solutions in digital fields including graphic design, e-marketing, paid advertising management, digital identity creation, and website/e-store design.",
+                    aboutModalVision: "Our Vision",
+                    aboutModalVisionDesc: "To provide innovative creative solutions that meet the needs of the Egyptian and Gulf markets and help build integrated brands that reflect the quality and professionalism of the services provided.",
+                    aboutModalValues: "Our Core Values",
+                    valueQuality: "Quality and Professionalism: Achieving the highest standards of design and marketing.",
+                    valueIntegration: "Integration: Providing a full suite of digital services on one platform.",
+                    valueResponse: "Instant Response: 24/7 support to meet all client needs.",
+                    valueCreativity: "Creativity and Uniqueness: Designing unique solutions for each client."
+                },
+                ar: {
+                    appTitle: "وكيل التسويق الذكي (EMIA) | EhabGM Online Services",
+                    appTitleHeader: "وكيل EhabGM للتسويق الذكي (EMIA)",
+                    welcomeMessage: "أهلاً بك في وكيل EhabGM للتسويق الذكي!",
+                    langArabic: "العربية",
+                    langEnglish: "English",
+                    introTitle: "مساعدك التسويقي الذكي والمجاني",
+                    introDesc: "أدخل بيانات علامتك التجارية واحصل على تحليل تسويقي شامل، أفكار محتوى، وحتى مقترحات للشعار، كل ذلك بقوة الذكاء الاصطناعي.",
+                    aboutUsBtn: "من نحن",
+                    step1Title: "الخطوة 1: معلومات البراند الأساسية",
+                    brandNameLabel: "اسم العميل أو البراند:",
+                    businessTypeLabel: "نوع النشاط التجاري:",
+                    nextButton: "التالي",
+                    prevButton: "السابق",
+                    step2Title: "الخطوة 2: وصف الخدمة والميزانية",
+                    serviceDescriptionLabel: "وصف الخدمة أو المنتج/الهدف:",
+                    budgetLabel: "الميزانية المتاحة (رقم فقط، اختياري):",
+                    currencyLabel: "العملة:",
+                    currencyUSD: "دولار أمريكي (USD)",
+                    currencyEGP: "جنيه مصري (EGP)",
+                    currencySAR: "ريال سعودي (SAR)",
+                    currencyAED: "درهم إماراتي (AED)",
+                    step3Title: "الخطوة 3: الجمهور المستهدف",
+                    targetAudienceLabel: "صف جمهورك المستهدف:",
+                    step4Title: "الخطوة 4: المنافسون ونبرة الصوت",
+                    competitorsLabel: "من هم أبرز المنافسين؟ (اختياري)",
+                    toneOfVoiceLabel: "ما هي نبرة الصوت المرغوبة؟",
+                    toneProfessional: "احترافية",
+                    toneFriendly: "ودودة ومرحة",
+                    toneLuxury: "فاخرة وراقية",
+                    toneInspirational: "ملهمة ومحفزة",
+                    step5Title: "الخطوة 5: الشعار (اختياري)",
+                    logoUploadPrompt: "انقر هنا لرفع شعار البراند",
+                    logoUploadNote: "سيساعدنا هذا في تحليل الهوية البصرية",
+                    removeLogo: "إزالة الشعار",
+                    generateReportBtn: "إنشاء التقرير الآن",
+                    reportTitle: "تقرير تسويقي شامل لـ",
+                    brandSummaryTitle: "ملخص البراند",
+                    swotTitle: "تحليل SWOT",
+                    personaTitle: "شخصية العميل المثالي (Persona)",
+                    funnelTitle: "استراتيجية القمع التسويقي (AIDA)",
+                    contentPillarsTitle: "أفكار وركائز المحتوى",
+                    postsGeneratorTitle: "مولد منشورات السوشيال ميديا",
+                    platformFacebook: "فيسبوك",
+                    platformInstagram: "انستغرام",
+                    platformTwitter: "تويتر (X)",
+                    platformLinkedIn: "لينكدإن",
+                    generatePostBtn: "توليد منشور",
+                    postPlaceholder: "سيظهر المنشور المقترح هنا...",
+                    logoSuggestionsTitle: "مقترحات للشعار والهوية البصرية",
+                    generateLogosBtn: "توليد 3 مقترحات للشعار",
+                    shareWhatsapp: "واتساب",
+                    shareFacebook: "فيسبوك",
+                    shareTwitter: "تويتر",
+                    shareLinkedin: "لينكدإن",
+                    downloadPdf: "تحميل كـ PDF",
+                    newReport: "بدء تقرير جديد",
+                    footerText: "أحد مشاريع <a href='https://ehabonlineservice.online/' target='_blank' rel='noopener noreferrer'>EhabGM Online Services</a>. جميع الحقوق محفوظة © 2024.",
+                    readMore: "اقرأ المزيد",
+                    readLess: "اقرأ أقل",
+                    // Loading messages
+                    loading_init: "جاري تهيئة تحليل الذكاء الاصطناعي...",
+                    loading_brand: "جاري تحليل هوية البراند...",
+                    loading_swot: "جاري إجراء تحليل SWOT...",
+                    loading_audience: "جاري تحديد الجمهور المستهدف...",
+                    loading_strategy: "جاري بناء استراتيجية التسويق...",
+                    loading_content: "جاري توليد أفكار المحتوى...",
+                    loading_final: "جاري وضع اللمسات الأخيرة على تقريرك...",
+                     // Splash tips
+                    tip1: "نصيحة: كلما كان الوصف تفصيليًا، كان التقرير أكثر دقة.",
+                    tip2: "نصيحة: رفع الشعار يساعد في تحليل الهوية البصرية بشكل أفضل.",
+                    tip3: "هل تعلم؟ نموذج AIDA يساعد في توجيه العملاء خلال رحلتهم الشرائية.",
+                    tip4: "نصيحة: فهم منافسيك هو مفتاح التميز في السوق.",
+                    // About Modal
+                    aboutModalTitle: "عن EhabGM Online Services",
+                    aboutModalDesc: "نحن منصة شاملة تقدم حلولاً متكاملة في المجالات الرقمية بما يشمل التصميم الجرافيكي، التسويق الإلكتروني، إدارة الإعلانات الممولة، إنشاء الهوية الرقمية، وتصميم المواقع والمتاجر الإلكترونية.",
+                    aboutModalVision: "رؤيتنا",
+                    aboutModalVisionDesc: "توفير حلول إبداعية مبتكرة تُلبّي احتياجات السوق المصري والخليجي وتساعد على بناء علامات تجارية متكاملة تعكس جودة واحترافية الخدمات المقدمة.",
+                    aboutModalValues: "قيمنا الأساسية",
+                    valueQuality: "الجودة والاحترافية: تحقيق أعلى معايير التصميم والتسويق.",
+                    valueIntegration: "التكامل: تقديم مجموعة متكاملة من الخدمات الرقمية في منصة واحدة.",
+                    valueResponse: "الاستجابة الفورية: دعم على مدار 24 ساعة لتلبية كافة الاحتياجات.",
+                    valueCreativity: "الإبداع والتفرد: تصميم حلول فريدة تناسب كل عميل."
+                }
+            };
+            
+            // --- Gemini API Configuration ---
+            const API_KEY = ""; // Kept empty as per instructions
+            const GENERATION_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+            const IMAGEN_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${API_KEY}`;
+
+
+            // --- Functions ---
+            
+            /**
+             * Calls the Gemini API to generate text content.
+             * @param {string} prompt - The prompt to send to the API.
+             * @returns {Promise<string>} - The generated text.
+             */
+            async function generateContent(prompt) {
+                try {
+                    const payload = {
+                        contents: [{ role: "user", parts: [{ text: prompt }] }],
+                    };
+                    const response = await fetch(GENERATION_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    }
+                    return "لم نتمكن من توليد استجابة. حاول مرة أخرى.";
+                } catch (error) {
+                    console.error("Error generating content:", error);
+                    return "حدث خطأ أثناء الاتصال بالذكاء الاصطناعي. يرجى التحقق من اتصالك والمحاولة مرة أخرى.";
+                }
+            }
+            
+            /**
+             * Calls the Imagen API to generate images.
+             * @param {string} prompt - The prompt for image generation.
+             * @returns {Promise<string[]>} - An array of base64 encoded image strings.
+             */
+            async function generateImages(prompt, sampleCount = 3) {
+                 try {
+                    const payload = { 
+                        instances: [{ prompt: prompt }],
+                        parameters: { "sampleCount": sampleCount } 
+                    };
+                    const response = await fetch(IMAGEN_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    if (result.predictions && result.predictions.length > 0) {
+                        return result.predictions.map(p => `data:image/png;base64,${p.bytesBase64Encoded}`);
+                    }
+                    return [];
+                } catch (error) {
+                    console.error("Error generating images:", error);
+                    return [];
+                }
+            }
+
+
+            // Function to update content based on selected language
+            const updateContent = (lang) => {
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                
+                if (lang === 'ar') {
+                    musicToggle.style.left = '1.5rem';
+                    musicToggle.style.right = 'auto';
+                } else {
+                    musicToggle.style.right = '1.5rem';
+                    musicToggle.style.left = 'auto';
+                }
+
+                document.querySelectorAll('[data-key]').forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        if (key !== 'themeIcon') {
+                           element.innerHTML = translations[lang][key];
+                        }
+                    }
+                });
+            };
+
+            // Function to handle theme toggling
+            const handleThemeToggle = () => {
+                const body = document.body;
+                body.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+                themeToggle.querySelector('i').className = isDarkMode ? 'fas fa-moon' : 'fas fa-sun';
+            };
+
+            // Function to create dynamic star background
+            const createStars = () => {
+                const starCount = 100;
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    const size = Math.random() * 3 + 1;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.setProperty('--star-speed', `${Math.random() * 5 + 3}s`);
+                    starBg.appendChild(star);
+                }
+            };
+            
+            // Function to handle multi-step form navigation
+            const navigateStep = (direction) => {
+                const nextStep = currentStep + direction;
+                if (nextStep >= 0 && nextStep < formSteps.length) {
+                    if (direction > 0) {
+                        const currentStepElement = formSteps[currentStep];
+                        const inputs = currentStepElement.querySelectorAll('input[required], textarea[required]');
+                        let isValid = true;
+                        inputs.forEach(input => {
+                            if (!input.value.trim()) {
+                                input.style.borderColor = 'red';
+                                isValid = false;
+                            } else {
+                                input.style.borderColor = '';
+                            }
+                        });
+                        if (!isValid) return;
+                    }
+
+                    formSteps[currentStep].classList.remove('active');
+                    formSteps[currentStep].classList.add('hidden');
+                    formSteps[nextStep].classList.remove('hidden');
+                    formSteps[nextStep].classList.add('active');
+                    currentStep = nextStep;
+                    updateProgressDots();
+                }
+            };
+
+            // Function to update progress dots
+            const updateProgressDots = () => {
+                const dots = progressDotsContainer.querySelectorAll('.progress-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.remove('active', 'completed');
+                    if (index < currentStep) {
+                        dot.classList.add('completed');
+                    } else if (index === currentStep) {
+                        dot.classList.add('active');
+                    }
+                });
+            };
+
+            // Handle logo upload and preview
+            const handleLogoUpload = (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        logoPreview.src = e.target.result;
+                        logoUploadContainer.classList.add('hidden');
+                        logoPreviewContainer.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            // Handle logo removal
+            const removeLogo = () => {
+                logoUpload.value = '';
+                logoPreview.src = '#';
+                logoUploadContainer.classList.remove('hidden');
+                logoPreviewContainer.classList.add('hidden');
+            };
+
+            // Main function to handle form submission and report generation
+            const handleSubmit = async (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+                formDataCache = Object.fromEntries(formData.entries());
+                
+                form.classList.add('hidden');
+                progressDotsContainer.classList.add('hidden');
+                introText.classList.add('hidden');
+                loadingOverlay.classList.remove('hidden');
+
+                await generateAndPopulateReport(formDataCache);
+
+                loadingOverlay.classList.add('hidden');
+                reportOutput.classList.remove('hidden');
+            };
+            
+            // Generate all report content via API calls
+            const generateAndPopulateReport = async (data) => {
+                const lang = languageSelect.value;
+                const basePrompt = `أنت خبير تسويق استراتيجي. بناءً على البيانات التالية لعلامة تجارية، قم بإنشاء تحليل تسويقي.
+                - اسم البراند: ${data.brandName}
+                - نوع النشاط: ${data.businessType}
+                - وصف الخدمة/الهدف: ${data.serviceDescription}
+                - الجمهور المستهدف: ${data.targetAudience}
+                - المنافسون: ${data.competitors || 'لم يحدد'}
+                - نبرة الصوت: ${data.toneOfVoice}
+                - اللغة المطلوبة للتحليل: ${lang === 'ar' ? 'العربية' : 'English'}
+                `;
+
+                const sections = {
+                    brandSummary: { 
+                        prompt: `${basePrompt}\n\nاكتب الآن "ملخص للبراند" في فقرة واحدة موجزة واحترافية.`, 
+                        elementId: 'brandSummaryContent', 
+                        key: 'loading_brand' 
+                    },
+                    swot: { 
+                        prompt: `${basePrompt}\n\nاكتب الآن "تحليل SWOT" على شكل قائمة HTML. استخدم <h4> لكل قسم (Strengths, Weaknesses, Opportunities, Threats) و <ul><li> لكل نقطة. لا تضف أي نصوص تمهيدية أو ختامية، فقط القائمة.`, 
+                        elementId: 'swotText', 
+                        key: 'loading_swot' 
+                    },
+                    persona: { 
+                        prompt: `${basePrompt}\n\nاكتب الآن وصفاً تفصيلياً لـ "شخصية العميل المثالي (Persona)" في فقرتين.`, 
+                        elementId: 'personaContent', 
+                        key: 'loading_audience' 
+                    },
+                    funnel: { 
+                        prompt: `${basePrompt}\n\nاكتب الآن استراتيجية مختصرة لكل مرحلة من "القمع التسويقي AIDA" (Awareness, Interest, Desire, Action) على شكل قائمة HTML. استخدم <h4> لكل مرحلة و <p> للشرح. لا تضف أي نصوص تمهيدية أو ختامية.`, 
+                        elementId: 'funnelContent', 
+                        key: 'loading_strategy' 
+                    },
+                    contentPillars: { 
+                        prompt: `${basePrompt}\n\nاقترح الآن 5 "أفكار وركائز للمحتوى" على شكل قائمة HTML نقطية <ul><li>.`, 
+                        elementId: 'contentPillarsContent', 
+                        key: 'loading_content' 
+                    },
+                };
+
+                const tasks = Object.values(sections).map(s => ({ key: s.key, duration: 2000, icon: 'fa-cogs' }));
+                
+                // Setup loading UI
+                const loadingTasksList = document.getElementById('loadingTasks');
+                const projectMapContainer = document.getElementById('projectMap');
+                const mapProgressFill = document.getElementById('mapProgressFill');
+                if(loadingTasksList) loadingTasksList.innerHTML = '';
+                if(projectMapContainer) projectMapContainer.querySelectorAll('.map-node').forEach(n => n.remove());
+                
+                tasks.forEach((task, index) => {
+                    const li = document.createElement('li');
+                    li.id = `task-${index}`;
+                    li.innerHTML = `<span class="task-name">${translations[lang][task.key]}</span><span class="task-icon"><i class="fas fa-cogs"></i></span>`;
+                    if(loadingTasksList) loadingTasksList.appendChild(li);
+                    
+                    const node = document.createElement('div');
+                    node.className = 'map-node';
+                    node.id = `node-${index}`;
+                    if(projectMapContainer) projectMapContainer.appendChild(node);
+                });
+
+                const dynamicMessage = document.getElementById('dynamicLoadingMessage');
+                const reportBrandNameEl = document.getElementById('reportBrandName');
+                const reportDateEl = document.getElementById('reportDate');
+
+                if (reportBrandNameEl) reportBrandNameEl.textContent = data.brandName;
+                if (reportDateEl) reportDateEl.textContent = new Date().toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                // Execute API calls sequentially and update UI
+                let i = 0;
+                for (const sectionKey in sections) {
+                    const section = sections[sectionKey];
+                    if (dynamicMessage) dynamicMessage.textContent = translations[lang][section.key];
+                    
+                    const taskEl = document.getElementById(`task-${i}`);
+                    const nodeEl = document.getElementById(`node-${i}`);
+                    if (taskEl) taskEl.classList.add('active');
+                    if (nodeEl) nodeEl.classList.add('active');
+
+                    const content = await generateContent(section.prompt);
+                    const contentEl = document.getElementById(section.elementId);
+                    if(contentEl) contentEl.innerHTML = content;
+                    
+                    if (taskEl) {
+                        taskEl.classList.remove('active');
+                        taskEl.classList.add('completed');
+                    }
+                    if (nodeEl) {
+                        nodeEl.classList.remove('active');
+                        nodeEl.classList.add('completed');
+                    }
+
+                    const progressPercentage = ((i + 1) / tasks.length) * 100;
+                    if (mapProgressFill) mapProgressFill.style.width = `${progressPercentage}%`;
+                    i++;
+                }
+
+                // Finalize
+                if (dynamicMessage) dynamicMessage.textContent = translations[lang]['loading_final'];
+                
+                renderSwotChart(); // Render chart after data is populated
+                // Reset collapsible sections
+                document.querySelectorAll('.collapsible-content').forEach(el => {
+                    el.classList.remove('expanded');
+                });
+                readMoreButtons.forEach(btn => {
+                    btn.textContent = translations[lang].readMore;
+                });
+            };
+
+
+            // Render SWOT Chart
+            let swotChartInstance;
+            const renderSwotChart = () => {
+                const ctx = document.getElementById('swotChart').getContext('2d');
+                if (swotChartInstance) {
+                    swotChartInstance.destroy();
+                }
+                swotChartInstance = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['نقاط القوة', 'نقاط الضعف', 'الفرص', 'التهديدات'],
+                        datasets: [{
+                            label: 'تحليل رباعي',
+                            data: [
+                                Math.floor(Math.random() * 5) + 5, // Strength (5-9)
+                                Math.floor(Math.random() * 5) + 1, // Weakness (1-5)
+                                Math.floor(Math.random() * 5) + 4, // Opportunity (4-8)
+                                Math.floor(Math.random() * 5) + 2, // Threat (2-6)
+                            ],
+                            backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                            borderColor: 'rgba(220, 38, 38, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(220, 38, 38, 1)',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: document.body.classList.contains('dark-mode') ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)' },
+                                grid: { color: document.body.classList.contains('dark-mode') ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)' },
+                                pointLabels: { color: document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#374151', font: { size: 12 } },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#374151',
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: document.body.classList.contains('dark-mode') ? '#e0e0e0' : '#374151'
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            // Generate PDF from report
+            const generatePdf = () => {
+                const element = document.getElementById('reportOutput');
+                const brandName = formDataCache.brandName || 'Report';
+                const opt = {
+                    margin:       0.5,
+                    filename:     `EMIA_Report_for_${brandName.replace(/\s+/g, '_')}.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true },
+                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                html2pdf().from(element).set(opt).save();
+            };
+            
+            // Generate social media post with AI
+            const generatePost = async () => {
+                if (!formDataCache) return;
+                const postOutput = document.getElementById('postOutput');
+                const platform = document.getElementById('platformSelect').value;
+                postOutput.innerHTML = `<div class="loading-spinner mx-auto"></div>`;
+                
+                const prompt = `بناءً على بيانات البراند التالية:
+                - اسم البراند: ${formDataCache.brandName}
+                - الهدف: ${formDataCache.serviceDescription}
+                - نبرة الصوت: ${formDataCache.toneOfVoice}
+                
+                اكتب الآن منشوراً قصيراً وجذاباً لمنصة ${platform}. يجب أن يحتوي على هاشتاجات مناسبة.`;
+
+                const postContent = await generateContent(prompt);
+                postOutput.innerHTML = postContent.replace(/\n/g, '<br>');
+            };
+
+            // Generate logo suggestions with AI
+            const generateLogos = async () => {
+                if (!formDataCache) return;
+                const logoOutput = document.getElementById('logoSuggestionsOutput');
+                logoOutput.innerHTML = `<div class="loading-spinner mx-auto col-span-3"></div>`;
+
+                const prompt = `A modern, minimalist logo for a company named "${formDataCache.brandName}". The business is in the '${formDataCache.businessType}' sector. The logo should have a ${formDataCache.toneOfVoice} feel. Clean vector art, high contrast.`;
+                
+                const images = await generateImages(prompt, 3);
+
+                logoOutput.innerHTML = '';
+                if (images.length > 0) {
+                    images.forEach((imgSrc, i) => {
+                        logoOutput.innerHTML += `
+                            <div class="border rounded-lg p-4 text-center bg-gray-50 dark:bg-gray-700 flex flex-col items-center justify-center">
+                                <img src="${imgSrc}" alt="Logo suggestion ${i+1}" class="w-24 h-24 object-contain">
+                                <p class="mt-2 font-semibold">مقترح ${i+1}</p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    logoOutput.innerHTML = `<p class="col-span-3 text-center">لم نتمكن من توليد الشعارات. حاول مرة أخرى.</p>`;
+                }
+            };
+
+            // Handle social sharing
+            const shareOnSocial = (platform) => {
+                const url = encodeURIComponent("https://ehabonlineservice.online/");
+                const text = encodeURIComponent(`اكتشف تقرير التسويق الذكي الذي أنشأته لـ ${formDataCache.brandName} باستخدام وكيل EhabGM للتسويق الذكي!`);
+                let shareUrl = '';
+                switch(platform) {
+                    case 'whatsapp': shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`; break;
+                    case 'facebook': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; break;
+                    case 'twitter': shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`; break;
+                    case 'linkedin': shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`; break;
+                }
+                window.open(shareUrl, '_blank');
+            };
+
+            // Toggle collapsible content
+            const toggleCollapsible = (event) => {
+                const button = event.target;
+                const content = button.previousElementSibling;
+                const lang = languageSelect.value;
+                content.classList.toggle('expanded');
+                button.textContent = content.classList.contains('expanded') 
+                    ? translations[lang].readLess 
+                    : translations[lang].readMore;
+            };
+
+            // Splash Screen logic
+            const handleSplashScreen = () => {
+                const lang = languageSelect.value;
+                const tips = [
+                    translations[lang].tip1,
+                    translations[lang].tip2,
+                    translations[lang].tip3,
+                    translations[lang].tip4,
+                ];
+                const tipElement = document.getElementById('dynamicSplashTip');
+                let tipIndex = 0;
+                
+                const showNextTip = () => {
+                    tipElement.textContent = tips[tipIndex];
+                    tipIndex = (tipIndex + 1) % tips.length;
+                };
+
+                showNextTip();
+                const tipInterval = setInterval(showNextTip, 4000);
+
+                setTimeout(() => {
+                    splashScreen.classList.add('hidden');
+                    clearInterval(tipInterval);
+                }, 5000);
+            };
+
+            // Function to set up the music components
+            const setupMusic = () => {
+                if (musicInitialized) return;
+                
+                synth = new Tone.Synth({
+                    oscillator: { type: 'sine' },
+                    envelope: { attack: 0.5, decay: 0.1, sustain: 0.3, release: 1 }
+                }).toDestination();
+                
+                pattern = new Tone.Pattern((time, note) => {
+                    synth.triggerAttackRelease(note, '8n', time);
+                }, ["C2", "E2", "G2", "B2"], "randomWalk");
+                
+                pattern.interval = "2n";
+                Tone.Transport.bpm.value = 60;
+                pattern.start(0); // Start the pattern on the transport timeline
+                
+                musicInitialized = true;
+            };
+
+            // Background Music Toggle Function
+            const toggleMusic = async () => {
+                if (Tone.context.state !== 'running') {
+                    await Tone.start();
+                }
+
+                setupMusic(); // Ensure music components are ready
+
+                if (!isMusicPlaying) {
+                    Tone.Transport.start();
+                    musicToggle.querySelector('i').className = 'fas fa-volume-up';
+                    isMusicPlaying = true;
+                } else {
+                    Tone.Transport.stop();
+                    musicToggle.querySelector('i').className = 'fas fa-music';
+                    isMusicPlaying = false;
+                }
+            };
+            
+            // About Modal Logic
+            const openModal = () => aboutModalOverlay.classList.add('visible');
+            const closeModal = () => aboutModalOverlay.classList.remove('visible');
+
+
+            // --- Event Listeners ---
+            themeToggle.addEventListener('click', () => {
+                handleThemeToggle();
+                if (document.getElementById('swotChart').offsetParent !== null) {
+                    renderSwotChart();
+                }
+            });
+            languageSelect.addEventListener('change', (e) => updateContent(e.target.value));
+            form.addEventListener('submit', handleSubmit);
+            
+            nextButtons.forEach(btn => btn.addEventListener('click', () => navigateStep(1)));
+            prevButtons.forEach(btn => btn.addEventListener('click', () => navigateStep(-1)));
+
+            logoUploadContainer.addEventListener('click', () => logoUpload.click());
+            logoUpload.addEventListener('change', handleLogoUpload);
+            removeLogoBtn.addEventListener('click', removeLogo);
+            
+            startNewReportBtn.addEventListener('click', () => window.location.reload());
+            printPdfBtn.addEventListener('click', generatePdf);
+            generatePostBtn.addEventListener('click', generatePost);
+            generateLogosBtn.addEventListener('click', generateLogos);
+            
+            document.getElementById('shareWhatsapp').addEventListener('click', () => shareOnSocial('whatsapp'));
+            document.getElementById('shareFacebook').addEventListener('click', () => shareOnSocial('facebook'));
+            document.getElementById('shareTwitter').addEventListener('click', () => shareOnSocial('twitter'));
+            document.getElementById('shareLinkedin').addEventListener('click', () => shareOnSocial('linkedin'));
+
+            readMoreButtons.forEach(btn => btn.addEventListener('click', toggleCollapsible));
+            musicToggle.addEventListener('click', toggleMusic);
+            aboutBtn.addEventListener('click', openModal);
+            closeModalBtn.addEventListener('click', closeModal);
+            aboutModalOverlay.addEventListener('click', (e) => {
+                if (e.target === aboutModalOverlay) closeModal();
+            });
+
+            // --- Initial Setup ---
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                handleThemeToggle();
+            }
+            createStars();
+            handleSplashScreen();
+            updateContent(languageSelect.value);
+            updateProgressDots();
+        });
+    </script>
+</body>
+</html>
