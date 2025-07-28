@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EhabGM | المسوق الذكي</title>
+    <title data-lang-ar="EhabGM | المسوق الذكي" data-lang-en="EhabGM | Smart Marketer">EhabGM | المسوق الذكي</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for star icon -->
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light gray background */
+            background-color: #f0f2f5; /* Light gray background, less prominent */
             color: #333;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
@@ -52,10 +52,10 @@
 
         /* General button styling */
         .btn-primary {
-            @apply bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-lg;
+            @apply bg-red-600 text-white py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105; /* More prominent */
         }
         .btn-secondary {
-            @apply bg-gray-200 text-gray-800 py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300 ease-in-out shadow-md;
+            @apply bg-gray-800 text-white py-3 px-6 rounded-lg hover:bg-black transition duration-300 ease-in-out shadow-md;
         }
         .star-icon {
             cursor: pointer;
@@ -80,6 +80,158 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
+        /* Chatbot specific styles */
+        #chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #dc2626; /* Red-600 */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        #chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 90%; /* Responsive width */
+            max-width: 380px;
+            height: 70vh; /* Responsive height */
+            max-height: 550px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999;
+            transform: translateY(100%) scale(0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s;
+        }
+        #chat-window.open {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+        #chat-header {
+            background-color: #dc2626; /* Red-600 */
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        #chat-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+        .message.user {
+            align-self: flex-end;
+            background-color: #e0e7ff; /* Light blue */
+            color: #333;
+            border-bottom-right-radius: 5px;
+        }
+        .message.bot {
+            align-self: flex-start;
+            background-color: #f3f4f6; /* Light gray */
+            color: #333;
+            border-bottom-left-radius: 5px;
+        }
+        .message.loading {
+            align-self: flex-start;
+            background-color: #f3f4f6;
+            color: #333;
+            border-bottom-left-radius: 5px;
+            font-style: italic;
+        }
+        #chat-input-area {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background-color: white;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 15px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+        #chat-send-btn {
+            background-color: #dc2626; /* Red-600 */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-right: 10px; /* Adjusted for RTL */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+        #chat-send-btn:hover {
+            background-color: #b91c1c; /* Darker red */
+        }
+
+        /* Responsive adjustments for chat window */
+        @media (max-width: 768px) {
+            #chat-window {
+                width: 95%;
+                right: 2.5%;
+                bottom: 80px;
+                max-width: none; /* Allow full width on small screens */
+            }
+            #chat-bubble {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -87,7 +239,7 @@
     <!-- Splash Screen -->
     <div id="splash-screen">
         <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo" class="rounded-full">
-        <p class="text-xl md:text-2xl font-semibold text-gray-300 mt-6">
+        <p class="text-xl md:text-2xl font-semibold text-gray-300 mt-6" data-lang-ar="شريكك الرقمي لحلول ذكية ومبتكرة" data-lang-en="Your Digital Partner for Smart & Innovative Solutions">
             شريكك الرقمي لحلول ذكية ومبتكرة
         </p>
     </div>
@@ -95,33 +247,40 @@
     <!-- Main Content -->
     <div id="main-content" class="min-h-screen flex flex-col opacity-0 transition-opacity duration-1000 ease-in-out">
         <!-- Header -->
-        <header class="bg-white shadow-md py-4 px-6 md:px-12 flex justify-between items-center rounded-b-lg">
-            <div class="flex items-center">
+        <header class="bg-black text-white shadow-lg py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center rounded-b-lg">
+            <div class="flex items-center mb-4 md:mb-0">
                 <img src="https://i.postimg.cc/TYyK2Rtv/logo.png" alt="EhabGM Logo" class="h-12 w-12 rounded-full mr-3">
-                <h1 class="text-2xl md:text-3xl font-bold text-blue-700">EhabGM | Online Services</h1>
+                <h1 class="text-2xl md:text-3xl font-bold text-white" data-lang-ar="EhabGM | Online Services" data-lang-en="EhabGM | Online Services">EhabGM | Online Services</h1>
             </div>
-            <nav>
-                <ul class="flex space-x-4 md:space-x-8 text-lg">
-                    <li><a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300">الرئيسية</a></li>
-                    <li><a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">من نحن</a></li>
-                    <li><a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300">خدماتنا</a></li>
-                    <li><a href="#emia" class="text-blue-600 font-semibold hover:text-blue-700 transition duration-300">EMIA المسوق الذكي</a></li>
-                    <li><a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">اتصل بنا</a></li>
+            <nav class="w-full md:w-auto">
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-lg items-center">
+                    <li><a href="#home" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="الرئيسية" data-lang-en="Home">الرئيسية</a></li>
+                    <li><a href="#about" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="من نحن" data-lang-en="About Us">من نحن</a></li>
+                    <li><a href="#services" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="خدماتنا" data-lang-en="Services">خدماتنا</a></li>
+                    <li><a href="#emia" class="text-red-500 font-semibold hover:text-red-600 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="EMIA المسوق الذكي" data-lang-en="EMIA Smart Marketer">EMIA المسوق الذكي</a></li>
+                    <!-- Removed AI Integration link -->
+                    <li><a href="#contact" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="اتصل بنا" data-lang-en="Contact Us">اتصل بنا</a></li>
+                    <li>
+                        <button id="lang-toggle" class="bg-red-600 text-white px-4 py-2 rounded-full text-sm hover:bg-red-700 transition duration-300">
+                            <span data-lang-ar="English" data-lang-en="العربية">English</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </header>
 
         <!-- Hero Section -->
-        <section id="home" class="relative bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-20 md:py-32 text-center overflow-hidden rounded-b-xl shadow-xl">
-            <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://placehold.co/1920x1080/0A2342/FFFFFF?text=Digital+Marketing+Background');"></div>
+        <section id="home" class="relative bg-black text-white py-20 md:py-32 text-center overflow-hidden rounded-b-xl shadow-xl">
+            <!-- New banner image as background -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://i.postimg.cc/m24QMW6Z/assets-task-01k19376a3ej3a51v7xsaba6fz-1753725864-img-0.png');"></div>
             <div class="relative z-10 max-w-4xl mx-auto px-6">
-                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up" data-lang-ar="حلول رقمية مبتكرة لنمو أعمالك" data-lang-en="Innovative Digital Solutions for Your Business Growth">
                     حلول رقمية مبتكرة لنمو أعمالك
                 </h2>
-                <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up delay-200">
+                <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up delay-200" data-lang-ar="نقدم خدمات متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة." data-lang-en="We offer integrated services in graphic design, digital marketing, and website development, with 24/7 technical and consulting support.">
                     نقدم خدمات متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة.
                 </p>
-                <a href="#emia" class="btn-primary inline-block animate-fade-in-up delay-400">
+                <a href="#emia" class="btn-primary inline-block animate-fade-in-up delay-400" data-lang-ar="اكتشف EMIA المسوق الذكي" data-lang-en="Discover EMIA Smart Marketer">
                     اكتشف EMIA المسوق الذكي
                 </a>
             </div>
@@ -130,60 +289,60 @@
         <!-- About Us Section -->
         <section id="about" class="py-16 md:py-24 px-6 md:px-12 bg-white rounded-lg shadow-lg m-8">
             <div class="max-w-6xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-8">من نحن</h2>
-                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-8" data-lang-ar="من نحن" data-lang-en="About Us">من نحن</h2>
+                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-6" data-lang-ar="EhabGM | Online Services هي منصة رقمية شاملة تقدم حلولاً متكاملة في مجالات التصميم الجرافيكي والتسويق الإلكتروني، تدمج بين الإبداع التقني وفهم عميق للسوق المصري. هدفنا هو تحويل أفكارك الرقمية إلى واقع ملموس يبرز علامتك التجارية بقوة في عالم المنافسة." data-lang-en="EhabGM | Online Services is a comprehensive digital platform offering integrated solutions in graphic design and digital marketing, combining technical creativity with a deep understanding of the Egyptian market. Our goal is to transform your digital ideas into a tangible reality that strongly highlights your brand in the competitive world.">
                     EhabGM | Online Services هي منصة رقمية شاملة تقدم حلولاً متكاملة في مجالات التصميم الجرافيكي والتسويق الإلكتروني، تدمج بين الإبداع التقني وفهم عميق للسوق المصري. هدفنا هو تحويل أفكارك الرقمية إلى واقع ملموس يبرز علامتك التجارية بقوة في عالم المنافسة.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
                     <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <i class="fas fa-gem text-blue-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">الجودة والاحترافية</h3>
-                        <p class="text-gray-600 text-center">تحقيق أعلى معايير التصميم والتسويق باستخدام أحدث الأساليب.</p>
+                        <i class="fas fa-gem text-red-600 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-ar="الجودة والاحترافية" data-lang-en="Quality & Professionalism">الجودة والاحترافية</h3>
+                        <p class="text-gray-600 text-center" data-lang-ar="تحقيق أعلى معايير التصميم والتسويق باستخدام أحدث الأساليب." data-lang-en="Achieving the highest standards in design and marketing using the latest methods.">تحقيق أعلى معايير التصميم والتسويق باستخدام أحدث الأساليب.</p>
                     </div>
                     <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <i class="fas fa-puzzle-piece text-blue-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">التكامل</h3>
-                        <p class="text-gray-600 text-center">تقديم مجموعة متكاملة من الخدمات الرقمية في منصة واحدة.</p>
+                        <i class="fas fa-puzzle-piece text-red-600 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-ar="التكامل" data-lang-en="Integration">التكامل</h3>
+                        <p class="text-gray-600 text-center" data-lang-ar="تقديم مجموعة متكاملة من الخدمات الرقمية في منصة واحدة." data-lang-en="Providing a comprehensive set of digital services on one platform.">تقديم مجموعة متكاملة من الخدمات الرقمية في منصة واحدة.</p>
                     </div>
                     <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <i class="fas fa-clock text-blue-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">الاستجابة الفورية</h3>
-                        <p class="text-gray-600 text-center">دعم على مدار 24 ساعة لتلبية كافة استفسارات واحتياجات العملاء.</p>
+                        <i class="fas fa-clock text-red-600 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-ar="الاستجابة الفورية" data-lang-en="Instant Response">الاستجابة الفورية</h3>
+                        <p class="text-gray-600 text-center" data-lang-ar="دعم على مدار 24 ساعة لتلبية كافة استفسارات واحتياجات العملاء." data-lang-en="24-hour support to meet all customer inquiries and needs.">دعم على مدار 24 ساعة لتلبية كافة استفسارات واحتياجات العملاء.</p>
                     </div>
                     <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <i class="fas fa-lightbulb text-blue-600 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">الإبداع والتفرد</h3>
-                        <p class="text-gray-600 text-center">تصميم حلول فريدة تناسب كل عميل وتبرز علامته التجارية.</p>
+                        <i class="fas fa-lightbulb text-red-600 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-ar="الإبداع والتفرد" data-lang-en="Creativity & Uniqueness">الإبداع والتفرد</h3>
+                        <p class="text-gray-600 text-center" data-lang-ar="تصميم حلول فريدة تناسب كل عميل وتبرز علامته التجارية." data-lang-en="Designing unique solutions that suit each client and highlight their brand.">تصميم حلول فريدة تناسب كل عميل وتبرز علامته التجارية.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-16 md:py-24 px-6 md:px-12 bg-blue-50 rounded-lg shadow-lg m-8">
+        <section id="services" class="py-16 md:py-24 px-6 md:px-12 bg-gray-50 rounded-lg shadow-lg m-8">
             <div class="max-w-6xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-8">خدماتنا المتكاملة</h2>
-                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-8" data-lang-ar="خدماتنا المتكاملة" data-lang-en="Our Integrated Services">خدماتنا المتكاملة</h2>
+                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12" data-lang-ar="كل خدمة نقدمها مدروسة لتلبية احتياجات سوق العمل المصري مع إيلاء اهتمام خاص بالتفاصيل وتقديم قيمة مضافة." data-lang-en="Every service we offer is carefully designed to meet the needs of the Egyptian market, with special attention to detail and added value.">
                     كل خدمة نقدمها مدروسة لتلبية احتياجات سوق العمل المصري مع إيلاء اهتمام خاص بالتفاصيل وتقديم قيمة مضافة.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
-                        <i class="fas fa-paint-brush text-blue-600 text-5xl mb-6"></i>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">التصميم الجرافيكي والهوية البصرية</h3>
-                        <p class="text-gray-600 mb-6">تصميم شعارات احترافية، هوية بصرية متكاملة، بوستات ومواد دعائية عالية الجودة.</p>
-                        <a href="#" class="text-blue-600 hover:underline font-medium">اعرف المزيد <i class="fas fa-arrow-left mr-2"></i></a>
+                        <i class="fas fa-paint-brush text-red-600 text-5xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4" data-lang-ar="التصميم الجرافيكي والهوية البصرية" data-lang-en="Graphic Design & Visual Identity">التصميم الجرافيكي والهوية البصرية</h3>
+                        <p class="text-gray-600 mb-6" data-lang-ar="تصميم شعارات احترافية، هوية بصرية متكاملة، بوستات ومواد دعائية عالية الجودة." data-lang-en="Professional logo design, integrated visual identity, high-quality posts and promotional materials.">تصميم شعارات احترافية، هوية بصرية متكاملة، بوستات ومواد دعائية عالية الجودة.</p>
+                        <a href="#" class="text-red-600 hover:underline font-medium" data-lang-ar="اعرف المزيد" data-lang-en="Learn More">اعرف المزيد <i class="fas fa-arrow-left mr-2"></i></a>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
-                        <i class="fas fa-bullhorn text-blue-600 text-5xl mb-6"></i>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">التسويق الرقمي والإعلانات الممولة</h3>
-                        <p class="text-gray-600 mb-6">إدارة حملات إعلانية على فيسبوك، إنستقرام، تيك توك، وجوجل وتحسين نتائجها.</p>
-                        <a href="#" class="text-blue-600 hover:underline font-medium">اعرف المزيد <i class="fas fa-arrow-left mr-2"></i></a>
+                        <i class="fas fa-bullhorn text-red-600 text-5xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4" data-lang-ar="التسويق الرقمي والإعلانات الممولة" data-lang-en="Digital Marketing & Paid Ads">التسويق الرقمي والإعلانات الممولة</h3>
+                        <p class="text-gray-600 mb-6" data-lang-ar="إدارة حملات إعلانية على فيسبوك، إنستقرام، تيك توك، وجوجل وتحسين نتائجها." data-lang-en="Managing advertising campaigns on Facebook, Instagram, TikTok, and Google and improving their results.">إدارة حملات إعلانية على فيسبوك، إنستقرام، تيك توك، وجوجل وتحسين نتائجها.</p>
+                        <a href="#" class="text-red-600 hover:underline font-medium" data-lang-ar="اعرف المزيد" data-lang-en="Learn More">اعرف المزيد <i class="fas fa-arrow-left mr-2"></i></a>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
-                        <i class="fas fa-globe text-blue-600 text-5xl mb-6"></i>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">تصميم المواقع والمتاجر الإلكترونية</h3>
-                        <p class="text-gray-600 mb-6">تصميم مواقع تعريفية احترافية وإنشاء متاجر إلكترونية متكاملة.</p>
-                        <a href="#" class="text-blue-600 hover:underline font-medium">اعرف المزيد <i class="fas fa-arrow-left mr-2"></i></a>
+                        <i class="fas fa-globe text-red-600 text-5xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4" data-lang-ar="تصميم المواقع والمتاجر الإلكترونية" data-lang-en="Website & E-commerce Design">تصميم المواقع والمتاجر الإلكترونية</h3>
+                        <p class="text-gray-600 mb-6" data-lang-ar="تصميم مواقع تعريفية احترافية وإنشاء متاجر إلكترونية متكاملة." data-lang-en="Designing professional informational websites and creating integrated e-commerce stores.">تصميم مواقع تعريفية احترافية وإنشاء متاجر إلكترونية متكاملة.</p>
+                        <a href="#" class="text-red-600 hover:underline font-medium" data-lang-ar="اعرف المزيد" data-lang-en="Learn More">اعرف المزيد <i class="fas fa-arrow-left mr-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -192,49 +351,49 @@
         <!-- EMIA Smart Marketer Section -->
         <section id="emia" class="py-16 md:py-24 px-6 md:px-12 bg-white rounded-lg shadow-lg m-8">
             <div class="max-w-6xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-black mb-8" data-lang-ar="EMIA المسوق الذكي | EhabGM" data-lang-en="EMIA Smart Marketer | EhabGM">
                     EMIA المسوق الذكي | EhabGM
                 </h2>
-                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12">
+                <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-12" data-lang-ar="نقدم لكم أحدث ابتكاراتنا في عالم التسويق الرقمي، EMIA، المسوق الذكي الذي يوفر حلولاً تسويقية سريعة، فعالة، ومجانية لمساعدتكم على تحقيق أهدافكم." data-lang-en="We present our latest innovations in the world of digital marketing, EMIA, the Smart Marketer that provides fast, effective, and free marketing solutions to help you achieve your goals.">
                     نقدم لكم أحدث ابتكاراتنا في عالم التسويق الرقمي، EMIA، المسوق الذكي الذي يوفر حلولاً تسويقية سريعة، فعالة، ومجانية لمساعدتكم على تحقيق أهدافكم.
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <!-- EMIA V0.0 Card -->
-                    <div class="bg-blue-50 p-8 rounded-xl shadow-xl border border-blue-200 flex flex-col items-center text-center relative">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                         <i class="fas fa-star absolute top-4 left-4 text-2xl star-icon" data-model="v0"></i>
-                        <i class="fas fa-robot text-blue-600 text-6xl mb-6"></i>
-                        <h3 class="text-3xl font-bold text-blue-800 mb-4">EMIA V0.0 - EhabGM</h3>
-                        <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                        <i class="fas fa-robot text-red-600 text-6xl mb-6"></i>
+                        <a href="emia-v0-page.html" class="text-3xl font-bold text-gray-800 mb-4 hover:text-red-700 transition duration-300" data-lang-ar="EMIA V0.0 - EhabGM" data-lang-en="EMIA V0.0 - EhabGM">EMIA V0.0 - EhabGM</a>
+                        <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي." data-lang-en="The initial version of EMIA Smart Marketer, offering basic marketing analytics and quick suggestions to improve your digital campaigns. Ideal for getting started in smart marketing.">
                             النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي.
                         </p>
                         <ul class="text-gray-600 text-right w-full px-4 mb-8 space-y-2">
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> تحليلات تسويقية أساسية</li>
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> اقتراحات حملات سريعة</li>
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> مجاني تماماً</li>
+                            <li class="flex items-center justify-end" data-lang-ar="تحليلات تسويقية أساسية" data-lang-en="Basic marketing analytics"><i class="fas fa-check-circle text-green-500 ml-2"></i> تحليلات تسويقية أساسية</li>
+                            <li class="flex items-center justify-end" data-lang-ar="اقتراحات حملات سريعة" data-lang-en="Quick campaign suggestions"><i class="fas fa-check-circle text-green-500 ml-2"></i> اقتراحات حملات سريعة</li>
+                            <li class="flex items-center justify-end" data-lang-ar="مجاني تماماً" data-lang-en="Completely Free"><i class="fas fa-check-circle text-green-500 ml-2"></i> مجاني تماماً</li>
                         </ul>
                         <!-- Changed button to anchor tag for navigation -->
-                        <a href="emia-v0-page.html" class="btn-primary w-full md:w-auto text-center">
+                        <a href="emia-v0-page.html" class="btn-primary w-full md:w-auto text-center" data-lang-ar="اختر هذا النموذج" data-lang-en="Choose This Model">
                             اختر هذا النموذج
                         </a>
                     </div>
 
                     <!-- EMIA V1.0 Card -->
-                    <div class="bg-blue-50 p-8 rounded-xl shadow-xl border border-blue-200 flex flex-col items-center text-center relative">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                         <i class="fas fa-star absolute top-4 left-4 text-2xl star-icon" data-model="v1"></i>
-                        <i class="fas fa-brain text-blue-600 text-6xl mb-6"></i>
-                        <h3 class="text-3xl font-bold text-blue-800 mb-4">EMIA V1.0 - EhabGM</h3>
-                        <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                        <i class="fas fa-brain text-red-600 text-6xl mb-6"></i>
+                        <a href="https://ehabonlineservice.online" class="text-3xl font-bold text-gray-800 mb-4 hover:text-red-700 transition duration-300" data-lang-ar="EMIA V1.0 - EhabGM" data-lang-en="EMIA V1.0 - EhabGM">EMIA V1.0 - EhabGM</a>
+                        <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع." data-lang-en="The advanced version of EMIA Smart Marketer, providing advanced analytics, precise audience targeting, and customized recommendations to increase ROI. Your optimal choice for rapid growth.">
                             النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع.
                         </p>
                         <ul class="text-gray-600 text-right w-full px-4 mb-8 space-y-2">
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> تحليلات متقدمة وعميقة</li>
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> استهداف دقيق للجمهور</li>
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> توصيات مخصصة لزيادة ROI</li>
-                            <li class="flex items-center justify-end"><i class="fas fa-check-circle text-green-500 ml-2"></i> مجاني تماماً</li>
+                            <li class="flex items-center justify-end" data-lang-ar="تحليلات متقدمة وعميقة" data-lang-en="Advanced & in-depth analytics"><i class="fas fa-check-circle text-green-500 ml-2"></i> تحليلات متقدمة وعميقة</li>
+                            <li class="flex items-center justify-end" data-lang-ar="استهداف دقيق للجمهور" data-lang-en="Precise audience targeting"><i class="fas fa-check-circle text-green-500 ml-2"></i> استهداف دقيق للجمهور</li>
+                            <li class="flex items-center justify-end" data-lang-ar="توصيات مخصصة لزيادة ROI" data-lang-en="Customized recommendations for ROI increase"><i class="fas fa-check-circle text-green-500 ml-2"></i> توصيات مخصصة لزيادة ROI</li>
+                            <li class="flex items-center justify-end" data-lang-ar="مجاني تماماً" data-lang-en="Completely Free"><i class="fas fa-check-circle text-green-500 ml-2"></i> مجاني تماماً</li>
                         </ul>
                         <!-- Changed button to anchor tag for navigation -->
-                        <a href="emia-v1-page.html" class="btn-primary w-full md:w-auto text-center">
+                        <a href="https://ehabonlineservice.online" class="btn-primary w-full md:w-auto text-center" data-lang-ar="اختر هذا النموذج" data-lang-en="Choose This Model">
                             اختر هذا النموذج
                         </a>
                     </div>
@@ -243,39 +402,39 @@
         </section>
 
         <!-- Contact Us Section -->
-        <section id="contact" class="py-16 md:py-24 px-6 md:px-12 bg-blue-700 text-white rounded-lg shadow-lg m-8">
+        <section id="contact" class="py-16 md:py-24 px-6 md:px-12 bg-red-600 text-white rounded-lg shadow-lg m-8">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8">تواصل معنا</h2>
-                <p class="text-lg md:text-xl mb-10 opacity-90">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8" data-lang-ar="تواصل معنا" data-lang-en="Contact Us">تواصل معنا</h2>
+                <p class="text-lg md:text-xl mb-10 opacity-90" data-lang-ar="نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا." data-lang-en="We are here to help! Contact us for any inquiries or to request our services.">
                     نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-8">
-                    <a href="https://wa.me/201022679250" target="_blank" class="btn-secondary flex items-center justify-center text-blue-700 hover:bg-gray-100">
-                        <i class="fab fa-whatsapp text-2xl ml-3"></i> واتساب مباشر
+                    <a href="https://wa.me/201022679250" target="_blank" class="btn-secondary flex items-center justify-center text-white hover:bg-gray-900">
+                        <i class="fab fa-whatsapp text-2xl ml-3"></i> <span data-lang-ar="واتساب مباشر" data-lang-en="Direct WhatsApp">واتساب مباشر</span>
                     </a>
-                    <a href="tel:+201022679250" class="btn-secondary flex items-center justify-center text-blue-700 hover:bg-gray-100">
+                    <a href="tel:+201022679250" class="btn-secondary flex items-center justify-center text-white hover:bg-gray-900">
                         <i class="fas fa-phone text-2xl ml-3"></i> +201022679250
                     </a>
-                    <a href="mailto:info@ehabgm.online" class="btn-secondary flex items-center justify-center text-blue-700 hover:bg-gray-100">
+                    <a href="mailto:info@ehabgm.online" class="btn-secondary flex items-center justify-center text-white hover:bg-gray-900">
                         <i class="fas fa-envelope text-2xl ml-3"></i> info@ehabgm.online
                     </a>
                 </div>
                 <div class="mt-12 text-center">
-                    <h3 class="text-2xl font-semibold mb-6">تابعنا على وسائل التواصل الاجتماعي</h3>
+                    <h3 class="text-2xl font-semibold mb-6" data-lang-ar="تابعنا على وسائل التواصل الاجتماعي" data-lang-en="Follow Us on Social Media">تابعنا على وسائل التواصل الاجتماعي</h3>
                     <div class="flex justify-center space-x-6">
-                        <a href="https://www.facebook.com/ehab.gm1" target="_blank" class="text-white hover:text-blue-200 transition duration-300 text-4xl">
+                        <a href="https://www.facebook.com/ehab.gm1" target="_blank" class="text-white hover:text-gray-300 transition duration-300 text-4xl">
                             <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="https://www.youtube.com/@ehabgm" target="_blank" class="text-white hover:text-blue-200 transition duration-300 text-4xl">
+                        <a href="https://www.youtube.com/@ehabgm" target="_blank" class="text-white hover:text-gray-300 transition duration-300 text-4xl">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://x.com/ehabgm" target="_blank" class="text-white hover:text-blue-200 transition duration-300 text-4xl">
+                        <a href="https://x.com/ehabgm" target="_blank" class="text-white hover:text-gray-300 transition duration-300 text-4xl">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/ehabgm-online-services-487a82331" target="_blank" class="text-white hover:text-blue-200 transition duration-300 text-4xl">
+                        <a href="https://www.linkedin.com/in/ehabgm-online-services-487a82331" target="_blank" class="text-white hover:text-gray-300 transition duration-300 text-4xl">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://www.tiktok.com/@ehab.gm1" target="_blank" class="text-white hover:text-blue-200 transition duration-300 text-4xl">
+                        <a href="https://www.tiktok.com/@ehab.gm1" target="_blank" class="text-white hover:text-gray-300 transition duration-300 text-4xl">
                             <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
@@ -284,9 +443,35 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 text-center rounded-t-lg mt-8">
-            <p>&copy; 2025 EhabGM Online Services. جميع الحقوق محفوظة.</p>
+        <footer class="bg-black text-white py-8 px-6 md:px-12 text-center rounded-t-lg mt-8">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+                <p class="mb-4 md:mb-0" data-lang-ar="&copy; 2025 EhabGM Online Services. جميع الحقوق محفوظة." data-lang-en="&copy; 2025 EhabGM Online Services. All rights reserved.">&copy; 2025 EhabGM Online Services. جميع الحقوق محفوظة.</p>
+                <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+                    <a href="emia-v0-page.html" class="text-white hover:text-red-500 transition duration-300" data-lang-ar="EMIA V0.0" data-lang-en="EMIA V0.0">EMIA V0.0</a>
+                    <a href="https://ehabonlineservice.online" class="text-white hover:text-red-500 transition duration-300" data-lang-ar="EMIA V1.0" data-lang-en="EMIA V1.0">EMIA V1.0</a>
+                </div>
+            </div>
         </footer>
+    </div>
+
+    <!-- Chatbot Bubble -->
+    <div id="chat-bubble" class="flex items-center justify-center">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chatbot Window -->
+    <div id="chat-window">
+        <div id="chat-header">
+            <span data-lang-ar="تحدث مع جيمي (المساعد الذكي)" data-lang-en="Chat with Jimmy (Smart Assistant)">تحدث مع جيمي (المساعد الذكي)</span>
+            <button id="close-chat">&times;</button>
+        </div>
+        <div id="chat-messages">
+            <!-- Messages will be appended here -->
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="اكتب رسالتك..." data-lang-ar-placeholder="اكتب رسالتك..." data-lang-en-placeholder="Type your message...">
+            <button id="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
 
     <script>
@@ -294,30 +479,34 @@
             const splashScreen = document.getElementById('splash-screen');
             const mainContent = document.getElementById('main-content');
             const starIcons = document.querySelectorAll('.star-icon');
+            const langToggleBtn = document.getElementById('lang-toggle');
+            const chatBubble = document.getElementById('chat-bubble');
+            const chatWindow = document.getElementById('chat-window');
+            const closeChatBtn = document.getElementById('close-chat');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
 
-            // Fade out splash screen after a short delay
+            // --- Splash Screen Logic ---
             setTimeout(() => {
                 splashScreen.classList.add('fade-out');
-                // Make main content visible after splash screen fades
                 splashScreen.addEventListener('transitionend', () => {
                     mainContent.style.opacity = '1';
-                    mainContent.style.pointerEvents = 'auto'; // Re-enable interactions
+                    mainContent.style.pointerEvents = 'auto';
                 });
-            }, 3000); // Display splash for 3 seconds
+            }, 3000);
 
-            // Star icon functionality
+            // --- Star Icon Functionality ---
             starIcons.forEach(star => {
                 star.addEventListener('click', () => {
-                    // Remove 'favorited' from all stars first to ensure only one is active
                     starIcons.forEach(s => s.classList.remove('favorited'));
-                    // Add 'favorited' to the clicked star
                     star.classList.add('favorited');
                     const modelName = star.dataset.model === 'v0' ? 'EMIA V0.0' : 'EMIA V1.0';
-                    alert(`تم تفضيل نموذج: ${modelName}`); // Using alert as a placeholder for a custom message box
+                    alert(`تم تفضيل نموذج: ${modelName}`);
                 });
             });
 
-            // Smooth scrolling for navigation links
+            // --- Smooth Scrolling for Navigation ---
             document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -326,51 +515,239 @@
                     });
                 });
             });
-        });
 
-        // Custom alert function to replace window.alert
-        function alert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: #333;
-                color: white;
-                padding: 20px 30px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 10000;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                max-width: 90%;
-                text-align: center;
-                font-size: 1.1rem;
-            `;
-            alertBox.innerHTML = `
-                <p>${message}</p>
-                <button style="
-                    background-color: #007bff;
+            // --- Language Toggle Functionality ---
+            langToggleBtn.addEventListener('click', toggleLanguage);
+
+            function toggleLanguage() {
+                const html = document.documentElement;
+                const currentLang = html.lang;
+
+                if (currentLang === 'ar') {
+                    html.lang = 'en';
+                    html.dir = 'ltr';
+                    updateTextContent('en');
+                } else {
+                    html.lang = 'ar';
+                    html.dir = 'rtl';
+                    updateTextContent('ar');
+                }
+            }
+
+            function updateTextContent(lang) {
+                document.querySelectorAll('[data-lang-ar]').forEach(element => {
+                    if (lang === 'ar') {
+                        element.innerText = element.dataset.langAr;
+                    } else {
+                        element.innerText = element.dataset.langEn;
+                    }
+                });
+                document.querySelectorAll('[data-lang-ar-placeholder]').forEach(element => {
+                    if (lang === 'ar') {
+                        element.placeholder = element.dataset.langArPlaceholder;
+                    } else {
+                        element.placeholder = element.dataset.langEnPlaceholder;
+                    }
+                });
+                const titleElement = document.querySelector('title');
+                if (titleElement) {
+                    if (lang === 'ar') {
+                        titleElement.innerText = titleElement.dataset.langAr;
+                    } else {
+                        titleElement.innerText = titleElement.dataset.langEn;
+                    }
+                }
+            }
+
+            updateTextContent(document.documentElement.lang); // Initial text update
+
+            // --- Custom Alert Function ---
+            function alert(message) {
+                const alertBox = document.createElement('div');
+                alertBox.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #333;
                     color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 1rem;
-                    transition: background-color 0.2s;
-                " onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
-                    حسناً
-                </button>
-            `;
-            document.body.appendChild(alertBox);
+                    padding: 20px 30px;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 15px;
+                    max-width: 90%;
+                    text-align: center;
+                    font-size: 1.1rem;
+                `;
+                alertBox.innerHTML = `
+                    <p>${message}</p>
+                    <button style="
+                        background-color: #dc2626; /* Red-600 */
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        transition: background-color 0.2s;
+                    " onmouseover="this.style.backgroundColor='#b91c1c'" onmouseout="this.style.backgroundColor='#dc2626'">
+                        حسناً
+                    </button>
+                `;
+                document.body.appendChild(alertBox);
 
-            alertBox.querySelector('button').onclick = () => {
-                document.body.removeChild(alertBox);
-            };
-        }
+                alertBox.querySelector('button').onclick = () => {
+                    document.body.removeChild(alertBox);
+                };
+            }
+
+            // --- Chatbot Logic ---
+            chatBubble.addEventListener('click', () => {
+                chatWindow.classList.toggle('open');
+                if (chatWindow.classList.contains('open') && chatMessages.children.length === 0) {
+                    appendMessage("مرحباً بك! أنا جيمي، مساعد EhabGM الذكي. كيف يمكنني مساعدتك اليوم في خدمات التصميم الجرافيكي أو التسويق الإلكتروني؟", 'bot');
+                }
+            });
+
+            closeChatBtn.addEventListener('click', () => {
+                chatWindow.classList.remove('open');
+            });
+
+            chatSendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function appendMessage(text, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', sender);
+                messageElement.innerText = text;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+            }
+
+            async function sendMessage() {
+                const userMessage = chatInput.value.trim();
+                if (userMessage === '') return;
+
+                appendMessage(userMessage, 'user');
+                chatInput.value = '';
+
+                const loadingMessage = document.createElement('div');
+                loadingMessage.classList.add('message', 'bot', 'loading');
+                loadingMessage.innerText = 'جيمي يكتب...';
+                chatMessages.appendChild(loadingMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                try {
+                    const botResponse = await getGeminiResponse(userMessage);
+                    loadingMessage.innerText = botResponse; // Update loading message with actual response
+                    loadingMessage.classList.remove('loading');
+                } catch (error) {
+                    loadingMessage.innerText = 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.';
+                    loadingMessage.classList.remove('loading');
+                    console.error("Error sending message to bot:", error);
+                }
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            const SYSTEM_PROMPT = `
+                أنت جيمي، المساعد الشخصي الذكي لـ EhabGM Online Services. مهمتك هي تقديم معلومات ودعم فوري للعملاء بخصوص خدمات التصميم الجرافيكي والتسويق الإلكتروني فقط.
+                يجب أن تكون ردودك احترافية، ودودة، ومختصرة، وتستخدم الإيموجي بشكل طبيعي. تحدث بلهجة مصرية عامية إذا بدأ العميل بها، أو باللغة العربية الفصحى.
+
+                **الخدمات التي يمكنك تقديم معلومات عنها وأسعارها (التصميم الجرافيكي والتسويق الإلكتروني فقط):**
+
+                **🎨 التصميم الجرافيكي:**
+                - تصميم شعار احترافي: من 500 جنيه (يشمل دراسة هوية العلامة، 2-3 نماذج، تعديلات غير محدودة).
+                - تصميم شعار بسيط: 150 - 300 جنيه (لوجو نصي أو رمزي بسيط، نموذج واحد، تعديلات بسيطة).
+                - هوية بصرية كاملة: من 1500 جنيه (شعار + كروت + بانرات).
+                - بوست سوشيال ميديا (ثابت أو موشن): من 100 جنيه (يشمل إمكانية التعديل).
+                - كارت شخصي: من 150 جنيه (لوجه واحد أو وجهين، تسليم PDF للطباعة ونسخة رقمية).
+                - بانر لوسائل التواصل الاجتماعي: 100 - 250 جنيه.
+                - بوستر/إعلان مطبوع: 250 - 500 جنيه (يشمل كتابة المحتوى، تنسيق الصور، إخراج جاهز للطباعة).
+                - باقة تصميم وسائل التواصل الاجتماعي (10 تصاميم): 800 - 1200 جنيه.
+                - تصميم منيو أو كتالوج: يبدأ من 500 جنيه (حسب عدد الصفحات).
+                - تصميم ستوري احترافي (Instagram/Facebook): 100 - 200 جنيه (PNG أو MP4 مع نصوص/مؤثرات).
+                - تصميم غلاف فيسبوك/يوتيوب: 150 - 250 جنيه.
+                - تصميم موشن جرافيك بسيط: يبدأ من 800 جنيه (15-30 ثانية، اختياري تعليق صوتي).
+
+                **📢 التسويق الإلكتروني والإعلانات الممولة:**
+                - إعلان ممول لبوست: من 350 جنيه (ترويج على فيسبوك أو إنستجرام).
+                - إدارة حملة شهرية: من 1000 جنيه (تخطيط وتحليل شامل).
+                - تحسين نتائج الإعلانات (SEO): من 500 جنيه (لتحسين الظهور على جوجل).
+                - تحليل نتائج حملة: 300 جنيه (تقرير احترافي بالأداء).
+                - كتابة محتوى SEO: 150 ج/صفحة.
+
+                **نظام العمل:**
+                1.  نعمل لك بروفة أولية.
+                2.  تراجعها وتقول رأيك أو تطلب تعديل.
+                3.  بعد موافقتك، يتم الدفع.
+                4.  نرسل لك الملفات النهائية (صورة + PDF) بأعلى جودة.
+
+                **طرق الدفع:**
+                - فودافون كاش: 01022679250
+                - إنستا باي: ehab5199 أو 01022679250
+                - تحويل بنكي (التفاصيل عند الاتفاق).
+
+                **قدراتك الذكية:**
+                - فهم نية العميل فوراً من وصف مختصر أو كلمات مفتاحية.
+                - تقديم أفكار إبداعية واقتراحات لخدمات إضافية ذات صلة بالتصميم أو التسويق.
+                - تحليل حملات الإعلانات (إذا تم تزويدك ببيانات).
+
+                **تعليمات هامة:**
+                - **لا ترد أو تقدم معلومات عن أي خدمات أخرى غير التصميم الجرافيكي والتسويق الإلكتروني (مثل تصميم المواقع والمتاجر الإلكترونية أو السير الذاتية). إذا سأل العميل عن هذه الخدمات، اعتذر بلطف ووجهه للتركيز على خدمات التصميم والتسويق.**
+                - إذا قال العميل "عاوز إيهاب" أو اشتكى (مثل "مش عاجبني" أو "مستاء")، توقف فوراً عن الرد وقل: "حاضر! جاري تحويلك لإيهاب حالا." أو "آسف جدًا، هحولك لإيهاب عشان نفهم المشكلة."
+                - إذا طلب العميل "شغل سابق" أو "عينات"، أرسل له الرابط: \`https://ehabgm.mystrikingly.com\`
+                - لا تظهر أي أسعار إلا إذا طلب العميل ذلك صراحة بكلمات مثل "بكام"، "السعر"، "كام"، "التكلفة"، "الرسوم".
+                - بعد إرسال التفاصيل، يمكنك تذكير العميل بنظام العمل: "✅ بعد ما ترسل التفاصيل بنعمل بروفة أولية، تشوفها، وبعد موافقتك يتم الدفع، وبنسلم الملفات النهائية بجودة عالية (PDF / صورة)."
+                - إذا صمت العميل 30 دقيقة بعد عرض السعر: "لو محتاج أي مساعدة زيادة، قولي! 🙌"
+                - في نهاية المحادثة، شجع العميل على المتابعة: "💡 يسعدنا نخدمك! تابع خدماتنا وعروضنا: facebook.com/graphicdesiner1 | instagram.com/ehab.gm1 | ehabgm.online"
+                - لا تعطِ وعوداً نهائية أو مواعيد تسليم محددة إلا إذا كانت ضمن المعلومات المذكورة بوضوح.
+                - لا تطلب بيانات شخصية حساسة.
+                - لا تشارك روابط خارجية غير المعتمدة (فقط \`ehabgm.mystrikingly.com\` ووسائل التواصل الاجتماعي المذكورة).
+
+                ابدأ المحادثة بتحية ودودة ومرحبة.
+            `;
+
+            async function getGeminiResponse(userQuery) {
+                let chatHistory = [];
+                // Add system prompt as the first message
+                chatHistory.push({ role: "user", parts: [{ text: SYSTEM_PROMPT }] });
+                chatHistory.push({ role: "model", parts: [{ text: "مرحباً بك! أنا جيمي، مساعد EhabGM الذكي. كيف يمكنني مساعدتك اليوم في خدمات التصميم الجرافيكي أو التسويق الإلكتروني؟" }] });
+                chatHistory.push({ role: "user", parts: [{ text: userQuery }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = "AIzaSyAK3LA-F1e7u0dxCZkVKTzfSR0AdO2ZHCU"; // Canvas will automatically provide it
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        console.error("Failed to get response from Gemini API:", result);
+                        return "عذراً، لم أتمكن من فهم طلبك. هل يمكنك توضيحه أكثر؟";
+                    }
+                } catch (error) {
+                    console.error("Error fetching from Gemini API:", error);
+                    return "عذراً، حدث خطأ أثناء الاتصال بالمسوق الذكي. يرجى المحاولة لاحقاً.";
+                }
+            }
+        });
     </script>
 </body>
 </html>
