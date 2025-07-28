@@ -258,7 +258,6 @@
                     <li><a href="#about" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="من نحن" data-lang-en="About Us">من نحن</a></li>
                     <li><a href="#services" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="خدماتنا" data-lang-en="Services">خدماتنا</a></li>
                     <li><a href="#emia" class="text-red-500 font-semibold hover:text-red-600 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="EMIA المسوق الذكي" data-lang-en="EMIA Smart Marketer">EMIA المسوق الذكي</a></li>
-                    <!-- Removed AI Integration link -->
                     <li><a href="#contact" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="اتصل بنا" data-lang-en="Contact Us">اتصل بنا</a></li>
                     <li>
                         <button id="lang-toggle" class="bg-red-600 text-white px-4 py-2 rounded-full text-sm hover:bg-red-700 transition duration-300">
@@ -398,6 +397,79 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- New EMIA AI Tools Section -->
+                <div class="mt-20">
+                    <h3 class="text-3xl font-bold text-black mb-10" data-lang-ar="أدوات EMIA الإضافية بالذكاء الاصطناعي ✨" data-lang-en="Additional EMIA AI Tools ✨">
+                        أدوات EMIA الإضافية بالذكاء الاصطناعي ✨
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                        <!-- Marketing Slogan Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-lightbulb text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد شعارات تسويقية ✨" data-lang-en="Marketing Slogan Generator ✨">مولّد شعارات تسويقية ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة." data-lang-en="Enter your product or service description to get innovative and catchy marketing slogans.">
+                                أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة.
+                            </p>
+                            <input type="text" id="slogan-input" placeholder="مثال: قهوة سريعة التحضير" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: قهوة سريعة التحضير" data-lang-en-placeholder="Example: Instant coffee">
+                            <button id="generate-slogan-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد شعار" data-lang-en="Generate Slogan">
+                                توليد شعار
+                            </button>
+                            <div id="slogan-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="الشعارات ستظهر هنا..." data-lang-en="Slogans will appear here...">
+                                الشعارات ستظهر هنا...
+                            </div>
+                        </div>
+
+                        <!-- Social Media Post Idea Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-share-alt text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد أفكار منشورات سوشيال ميديا ✨" data-lang-en="Social Media Post Idea Generator ✨">مولّد أفكار منشورات سوشيال ميديا ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي." data-lang-en="Enter a topic or service to generate creative social media post ideas.">
+                                أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي.
+                            </p>
+                            <input type="text" id="post-idea-input" placeholder="مثال: خدمة تصميم لوجو" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: خدمة تصميم لوجو" data-lang-en-placeholder="Example: Logo design service">
+                            <button id="generate-post-idea-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد أفكار" data-lang-en="Generate Ideas">
+                                توليد أفكار
+                            </button>
+                            <div id="post-idea-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="الأفكار ستظهر هنا..." data-lang-en="Ideas will appear here...">
+                                الأفكار ستظهر هنا...
+                            </div>
+                        </div>
+
+                        <!-- Ad Copy Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-ad text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد نصوص إعلانية ✨" data-lang-en="Ad Copy Generator ✨">مولّد نصوص إعلانية ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة." data-lang-en="Enter a product or service description to get attractive and compelling ad copies.">
+                                أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة.
+                            </p>
+                            <input type="text" id="ad-copy-input" placeholder="مثال: عطر رجالي فاخر" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: عطر رجالي فاخر" data-lang-en-placeholder="Example: Luxury men's perfume">
+                            <button id="generate-ad-copy-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد نص إعلاني" data-lang-en="Generate Ad Copy">
+                                توليد نص إعلاني
+                            </button>
+                            <div id="ad-copy-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="النصوص الإعلانية ستظهر هنا..." data-lang-en="Ad copies will appear here...">
+                                النصوص الإعلانية ستظهر هنا...
+                            </div>
+                        </div>
+
+                        <!-- Blog Post Idea Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-blog text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد أفكار للمقالات/المدونات ✨" data-lang-en="Blog Post Idea Generator ✨">مولّد أفكار للمقالات/المدونات ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات." data-lang-en="Enter a topic to get ideas and outlines for articles and blog posts.">
+                                أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات.
+                            </p>
+                            <input type="text" id="blog-idea-input" placeholder="مثال: أهمية التسويق الرقمي" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: أهمية التسويق الرقمي" data-lang-en-placeholder="Example: Importance of Digital Marketing">
+                            <button id="generate-blog-idea-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد أفكار مقالات" data-lang-en="Generate Blog Ideas">
+                                توليد أفكار مقالات
+                            </button>
+                            <div id="blog-idea-output" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex items-center justify-center" data-lang-ar="أفكار المقالات ستظهر هنا..." data-lang-en="Blog post ideas will appear here...">
+                                أفكار المقالات ستظهر هنا...
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -486,6 +558,21 @@
             const chatMessages = document.getElementById('chat-messages');
             const chatInput = document.getElementById('chat-input');
             const chatSendBtn = document.getElementById('chat-send-btn');
+
+            // New AI tool elements
+            const sloganInput = document.getElementById('slogan-input');
+            const generateSloganBtn = document.getElementById('generate-slogan-btn');
+            const sloganOutput = document.getElementById('slogan-output');
+            const postIdeaInput = document.getElementById('post-idea-input');
+            const generatePostIdeaBtn = document.getElementById('generate-post-idea-btn');
+            const postIdeaOutput = document.getElementById('post-idea-output');
+            const adCopyInput = document.getElementById('ad-copy-input');
+            const generateAdCopyBtn = document.getElementById('generate-ad-copy-btn');
+            const adCopyOutput = document.getElementById('ad-copy-output');
+            const blogIdeaInput = document.getElementById('blog-idea-input');
+            const generateBlogIdeaBtn = document.getElementById('generate-blog-idea-btn');
+            const blogIdeaOutput = document.getElementById('blog-idea-output');
+
 
             // --- Splash Screen Logic ---
             setTimeout(() => {
@@ -710,7 +797,7 @@
                 - في نهاية المحادثة، شجع العميل على المتابعة: "💡 يسعدنا نخدمك! تابع خدماتنا وعروضنا: facebook.com/graphicdesiner1 | instagram.com/ehab.gm1 | ehabgm.online"
                 - لا تعطِ وعوداً نهائية أو مواعيد تسليم محددة إلا إذا كانت ضمن المعلومات المذكورة بوضوح.
                 - لا تطلب بيانات شخصية حساسة.
-                - لا تشارك روابط خارجية غير المعتمدة (فقط \`ehabgm.mystrikingly.com\` ووسائل التواصل الاجتماعي المذكورة).
+                - لا تشارك روابط خارجية غير المعتمدة (فقط \`https://ehabgm.mystrikingly.com\` ووسائل التواصل الاجتماعي المذكورة).
 
                 ابدأ المحادثة بتحية ودودة ومرحبة.
             `;
@@ -745,6 +832,121 @@
                 } catch (error) {
                     console.error("Error fetching from Gemini API:", error);
                     return "عذراً، حدث خطأ أثناء الاتصال بالمسوق الذكي. يرجى المحاولة لاحقاً.";
+                }
+            }
+
+            // --- New AI Tools Logic ---
+            generateSloganBtn.addEventListener('click', async () => {
+                const description = sloganInput.value.trim();
+                if (description === '') {
+                    sloganOutput.innerText = "الرجاء إدخال وصف للمنتج أو الخدمة.";
+                    return;
+                }
+
+                sloganOutput.innerText = "جاري توليد الشعارات...";
+                sloganOutput.classList.add('italic');
+
+                const prompt = `Generate 3 catchy and professional marketing slogans for a ${description}. The slogans should be in Arabic and suitable for a digital marketing agency like EhabGM.`;
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    sloganOutput.innerText = response;
+                } catch (error) {
+                    sloganOutput.innerText = "عذراً، حدث خطأ أثناء توليد الشعارات.";
+                    console.error("Error generating slogan:", error);
+                } finally {
+                    sloganOutput.classList.remove('italic');
+                }
+            });
+
+            generatePostIdeaBtn.addEventListener('click', async () => {
+                const topic = postIdeaInput.value.trim();
+                if (topic === '') {
+                    postIdeaOutput.innerText = "الرجاء إدخال موضوع أو خدمة.";
+                    return;
+                }
+
+                postIdeaOutput.innerText = "جاري توليد الأفكار...";
+                postIdeaOutput.classList.add('italic');
+
+                const prompt = `Generate 3 creative social media post ideas (including a brief description/call to action) for a ${topic}. The ideas should be in Arabic and suitable for a digital marketing agency like EhabGM.`;
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    postIdeaOutput.innerText = response;
+                } catch (error) {
+                    postIdeaOutput.innerText = "عذراً، حدث خطأ أثناء توليد الأفكار.";
+                    console.error("Error generating post ideas:", error);
+                } finally {
+                    postIdeaOutput.classList.remove('italic');
+                }
+            });
+
+            generateAdCopyBtn.addEventListener('click', async () => {
+                const description = adCopyInput.value.trim();
+                if (description === '') {
+                    adCopyOutput.innerText = "الرجاء إدخال وصف للمنتج أو الخدمة.";
+                    return;
+                }
+
+                adCopyOutput.innerText = "جاري توليد النص الإعلاني...";
+                adCopyOutput.classList.add('italic');
+
+                const prompt = `Generate 3 compelling and concise ad copies for a ${description}. The ad copies should be in Arabic, suitable for digital marketing platforms, and include a strong call to action.`;
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    adCopyOutput.innerText = response;
+                } catch (error) {
+                    adCopyOutput.innerText = "عذراً، حدث خطأ أثناء توليد النص الإعلاني.";
+                    console.error("Error generating ad copy:", error);
+                } finally {
+                    adCopyOutput.classList.remove('italic');
+                }
+            });
+
+            generateBlogIdeaBtn.addEventListener('click', async () => {
+                const topic = blogIdeaInput.value.trim();
+                if (topic === '') {
+                    blogIdeaOutput.innerText = "الرجاء إدخال موضوع المقال.";
+                    return;
+                }
+
+                blogIdeaOutput.innerText = "جاري توليد أفكار المقالات...";
+                blogIdeaOutput.classList.add('italic');
+
+                const prompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each) about "${topic}". The ideas should be in Arabic and relevant to digital marketing or graphic design if applicable.`;
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    blogIdeaOutput.innerText = response;
+                } catch (error) {
+                    blogIdeaOutput.innerText = "عذراً، حدث خطأ أثناء توليد أفكار المقالات.";
+                    console.error("Error generating blog ideas:", error);
+                } finally {
+                    blogIdeaOutput.classList.remove('italic');
+                }
+            });
+
+
+            // Separate Gemini API call function for tools to avoid prompt conflicts with chatbot
+            async function getGeminiResponseForTools(promptText) {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: promptText }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide it
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    return result.candidates[0].content.parts[0].text;
+                } else {
+                    throw new Error("Unexpected response structure from Gemini API.");
                 }
             }
         });
