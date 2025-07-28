@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-ar="EhabGM | المسوق الذكي" data-lang-en="EhabGM | Smart Marketer">EhabGM | المسوق الذكي</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="EhabGM Online Services: حلول متكاملة للتصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع. شريكك الرقمي لنمو أعمالك في مصر والخليج.">
+    <meta name="keywords" content="تصميم جرافيك، تسويق الكتروني، تصميم مواقع، هوية بصرية، إعلانات ممولة، SEO، EhabGM، خدمات رقمية، مصر، الخليج">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ehabgm.online"> <!-- Replace with your actual domain -->
+    <meta property="og:title" content="EhabGM | Online Services - شريكك الرقمي لنمو أعمالك">
+    <meta property="og:description" content="نقدم حلولاً متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة.">
+    <meta property="og:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://x.com/ehabgm"> <!-- Replace with your actual Twitter URL -->
+    <meta property="twitter:title" content="EhabGM | Online Services - شريكك الرقمي لنمو أعمالك">
+    <meta property="twitter:description" content="نقدم حلولاً متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة.">
+    <meta property="twitter:image" content="https://i.postimg.cc/TYyK2Rtv/logo.png">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
@@ -12,7 +31,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light gray background, less prominent */
+            background-color: #f8fafc; /* Very light gray background */
             color: #333;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
@@ -50,13 +69,30 @@
             100% { transform: scale(1.05); opacity: 1; }
         }
 
-        /* General button styling */
+        /* Base style for all red buttons */
+        .btn-red-style {
+            @apply bg-red-600 text-white rounded-full hover:bg-red-700 transition duration-300 ease-in-out shadow-lg;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Specific button styling extending the base */
         .btn-primary {
-            @apply bg-red-600 text-white py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105; /* More prominent */
+            @apply py-3 px-8 transform hover:scale-105;
         }
         .btn-secondary {
-            @apply bg-gray-800 text-white py-3 px-6 rounded-lg hover:bg-black transition duration-300 ease-in-out shadow-md;
+            /* Changed to red style as per user request */
+            @apply bg-red-600 text-white py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out shadow-lg;
         }
+        .btn-ai-tool {
+            @apply py-3 px-8 transform hover:scale-105;
+        }
+        /* Language toggle button also uses the base style */
+        #lang-toggle {
+            @apply px-4 py-2 text-sm;
+        }
+
         .star-icon {
             cursor: pointer;
             color: #ccc; /* Default gray */
@@ -173,13 +209,13 @@
             align-self: flex-start;
             background-color: #f3f4f6; /* Light gray */
             color: #333;
+            font-style: italic;
             border-bottom-left-radius: 5px;
         }
         .message.loading {
             align-self: flex-start;
             background-color: #f3f4f6;
             color: #333;
-            border-bottom-left-radius: 5px;
             font-style: italic;
         }
         #chat-input-area {
@@ -238,11 +274,23 @@
             flex-direction: column;
             align-items: center;
             text-align: right; /* Align text to the right for RTL */
+            background-color: #ffffff; /* White background for output */
+            border: 1px solid #e2e8f0; /* Light border */
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            padding: 20px; /* Increased padding */
+            margin-top: 20px; /* Space from button */
+            width: 100%;
+            min-height: 100px; /* Ensure minimum height */
+            justify-content: center; /* Center content vertically */
         }
         .ai-output-content {
             white-space: pre-wrap; /* Preserve whitespace and wrap text */
             text-align: right;
             direction: rtl; /* Ensure RTL for content */
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4a5568; /* Darker gray for readability */
         }
         .output-actions {
             display: flex;
@@ -251,8 +299,18 @@
             margin-top: 15px;
         }
         .output-actions button {
-            @apply bg-gray-700 text-white py-2 px-4 rounded-md text-sm hover:bg-gray-900 transition duration-300;
+            background-color: #4a5568; /* Dark gray for copy/print */
+            @apply text-white py-2 px-4 rounded-md text-sm hover:bg-gray-700 transition duration-300;
         }
+        /* Input field styling for AI tools */
+        .ai-input-field {
+            @apply w-full p-3 rounded-lg border border-gray-300 mb-4 text-right;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ai-input-field:focus {
+            @apply border-red-500 ring-2 ring-red-200 outline-none;
+        }
+
         /* Custom message box for copy confirmation */
         #custom-message-box {
             position: fixed;
@@ -314,7 +372,7 @@
                     <li><a href="#emia" class="text-red-500 font-semibold hover:text-red-600 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="EMIA المسوق الذكي" data-lang-en="EMIA Smart Marketer">EMIA المسوق الذكي</a></li>
                     <li><a href="#contact" class="text-white hover:text-red-500 transition duration-300 py-2 px-3 rounded-md" data-lang-ar="اتصل بنا" data-lang-en="Contact Us">اتصل بنا</a></li>
                     <li>
-                        <button id="lang-toggle" class="bg-red-600 text-white px-4 py-2 rounded-full text-sm hover:bg-red-700 transition duration-300">
+                        <button id="lang-toggle" class="btn-red-style px-4 py-2 text-sm">
                             <span data-lang-ar="English" data-lang-en="العربية">English</span>
                         </button>
                     </li>
@@ -333,7 +391,7 @@
                 <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up delay-200" data-lang-ar="نقدم خدمات متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة." data-lang-en="We offer integrated services in graphic design, digital marketing, and website development, with 24/7 technical and consulting support.">
                     نقدم خدمات متكاملة في التصميم الجرافيكي، التسويق الإلكتروني، وتطوير المواقع، مع دعم فني واستشاري على مدار الساعة.
                 </p>
-                <a href="#emia" class="btn-primary inline-block animate-fade-in-up delay-400" data-lang-ar="اكتشف EMIA المسوق الذكي" data-lang-en="Discover EMIA Smart Marketer">
+                <a href="#emia" class="btn-primary btn-red-style inline-block animate-fade-in-up delay-400" data-lang-ar="اكتشف EMIA المسوق الذكي" data-lang-en="Discover EMIA Smart Marketer">
                     اكتشف EMIA المسوق الذكي
                 </a>
             </div>
@@ -416,7 +474,7 @@
                     <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                         <i class="fas fa-star absolute top-4 left-4 text-2xl star-icon" data-model="v0"></i>
                         <i class="fas fa-robot text-red-600 text-6xl mb-6"></i>
-                        <a href="emia-v0-page.html" class="text-3xl font-bold text-gray-800 mb-4 hover:text-red-700 transition duration-300" data-lang-ar="EMIA V0.0 - EhabGM" data-lang-en="EMIA V0.0 - EhabGM">EMIA V0.0 - EhabGM</a>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4" data-lang-ar="EMIA V0.0 - EhabGM" data-lang-en="EMIA V0.0 - EhabGM">EMIA V0.0 - EhabGM</h3>
                         <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي." data-lang-en="The initial version of EMIA Smart Marketer, offering basic marketing analytics and quick suggestions to improve your digital campaigns. Ideal for getting started in smart marketing.">
                             النسخة الأولية من المسوق الذكي EMIA، تقدم تحليلات تسويقية أساسية واقتراحات سريعة لتحسين حملاتك الرقمية. مثالية للبدء في عالم التسويق الذكي.
                         </p>
@@ -425,8 +483,8 @@
                             <li class="flex items-center justify-end" data-lang-ar="اقتراحات حملات سريعة" data-lang-en="Quick campaign suggestions"><i class="fas fa-check-circle text-green-500 ml-2"></i> اقتراحات حملات سريعة</li>
                             <li class="flex items-center justify-end" data-lang-ar="مجاني تماماً" data-lang-en="Completely Free"><i class="fas fa-check-circle text-green-500 ml-2"></i> مجاني تماماً</li>
                         </ul>
-                        <!-- Changed button to anchor tag for navigation -->
-                        <a href="emia-v0-page.html" class="btn-primary w-full md:w-auto text-center" data-lang-ar="اختر هذا النموذج" data-lang-en="Choose This Model">
+                        <!-- Link to emia-v0-page.html -->
+                        <a href="emia-v0-page.html" class="btn-primary btn-red-style w-full md:w-auto text-center" data-lang-ar="اختر هذا النموذج" data-lang-en="Choose This Model">
                             اختر هذا النموذج
                         </a>
                     </div>
@@ -435,7 +493,7 @@
                     <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
                         <i class="fas fa-star absolute top-4 left-4 text-2xl star-icon" data-model="v1"></i>
                         <i class="fas fa-brain text-red-600 text-6xl mb-6"></i>
-                        <a href="https://ehabonlineservice.online" class="text-3xl font-bold text-gray-800 mb-4 hover:text-red-700 transition duration-300" data-lang-ar="EMIA V1.0 - EhabGM" data-lang-en="EMIA V1.0 - EhabGM">EMIA V1.0 - EhabGM</a>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4" data-lang-ar="EMIA V1.0 - EhabGM" data-lang-en="EMIA V1.0 - EhabGM">EMIA V1.0 - EhabGM</h3>
                         <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع." data-lang-en="The advanced version of EMIA Smart Marketer, providing advanced analytics, precise audience targeting, and customized recommendations to increase ROI. Your optimal choice for rapid growth.">
                             النسخة المطورة من المسوق الذكي EMIA، توفر تحليلات متقدمة، استهداف دقيق للجمهور، وتوصيات مخصصة لزيادة عائد الاستثمار. خيارك الأمثل للنمو السريع.
                         </p>
@@ -445,8 +503,8 @@
                             <li class="flex items-center justify-end" data-lang-ar="توصيات مخصصة لزيادة ROI" data-lang-en="Customized recommendations for ROI increase"><i class="fas fa-check-circle text-green-500 ml-2"></i> توصيات مخصصة لزيادة ROI</li>
                             <li class="flex items-center justify-end" data-lang-ar="مجاني تماماً" data-lang-en="Completely Free"><i class="fas fa-check-circle text-green-500 ml-2"></i> مجاني تماماً</li>
                         </ul>
-                        <!-- Changed button to anchor tag for navigation -->
-                        <a href="https://ehabonlineservice.online" class="btn-primary w-full md:w-auto text-center" data-lang-ar="اختر هذا النموذج" data-lang-en="Choose This Model">
+                        <!-- Link to emia-v1-page.html -->
+                        <a href="emia-v1-page.html" class="btn-primary btn-red-style w-full md:w-auto text-center" data-lang-ar="اختر هذا النموذج" data-lang-en="Choose This Model">
                             اختر هذا النموذج
                         </a>
                     </div>
@@ -466,11 +524,11 @@
                             <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة." data-lang-en="Enter your product or service description to get innovative and catchy marketing slogans.">
                                 أدخل وصف منتجك أو خدمتك للحصول على شعارات تسويقية مبتكرة وجذابة.
                             </p>
-                            <input type="text" id="slogan-input" placeholder="مثال: قهوة سريعة التحضير" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: قهوة سريعة التحضير" data-lang-en-placeholder="Example: Instant coffee">
-                            <button id="generate-slogan-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد شعار" data-lang-en="Generate Slogan">
+                            <input type="text" id="slogan-input" placeholder="مثال: قهوة سريعة التحضير" class="ai-input-field" data-lang-ar-placeholder="مثال: قهوة سريعة التحضير" data-lang-en-placeholder="Example: Instant coffee">
+                            <button id="generate-slogan-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد شعار" data-lang-en="Generate Slogan">
                                 توليد شعار
                             </button>
-                            <div id="slogan-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                            <div id="slogan-output-container" class="ai-output-container">
                                 <div id="slogan-output" class="ai-output-content" data-lang-ar="الشعارات ستظهر هنا..." data-lang-en="Slogans will appear here...">
                                     الشعارات ستظهر هنا...
                                 </div>
@@ -488,11 +546,11 @@
                             <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي." data-lang-en="Enter a topic or service to generate creative social media post ideas.">
                                 أدخل موضوعاً أو خدمة لإنشاء أفكار منشورات إبداعية لوسائل التواصل الاجتماعي.
                             </p>
-                            <input type="text" id="post-idea-input" placeholder="مثال: خدمة تصميم لوجو" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: خدمة تصميم لوجو" data-lang-en-placeholder="Example: Logo design service">
-                            <button id="generate-post-idea-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد أفكار" data-lang-en="Generate Ideas">
+                            <input type="text" id="post-idea-input" placeholder="مثال: خدمة تصميم لوجو" class="ai-input-field" data-lang-ar-placeholder="مثال: خدمة تصميم لوجو" data-lang-en-placeholder="Example: Logo design service">
+                            <button id="generate-post-idea-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد أفكار" data-lang-en="Generate Ideas">
                                 توليد أفكار
                             </button>
-                            <div id="post-idea-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                            <div id="post-idea-output-container" class="ai-output-container">
                                 <div id="post-idea-output" class="ai-output-content" data-lang-ar="الأفكار ستظهر هنا..." data-lang-en="Ideas will appear here...">
                                     الأفكار ستظهر هنا...
                                 </div>
@@ -510,11 +568,11 @@
                             <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة." data-lang-en="Enter a product or service description to get attractive and compelling ad copies.">
                                 أدخل وصف منتج أو خدمة للحصول على نصوص إعلانية جذابة ومقنعة.
                             </p>
-                            <input type="text" id="ad-copy-input" placeholder="مثال: عطر رجالي فاخر" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: عطر رجالي فاخر" data-lang-en-placeholder="Example: Luxury men's perfume">
-                            <button id="generate-ad-copy-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد نص إعلاني" data-lang-en="Generate Ad Copy">
+                            <input type="text" id="ad-copy-input" placeholder="مثال: عطر رجالي فاخر" class="ai-input-field" data-lang-ar-placeholder="مثال: عطر رجالي فاخر" data-lang-en-placeholder="Example: Luxury men's perfume">
+                            <button id="generate-ad-copy-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد نص إعلاني" data-lang-en="Generate Ad Copy">
                                 توليد نص إعلاني
                             </button>
-                            <div id="ad-copy-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                            <div id="ad-copy-output-container" class="ai-output-container">
                                 <div id="ad-copy-output" class="ai-output-content" data-lang-ar="النصوص الإعلانية ستظهر هنا..." data-lang-en="Ad copies will appear here...">
                                     النصوص الإعلانية ستظهر هنا...
                                 </div>
@@ -532,17 +590,105 @@
                             <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات." data-lang-en="Enter a topic to get ideas and outlines for articles and blog posts.">
                                 أدخل موضوعاً للحصول على أفكار وهياكل لمقالات ومدونات.
                             </p>
-                            <input type="text" id="blog-idea-input" placeholder="مثال: أهمية التسويق الرقمي" class="w-full p-3 rounded-lg border border-gray-300 mb-4 text-right" data-lang-ar-placeholder="مثال: أهمية التسويق الرقمي" data-lang-en-placeholder="Example: Importance of Digital Marketing">
-                            <button id="generate-blog-idea-btn" class="btn-primary w-full md:w-auto text-center" data-lang-ar="توليد أفكار مقالات" data-lang-en="Generate Blog Ideas">
+                            <input type="text" id="blog-idea-input" placeholder="مثال: أهمية التسويق الرقمي" class="ai-input-field" data-lang-ar-placeholder="مثال: أهمية التسويق الرقمي" data-lang-en-placeholder="Example: Importance of Digital Marketing">
+                            <button id="generate-blog-idea-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد أفكار مقالات" data-lang-en="Generate Blog Ideas">
                                 توليد أفكار مقالات
                             </button>
-                            <div id="blog-idea-output-container" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 w-full text-right text-gray-700 min-h-[80px] flex flex-col items-center justify-center ai-output-container">
+                            <div id="blog-idea-output-container" class="ai-output-container">
                                 <div id="blog-idea-output" class="ai-output-content" data-lang-ar="أفكار المقالات ستظهر هنا..." data-lang-en="Blog post ideas will appear here...">
                                     أفكار المقالات ستظهر هنا...
                                 </div>
                                 <div class="output-actions">
                                     <button class="copy-btn" data-target="blog-idea-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
                                     <button class="print-btn" data-target="blog-idea-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Rewriter -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-redo-alt text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد إعادة صياغة المحتوى ✨" data-lang-en="Content Rewriter ✨">مولّد إعادة صياغة المحتوى ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل أي نص لإعادة صياغته بأسلوب احترافي وجذاب." data-lang-en="Enter any text to rephrase it in a professional and engaging style.">
+                                أدخل أي نص لإعادة صياغته بأسلوب احترافي وجذاب.
+                            </p>
+                            <textarea id="text-to-rewrite-input" placeholder="مثال: هذا النص يحتاج إلى تحسين ليكون أكثر جاذبية." class="ai-input-field h-32" data-lang-ar-placeholder="مثال: هذا النص يحتاج إلى تحسين ليكون أكثر جاذبية." data-lang-en-placeholder="Example: This text needs improvement to be more engaging."></textarea>
+                            <button id="rewrite-content-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="إعادة صياغة" data-lang-en="Rewrite Content">
+                                إعادة صياغة
+                            </button>
+                            <div id="rewrite-content-output-container" class="ai-output-container">
+                                <div id="rewrite-content-output" class="ai-output-content" data-lang-ar="النص المعاد صياغته سيظهر هنا..." data-lang-en="Rewritten text will appear here...">
+                                    النص المعاد صياغته سيظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="rewrite-content-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="rewrite-content-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Keyword Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-key text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد الكلمات المفتاحية ✨" data-lang-en="Keyword Generator ✨">مولّد الكلمات المفتاحية ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوعاً أو خدمة للحصول على كلمات مفتاحية ذات صلة للـ SEO والإعلانات." data-lang-en="Enter a topic or service to get relevant keywords for SEO and ads.">
+                                أدخل موضوعاً أو خدمة للحصول على كلمات مفتاحية ذات صلة للـ SEO والإعلانات.
+                            </p>
+                            <input type="text" id="keyword-topic-input" placeholder="مثال: تسويق المطاعم" class="ai-input-field" data-lang-ar-placeholder="مثال: تسويق المطاعم" data-lang-en-placeholder="Example: Restaurant marketing">
+                            <button id="generate-keywords-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد كلمات مفتاحية" data-lang-en="Generate Keywords">
+                                توليد كلمات مفتاحية
+                            </button>
+                            <div id="keyword-output-container" class="ai-output-container">
+                                <div id="keyword-output" class="ai-output-content" data-lang-ar="الكلمات المفتاحية ستظهر هنا..." data-lang-en="Keywords will appear here...">
+                                    الكلمات المفتاحية ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="keyword-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="keyword-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email Subject Line Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-envelope text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد عناوين البريد الإلكتروني ✨" data-lang-en="Email Subject Line Generator ✨">مولّد عناوين البريد الإلكتروني ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل موضوع البريد الإلكتروني أو محتواه للحصول على عناوين جذابة." data-lang-en="Enter the email subject or content to get catchy subject lines.">
+                                أدخل موضوع البريد الإلكتروني أو محتواه للحصول على عناوين جذابة.
+                            </p>
+                            <textarea id="email-subject-input" placeholder="مثال: إعلان عن خصم جديد على خدمات التصميم." class="ai-input-field h-32" data-lang-ar-placeholder="مثال: إعلان عن خصم جديد على خدمات التصميم." data-lang-en-placeholder="Example: Announcing a new discount on design services."></textarea>
+                            <button id="generate-email-subject-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد عنوان" data-lang-en="Generate Subject">
+                                توليد عنوان
+                            </button>
+                            <div id="email-subject-output-container" class="ai-output-container">
+                                <div id="email-subject-output" class="ai-output-content" data-lang-ar="العناوين ستظهر هنا..." data-lang-en="Subject lines will appear here...">
+                                    العناوين ستظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="email-subject-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="email-subject-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customer Review Response Generator -->
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-xl border border-gray-200 flex flex-col items-center text-center relative hover:shadow-2xl transition-shadow duration-300">
+                            <i class="fas fa-comment-dots text-red-600 text-6xl mb-6"></i>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-4" data-lang-ar="مولّد الردود على مراجعات العملاء ✨" data-lang-en="Customer Review Response Generator ✨">مولّد الردود على مراجعات العملاء ✨</h4>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed" data-lang-ar="أدخل مراجعة العميل (إيجابية أو سلبية) للحصول على رد احترافي." data-lang-en="Enter a customer review (positive or negative) to get a professional response.">
+                                أدخل مراجعة العميل (إيجابية أو سلبية) للحصول على رد احترافي.
+                            </p>
+                            <textarea id="review-response-input" placeholder="مثال: 'خدمة رائعة وتصميم مبدع، شكراً لكم!'" class="ai-input-field h-32" data-lang-ar-placeholder="مثال: 'خدمة رائعة وتصميم مبدع، شكراً لكم!'" data-lang-en-placeholder="Example: 'Great service and creative design, thank you!'"></textarea>
+                            <button id="generate-review-response-btn" class="btn-ai-tool w-full md:w-auto text-center" data-lang-ar="توليد رد" data-lang-en="Generate Response">
+                                توليد رد
+                            </button>
+                            <div id="review-response-output-container" class="ai-output-container">
+                                <div id="review-response-output" class="ai-output-content" data-lang-ar="الرد سيظهر هنا..." data-lang-en="Response will appear here...">
+                                    الرد سيظهر هنا...
+                                </div>
+                                <div class="output-actions">
+                                    <button class="copy-btn" data-target="review-response-output" data-lang-ar="نسخ" data-lang-en="Copy">نسخ</button>
+                                    <button class="print-btn" data-target="review-response-output" data-lang-ar="طباعة PDF" data-lang-en="Print PDF">طباعة PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -559,13 +705,13 @@
                     نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو لطلب خدماتنا.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-8">
-                    <a href="https://wa.me/201022679250" target="_blank" class="btn-secondary flex items-center justify-center text-white hover:bg-gray-900">
+                    <a href="https://wa.me/201022679250" target="_blank" class="btn-secondary btn-red-style flex items-center justify-center">
                         <i class="fab fa-whatsapp text-2xl ml-3"></i> <span data-lang-ar="واتساب مباشر" data-lang-en="Direct WhatsApp">واتساب مباشر</span>
                     </a>
-                    <a href="tel:+201022679250" class="btn-secondary flex items-center justify-center text-white hover:bg-gray-900">
+                    <a href="tel:+201022679250" class="btn-secondary btn-red-style flex items-center justify-center">
                         <i class="fas fa-phone text-2xl ml-3"></i> +201022679250
                     </a>
-                    <a href="mailto:info@ehabgm.online" class="btn-secondary flex items-center justify-center text-white hover:bg-gray-900">
+                    <a href="mailto:info@ehabgm.online" class="btn-secondary btn-red-style flex items-center justify-center">
                         <i class="fas fa-envelope text-2xl ml-3"></i> info@ehabgm.online
                     </a>
                 </div>
@@ -598,7 +744,7 @@
                 <p class="mb-4 md:mb-0" data-lang-ar="&copy; 2025 EhabGM Online Services. جميع الحقوق محفوظة." data-lang-en="&copy; 2025 EhabGM Online Services. All rights reserved.">&copy; 2025 EhabGM Online Services. جميع الحقوق محفوظة.</p>
                 <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
                     <a href="emia-v0-page.html" class="text-white hover:text-red-500 transition duration-300" data-lang-ar="EMIA V0.0" data-lang-en="EMIA V0.0">EMIA V0.0</a>
-                    <a href="https://ehabonlineservice.online" class="text-white hover:text-red-500 transition duration-300" data-lang-ar="EMIA V1.0" data-lang-en="EMIA V1.0">EMIA V1.0</a>
+                    <a href="emia-v1-page.html" class="text-white hover:text-red-500 transition duration-300" data-lang-ar="EMIA V1.0" data-lang-en="EMIA V1.0">EMIA V1.0</a>
                 </div>
             </div>
         </footer>
@@ -643,7 +789,7 @@
             const chatInput = document.getElementById('chat-input');
             const chatSendBtn = document.getElementById('chat-send-btn');
 
-            // New AI tool elements
+            // Existing AI tool elements
             const sloganInput = document.getElementById('slogan-input');
             const generateSloganBtn = document.getElementById('generate-slogan-btn');
             const sloganOutput = document.getElementById('slogan-output');
@@ -656,6 +802,21 @@
             const blogIdeaInput = document.getElementById('blog-idea-input');
             const generateBlogIdeaBtn = document.getElementById('generate-blog-idea-btn');
             const blogIdeaOutput = document.getElementById('blog-idea-output');
+            const textToRewriteInput = document.getElementById('text-to-rewrite-input');
+            const rewriteContentBtn = document.getElementById('rewrite-content-btn');
+            const rewriteContentOutput = document.getElementById('rewrite-content-output');
+            const keywordTopicInput = document.getElementById('keyword-topic-input');
+            const generateKeywordsBtn = document.getElementById('generate-keywords-btn');
+            const keywordOutput = document.getElementById('keyword-output');
+
+            // New AI tool elements
+            const emailSubjectInput = document.getElementById('email-subject-input');
+            const generateEmailSubjectBtn = document.getElementById('generate-email-subject-btn');
+            const emailSubjectOutput = document.getElementById('email-subject-output');
+            const reviewResponseInput = document.getElementById('review-response-input');
+            const generateReviewResponseBtn = document.getElementById('generate-review-response-btn');
+            const reviewResponseOutput = document.getElementById('review-response-output');
+
 
             // Custom Message Box elements
             const customMessageBox = document.getElementById('custom-message-box');
@@ -865,7 +1026,7 @@
                 chatHistory.push({ role: "user", parts: [{ text: userQuery }] });
 
                 const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyAK3LA-F1e7u0dxCZkVKTzfSR0AdO2ZHCU"; // Canvas will automatically provide it
+                const apiKey = "AIzaSyAK3LA-F1e7u0dxCZkVKTzfSR0AdO2ZHCU"; // Using the provided API key
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 try {
@@ -916,12 +1077,16 @@
                 printWindow.document.write('</head><body>');
                 printWindow.document.write('<h1>' + title + '</h1>');
                 printWindow.document.write('<pre>' + content + '</pre>'); // Use <pre> to preserve newlines
-                printWindow.document.write('</body></html>');
                 printWindow.document.close();
                 printWindow.print();
             }
 
-            // --- New AI Tools Logic ---
+            // Function to detect if text is predominantly Arabic
+            function isArabicText(text) {
+                return /[\u0600-\u06FF]/.test(text);
+            }
+
+            // --- AI Tools Logic ---
             generateSloganBtn.addEventListener('click', async () => {
                 const description = sloganInput.value.trim();
                 if (description === '') {
@@ -932,7 +1097,10 @@
                 sloganOutput.innerText = "جاري توليد الشعارات...";
                 sloganOutput.classList.add('italic');
 
-                const prompt = `Generate 3 catchy and professional marketing slogans for a ${description}. The slogans should be in formal Arabic (اللغة العربية الفصحى), each on a new line.`;
+                const arabicPrompt = `توليد 3 شعارات تسويقية جذابة واحترافية لـ "${description}". يجب أن تكون الشعارات باللغة العربية الفصحى، كل شعار في سطر جديد.`;
+                const englishPrompt = `Generate 3 catchy and professional marketing slogans for "${description}". The slogans should be in English, each on a new line.`;
+                const prompt = isArabicText(description) ? arabicPrompt : englishPrompt;
+
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     sloganOutput.innerText = response;
@@ -954,7 +1122,10 @@
                 postIdeaOutput.innerText = "جاري توليد الأفكار...";
                 postIdeaOutput.classList.add('italic');
 
-                const prompt = `Generate 3 creative social media post ideas for a ${topic}. For each idea, provide a clear title, a brief engaging text, and 3-5 relevant hashtags. Use formal Arabic (اللغة العربية الفصحى). Format as: "الفكرة [رقم]:\nالعنوان: [عنوان الفكرة]\nالنص: [نص المنشور]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`
+                const arabicPrompt = `توليد 3 أفكار إبداعية لمنشورات وسائل التواصل الاجتماعي حول "${topic}". لكل فكرة، قدم عنواناً واضحاً، نصاً موجزاً وجذاباً، و3-5 هاشتاجات ذات صلة. استخدم اللغة العربية الفصحى. التنسيق: "الفكرة [رقم]:\nالعنوان: [عنوان الفكرة]\nالنص: [نص المنشور]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`;
+                const englishPrompt = `Generate 3 creative social media post ideas for "${topic}". For each idea, provide a clear title, a brief engaging text, and 3-5 relevant hashtags. Use English. Format as: "Idea [Number]:\nTitle: [Idea Title]\nText: [Post Text]\nHashtags: #[hashtag1] #[hashtag2]"`;
+                const prompt = isArabicText(topic) ? arabicPrompt : englishPrompt;
+
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     postIdeaOutput.innerText = response;
@@ -976,7 +1147,10 @@
                 adCopyOutput.innerText = "جاري توليد النص الإعلاني...";
                 adCopyOutput.classList.add('italic');
 
-                const prompt = `Generate 3 compelling and concise ad copies for a ${description}. For each ad copy, provide a catchy headline, a persuasive body text, and 3-5 relevant hashtags. Use formal Arabic (اللغة العربية الفصحى). Format as: "الإعلان [رقم]:\nالعنوان: [عنوان الإعلان]\nالنص: [نص الإعلان]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`
+                const arabicPrompt = `توليد 3 نصوص إعلانية مقنعة وموجزة لـ "${description}". لكل نص إعلاني، قدم عنواناً جذاباً، نصاً إعلانياً مقنعاً، و3-5 هاشتاجات ذات صلة. استخدم اللغة العربية الفصحى. التنسيق: "الإعلان [رقم]:\nالعنوان: [عنوان الإعلان]\nالنص: [نص الإعلان]\nالهاشتاجات: #[هاشتاج1] #[هاشتاج2]"`;
+                const englishPrompt = `Generate 3 compelling and concise ad copies for "${description}". For each ad copy, provide a catchy headline, a persuasive body text, and 3-5 relevant hashtags. Use English. Format as: "Ad [Number]:\nHeadline: [Ad Headline]\nText: [Ad Text]\nHashtags: #[hashtag1] #[hashtag2]"`;
+                const prompt = isArabicText(description) ? arabicPrompt : englishPrompt;
+
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     adCopyOutput.innerText = response;
@@ -998,7 +1172,10 @@
                 blogIdeaOutput.innerText = "جاري توليد أفكار المقالات...";
                 blogIdeaOutput.classList.add('italic');
 
-                const prompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each) about "${topic}". The ideas should be in formal Arabic (اللغة العربية الفصحى). Format as: "المقترح [رقم]:\nالعنوان: [عنوان المقال]\nالنقاط الرئيسية:\n- [نقطة 1]\n- [نقطة 2]\n- [نقطة 3]"`
+                const arabicPrompt = `توليد 3 أفكار إبداعية وجذابة لمقالات المدونة (مع مخطط موجز لكل منها) حول موضوع: "${topic}". يجب أن تكون الأفكار باللغة العربية الفصحى. التنسيق: "المقترح [رقم]:\nالعنوان: [عنوان المقال]\nالنقاط الرئيسية:\n- [نقطة 1]\n- [نقطة 2]\n- [نقطة 3]"`;
+                const englishPrompt = `Generate 3 creative and engaging blog post ideas (including a brief outline for each) about "${topic}". The ideas should be in English. Format as: "Proposal [Number]:\nTitle: [Article Title]\nKey Points:\n- [Point 1]\n- [Point 2]\n- [Point 3]"`;
+                const prompt = isArabicText(topic) ? arabicPrompt : englishPrompt;
+
                 try {
                     const response = await getGeminiResponseForTools(prompt);
                     blogIdeaOutput.innerText = response;
@@ -1010,6 +1187,106 @@
                 }
             });
 
+            rewriteContentBtn.addEventListener('click', async () => {
+                const textToRewrite = textToRewriteInput.value.trim();
+                if (textToRewrite === '') {
+                    rewriteContentOutput.innerText = "الرجاء إدخال النص لإعادة صياغته.";
+                    return;
+                }
+
+                rewriteContentOutput.innerText = "جاري إعادة صياغة المحتوى...";
+                rewriteContentOutput.classList.add('italic');
+
+                const arabicPrompt = `أعد صياغة النص التالي بأسلوب احترافي وجذاب باللغة العربية الفصحى. اجعله أكثر إيجازًا ووضوحًا مع الحفاظ على المعنى الأصلي:\n\n"${textToRewrite}"`;
+                const englishPrompt = `Rewrite the following text in a professional and engaging style in English. Make it more concise and clear while preserving the original meaning:\n\n"${textToRewrite}"`;
+                const prompt = isArabicText(textToRewrite) ? arabicPrompt : englishPrompt;
+
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    rewriteContentOutput.innerText = response;
+                } catch (error) {
+                    rewriteContentOutput.innerText = "عذراً، حدث خطأ أثناء إعادة صياغة المحتوى.";
+                    console.error("Error rewriting content:", error);
+                } finally {
+                    rewriteContentOutput.classList.remove('italic');
+                }
+            });
+
+            generateKeywordsBtn.addEventListener('click', async () => {
+                const topic = keywordTopicInput.value.trim();
+                if (topic === '') {
+                    keywordOutput.innerText = "الرجاء إدخال موضوع أو خدمة.";
+                    return;
+                }
+
+                keywordOutput.innerText = "جاري توليد الكلمات المفتاحية...";
+                keywordOutput.classList.add('italic');
+
+                const arabicPrompt = `اقتراح 10 كلمات مفتاحية (keywords) ذات صلة ومناسبة لتحسين محركات البحث (SEO) أو الحملات الإعلانية المدفوعة حول موضوع: "${topic}". يجب أن تكون الكلمات المفتاحية باللغة العربية الفصحى، كل كلمة في سطر جديد.`;
+                const englishPrompt = `Suggest 10 relevant and suitable keywords for SEO or paid advertising campaigns about the topic: "${topic}". The keywords should be in English, each on a new line.`;
+                const prompt = isArabicText(topic) ? arabicPrompt : englishPrompt;
+
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    keywordOutput.innerText = response;
+                } catch (error) {
+                    keywordOutput.innerText = "عذراً، حدث خطأ أثناء توليد الكلمات المفتاحية.";
+                    console.error("Error generating keywords:", error);
+                } finally {
+                    keywordOutput.classList.remove('italic');
+                }
+            });
+
+            generateEmailSubjectBtn.addEventListener('click', async () => {
+                const emailContent = emailSubjectInput.value.trim();
+                if (emailContent === '') {
+                    emailSubjectOutput.innerText = "الرجاء إدخال موضوع البريد الإلكتروني أو محتواه.";
+                    return;
+                }
+
+                emailSubjectOutput.innerText = "جاري توليد العناوين...";
+                emailSubjectOutput.classList.add('italic');
+
+                const arabicPrompt = `توليد 3 عناوين بريد إلكتروني جذابة واحترافية باللغة العربية الفصحى بناءً على محتوى/غرض البريد الإلكتروني التالي:\n\n"${emailContent}"`;
+                const englishPrompt = `Generate 3 catchy and professional email subject lines in English based on the following email content/purpose:\n\n"${emailContent}"`;
+                const prompt = isArabicText(emailContent) ? arabicPrompt : englishPrompt;
+
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    emailSubjectOutput.innerText = response;
+                } catch (error) {
+                    emailSubjectOutput.innerText = "عذراً، حدث خطأ أثناء توليد عناوين البريد الإلكتروني.";
+                    console.error("Error generating email subject:", error);
+                } finally {
+                    emailSubjectOutput.classList.remove('italic');
+                }
+            });
+
+            generateReviewResponseBtn.addEventListener('click', async () => {
+                const reviewText = reviewResponseInput.value.trim();
+                if (reviewText === '') {
+                    reviewResponseOutput.innerText = "الرجاء إدخال مراجعة العميل.";
+                    return;
+                }
+
+                reviewResponseOutput.innerText = "جاري توليد الرد...";
+                reviewResponseOutput.classList.add('italic');
+
+                const arabicPrompt = `توليد رد احترافي ومناسب باللغة العربية الفصحى لمراجعة العميل التالية. ضع في اعتبارك ما إذا كانت المراجعة إيجابية أو سلبية وقم بتكييف الرد وفقاً لذلك:\n\n"${reviewText}"`;
+                const englishPrompt = `Generate a professional and appropriate response in English to the following customer review. Consider if it's positive or negative and tailor the response accordingly:\n\n"${reviewText}"`;
+                const prompt = isArabicText(reviewText) ? arabicPrompt : englishPrompt;
+
+                try {
+                    const response = await getGeminiResponseForTools(prompt);
+                    reviewResponseOutput.innerText = response;
+                } catch (error) {
+                    reviewResponseOutput.innerText = "عذراً، حدث خطأ أثناء توليد الرد.";
+                    console.error("Error generating review response:", error);
+                } finally {
+                    reviewResponseOutput.classList.remove('italic');
+                }
+            });
+
 
             // Separate Gemini API call function for tools to avoid prompt conflicts with chatbot
             async function getGeminiResponseForTools(promptText) {
@@ -1017,7 +1294,8 @@
                 chatHistory.push({ role: "user", parts: [{ text: promptText }] });
 
                 const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyAK3LA-F1e7u0dxCZkVKTzfSR0AdO2ZHCU"; // Canvas will automatically provide it
+                // Using the provided API key
+                const apiKey = "AIzaSyAK3LA-F1e7u0dxCZkVKTzfSR0AdO2ZHCU";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
