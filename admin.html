@@ -1,0 +1,1477 @@
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, query, orderBy, getDocs, deleteDoc, where } from 'firebase/firestore';
+import { Plus, User, Calendar, Phone, Hash, Play, Pause, BarChart, LogOut, Loader2, CheckCircle, XCircle, Briefcase, Link, MapPin, CreditCard, Notebook, ArrowLeft, Trash2, Edit, Facebook } from 'lucide-react';
+
+// Global variables provided by the Canvas environment
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+// GreenAPI Credentials (WARNING: Hardcoding API keys in client-side code is a security risk.
+// For production, use a secure backend proxy.)
+const GREENAPI_ID_INSTANCE = "7103121490";
+const GREENAPI_API_TOKEN_INSTANCE = "5302bc690deb405c9bd36048a27167e4c0baaa81616449dad";
+const GREENAPI_API_URL = "https://7103.api.greenapi.com";
+const GREENAPI_PHONE = "201022679250"; // The phone number associated with your GreenAPI instance
+
+// Create a context for Firebase services and user ID
+const FirebaseContext = createContext(null);
+
+// Firebase Provider Component
+const FirebaseProvider = ({ children }) => {
+    const [db, setDb] = useState(null);
+    const [auth, setAuth] = useState(null);
+    const [userId, setUserId] = useState(null);
+    const [isAuthReady, setIsAuthReady] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false); // New state to track if logged-in user is admin
+
+    useEffect(() => {
+        try {
+            const app = initializeApp(firebaseConfig);
+            const firestore = getFirestore(app);
+            const firebaseAuth = getAuth(app);
+
+            setDb(firestore);
+            setAuth(firebaseAuth);
+
+            const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
+                if (user) {
+                    setUserId(user.uid);
+                    // Check if this user is the admin (based on a predefined UID or other criteria)
+                    // For this demo, we'll assume the admin logs in via the specific username/password
+                    // and then their UID is implicitly associated with admin actions.
+                    // In a real system, you might have a 'roles' collection in Firestore.
+                    // For now, the admin login is handled separately in App.js.
+                } else {
+                    if (!initialAuthToken) {
+                        try {
+                            const anonUserCredential = await signInAnonymously(firebaseAuth);
+                            setUserId(anonUserCredential.user.uid);
+                        } catch (error) {
+                            console.error("Error signing in anonymously:", error);
+                        }
+                    }
+                }
+                setIsAuthReady(true);
+            });
+
+            const signIn = async () => {
+                if (initialAuthToken) {
+                    try {
+                        await signInWithCustomToken(firebaseAuth, initialAuthToken);
+                    } catch (error) {
+                        console.error("Error signing in with custom token:", error);
+                        try {
+                            const anonUserCredential = await signInAnonymously(firebaseAuth);
+                            setUserId(anonUserCredential.user.uid);
+                        } catch (anonError) {
+                            console.error("Error signing in anonymously after custom token failure:", anonError);
+                        }
+                    }
+                } else {
+                    try {
+                        const anonUserCredential = await signInAnonymously(firebaseAuth);
+                        setUserId(anonUserCredential.user.uid);
+                    } catch (error) {
+                        console.error("Error signing in anonymously:", error);
+                    }
+                }
+            };
+            signIn();
+
+            return () => unsubscribe();
+        } catch (error) {
+            console.error("Failed to initialize Firebase:", error);
+        }
+    }, []);
+
+    return (
+        <FirebaseContext.Provider value={{ db, auth, userId, isAuthReady, isAdmin, setIsAdmin }}>
+            {children}
+        </FirebaseContext.Provider>
+    );
+};
+
+// Message Box Component
+const MessageBox = ({ message, type, onClose }) => {
+    if (!message) return null;
+
+    const bgColor = type === 'success' ? 'bg-green-100 border-green-400 text-green-700' :
+                    type === 'error' ? 'bg-red-100 border-red-400 text-red-700' :
+                    'bg-blue-100 border-blue-400 text-blue-700';
+    const Icon = type === 'success' ? CheckCircle : type === 'error' ? XCircle : null;
+
+    return (
+        <div className={`fixed top-4 left-1/2 -translate-x-1/2 p-4 rounded-lg shadow-lg flex items-center space-x-3 ${bgColor} border z-[100]`} role="alert">
+            {Icon && <Icon className="w-5 h-5" />}
+            <span>{message}</span>
+            <button onClick={onClose} className="ml-auto text-current hover:opacity-75">
+                <XCircle className="w-4 h-4" />
+            </button>
+        </div>
+    );
+};
+
+// Admin Login Page Component
+const AdminLoginPage = ({ onLoginSuccess }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const { setIsAdmin } = useContext(FirebaseContext); // Use setIsAdmin from context
+
+    const handleLogin = () => {
+        if (username === 'admin' && password === 'Ehab5199@') {
+            setIsAdmin(true); // Set admin status
+            onLoginSuccess();
+        } else {
+            setError('اسم المستخدم أو كلمة المرور غير صحيحة.');
+        }
+    };
+
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 font-inter">
+            <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">تسجيل الدخول للمدير</h2>
+                {error && <p className="text-red-600 text-center mb-4 text-sm">{error}</p>}
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="username">
+                        اسم المستخدم:
+                    </label>
+                    <input
+                        type="text"
+                        id="username"
+                        className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="admin"
+                    />
+                </div>
+                <div className="mb-8">
+                    <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
+                        كلمة المرور:
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Ehab5199@"
+                    />
+                </div>
+                <button
+                    onClick={handleLogin}
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 shadow-lg transform hover:scale-105 transition duration-300"
+                >
+                    تسجيل الدخول
+                </button>
+            </div>
+        </div>
+    );
+};
+
+// Client Login Page Component
+const ClientLoginPage = ({ onClientLoginSuccess }) => {
+    const { auth, db, userId, isAuthReady } = useFirebase();
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [otp, setOtp] = useState('');
+    const [confirmationResult, setConfirmationResult] = useState(null);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('info');
+
+    const showTemporaryMessage = (msg, type = 'info') => {
+        setMessage(msg);
+        setMessageType(type);
+        setTimeout(() => setMessage(''), 5000);
+    };
+
+    useEffect(() => {
+        if (auth && !window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                'size': 'invisible',
+                'callback': (response) => {
+                    // reCAPTCHA solved, allow signInWithPhoneNumber.
+                    // This callback is triggered automatically when size is 'invisible'
+                },
+                'expired-callback': () => {
+                    setError('انتهت صلاحية reCAPTCHA، يرجى إعادة المحاولة.');
+                }
+            });
+        }
+    }, [auth]);
+
+    const handleSendOtp = async () => {
+        if (!auth || !isAuthReady) {
+            showTemporaryMessage('خطأ: لم يتم تهيئة المصادقة بعد.', 'error');
+            return;
+        }
+        if (!phoneNumber) {
+            setError('الرجاء إدخال رقم الهاتف.');
+            return;
+        }
+
+        setLoading(true);
+        setError('');
+        try {
+            const appVerifier = window.recaptchaVerifier;
+            const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+            setConfirmationResult(result);
+            showTemporaryMessage('تم إرسال رمز التحقق إلى هاتفك.', 'success');
+        } catch (err) {
+            console.error("Error sending OTP:", err);
+            setError(`فشل إرسال رمز التحقق: ${err.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleVerifyOtp = async () => {
+        if (!confirmationResult || !otp) {
+            setError('الرجاء إدخال رمز التحقق.');
+            return;
+        }
+
+        setLoading(true);
+        setError('');
+        try {
+            await confirmationResult.confirm(otp);
+            // User is now signed in. Find their client data.
+            // Assuming admin's userId is fixed for this demo, or we need to find it dynamically.
+            // For simplicity, let's assume the admin's UID is known or the first user created.
+            // In a real app, you'd have a way to identify the admin's UID.
+            // For now, we'll query all clients and match by phone number.
+
+            const clientsCollectionRef = collection(db, `artifacts/${appId}/users/${userId}/clients`); // This userId is the currently logged-in admin's UID
+            const q = query(clientsCollectionRef, where("phoneNumber", "==", phoneNumber));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const clientDoc = querySnapshot.docs[0];
+                onClientLoginSuccess(clientDoc.data(), clientDoc.id); // Pass client data and ID
+            } else {
+                setError('لم يتم العثور على عميل بهذا الرقم. يرجى التأكد من تسجيلك كعميل.');
+                await auth.signOut(); // Sign out the partially authenticated user
+            }
+
+        } catch (err) {
+            console.error("Error verifying OTP:", err);
+            setError(`فشل التحقق من الرمز: ${err.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 font-inter">
+            <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">تسجيل الدخول للعميل</h2>
+                {message && <MessageBox message={message} type={messageType} onClose={() => setMessage('')} />}
+                {error && <p className="text-red-600 text-center mb-4 text-sm">{error}</p>}
+
+                {!confirmationResult ? (
+                    <>
+                        <div className="mb-6">
+                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="clientPhoneNumber">
+                                رقم هاتفك (مثال: +201012345678):
+                            </label>
+                            <input
+                                type="tel"
+                                id="clientPhoneNumber"
+                                className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                placeholder="+201022679250"
+                                disabled={loading}
+                            />
+                        </div>
+                        <button
+                            onClick={handleSendOtp}
+                            className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 shadow-lg transform hover:scale-105 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={loading}
+                        >
+                            {loading ? <Loader2 className="animate-spin w-5 h-5 ml-2" /> : null}
+                            <span>إرسال رمز التحقق</span>
+                        </button>
+                        <div id="recaptcha-container" className="mt-4"></div>
+                    </>
+                ) : (
+                    <>
+                        <div className="mb-6">
+                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="otp">
+                                رمز التحقق (OTP):
+                            </label>
+                            <input
+                                type="text"
+                                id="otp"
+                                className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                placeholder="ادخل الرمز المكون من 6 أرقام"
+                                disabled={loading}
+                            />
+                        </div>
+                        <button
+                            onClick={handleVerifyOtp}
+                            className="w-full bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 shadow-lg transform hover:scale-105 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={loading}
+                        >
+                            {loading ? <Loader2 className="animate-spin w-5 h-5 ml-2" /> : null}
+                            <span>التحقق من الرمز</span>
+                        </button>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+};
+
+// Client Details Page Component (Used by Admin)
+const ClientDetailsPage = ({ client, onBack, showTemporaryMessage, generateCampaignAnalysis, analysisLoading, selectedCampaignId, adminUserId }) => {
+    const { db, userId, isAuthReady } = useFirebase();
+    const [campaigns, setCampaigns] = useState([]);
+    const [newCampaign, setNewCampaign] = useState({
+        campaignName: '',
+        pageName: '',
+        startDate: '',
+        endDate: '',
+        serialNumber: '',
+        status: 'created', // Default status
+    });
+    const [loading, setLoading] = useState(false);
+    const [showAnalysisModal, setShowAnalysisModal] = useState(false);
+    const [currentAnalysis, setCurrentAnalysis] = useState('');
+
+    // Ensure we are fetching campaigns from the correct admin's client subcollection
+    const currentAdminUserId = adminUserId || userId; // Use adminUserId if provided, otherwise current userId
+
+    useEffect(() => {
+        if (db && currentAdminUserId && isAuthReady && client?.id) {
+            const campaignsCollectionRef = collection(db, `artifacts/${appId}/users/${currentAdminUserId}/clients/${client.id}/campaigns`);
+            const q = query(campaignsCollectionRef);
+
+            const unsubscribe = onSnapshot(q, (snapshot) => {
+                const fetchedCampaigns = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                fetchedCampaigns.sort((a, b) => new Date(b.startDate) - new Date(a.startDate)); // Sort by start date
+                setCampaigns(fetchedCampaigns);
+            }, (error) => {
+                console.error("Error fetching campaigns for client:", error);
+                showTemporaryMessage('حدث خطأ أثناء جلب حملات العميل.', 'error');
+            });
+
+            return () => unsubscribe();
+        }
+    }, [db, currentAdminUserId, isAuthReady, client?.id, showTemporaryMessage]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewCampaign(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleAddCampaign = async (e) => {
+        e.preventDefault();
+        if (!db || !currentAdminUserId || !client?.id) {
+            showTemporaryMessage('خطأ: لم يتم تهيئة قاعدة البيانات أو معرف المستخدم/العميل غير متاح.', 'error');
+            return;
+        }
+        if (!newCampaign.campaignName || !newCampaign.pageName || !newCampaign.startDate || !newCampaign.endDate || !newCampaign.serialNumber) {
+            showTemporaryMessage('الرجاء ملء جميع حقول الحملة المطلوبة.', 'error');
+            return;
+        }
+
+        setLoading(true);
+        try {
+            await addDoc(collection(db, `artifacts/${appId}/users/${currentAdminUserId}/clients/${client.id}/campaigns`), {
+                ...newCampaign,
+                createdAt: new Date().toISOString(),
+                analysis: '',
+            });
+            setNewCampaign({ campaignName: '', pageName: '', startDate: '', endDate: '', serialNumber: '', status: 'created' });
+            showTemporaryMessage('تمت إضافة الحملة بنجاح!', 'success');
+        } catch (error) {
+            console.error("Error adding campaign:", error);
+            showTemporaryMessage('حدث خطأ أثناء إضافة الحملة.', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const updateCampaignStatus = async (campaignId, newStatus) => {
+        if (!db || !currentAdminUserId || !client?.id) return;
+        setLoading(true);
+        try {
+            const campaignRef = doc(db, `artifacts/${appId}/users/${currentAdminUserId}/clients/${client.id}/campaigns`, campaignId);
+            await updateDoc(campaignRef, { status: newStatus });
+            showTemporaryMessage(`تم تحديث حالة الحملة إلى: ${getStatusText(newStatus)}`, 'success');
+
+            const campaign = campaigns.find(c => c.id === campaignId);
+            if (campaign) {
+                if (newStatus === 'active') {
+                    sendWhatsAppNotification(client, campaign, 'start', showTemporaryMessage);
+                } else if (newStatus === 'completed') {
+                    sendWhatsAppNotification(client, campaign, 'end', showTemporaryMessage);
+                    await generateCampaignAnalysis(client, campaign, setCurrentAnalysis, setShowAnalysisModal, showTemporaryMessage);
+                }
+            }
+        } catch (error) {
+            console.error("Error updating campaign status:", error);
+            showTemporaryMessage('حدث خطأ أثناء تحديث حالة الحملة.', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getStatusText = (status) => {
+        switch (status) {
+            case 'created': return 'تم الإنشاء';
+            case 'under_review': return 'قيد المراجعة';
+            case 'active': return 'نشطة';
+            case 'paused': return 'موقوفة مؤقتًا';
+            case 'completed': return 'مكتملة';
+            default: return status;
+        }
+    };
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'created': return 'bg-gray-100 text-gray-800';
+            case 'under_review': return 'bg-yellow-100 text-yellow-800';
+            case 'active': return 'bg-green-100 text-green-800';
+            case 'paused': return 'bg-orange-100 text-orange-800';
+            case 'completed': return 'bg-blue-100 text-blue-800';
+            default: return 'bg-gray-100 text-gray-800';
+        }
+    };
+
+    return (
+        <div className="p-6">
+            <button
+                onClick={onBack}
+                className="mb-6 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md flex items-center space-x-2 space-x-reverse transition duration-300 transform hover:scale-105"
+            >
+                <ArrowLeft className="w-5 h-5" />
+                <span>العودة إلى قائمة العملاء</span>
+            </button>
+
+            {/* Client Details */}
+            <section className="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                    <User className="w-6 h-6 text-blue-600" />
+                    <span>تفاصيل العميل: {client.clientName}</span>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                    <p className="flex items-center space-x-2 space-x-reverse"><Briefcase className="w-5 h-5 text-gray-500" /> <strong>اسم النشاط التجاري:</strong> {client.businessName}</p>
+                    <p className="flex items-center space-x-2 space-x-reverse"><Link className="w-5 h-5 text-gray-500" /> <strong>رابط الصفحة:</strong> <a href={client.pageLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{client.pageLink}</a></p>
+                    <p className="flex items-center space-x-2 space-x-reverse"><Phone className="w-5 h-5 text-gray-500" /> <strong>رقم التليفون:</strong> {client.phoneNumber}</p>
+                    <p className="flex items-center space-x-2 space-x-reverse"><Phone className="w-5 h-5 text-gray-500" /> <strong>رقم الواتساب:</strong> {client.whatsappNumber}</p>
+                    <p className="flex items-center space-x-2 space-x-reverse"><MapPin className="w-5 h-5 text-gray-500" /> <strong>المحافظة:</strong> {client.governorate}</p>
+                    <p className="flex items-center space-x-2 space-x-reverse"><CreditCard className="w-5 h-5 text-gray-500" /> <strong>طريقة الدفع:</strong> {client.paymentMethod}</p>
+                    <p className="flex items-center space-x-2 space-x-reverse"><User className="w-5 h-5 text-gray-500" /> <strong>نوع العميل:</strong> {client.serviceType}</p>
+                    <p className="md:col-span-2 flex items-start space-x-2 space-x-reverse"><Notebook className="w-5 h-5 text-gray-500 mt-1" /> <strong>ملاحظات أخرى:</strong> {client.otherNotes || 'لا توجد ملاحظات.'}</p>
+                </div>
+            </section>
+
+            {/* Add New Campaign Section for this Client */}
+            <section className="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                    <Plus className="w-6 h-6 text-blue-600" />
+                    <span>إضافة حملة إعلانية جديدة لهذا العميل</span>
+                </h2>
+                <form onSubmit={handleAddCampaign} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                        <label htmlFor="campaignName" className="block text-gray-700 text-sm font-medium mb-2">اسم الحملة:</label>
+                        <input
+                            type="text"
+                            id="campaignName"
+                            name="campaignName"
+                            value={newCampaign.campaignName}
+                            onChange={handleInputChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            placeholder="اسم الحملة"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="pageName" className="block text-gray-700 text-sm font-medium mb-2">اسم الصفحة (المعلن عنها):</label>
+                        <input
+                            type="text"
+                            id="pageName"
+                            name="pageName"
+                            value={newCampaign.pageName}
+                            onChange={handleInputChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            placeholder="اسم الصفحة"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="startDate" className="block text-gray-700 text-sm font-medium mb-2">تاريخ البدء:</label>
+                        <input
+                            type="date"
+                            id="startDate"
+                            name="startDate"
+                            value={newCampaign.startDate}
+                            onChange={handleInputChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="endDate" className="block text-gray-700 text-sm font-medium mb-2">تاريخ الانتهاء:</label>
+                        <input
+                            type="date"
+                            id="endDate"
+                            name="endDate"
+                            value={newCampaign.endDate}
+                            onChange={handleInputChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="serialNumber" className="block text-gray-700 text-sm font-medium mb-2">الرقم التسلسلي:</label>
+                        <input
+                            type="text"
+                            id="serialNumber"
+                            name="serialNumber"
+                            value={newCampaign.serialNumber}
+                            onChange={handleInputChange}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            placeholder="الرقم التسلسلي"
+                            required
+                        />
+                    </div>
+                    <div className="md:col-span-2 lg:col-span-3 flex justify-end">
+                        <button
+                            type="submit"
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md flex items-center space-x-2 space-x-reverse transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={loading}
+                        >
+                            {loading ? <Loader2 className="animate-spin w-5 h-5 ml-2" /> : <Plus className="w-5 h-5 ml-2" />}
+                            <span>إضافة حملة</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            {/* Campaigns List for this Client */}
+            <section className="bg-white p-6 rounded-xl shadow-xl">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                    <BarChart className="w-6 h-6 text-blue-600" />
+                    <span>حملات العميل: {client.clientName}</span>
+                </h2>
+                {campaigns.length === 0 ? (
+                    <p className="text-gray-600 text-center py-8">لا توجد حملات إعلانية لهذا العميل حتى الآن.</p>
+                ) : (
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-sm">
+                            <thead className="bg-gray-100 border-b border-gray-200">
+                                <tr>
+                                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">اسم الحملة</th>
+                                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الصفحة</th>
+                                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">تاريخ البدء</th>
+                                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">تاريخ الانتهاء</th>
+                                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الرقم التسلسلي</th>
+                                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الحالة</th>
+                                    <th className="py-3 px-4 text-center text-sm font-semibold text-gray-600">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {campaigns.map((campaign) => (
+                                    <tr key={campaign.id} className="border-b border-gray-100 hover:bg-gray-50 transition duration-150">
+                                        <td className="py-3 px-4 text-gray-800">{campaign.campaignName}</td>
+                                        <td className="py-3 px-4 text-gray-800">{campaign.pageName}</td>
+                                        <td className="py-3 px-4 text-gray-800">{campaign.startDate}</td>
+                                        <td className="py-3 px-4 text-gray-800">{campaign.endDate}</td>
+                                        <td className="py-3 px-4 text-gray-800">{campaign.serialNumber}</td>
+                                        <td className="py-3 px-4">
+                                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(campaign.status)}`}>
+                                                {getStatusText(campaign.status)}
+                                            </span>
+                                        </td>
+                                        <td className="py-3 px-4 text-center">
+                                            <div className="flex justify-center space-x-2 space-x-reverse">
+                                                {campaign.status === 'created' && (
+                                                    <>
+                                                        <button
+                                                            onClick={() => updateCampaignStatus(campaign.id, 'under_review')}
+                                                            className="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                            title="قيد المراجعة"
+                                                            disabled={loading}
+                                                        >
+                                                            <CheckCircle className="w-5 h-5" />
+                                                        </button>
+                                                    </>
+                                                )}
+                                                {campaign.status === 'under_review' && (
+                                                    <button
+                                                        onClick={() => updateCampaignStatus(campaign.id, 'active')}
+                                                        className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="بدء الحملة (نشطة)"
+                                                        disabled={loading}
+                                                    >
+                                                        <Play className="w-5 h-5" />
+                                                    </button>
+                                                )}
+                                                {campaign.status === 'active' && (
+                                                    <button
+                                                        onClick={() => updateCampaignStatus(campaign.id, 'paused')}
+                                                        className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="إيقاف مؤقت"
+                                                        disabled={loading}
+                                                    >
+                                                        <Pause className="w-5 h-5" />
+                                                    </button>
+                                                )}
+                                                {campaign.status === 'paused' && (
+                                                    <button
+                                                        onClick={() => updateCampaignStatus(campaign.id, 'active')}
+                                                        className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="استئناف الحملة"
+                                                        disabled={loading}
+                                                    >
+                                                        <Play className="w-5 h-5" />
+                                                    </button>
+                                                )}
+                                                {(campaign.status === 'active' || campaign.status === 'paused') && (
+                                                    <button
+                                                        onClick={() => updateCampaignStatus(campaign.id, 'completed')}
+                                                        className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="إنهاء الحملة"
+                                                        disabled={loading}
+                                                    >
+                                                        <XCircle className="w-5 h-5" />
+                                                    </button>
+                                                )}
+                                                {campaign.status === 'completed' && campaign.analysis && (
+                                                    <button
+                                                        onClick={() => {
+                                                            setCurrentAnalysis(campaign.analysis);
+                                                            setShowAnalysisModal(true);
+                                                        }}
+                                                        className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="عرض التقرير"
+                                                    >
+                                                        <BarChart className="w-5 h-5" />
+                                                    </button>
+                                                )}
+                                                {campaign.status === 'completed' && !campaign.analysis && (
+                                                    <button
+                                                        onClick={() => generateCampaignAnalysis(client, campaign, setCurrentAnalysis, setShowAnalysisModal, showTemporaryMessage)}
+                                                        className="bg-purple-500 hover:bg-purple-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="إنشاء تقرير (لم يتم إنشاؤه بعد)"
+                                                        disabled={analysisLoading && selectedCampaignId === campaign.id}
+                                                    >
+                                                        {analysisLoading && selectedCampaignId === campaign.id ? (
+                                                            <Loader2 className="animate-spin w-5 h-5" />
+                                                        ) : (
+                                                            <BarChart className="w-5 h-5" />
+                                                        )}
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </section>
+
+            {/* Analysis Modal */}
+            {showAnalysisModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative">
+                        <h3 className="text-2xl font-bold text-gray-800 mb-4">تحليل الحملة الإعلانية</h3>
+                        {analysisLoading && selectedCampaignId === selectedCampaignId ? (
+                            <div className="flex flex-col items-center justify-center py-10">
+                                <Loader2 className="animate-spin w-10 h-10 text-blue-600 mb-4" />
+                                <p className="text-gray-700">جارٍ إنشاء التحليل، يرجى الانتظار...</p>
+                            </div>
+                        ) : (
+                            <div className="prose max-w-none text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: currentAnalysis.replace(/\n/g, '<br />') }}></div>
+                        )}
+                        <button
+                            onClick={() => setShowAnalysisModal(false)}
+                            className="absolute top-4 left-4 bg-gray-200 hover:bg-gray-300 p-2 rounded-full transition duration-200"
+                        >
+                            <XCircle className="w-6 h-6 text-gray-600" />
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+// Client Dashboard Page Component (for clients to view their data)
+const ClientDashboardPage = ({ clientData, onLogout, showTemporaryMessage, generateCampaignAnalysis, analysisLoading, selectedCampaignId }) => {
+    const { db, userId, isAuthReady } = useFirebase();
+    const [campaigns, setCampaigns] = useState([]);
+    const [showAnalysisModal, setShowAnalysisModal] = useState(false);
+    const [currentAnalysis, setCurrentAnalysis] = useState('');
+
+    // Assuming clientData.id is the client's document ID in the admin's collection
+    // And userId is the admin's UID (which is fixed for this demo, or needs to be found)
+    // For this demo, we'll assume the client is linked to the admin's default UID
+    // In a real multi-admin system, this would require finding the correct admin's UID
+    // associated with this client. For simplicity, we'll use the current userId which is
+    // the UID of the anonymous user created by FirebaseProvider, which is acting as the 'admin' in this demo.
+    const adminUserIdForClientData = userId; // This is a simplification for the demo
+
+    useEffect(() => {
+        if (db && adminUserIdForClientData && isAuthReady && clientData?.id) {
+            const campaignsCollectionRef = collection(db, `artifacts/${appId}/users/${adminUserIdForClientData}/clients/${clientData.id}/campaigns`);
+            const q = query(campaignsCollectionRef);
+
+            const unsubscribe = onSnapshot(q, (snapshot) => {
+                const fetchedCampaigns = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                fetchedCampaigns.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+                setCampaigns(fetchedCampaigns);
+            }, (error) => {
+                console.error("Error fetching campaigns for client:", error);
+                showTemporaryMessage('حدث خطأ أثناء جلب حملاتك.', 'error');
+            });
+
+            return () => unsubscribe();
+        }
+    }, [db, adminUserIdForClientData, isAuthReady, clientData?.id, showTemporaryMessage]);
+
+    const getStatusText = (status) => {
+        switch (status) {
+            case 'created': return 'تم الإنشاء';
+            case 'under_review': return 'قيد المراجعة';
+            case 'active': return 'نشطة';
+            case 'paused': return 'موقوفة مؤقتًا';
+            case 'completed': return 'مكتملة';
+            default: return status;
+        }
+    };
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'created': return 'bg-gray-100 text-gray-800';
+            case 'under_review': return 'bg-yellow-100 text-yellow-800';
+            case 'active': return 'bg-green-100 text-green-800';
+            case 'paused': return 'bg-orange-100 text-orange-800';
+            case 'completed': return 'bg-blue-100 text-blue-800';
+            default: return 'bg-gray-100 text-gray-800';
+        }
+    };
+
+    return (
+        <div className="min-h-screen bg-gray-50 flex flex-col font-inter text-right" dir="rtl">
+            <header className="bg-gradient-to-r from-purple-700 to-purple-900 text-white p-4 shadow-lg flex justify-between items-center">
+                <h1 className="text-2xl font-bold">لوحة تحكم العميل: {clientData.clientName}</h1>
+                <button
+                    onClick={onLogout}
+                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md flex items-center space-x-2 space-x-reverse transition duration-300 transform hover:scale-105"
+                >
+                    <LogOut className="w-5 h-5" />
+                    <span>تسجيل الخروج</span>
+                </button>
+            </header>
+
+            <main className="flex-1 p-6">
+                {/* Client Personal Details */}
+                <section className="bg-white p-6 rounded-xl shadow-xl mb-8">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                        <User className="w-6 h-6 text-blue-600" />
+                        <span>بياناتك الشخصية والتجارية</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                        <p className="flex items-center space-x-2 space-x-reverse"><Briefcase className="w-5 h-5 text-gray-500" /> <strong>اسم النشاط التجاري:</strong> {clientData.businessName}</p>
+                        <p className="flex items-center space-x-2 space-x-reverse"><Link className="w-5 h-5 text-gray-500" /> <strong>رابط الصفحة:</strong> <a href={clientData.pageLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{clientData.pageLink}</a></p>
+                        <p className="flex items-center space-x-2 space-x-reverse"><Phone className="w-5 h-5 text-gray-500" /> <strong>رقم التليفون:</strong> {clientData.phoneNumber}</p>
+                        <p className="flex items-center space-x-2 space-x-reverse"><Phone className="w-5 h-5 text-gray-500" /> <strong>رقم الواتساب:</strong> {clientData.whatsappNumber}</p>
+                        <p className="flex items-center space-x-2 space-x-reverse"><MapPin className="w-5 h-5 text-gray-500" /> <strong>المحافظة:</strong> {clientData.governorate}</p>
+                        <p className="flex items-center space-x-2 space-x-reverse"><CreditCard className="w-5 h-5 text-gray-500" /> <strong>طريقة الدفع:</strong> {clientData.paymentMethod}</p>
+                        <p className="flex items-center space-x-2 space-x-reverse"><User className="w-5 h-5 text-gray-500" /> <strong>نوع العميل:</strong> {clientData.serviceType}</p>
+                        <p className="md:col-span-2 flex items-start space-x-2 space-x-reverse"><Notebook className="w-5 h-5 text-gray-500 mt-1" /> <strong>ملاحظات أخرى:</strong> {clientData.otherNotes || 'لا توجد ملاحظات.'}</p>
+                    </div>
+                </section>
+
+                {/* Client Campaigns List */}
+                <section className="bg-white p-6 rounded-xl shadow-xl">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                        <BarChart className="w-6 h-6 text-blue-600" />
+                        <span>حملاتك الإعلانية</span>
+                    </h2>
+                    {campaigns.length === 0 ? (
+                        <p className="text-gray-600 text-center py-8">لا توجد حملات إعلانية مسجلة لك حتى الآن.</p>
+                    ) : (
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-sm">
+                                <thead className="bg-gray-100 border-b border-gray-200">
+                                    <tr>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">اسم الحملة</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الصفحة</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">تاريخ البدء</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">تاريخ الانتهاء</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الرقم التسلسلي</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الحالة</th>
+                                        <th className="py-3 px-4 text-center text-sm font-semibold text-gray-600">التقرير</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {campaigns.map((campaign) => (
+                                        <tr key={campaign.id} className="border-b border-gray-100 hover:bg-gray-50 transition duration-150">
+                                            <td className="py-3 px-4 text-gray-800">{campaign.campaignName}</td>
+                                            <td className="py-3 px-4 text-gray-800">{campaign.pageName}</td>
+                                            <td className="py-3 px-4 text-gray-800">{campaign.startDate}</td>
+                                            <td className="py-3 px-4 text-gray-800">{campaign.endDate}</td>
+                                            <td className="py-3 px-4 text-gray-800">{campaign.serialNumber}</td>
+                                            <td className="py-3 px-4">
+                                                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(campaign.status)}`}>
+                                                    {getStatusText(campaign.status)}
+                                                </span>
+                                            </td>
+                                            <td className="py-3 px-4 text-center">
+                                                {campaign.status === 'completed' && campaign.analysis ? (
+                                                    <button
+                                                        onClick={() => {
+                                                            setCurrentAnalysis(campaign.analysis);
+                                                            setShowAnalysisModal(true);
+                                                        }}
+                                                        className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="عرض التقرير"
+                                                    >
+                                                        <BarChart className="w-5 h-5" />
+                                                    </button>
+                                                ) : (
+                                                    <span className="text-gray-500 text-sm">لا يوجد تقرير</span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </section>
+            </main>
+
+            {/* Analysis Modal (shared with admin) */}
+            {showAnalysisModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative">
+                        <h3 className="text-2xl font-bold text-gray-800 mb-4">تحليل الحملة الإعلانية</h3>
+                        {analysisLoading && selectedCampaignId === selectedCampaignId ? (
+                            <div className="flex flex-col items-center justify-center py-10">
+                                <Loader2 className="animate-spin w-10 h-10 text-blue-600 mb-4" />
+                                <p className="text-gray-700">جارٍ إنشاء التحليل، يرجى الانتظار...</p>
+                            </div>
+                        ) : (
+                            <div className="prose max-w-none text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: currentAnalysis.replace(/\n/g, '<br />') }}></div>
+                        )}
+                        <button
+                            onClick={() => setShowAnalysisModal(false)}
+                            className="absolute top-4 left-4 bg-gray-200 hover:bg-gray-300 p-2 rounded-full transition duration-200"
+                        >
+                            <XCircle className="w-6 h-6 text-gray-600" />
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+
+// Dashboard Component (Admin Panel)
+const Dashboard = ({ onLogout }) => {
+    const { db, userId, isAuthReady, auth } = useFirebase(); // Added auth here for logout
+    const [clients, setClients] = useState([]);
+    const [newClient, setNewClient] = useState({
+        clientName: '',
+        businessName: '',
+        pageLink: '',
+        phoneNumber: '',
+        whatsappNumber: '',
+        governorate: '',
+        paymentMethod: '',
+        otherNotes: '',
+        serviceType: 'اعلانات ممولة', // Default service type
+    });
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('info');
+    const [selectedClient, setSelectedClient] = useState(null); // For navigating to client details
+    const [analysisLoading, setAnalysisLoading] = useState(false);
+    const [selectedCampaignId, setSelectedCampaignId] = useState(null); // To track which campaign's analysis is loading
+
+    // Fetch clients from Firestore
+    useEffect(() => {
+        if (db && userId && isAuthReady) {
+            const clientsCollectionRef = collection(db, `artifacts/${appId}/users/${userId}/clients`);
+            const q = query(clientsCollectionRef);
+
+            const unsubscribe = onSnapshot(q, (snapshot) => {
+                const fetchedClients = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                fetchedClients.sort((a, b) => a.clientName.localeCompare(b.clientName)); // Sort by client name
+                setClients(fetchedClients);
+            }, (error) => {
+                console.error("Error fetching clients:", error);
+                showTemporaryMessage('حدث خطأ أثناء جلب العملاء.', 'error');
+            });
+
+            return () => unsubscribe();
+        }
+    }, [db, userId, isAuthReady]);
+
+    const showTemporaryMessage = (msg, type = 'info') => {
+        setMessage(msg);
+        setMessageType(type);
+        setTimeout(() => setMessage(''), 5000);
+    };
+
+    const handleClientInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewClient(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Add New Client
+    const handleAddClient = async (e) => {
+        e.preventDefault();
+        if (!db || !userId) {
+            showTemporaryMessage('خطأ: لم يتم تهيئة قاعدة البيانات أو معرف المستخدم غير متاح.', 'error');
+            return;
+        }
+        if (!newClient.clientName || !newClient.businessName || !newClient.phoneNumber || !newClient.serviceType) {
+            showTemporaryMessage('الرجاء ملء الحقول المطلوبة (اسم العميل، اسم النشاط التجاري، رقم التليفون، نوع العميل).', 'error');
+            return;
+        }
+
+        setLoading(true);
+        try {
+            await addDoc(collection(db, `artifacts/${appId}/users/${userId}/clients`), {
+                ...newClient,
+                createdAt: new Date().toISOString(),
+            });
+            setNewClient({ clientName: '', businessName: '', pageLink: '', phoneNumber: '', whatsappNumber: '', governorate: '', paymentMethod: '', otherNotes: '', serviceType: 'اعلانات ممولة' });
+            showTemporaryMessage('تمت إضافة العميل بنجاح!', 'success');
+        } catch (error) {
+            console.error("Error adding client:", error);
+            showTemporaryMessage('حدث خطأ أثناء إضافة العميل.', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Delete Client
+    const handleDeleteClient = async (clientId) => {
+        if (!db || !userId) return;
+        if (!window.confirm('هل أنت متأكد أنك تريد حذف هذا العميل وجميع حملاته؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+            return;
+        }
+
+        setLoading(true);
+        try {
+            // First, delete all campaigns associated with this client
+            const campaignsCollectionRef = collection(db, `artifacts/${appId}/users/${userId}/clients/${clientId}/campaigns`);
+            const campaignDocs = await getDocs(campaignsCollectionRef);
+            const deleteCampaignPromises = campaignDocs.docs.map(d => deleteDoc(d.ref));
+            await Promise.all(deleteCampaignPromises);
+
+            // Then, delete the client document itself
+            await deleteDoc(doc(db, `artifacts/${appId}/users/${userId}/clients`, clientId));
+            showTemporaryMessage('تم حذف العميل وجميع حملاته بنجاح!', 'success');
+        } catch (error) {
+            console.error("Error deleting client:", error);
+            showTemporaryMessage('حدث خطأ أثناء حذف العميل.', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Function to send WhatsApp notification via GreenAPI
+    const sendWhatsAppNotification = async (clientData, campaignData, type, showTemporaryMessage) => {
+        const targetPhoneNumber = clientData.whatsappNumber || clientData.phoneNumber;
+        if (!targetPhoneNumber) {
+            showTemporaryMessage('لا يوجد رقم واتساب أو هاتف للعميل لإرسال الإشعار.', 'error');
+            return;
+        }
+
+        const messageText = type === 'start'
+            ? `مرحباً ${clientData.clientName}، حملتك الإعلانية "${campaignData.campaignName}" برقم ${campaignData.serialNumber} قد بدأت الآن! نتمنى لك حملة موفقة.`
+            : `مرحباً ${clientData.clientName}، حملتك الإعلانية "${campaignData.campaignName}" برقم ${campaignData.serialNumber} قد انتهت. سيتم إرسال تقرير التحليل قريباً.`;
+
+        try {
+            const response = await fetch(`${GREENAPI_API_URL}/waInstance${GREENAPI_ID_INSTANCE}/sendMessage/${GREENAPI_API_TOKEN_INSTANCE}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chatId: `${targetPhoneNumber}@c.us`, // Format for WhatsApp number
+                    message: messageText,
+                }),
+            });
+
+            const result = await response.json();
+            if (response.ok && result.idMessage) {
+                showTemporaryMessage(`تم إرسال إشعار واتساب بنجاح إلى ${clientData.clientName}.`, 'success');
+            } else {
+                console.error("GreenAPI Error:", result);
+                showTemporaryMessage(`فشل إرسال إشعار واتساب إلى ${clientData.clientName}: ${result.message || 'خطأ غير معروف'}`, 'error');
+            }
+        } catch (error) {
+            console.error("Error sending WhatsApp notification:", error);
+            showTemporaryMessage(`حدث خطأ أثناء الاتصال بـ GreenAPI: ${error.message}`, 'error');
+        }
+    };
+
+
+    // Generate Campaign Analysis using Gemini API
+    const generateCampaignAnalysis = async (clientData, campaignData, setCurrentAnalysis, setShowAnalysisModal, showTemporaryMessage) => {
+        setAnalysisLoading(true);
+        setSelectedCampaignId(campaignData.id); // Set the ID of the campaign whose analysis is loading
+        setCurrentAnalysis(''); // Clear previous analysis
+
+        try {
+            const prompt = `
+            أنت محلل حملات إعلانية خبير.
+            قم بإنشاء تحليل مفصل لحملة إعلانية بناءً على البيانات التالية.
+            إذا لم تتوفر بيانات حملة سابقة للمقارنة، اذكر ذلك وقدم نصائح عامة.
+
+            بيانات العميل:
+            اسم العميل: ${clientData.clientName}
+            اسم النشاط التجاري: ${clientData.businessName}
+            رقم الهاتف: ${clientData.phoneNumber}
+            رقم الواتساب: ${clientData.whatsappNumber}
+            المحافظة: ${clientData.governorate}
+            طريقة الدفع: ${clientData.paymentMethod}
+            نوع العميل: ${clientData.serviceType}
+            ملاحظات أخرى: ${clientData.otherNotes || 'لا توجد.'}
+
+            بيانات الحملة الحالية:
+            اسم الحملة: ${campaignData.campaignName}
+            اسم الصفحة المعلن عنها: ${campaignData.pageName}
+            الرقم التسلسلي للحملة: ${campaignData.serialNumber}
+            تاريخ البدء: ${campaignData.startDate}
+            تاريخ الانتهاء: ${campaignData.endDate}
+            الحالة: مكتملة
+
+            بيانات الأداء (مثال، يمكنك تعديلها أو إضافة المزيد لتكون أكثر واقعية):
+            - عدد مرات الظهور: 1,500,000
+            - عدد النقرات: 35,000
+            - نسبة النقر إلى الظهور (CTR): 2.33%
+            - التحويلات: 500
+            - تكلفة التحويل (CPA): 10 دولار
+            - إجمالي الإنفاق: 5,000 دولار
+
+            بيانات الحملة السابقة (إذا كانت موجودة - هذا مثال، ستحتاج إلى جلب بيانات حقيقية من Firestore وتضمينها هنا):
+            لا توجد بيانات حملة سابقة محددة للمقارنة في هذا المثال.
+
+            الرجاء تضمين الأقسام التالية في التحليل:
+            1.  ملخص الأداء العام للحملة الحالية.
+            2.  مقارنة الأداء بالحملة السابقة (إذا توفرت).
+            3.  نقاط القوة والضعف.
+            4.  توصيات للحملات المستقبلية لتحسين الأداء.
+            5.  نصائح عامة للعميل.
+            `;
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "AIzaSyAK3LA-F1e7u0dxCZkVKTzfSR0AdO2ZHCU"; // مفتاح Gemini API
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                setCurrentAnalysis(text);
+                // Update the Firestore document with the generated analysis
+                const campaignRef = doc(db, `artifacts/${appId}/users/${userId}/clients/${clientData.id}/campaigns`, campaignData.id);
+                await updateDoc(campaignRef, { analysis: text });
+                showTemporaryMessage('تم إنشاء التحليل وتحديث الحملة بنجاح!', 'success');
+            } else {
+                setCurrentAnalysis('تعذر إنشاء التحليل. يرجى المحاولة مرة أخرى.');
+                showTemporaryMessage('تعذر إنشاء التحليل.', 'error');
+            }
+        } catch (error) {
+            console.error("Error generating analysis:", error);
+            setCurrentAnalysis('حدث خطأ أثناء إنشاء التحليل: ' + error.message);
+            showTemporaryMessage('حدث خطأ أثناء إنشاء التحليل.', 'error');
+        } finally {
+            setAnalysisLoading(false);
+            setSelectedCampaignId(null); // Clear loading state for this campaign
+            setShowAnalysisModal(true); // Show modal after attempt
+        }
+    };
+
+
+    if (selectedClient) {
+        return (
+            <ClientDetailsPage
+                client={selectedClient}
+                onBack={() => setSelectedClient(null)}
+                showTemporaryMessage={showTemporaryMessage}
+                generateCampaignAnalysis={generateCampaignAnalysis}
+                analysisLoading={analysisLoading}
+                selectedCampaignId={selectedCampaignId}
+                adminUserId={userId} // Pass admin's UID to ClientDetailsPage
+            />
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-gray-50 flex flex-col font-inter text-right" dir="rtl">
+            {/* Header */}
+            <header className="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-4 shadow-lg flex justify-between items-center">
+                <h1 className="text-2xl font-bold">لوحة تحكم المدير</h1>
+                <div className="flex items-center space-x-4 space-x-reverse">
+                    <span className="text-sm">معرف المستخدم: {userId || 'جار التحميل...'}</span>
+                    <button
+                        onClick={async () => { // Modified to handle Firebase logout
+                            if (auth) {
+                                try {
+                                    await auth.signOut();
+                                } catch (error) {
+                                    console.error("Error signing out:", error);
+                                }
+                            }
+                            onLogout(); // Call App's logout handler
+                        }}
+                        className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md flex items-center space-x-2 space-x-reverse transition duration-300 transform hover:scale-105"
+                    >
+                        <LogOut className="w-5 h-5" />
+                        <span>تسجيل الخروج</span>
+                    </button>
+                </div>
+            </header>
+
+            <main className="flex-1 p-6">
+                {message && <MessageBox message={message} type={messageType} onClose={() => setMessage('')} />}
+
+                {/* Add New Client Section */}
+                <section className="bg-white p-6 rounded-xl shadow-xl mb-8">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                        <Plus className="w-6 h-6 text-blue-600" />
+                        <span>إضافة عميل جديد</span>
+                    </h2>
+                    <form onSubmit={handleAddClient} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div>
+                            <label htmlFor="clientName" className="block text-gray-700 text-sm font-medium mb-2">اسم العميل:</label>
+                            <div className="relative">
+                                <User className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="text"
+                                    id="clientName"
+                                    name="clientName"
+                                    value={newClient.clientName}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="ادخل اسم العميل"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="businessName" className="block text-gray-700 text-sm font-medium mb-2">اسم النشاط التجاري:</label>
+                            <div className="relative">
+                                <Briefcase className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="text"
+                                    id="businessName"
+                                    name="businessName"
+                                    value={newClient.businessName}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="اسم النشاط التجاري"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="pageLink" className="block text-gray-700 text-sm font-medium mb-2">رابط الصفحة:</label>
+                            <div className="relative">
+                                <Link className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="url"
+                                    id="pageLink"
+                                    name="pageLink"
+                                    value={newClient.pageLink}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="مثال: https://facebook.com/page"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="phoneNumber" className="block text-gray-700 text-sm font-medium mb-2">رقم التليفون:</label>
+                            <div className="relative">
+                                <Phone className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="tel"
+                                    id="phoneNumber"
+                                    name="phoneNumber"
+                                    value={newClient.phoneNumber}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="ادخل رقم التليفون (مثال: +201012345678)"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="whatsappNumber" className="block text-gray-700 text-sm font-medium mb-2">رقم الواتساب:</label>
+                            <div className="relative">
+                                <Phone className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="tel"
+                                    id="whatsappNumber"
+                                    name="whatsappNumber"
+                                    value={newClient.whatsappNumber}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="ادخل رقم الواتساب (مثال: +201012345678)"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="governorate" className="block text-gray-700 text-sm font-medium mb-2">المحافظة:</label>
+                            <div className="relative">
+                                <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="text"
+                                    id="governorate"
+                                    name="governorate"
+                                    value={newClient.governorate}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="المحافظة"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="paymentMethod" className="block text-gray-700 text-sm font-medium mb-2">طريقة الدفع:</label>
+                            <div className="relative">
+                                <CreditCard className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <input
+                                    type="text"
+                                    id="paymentMethod"
+                                    name="paymentMethod"
+                                    value={newClient.paymentMethod}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="طريقة الدفع (كاش، تحويل بنكي، إلخ.)"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="serviceType" className="block text-gray-700 text-sm font-medium mb-2">نوع العميل (القسم):</label>
+                            <div className="relative">
+                                <Briefcase className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                                <select
+                                    id="serviceType"
+                                    name="serviceType"
+                                    value={newClient.serviceType}
+                                    onChange={handleClientInputChange}
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    required
+                                >
+                                    <option value="اعلانات ممولة">إعلانات ممولة</option>
+                                    <option value="التصميم الجرافيكي">التصميم الجرافيكي</option>
+                                    <option value="التسويق الإلكتروني">التسويق الإلكتروني</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="lg:col-span-2">
+                            <label htmlFor="otherNotes" className="block text-gray-700 text-sm font-medium mb-2">ملاحظات أخرى:</label>
+                            <div className="relative">
+                                <Notebook className="absolute right-3 top-3 text-gray-400" size={20} />
+                                <textarea
+                                    id="otherNotes"
+                                    name="otherNotes"
+                                    value={newClient.otherNotes}
+                                    onChange={handleClientInputChange}
+                                    rows="3"
+                                    className="pr-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                    placeholder="أي ملاحظات إضافية عن العميل"
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div className="md:col-span-2 lg:col-span-3 flex justify-end">
+                            <button
+                                type="submit"
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md flex items-center space-x-2 space-x-reverse transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                                disabled={loading}
+                            >
+                                {loading ? <Loader2 className="animate-spin w-5 h-5 ml-2" /> : <Plus className="w-5 h-5 ml-2" />}
+                                <span>إضافة عميل</span>
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                {/* Clients List Section */}
+                <section className="bg-white p-6 rounded-xl shadow-xl">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-3 space-x-reverse">
+                        <User className="w-6 h-6 text-blue-600" />
+                        <span>قائمة العملاء</span>
+                    </h2>
+                    {clients.length === 0 ? (
+                        <p className="text-gray-600 text-center py-8">لا توجد عملاء حتى الآن. ابدأ بإضافة عميل جديد!</p>
+                    ) : (
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-sm">
+                                <thead className="bg-gray-100 border-b border-gray-200">
+                                    <tr>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">اسم العميل</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">النشاط التجاري</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">رقم التليفون</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">المحافظة</th>
+                                        <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">نوع العميل</th>
+                                        <th className="py-3 px-4 text-center text-sm font-semibold text-gray-600">الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {clients.map((client) => (
+                                        <tr key={client.id} className="border-b border-gray-100 hover:bg-gray-50 transition duration-150">
+                                            <td className="py-3 px-4 text-gray-800">{client.clientName}</td>
+                                            <td className="py-3 px-4 text-gray-800">{client.businessName}</td>
+                                            <td className="py-3 px-4 text-gray-800">{client.phoneNumber}</td>
+                                            <td className="py-3 px-4 text-gray-800">{client.governorate}</td>
+                                            <td className="py-3 px-4 text-gray-800">{client.serviceType}</td>
+                                            <td className="py-3 px-4 text-center">
+                                                <div className="flex justify-center space-x-2 space-x-reverse">
+                                                    <button
+                                                        onClick={() => setSelectedClient(client)}
+                                                        className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="عرض التفاصيل والحملات"
+                                                    >
+                                                        <BarChart className="w-5 h-5" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteClient(client.id)}
+                                                        className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-md transition duration-300 transform hover:scale-110"
+                                                        title="حذف العميل"
+                                                        disabled={loading}
+                                                    >
+                                                        <Trash2 className="w-5 h-5" />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </section>
+            </main>
+        </div>
+    );
+};
+
+// Main App Component
+const App = () => {
+    // No useContext here directly. FirebaseProvider will wrap this.
+    const [view, setView] = useState('home'); // 'home', 'adminLogin', 'clientLogin', 'adminDashboard', 'clientDashboard'
+    const [clientDataForDashboard, setClientDataForDashboard] = useState(null);
+
+    // This useEffect is no longer needed here as FirebaseProvider handles auth state.
+    // useEffect(() => {
+    //     if (auth) {
+    //         const unsubscribe = onAuthStateChanged(auth, (user) => {
+    //             if (user) {
+    //                 if (user.phoneNumber) {
+    //                 }
+    //             }
+    //         });
+    //         return () => unsubscribe();
+    //     }
+    // }, [auth]);
+
+    const handleAdminLoginSuccess = () => {
+        // setIsAdmin(true); // This will be handled by AdminLoginPage setting context
+        setView('adminDashboard');
+    };
+
+    const handleClientLoginSuccess = (clientDetails, clientId) => {
+        setClientDataForDashboard({ ...clientDetails, id: clientId });
+        setView('clientDashboard');
+    };
+
+    // Logout handler for App. Actual Firebase signOut happens in Dashboard/ClientDashboardPage
+    const handleLogoutApp = () => {
+        setClientDataForDashboard(null);
+        setView('home'); // Go back to home/selection page
+    };
+
+    const renderContent = () => {
+        // These components will use useContext(FirebaseContext)
+        switch (view) {
+            case 'adminLogin':
+                return <AdminLoginPage onLoginSuccess={handleAdminLoginSuccess} />;
+            case 'clientLogin':
+                return <ClientLoginPage onClientLoginSuccess={handleClientLoginSuccess} />;
+            case 'adminDashboard':
+                return <Dashboard onLogout={handleLogoutApp} />; // Pass App's logout handler
+            case 'clientDashboard':
+                return <ClientDashboardPage
+                            clientData={clientDataForDashboard}
+                            onLogout={handleLogoutApp} // Pass App's logout handler
+                            showTemporaryMessage={() => { /* Client messages handled internally */ }}
+                            generateCampaignAnalysis={() => { /* Client cannot generate analysis */ }}
+                            analysisLoading={false}
+                            selectedCampaignId={null}
+                        />;
+            case 'home':
+            default:
+                return (
+                    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 font-inter">
+                        <div className="bg-white p-8 rounded-xl shadow-2xl text-center w-full max-w-md">
+                            <h2 className="text-3xl font-bold text-gray-800 mb-8">مرحباً بك في نظام إدارة الحملات</h2>
+                            <p className="text-gray-600 mb-6">الرجاء اختيار نوع تسجيل الدخول:</p>
+                            <div className="space-y-4">
+                                <button
+                                    onClick={() => setView('adminLogin')}
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transform hover:scale-105 transition duration-300"
+                                >
+                                    تسجيل الدخول كمدير
+                                </button>
+                                <button
+                                    onClick={() => setView('clientLogin')}
+                                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transform hover:scale-105 transition duration-300"
+                                >
+                                    تسجيل الدخول كعميل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                );
+        }
+    };
+
+    return (
+        <FirebaseProvider> {/* FirebaseProvider now correctly wraps the entire App content */}
+            {renderContent()}
+        </FirebaseProvider>
+    );
+};
+
+export default App;
