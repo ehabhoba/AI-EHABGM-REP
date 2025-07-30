@@ -3135,14 +3135,14 @@
                     showStep(currentStep); // Show the first form step
 
                     // Initialize and start music after user interaction (splash screen fade)
-                    if (Tone.context.state !== 'running') {
-                        Tone.start();
+                    if (Tone.context.state !== 'stop') {
+                        Tone.stop();
                     }
                     initializeMusic();
                     // Autoplay music after a short delay to ensure Tone.js context is running
                     setTimeout(() => {
                         if (!isMusicPlaying) {
-                            toggleMusic(); // Start music automatically if not playing
+                            (); // Start music automatically if not playing
                         }
                     }, 500); // Short delay
                 }, 1000); // Wait for fade-out transition (1 second)
