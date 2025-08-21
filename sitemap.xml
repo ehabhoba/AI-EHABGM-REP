@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- الصفحة الرئيسية -->
   <url>
     <loc>https://ehabonlineservice.online/</loc>
     <lastmod>2025-08-21</lastmod>
@@ -8,6 +9,7 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- الصفحات الأساسية -->
   <url>
     <loc>https://ehabonlineservice.online/about</loc>
     <lastmod>2025-08-21</lastmod>
@@ -43,7 +45,29 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- أي صفحات إضافية زي blog / faq / portfolio / emia-v0-page ... -->
+  <!-- صفحات إضافية -->
+  <url>
+    <loc>https://ehabonlineservice.online/blog</loc>
+    <lastmod>2025-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ehabonlineservice.online/faq</loc>
+    <lastmod>2025-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://ehabonlineservice.online/portfolio</loc>
+    <lastmod>2025-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- صفحاتك الحالية -->
   <url>
     <loc>https://ehabonlineservice.online/emia-v0-page</loc>
     <lastmod>2025-08-21</lastmod>
